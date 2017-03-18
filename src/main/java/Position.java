@@ -31,30 +31,56 @@ public class Position {
 		
 		//since formula requires a previous day's N value, must start with an x-day average of the True Range for calculation
 		BigDecimal averageTrueRange = setInitialAverageTrueRange(priceList, entry, start);
-		System.out.println("Initial Average True Range is: " + averageTrueRange);
+		//System.out.println("Initial Average True Range is: " + averageTrueRange);
 		
 		//start at start....
-		for(int x = LENGTH; x < start;x++){
-			//calculate ranges of true range calculation
-			BigDecimal highMinusLow 				= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
-			BigDecimal highMinusPreviousDayClose	= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x - 1).getClose(), MathContext.DECIMAL32));
-			BigDecimal previousDayCloseMinusLow		= setAbsolute(priceList.get(x-1).getClose().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
-			
-			//trueRange
-			BigDecimal trueRange;
-			
-			//EMA day
-			BigDecimal e = new BigDecimal(LENGTH - 1);
-			BigDecimal z = new BigDecimal(LENGTH);
-			
-			//Max of ranges = true range
-			trueRange = highMinusLow.max(highMinusPreviousDayClose);
-			trueRange = trueRange.max(previousDayCloseMinusLow);
-			
-			averageTrueRange = averageTrueRange.multiply(e, MathContext.DECIMAL32).add(trueRange, MathContext.DECIMAL32).divide(z, MathContext.DECIMAL32);
-			System.out.println("Date: " + priceList.get(x).getDate() + " The average true range is: " + averageTrueRange);
+		if(start > LENGTH * 2){
+			for(int x = start - (LENGTH + LENGTH/2); x < priceList.size();x++){
+				//calculate ranges of true range calculation
+				BigDecimal highMinusLow 				= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
+				BigDecimal highMinusPreviousDayClose	= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x - 1).getClose(), MathContext.DECIMAL32));
+				BigDecimal previousDayCloseMinusLow		= setAbsolute(priceList.get(x-1).getClose().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
+				
+				//trueRange
+				BigDecimal trueRange;
+				
+				//EMA day
+				BigDecimal e = new BigDecimal(LENGTH - 1);
+				BigDecimal z = new BigDecimal(LENGTH);
+				
+				//Max of ranges = true range
+				trueRange = highMinusLow.max(highMinusPreviousDayClose);
+				trueRange = trueRange.max(previousDayCloseMinusLow);
+				
+				averageTrueRange = averageTrueRange.multiply(e, MathContext.DECIMAL32).add(trueRange, MathContext.DECIMAL32).divide(z, MathContext.DECIMAL32);
+				//System.out.println("Date: " + priceList.get(x).getDate() + " The average true range is: " + averageTrueRange);
+				
+			}
+		}else{
+			for(int x = start; x < priceList.size();x++){
+				//calculate ranges of true range calculation
+				BigDecimal highMinusLow 				= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
+				BigDecimal highMinusPreviousDayClose	= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x - 1).getClose(), MathContext.DECIMAL32));
+				BigDecimal previousDayCloseMinusLow		= setAbsolute(priceList.get(x-1).getClose().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
+				
+				//trueRange
+				BigDecimal trueRange;
+				
+				//EMA day
+				BigDecimal e = new BigDecimal(LENGTH - 1);
+				BigDecimal z = new BigDecimal(LENGTH);
+				
+				//Max of ranges = true range
+				trueRange = highMinusLow.max(highMinusPreviousDayClose);
+				trueRange = trueRange.max(previousDayCloseMinusLow);
+				
+				averageTrueRange = averageTrueRange.multiply(e, MathContext.DECIMAL32).add(trueRange, MathContext.DECIMAL32).divide(z, MathContext.DECIMAL32);
+				//System.out.println("Date: " + priceList.get(x).getDate() + " The average true range is: " + averageTrueRange);
+				
+			}
 			
 		}
+		
 		return averageTrueRange;
 	}
 	
@@ -123,7 +149,7 @@ public class Position {
 		BigDecimal p = new BigDecimal(100);
 		BigDecimal percent = closeOpenDivided.multiply(p);
 		myList.add(percent);
-		System.out.println(TradingSystem.getCurrencyPair().toString() + 
+		System.out.println(Entry.asset + 
 		" " + utcDate + " " + close 
 		+ " closed! " + percent);
 	}
