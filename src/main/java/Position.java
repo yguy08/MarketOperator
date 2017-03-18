@@ -33,6 +33,7 @@ public class Position {
 		BigDecimal averageTrueRange = setInitialAverageTrueRange(priceList, entry, start);
 		System.out.println("Initial Average True Range is: " + averageTrueRange);
 		
+		//start at start....
 		for(int x = LENGTH; x < start;x++){
 			//calculate ranges of true range calculation
 			BigDecimal highMinusLow 				= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
