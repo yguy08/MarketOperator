@@ -21,8 +21,11 @@ public class TradingSystem implements MenuOptions {
 	private static List<CurrencyPair> marketList;
 	private static List<PoloniexChartData> poloniexChartData;
 	
+	private static MarketDataService dataService;
+	
 	static final int HIGH_LOW = 25;
 	static final int CLOSE = 10;
+	static final int ACCOUNT_SIZE = 10;
 	
     public static void main(String[] args) throws Exception {
     	
@@ -30,12 +33,12 @@ public class TradingSystem implements MenuOptions {
     	poloniex = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
     	
 		//create MarketDataService
-		MarketDataService dataService = poloniex.getMarketDataService();
+		dataService = poloniex.getMarketDataService();
 	    
 		//set Market list
 		marketList = poloniex.getExchangeSymbols();
 		
-		Scanner scanner = new Scanner(System.in);
+		//Scanner scanner = new Scanner(System.in);
 		System.out.println("Current entry flag is: " + HIGH_LOW);
 		System.out.println("Current close flag is: " + CLOSE);
 
@@ -44,6 +47,15 @@ public class TradingSystem implements MenuOptions {
 			System.out.println(currencyPair);
 		}
 		
+		setCurrencyPair("XMR/BTC");
+		
+		poloniexChartData = setPoloniexChartData((PoloniexMarketDataServiceRaw) dataService);
+		
+		Entry entry = new Entry(getCurrencyPair().toString(), poloniexChartData);
+		
+		
+		
+		/*
 		System.out.println("Choose Market: ");
 		String market = scanner.nextLine();
 		
@@ -78,7 +90,7 @@ public class TradingSystem implements MenuOptions {
 			startBackTest((PoloniexMarketDataServiceRaw) dataService);
 			SystemCalculations.highFinder(poloniexChartData, HIGH_LOW);
 			System.out.println(SystemCalculations.getProfitLoss());
-		}
+		}*/
 
 	}
     
@@ -90,11 +102,11 @@ public class TradingSystem implements MenuOptions {
     	currencyPair = new CurrencyPair(x);
     }
     
-    private static void startBackTest(PoloniexMarketDataServiceRaw dataService) throws IOException{
+    private static List<PoloniexChartData> setPoloniexChartData(PoloniexMarketDataServiceRaw dataService) throws IOException{
     	long now = new Date().getTime() / 1000;
-    	System.out.println(getCurrencyPair());
 		poloniexChartData = Arrays.asList(dataService.getPoloniexChartData
 				(getCurrencyPair(), now - 8760 * 60 * 60, now, PoloniexChartDataPeriodType.PERIOD_86400));
+		return poloniexChartData;
     }	
 
 }
