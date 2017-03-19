@@ -1,25 +1,38 @@
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.Clock;
-import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
+import java.util.TimeZone;
 
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.PoloniexExchange;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
+import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
+import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
-public class TradingSystem implements MenuOptions {
+/*
+ * The development and application of a trading strategy follows eight steps:
+ * (1) Formulation, (2) Specification in computer-testable form, (3) Preliminary testing, (4) Optimization, 
+ * (5) Evaluation of performance and robustness, (6) Trading of the strategy, (7) Monitoring of trading performance, 
+ * (8) Refinement and evolution.
+ * 
+ *  For every trading strategy one needs to define 
+ *  assets to trade, entry/exit points and money management rules. 
+ *	Bad money management can make a potentially profitable strategy unprofitable.
+ * 
+ */
+
+public class TradingSystem {
 	
 	private static Exchange poloniex;
 	
 	private static List<CurrencyPair> marketList;
 	private static List<PoloniexChartData> poloniexChartData;
+	private static List<PoloniexChartData> priceList;
 	
 	private static MarketDataService dataService;
 	
@@ -36,72 +49,43 @@ public class TradingSystem implements MenuOptions {
 		dataService = poloniex.getMarketDataService();
 	    
 		//set Market list
-		marketList = poloniex.getExchangeSymbols();
+		marketList = poloniex.getExchangeSymbols();	
 		
-		//Scanner scanner = new Scanner(System.in);
-		//System.out.println("Current entry flag is: " + HIGH_LOW);
-		//System.out.println("Current close flag is: " + CLOSE);
-
-		//Display markets
-		//for(CurrencyPair currencyPair : marketList){
-			//System.out.println(currencyPair);
-		//}		
+		String m = "XMR/BTC";
 		
-		Entry entry = new Entry("AMP/BTC");
+		setPriceList((PoloniexMarketDataServiceRaw) dataService, m);
 		
-		System.out.println(entry.getPriceList().get(0));
-		System.out.println(entry.getPriceList().get(entry.priceList.size() - 1));
+		TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(timeZone);
+		calendar.set(2017, 2, 01, 0, 0, 0);
 		
-		System.out.println(entry.getEntryList().get(0));
-		System.out.println(entry.getEntryList().get(entry.entryList.size() - 1));
+		Asset.setPriceList(poloniexChartData);
 		
-		//for(PoloniexChartData chartData : entry.entryList){
-		//System.out.println(Entry.entryList.get(entry.entryList.indexOf(chartData)));
-		//}
+		Entry entry = new Entry(m, getPriceList(), calendar.getTime());
 		
+		for(int x = 0; x < Entry.entries.size();x++){
+			System.out.println(Entry.entries.get(x));
+		}
 		
-		
-		/*
-		System.out.println("Choose Market: ");
-		String market = scanner.nextLine();
-		
-		switch(market.toUpperCase()){
-		case ALL:
-			for(CurrencyPair currencyPair : marketList){
-					setCurrencyPair(currencyPair.toString());
-					startBackTest((PoloniexMarketDataServiceRaw) dataService);
-					SystemCalculations.highFinder(poloniexChartData, HIGH_LOW);
-			}
-				System.out.println(SystemCalculations.getProfitLoss());
-				break;
-		case BTC_ONLY:
-			for(CurrencyPair currencyPair : marketList){
-				if(currencyPair.toString().contains("BTC") == true){
-					setCurrencyPair(currencyPair.toString());
-					startBackTest((PoloniexMarketDataServiceRaw) dataService);
-					SystemCalculations.highFinder(poloniexChartData, HIGH_LOW);
-				}
-			}
-				System.out.println(SystemCalculations.getProfitLoss());
-				break;
-		case VOLUME:
-			for(CurrencyPair currencyPair: marketList){
-				setCurrencyPair(currencyPair.toString());
-				startBackTest((PoloniexMarketDataServiceRaw) dataService);
-				SystemCalculations.getWeightedAvg(poloniexChartData);
-			}
-				break;
-		default:
-			setCurrencyPair(market);
-			startBackTest((PoloniexMarketDataServiceRaw) dataService);
-			SystemCalculations.highFinder(poloniexChartData, HIGH_LOW);
-			System.out.println(SystemCalculations.getProfitLoss());
-		}*/
-
 	}
 
     public static MarketDataService getDataService(){
     	return dataService;
-    }	
+    }
+    
+    public static void setPriceList(PoloniexMarketDataServiceRaw dataService, String currencyPairStr) throws IOException{
+    	long now = new Date().getTime() / 1000;
+    	CurrencyPair currencyPair = new CurrencyPair(currencyPairStr);
+    	priceList = Arrays.asList(dataService.getPoloniexChartData
+				(currencyPair, now - 8760 * 60 * 60, now, PoloniexChartDataPeriodType.PERIOD_86400));
+    }
+    
+    public static List<PoloniexChartData> getPriceList(){
+    	return priceList;
+    }
+    
+    
+    
+    
 
 }
