@@ -44,8 +44,8 @@ public class TradingSystem {
     public static void main(String[] args) throws Exception {
     	
     	//marketsToWatch();
-    	positionBackTest();
-    	
+    	//positionBackTest();
+    	marketsToClose();
     	
     	
 		
@@ -114,6 +114,57 @@ public class TradingSystem {
 		}
     	
     }
+    
+    public static void marketsToClose() throws Exception{
+    	//create Exchange Instance
+    	poloniex = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
+    	
+		//create MarketDataService
+		dataService = poloniex.getMarketDataService();
+	    
+		//set Market list
+		marketList = poloniex.getExchangeSymbols();
+		
+		System.out.println("***** Market *****");
+		for(int x = 0; x < marketList.size();x++){
+			System.out.println(marketList.get(x));
+		}
+		
+		for(int x = 0; x < marketList.size();x++){
+		String m = marketList.get(x).toString();
+		System.out.println("Market is: " + m);
+		setPriceList((PoloniexMarketDataServiceRaw) dataService, m);
+		
+		TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(timeZone);
+		calendar.set(2017, 2, 15, 0, 0, 0);
+		
+		Asset asset = new Asset(m,getPriceList());
+		System.out.println(("Price is: " + asset.getPrice()));
+		
+		Entry entry = new Entry(asset.getName(), Asset.getPriceList(), calendar.getTime());
+
+		if(entry.entryList.size() > 0){
+			System.out.println("***** MARKET TO WATCH *****");
+			System.out.println("***** " + asset.getName() + " *****");
+			System.out.println("Entries for: " + asset.getName() + " since: " + calendar.getTime());
+		for(int z = 0; z < entry.entryList.size();z++){
+			System.out.println("At a high: " + entry.getName() + " Date: " + DateUtils.toUTCString(entry.entryList.get(z).getDate()));
+			System.out.println("Open: " + entry.getName() + " @ " + entry.entryList.get(z).getClose());
+			Position position = new Position(asset.getName(), Asset.getPriceList(),calendar.getTime(),entry.entryList.get(z));
+			System.out.println("Average True Range: " + position.trueRange);
+			if(entry.entryList.get(z).getClose() == position.close.getClose()){
+			System.out.println("Still open...add");
+			}else{
+				System.out.println("Close: " + position.close);
+			}
+		}
+		System.out.println("***** END ****");
+		}else{
+			System.out.println("Never at a high, skip...");
+		}
+		}
+		}
     
     public static void positionBackTest() throws Exception{
     	//create Exchange Instance
