@@ -13,7 +13,7 @@ public class Asset {
 		this.name 		= name;
 		this.price		= (poloniexChartData.get((poloniexChartData.size() - 1)).getClose());
 		setPriceList(poloniexChartData);
-		priceList = getPriceList();
+		this.priceList = priceList;
 	}
 
 	public String getName() {

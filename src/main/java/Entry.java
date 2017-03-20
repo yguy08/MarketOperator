@@ -10,16 +10,22 @@ public class Entry extends Asset {
 	
 	static List<PoloniexChartData>				entries = new ArrayList<>();
 	String date;
+	private String name;
+	List<PoloniexChartData> entryList = new ArrayList<>();
 	
 	
 	public Entry(String name, List<PoloniexChartData> priceList, Date date){
 		super(name, priceList);
 		this.date 		= DateUtils.toUTCString(date);
-		highFinder(Asset.getPriceList(),date);
+		this.name = super.getName();
+		this.entryList = highFinder(Asset.getPriceList(),date);
+		//highFinder(Asset.getPriceList(),date);
 	}
+	
     
     //get entry list
-	public static void highFinder(List<PoloniexChartData> priceList, Date date){
+	public static List<PoloniexChartData> highFinder(List<PoloniexChartData> priceList, Date date){
+		List<PoloniexChartData> e = new ArrayList<>();
 		int start = 0;
 		for(int x = 0; x < priceList.size();x++){
 			String d = DateUtils.toUTCString(priceList.get(x).getDate());
@@ -28,17 +34,17 @@ public class Entry extends Asset {
 				start = x;
 				break;
 			}else{
-				start = 0;
+				start = 1;
 			}
 		}
 		
-		if(start == 0){
-			System.out.println("Bad Date!");
-		}else{
-			List<PoloniexChartData> e = new ArrayList<>();
-			BigDecimal currentDay, previousDay;
-			int count = 0;
-			for(int x = start; x < priceList.size(); x++){
+		if(start == 1){
+			System.out.println("Date out of range or bad! Starting at first available");
+		}
+		
+		BigDecimal currentDay, previousDay;
+		int count = 0;
+		for(int x = start; x < priceList.size(); x++){
 					currentDay = priceList.get(x).getClose();
 					previousDay = priceList.get(x - 1).getClose();
 					count = 0;
@@ -58,11 +64,14 @@ public class Entry extends Asset {
 					}
 				}
 			if(e.size() > 0){
-			entries.addAll(e);
-			System.out.println(e.size() + " Entries found!");
+			for(int p = 0; p < e.size();p++){
+			//System.out.println(e.size() + " Entries found!");
+			}
+			
 			}else{
+				//e.add(priceList.get(priceList.size() - 1));
 				System.out.println("No entries found...");
 			}
-		}
+		return e;
 	}
 }

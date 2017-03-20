@@ -11,19 +11,22 @@ public class Position extends Entry {
 	
 	BigDecimal trueRange;
 	BigDecimal N;
+	PoloniexChartData close;
 	
 	
 	static final int LENGTH = 20; 
 	
 	static final BigDecimal size = new BigDecimal(TradingSystem.ACCOUNT_SIZE);
 	
-	public Position(String name, List<PoloniexChartData> priceList, int start){
-		super(name, priceList, start);
-		this.trueRange = setAverageTrueRange(priceList, this.entries.get(0));
+	public Position(String name, List<PoloniexChartData> priceList, Date date, PoloniexChartData entry){
+		super(name, priceList, date);
+		this.trueRange = setAverageTrueRange(priceList,entry);
+		this.close		= closeLongFinder(priceList,entry,trueRange);
 	}
 	
-	public static List<PoloniexChartData> closeLongFinder(String asset, List<PoloniexChartData> priceList, PoloniexChartData entry, BigDecimal trueRange){
+	public static PoloniexChartData closeLongFinder(List<PoloniexChartData> priceList, PoloniexChartData entry, BigDecimal trueRange){
 		int z = priceList.indexOf(entry);
+		PoloniexChartData c = entry;
 		BigDecimal currentDay, previousDay;
 		PARENT: for(int x = z; x < priceList.size();x++){
 			currentDay = priceList.get(x).getClose();
@@ -37,17 +40,17 @@ public class Position extends Entry {
 						break;
 					}else{
 						count++;
-					}if(count == TradingSystem.CLOSE | cutLoss(entry.getClose(), currentDay)){
-						BigDecimal close = currentDay;
-						closeList.add(priceList.get(x));
-						Position.setProfitLoss(close, entry.getClose(), priceList.get(x).getDate());
+					}if(count == TradingSystem.CLOSE | cutLoss(entry.getClose(), currentDay, trueRange)){
+						BigDecimal closed = currentDay;
+						c = priceList.get(x);
+						Position.setProfitLoss(closed, entry.getClose(), priceList.get(x).getDate());
 						z = x;
 						break PARENT;
 					}
 				}
 			}
 		}
-		return closeList;
+		return c;
 	}
 
 	/*
@@ -182,40 +185,12 @@ public class Position extends Entry {
 		return "Winners: " + w + " for profit of: " + profitWins + " Losers: " + l + " for profit of: " + profitLosses;
 	}
 	
-	public static int closeLongFinder(List<PoloniexChartData> priceList, BigDecimal open, int startPosition, int high){
-		int z = startPosition;
-		BigDecimal currentDay, previousDay;
-		PARENT: for(int x = startPosition; x < priceList.size();x++){
-			currentDay = priceList.get(x).getClose();
-			previousDay = priceList.get(x-1).getClose();
-			int count = 0;
-			if(currentDay.compareTo(previousDay) < 0){
-				count++;
-				for(int y = x - 2; y > 1;y--){
-					previousDay = priceList.get(y).getClose();
-					if(currentDay.compareTo(previousDay) > 0){
-						break;
-					}else{
-						count++;
-					}if(count == high | cutLoss(open, currentDay)){
-						BigDecimal close = currentDay;
-						String utcDate = DateUtils.toUTCString(priceList.get(x).getDate());
-						//Position.setProfitLoss(close, open, utcDate);
-						z = x;
-						break PARENT;
-					}
-				}
-			}
-		}
-		return z - startPosition;
-	}
-	
-	public static boolean cutLoss(BigDecimal open, BigDecimal current){
+	public static boolean cutLoss(BigDecimal open, BigDecimal current, BigDecimal trueRange){
 		BigDecimal closeOpenDif = current.subtract(open);
-		BigDecimal closeIf = new BigDecimal(-0.3000);
-		BigDecimal closeOpenDiv = closeOpenDif.divide(open,5);
-		if(closeOpenDiv.compareTo(closeIf) < 0){
-			return false;
+		BigDecimal n = new BigDecimal(3);
+		trueRange = trueRange.multiply(n, MathContext.DECIMAL32);
+		if(closeOpenDif.compareTo(trueRange) > 0){
+			return true;
 		}else{
 			return false;
 		}
