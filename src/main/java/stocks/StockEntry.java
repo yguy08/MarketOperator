@@ -1,4 +1,10 @@
+package stocks;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+
+import operator.TradingSystem;
 
 public class StockEntry extends StockAsset {
 	
@@ -17,13 +23,13 @@ public class StockEntry extends StockAsset {
 		List<StockChartData> e = new ArrayList<>();
 		int start = 0;
 		BigDecimal currentDay, previousDay;
-		for(int x = start; x < Speculation.HIGH_LOW; x++){
+		for(int x = start; x < TradingSystem.HIGH_LOW; x++){
 					currentDay = priceList.get(start).getClose();
 					previousDay = priceList.get(x + 1).getClose();
 					if(currentDay.compareTo(previousDay) < 0){
 						break;
 					}
-					if(x == Speculation.HIGH_LOW - 1 && currentDay.compareTo(previousDay) > 0){
+					if(x == TradingSystem.HIGH_LOW - 1 && currentDay.compareTo(previousDay) > 0){
 						e.add(priceList.get(start));
 					}
 					
@@ -35,14 +41,14 @@ public class StockEntry extends StockAsset {
 		List<StockChartData> e = new ArrayList<>();
 		int start = 0;
 		BigDecimal currentDay, previousDay;
-		for(int x = start; x < Speculation.HIGH_LOW; x++){
+		for(int x = start; x < TradingSystem.HIGH_LOW; x++){
 			currentDay = priceList.get(start).getClose();
 			previousDay = priceList.get(x + 1).getClose();
 			if(currentDay.compareTo(previousDay) < 0){
 				e.add(priceList.get(x + 1));
 				break;
 			}
-			if(x == Speculation.HIGH_LOW - 1 && currentDay.compareTo(previousDay) > 0){
+			if(x == TradingSystem.HIGH_LOW - 1 && currentDay.compareTo(previousDay) > 0){
 				e.add(priceList.get(start));
 			}
 			

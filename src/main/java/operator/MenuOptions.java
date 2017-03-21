@@ -1,3 +1,4 @@
+package operator;
 
 public interface MenuOptions {
 

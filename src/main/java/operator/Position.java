@@ -1,3 +1,4 @@
+package operator;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class Position extends Entry {
 	PoloniexChartData close;
 	
 	
-	static final int LENGTH = 20; 
+	public static final int LENGTH = 20; 
 	
 	
 	public Position(String name, List<PoloniexChartData> priceList){

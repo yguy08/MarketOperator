@@ -1,8 +1,9 @@
+package stocks;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
 
-import MarketChartData.StockChartData;
+import operator.*;
 
 public class StockPosition extends StockEntry {
 	
@@ -26,7 +27,7 @@ public class StockPosition extends StockEntry {
 		//since formula requires a previous day's N value, must start with an x-day average of the True Range for calculation
 		BigDecimal averageTrueRange = setInitialAverageTrueRange(priceList);
 		
-			for(int x = Speculation.LENGTH; x < priceList.size();x++){
+			for(int x = Position.LENGTH; x < priceList.size();x++){
 				//calculate ranges of true range calculation
 				BigDecimal highMinusLow 				= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
 				BigDecimal highMinusPreviousDayClose	= setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x - 1).getClose(), MathContext.DECIMAL32));
@@ -36,8 +37,8 @@ public class StockPosition extends StockEntry {
 				BigDecimal trueRange;
 				
 				//EMA day
-				BigDecimal e = new BigDecimal(Speculation.LENGTH - 1);
-				BigDecimal z = new BigDecimal(Speculation.LENGTH);
+				BigDecimal e = new BigDecimal(Position.LENGTH - 1);
+				BigDecimal z = new BigDecimal(Position.LENGTH);
 				
 				//Max of ranges = true range
 				trueRange = highMinusLow.max(highMinusPreviousDayClose);
@@ -61,10 +62,10 @@ public class StockPosition extends StockEntry {
 		BigDecimal highMinusLow;
 		BigDecimal highMinusPreviousDayClose;
 		BigDecimal previousDayCloseMinusLow;
-		BigDecimal divisor = new BigDecimal(Speculation.HIGH_LOW);
+		BigDecimal divisor = new BigDecimal(TradingSystem.HIGH_LOW);
 		BigDecimal total = new BigDecimal(0);
 		
-		for(int x = 0; x < Speculation.HIGH_LOW && x < priceList.size(); x++){
+		for(int x = 0; x < TradingSystem.HIGH_LOW && x < priceList.size(); x++){
 			if(x == 0){
 				trueRange = setAbsolute(priceList.get(x).getHigh().subtract(priceList.get(x).getLow(), MathContext.DECIMAL32));
 				total = total.add(trueRange, MathContext.DECIMAL32);

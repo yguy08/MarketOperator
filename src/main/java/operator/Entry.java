@@ -1,3 +1,4 @@
+package operator;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +8,7 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 public class Entry extends Asset {
 	
 	String name;
-	List<PoloniexChartData> entryList = new ArrayList<>();
+	public List<PoloniexChartData> entryList;
 	
 	public Entry(String name, List<PoloniexChartData> priceList){
 		super(name, priceList);

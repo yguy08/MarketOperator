@@ -1,3 +1,4 @@
+package stocks;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,7 +15,7 @@ public class FileParser {
 		System.out.println(System.getProperty("user.dir"));
 	}
 	
-	public static List<String> readYahooStcokFileByLines(String fileName) throws IOException{
+	public static List<String> readYahooStockFileByLines(String fileName) throws IOException{
 		List<String> lines = Files.readAllLines(Paths.get(fileName));
 		lines.remove(0);
 		return lines;
