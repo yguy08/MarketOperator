@@ -49,6 +49,94 @@ public class TradingSystem {
     	//marketsToClose();
     	
     }
+	
+	public static void stockWatchList() throws IOException{
+	setStockList("Fb-0512-0317.csv");
+	List<StockChartData> stockChartData = new ArrayList<>();
+
+	for(int x = 0; x < getCloseList().size();x++){
+		stockChartData.add(new StockChartData(getDateList().get(x), getCloseList().get(x), getHighList().get(x), getLowList().get(x)));
+	}
+
+	StockAsset stockAsset = new StockAsset("FB", stockChartData);
+	System.out.println("Current Price: " + stockAsset.getPrice());
+
+	StockEntry stockEntry = new StockEntry(stockAsset.getName(), stockAsset.getPriceList());
+
+	if(stockEntry.entryList.get(0).equals(stockAsset.getPriceList().get(0))){
+		System.out.println("***** MARKET TO WATCH *****");
+		System.out.println("***** " + stockAsset.getName());
+		System.out.println("***** " + HIGH_LOW + " day high");
+		System.out.println("***** " + "Date: " + stockEntry.entryList.get(0).getDate());
+		System.out.println("***** ENTRY STATS *****");
+	}else{
+		System.out.println("Not currently at a high...");
+		System.out.println("Last high was: " + stockEntry.entryList.get(0).getDate() + " "
+				+ stockEntry.entryList.get(0).getClose());
+	}
+	}
+	
+	public static List<BigDecimal> getCloseList(){
+		return closeList;
+	}
+	
+	public static List<BigDecimal> getHighList(){
+		return highList;
+	}
+	
+	public static List<BigDecimal> getLowList(){
+		return lowList;
+	}
+	
+	public static List<String> getDateList(){
+		return dateList;
+	}
+	
+	public static void setStockList(String name) throws IOException{
+		
+		List<String> myString = FileParser.readYahooStcokFileByLines(name);
+		
+		for(int z = 0; z < myString.size(); z++){
+			List<String> myList = new ArrayList<>();
+			String[] split = myString.get(z).split(",");
+			for(String x : split){
+				myList.add(x);
+			}
+			
+			String trimDate = myList.get(0);
+			//System.out.println(trimDate);
+			String trimHigh = myList.get(2);
+			//System.out.println(trimHigh);
+			String trimLow = myList.get(3);
+			//System.out.println(trimLow);
+			String trimClose = myList.get(4);
+			//System.out.println(trimClose);
+			
+			setHighList(new BigDecimal(trimHigh));
+			setLowList(new BigDecimal(trimLow));
+			setCloseList(new BigDecimal(trimClose));
+			setDateList(trimDate);
+			
+		}
+	}
+
+	public static void setDateList(String date){
+		dateList.add(date);
+	}
+	
+	public static void setHighList(BigDecimal bd){
+		highList.add(bd);
+		
+	}
+	
+	public static void setLowList(BigDecimal bd){
+		lowList.add(bd);
+	}
+
+	
+	public static void setCloseList(BigDecimal bd){
+		closeList.add(bd);
+	}
     
     public static List<PoloniexChartData> setCustomPriceList(PoloniexMarketDataServiceRaw dataService, String currencyPairStr, Long dateFrom) throws IOException{
     	long dateTo = new Date().getTime() / 1000;
