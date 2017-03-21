@@ -1,9 +1,9 @@
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
@@ -13,7 +13,6 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
-import org.knowm.xchange.utils.DateUtils;
 
 /*
  * The development and application of a trading strategy follows eight steps:
@@ -29,187 +28,77 @@ import org.knowm.xchange.utils.DateUtils;
 
 public class TradingSystem {
 	
-	private static Exchange poloniex;
+	static final Exchange poloniex 				= ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
+	static final MarketDataService dataService 	= poloniex.getMarketDataService();;
+	static final List<CurrencyPair> marketList 	= poloniex.getExchangeSymbols();
 	
-	private static List<CurrencyPair> marketList;
-	private static List<PoloniexChartData> poloniexChartData;
-	private static List<PoloniexChartData> priceList;
-	
-	private static MarketDataService dataService;
+	static List<PoloniexChartData> priceList;
 	
 	static final int HIGH_LOW = 20;
 	static final int CLOSE = 10;
-	static final int ACCOUNT_SIZE = 10;
+	static final BigDecimal RISK = new BigDecimal(0.01, MathContext.DECIMAL32);
+	static final int ACCOUNT_SIZE = 3;
+	static final BigDecimal BIGDECIMAL_ACCOUNT_SIZE = new BigDecimal(TradingSystem.ACCOUNT_SIZE, MathContext.DECIMAL32);
+
 	
     public static void main(String[] args) throws Exception {
     	
-    	//marketsToWatch();
+    	marketsToWatch();
+    	
     	//positionBackTest();
-    	marketsToClose();
+    	//marketsToClose();
     	
-    	
-		
-	}
-
-    public static MarketDataService getDataService(){
-    	return dataService;
     }
     
-    public static void setPriceList(PoloniexMarketDataServiceRaw dataService, String currencyPairStr) throws IOException{
-    	long now = new Date().getTime() / 1000;
+    public static List<PoloniexChartData> setCustomPriceList(PoloniexMarketDataServiceRaw dataService, String currencyPairStr, Long dateFrom) throws IOException{
+    	long dateTo = new Date().getTime() / 1000;
+    	List<PoloniexChartData> myList;
     	CurrencyPair currencyPair = new CurrencyPair(currencyPairStr);
-    	priceList = Arrays.asList(dataService.getPoloniexChartData
-				(currencyPair, now - 8760 * 60 * 60, now, PoloniexChartDataPeriodType.PERIOD_86400));
-    }
-    
-    public static List<PoloniexChartData> getPriceList(){
-    	return priceList;
+    	myList = Arrays.asList(dataService.getPoloniexChartData
+				(currencyPair, dateFrom, dateTo, PoloniexChartDataPeriodType.PERIOD_86400));
+    	return myList;
     }
     
     public static void marketsToWatch() throws Exception{
-    	//create Exchange Instance
-    	poloniex = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
-    	
-		//create MarketDataService
-		dataService = poloniex.getMarketDataService();
+    	String assetName;
+    	long dateFrom = new Date().getTime() / 1000 - (HIGH_LOW * 24 * 60 * 60);
+    	long longerDate = new Date().getTime() / 1000 - (HIGH_LOW * 2 * 24 * 60 * 60);
+
 	    
-		//set Market list
-		marketList = poloniex.getExchangeSymbols();
-		
-		System.out.println("***** ALL Markets *****");
+    	System.out.println("***** ALL Markets *****");
 		for(int x = 0; x < marketList.size();x++){
 			System.out.println(marketList.get(x));
 		}
 		
 		for(int x = 0; x < marketList.size();x++){
-		String m = marketList.get(x).toString();
-		System.out.println("Market is: " + m);
-		setPriceList((PoloniexMarketDataServiceRaw) dataService, m);
 		
-		TimeZone timeZone = TimeZone.getTimeZone("UTC");
-		Calendar calendar = Calendar.getInstance(timeZone);
-		calendar.set(2017, 2, 15, 0, 0, 0);
-		//calendar.set(calendar.getTime().getYear(),calendar.getTime().getMonth(),calendar.getTime().getDay(),0,0,0);
+			assetName = marketList.get(x).toString();
 		
-		Asset asset = new Asset(m,getPriceList());
-		System.out.println(("Price is: " + asset.getPrice()));
+			System.out.println("Market is: " + assetName);
 		
-		Entry entry = new Entry(asset.getName(), Asset.getPriceList(), calendar.getTime());
-
-		if(entry.entryList.size() > 0){
-			System.out.println("***** MARKET TO WATCH ****");
-			System.out.println("***** " + asset.getName() + " *****");
-			System.out.println("Entries for: " + asset.getName() + " since: " + calendar.getTime());
-		for(int z = 0; z < entry.entryList.size();z++){
-			System.out.println("At a high: " + entry.getName());
-			System.out.println("Date: " + DateUtils.toUTCString(entry.entryList.get(z).getDate()));
-			System.out.println("Opening up new position for: " + entry.getName() + " @ " + entry.entryList.get(z).getClose());
-			Position position = new Position(asset.getName(), Asset.getPriceList(),calendar.getTime(),entry.entryList.get(z));
-			System.out.println("Average True Range: " + position.trueRange);
-		}
-		System.out.println("***** END ****");
-		}else{
-			System.out.println("Not at a high, skip...");
-		}
-		}
-    	
-    }
-    
-    public static void marketsToClose() throws Exception{
-    	//create Exchange Instance
-    	poloniex = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
-    	
-		//create MarketDataService
-		dataService = poloniex.getMarketDataService();
-	    
-		//set Market list
-		marketList = poloniex.getExchangeSymbols();
+			priceList = setCustomPriceList((PoloniexMarketDataServiceRaw) dataService, assetName, dateFrom);
 		
-		System.out.println("***** Market *****");
-		for(int x = 0; x < marketList.size();x++){
-			System.out.println(marketList.get(x));
-		}
+			Asset asset = new Asset(assetName, priceList);
+			System.out.println(("Current Price: " + asset.getPrice()));
 		
-		for(int x = 0; x < marketList.size();x++){
-		String m = marketList.get(x).toString();
-		System.out.println("Market is: " + m);
-		setPriceList((PoloniexMarketDataServiceRaw) dataService, m);
-		
-		TimeZone timeZone = TimeZone.getTimeZone("UTC");
-		Calendar calendar = Calendar.getInstance(timeZone);
-		calendar.set(2017, 2, 15, 0, 0, 0);
-		
-		Asset asset = new Asset(m,getPriceList());
-		System.out.println(("Price is: " + asset.getPrice()));
-		
-		Entry entry = new Entry(asset.getName(), Asset.getPriceList(), calendar.getTime());
-
-		if(entry.entryList.size() > 0){
-			System.out.println("***** MARKET TO WATCH *****");
-			System.out.println("***** " + asset.getName() + " *****");
-			System.out.println("Entries for: " + asset.getName() + " since: " + calendar.getTime());
-		for(int z = 0; z < entry.entryList.size();z++){
-			System.out.println("At a high: " + entry.getName() + " Date: " + DateUtils.toUTCString(entry.entryList.get(z).getDate()));
-			System.out.println("Open: " + entry.getName() + " @ " + entry.entryList.get(z).getClose());
-			Position position = new Position(asset.getName(), Asset.getPriceList(),calendar.getTime(),entry.entryList.get(z));
-			System.out.println("Average True Range: " + position.trueRange);
-			if(entry.entryList.get(z).getClose() == position.close.getClose()){
-			System.out.println("Still open...add");
+			//start with current price -> go backwards
+			Entry entry = new Entry(asset.getName(), asset.getPriceList());
+	
+			if(entry.entryList.size() > 0){
+				System.out.println("***** MARKET TO WATCH *****");
+				System.out.println("***** " + asset.getName());
+				System.out.println("***** " + HIGH_LOW + " day high");
+				System.out.println("***** " + "Date: " + entry.entryList.get(0).getDate());
+				System.out.println("***** ENTRY STATS *****");
+				priceList = setCustomPriceList((PoloniexMarketDataServiceRaw) dataService, assetName, longerDate);
+				Position position = new Position(assetName, priceList);
+				System.out.println("ATR: " + position.trueRange);
+				System.out.println("Buy Amount: " + position.entrySize + " For Total: " + position.entrySize.multiply(entry.entryList.get(0).getClose()));
+				System.out.println("***** END ****");
 			}else{
-				System.out.println("Close: " + position.close);
+				System.out.println("Not at a high, skip...");
 			}
 		}
-		System.out.println("***** END ****");
-		}else{
-			System.out.println("Never at a high, skip...");
-		}
-		}
-		}
-    
-    public static void positionBackTest() throws Exception{
-    	//create Exchange Instance
-    	poloniex = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
-    	
-		//create MarketDataService
-		dataService = poloniex.getMarketDataService();
-	    
-		//set Market list
-		marketList = poloniex.getExchangeSymbols();
-		
-		System.out.println("***** Market *****");
-		
-		String m = "XMR/BTC";
-		System.out.println("Market is: " + m);
-		setPriceList((PoloniexMarketDataServiceRaw) dataService, m);
-		
-		TimeZone timeZone = TimeZone.getTimeZone("UTC");
-		Calendar calendar = Calendar.getInstance(timeZone);
-		calendar.set(2016, 7, 15, 0, 0, 0);
-		
-		Asset asset = new Asset(m,getPriceList());
-		System.out.println(("Price is: " + asset.getPrice()));
-		
-		Entry entry = new Entry(asset.getName(), Asset.getPriceList(), calendar.getTime());
-
-		if(entry.entryList.size() > 0){
-			System.out.println("***** MARKET TO WATCH *****");
-			System.out.println("***** " + asset.getName() + " *****");
-			System.out.println("Entries for: " + asset.getName() + " since: " + calendar.getTime());
-		for(int z = 0; z < entry.entryList.size();z++){
-			System.out.println("At a high: " + entry.getName() + " Date: " + DateUtils.toUTCString(entry.entryList.get(z).getDate()));
-			System.out.println("Open: " + entry.getName() + " @ " + entry.entryList.get(z).getClose());
-			Position position = new Position(asset.getName(), Asset.getPriceList(),calendar.getTime(),entry.entryList.get(z));
-			System.out.println("Average True Range: " + position.trueRange);
-			if(entry.entryList.get(z).getClose() == position.close.getClose()){
-			System.out.println("Still open...add");
-			}else{
-				System.out.println("Close: " + position.close);
-			}
-		}
-		System.out.println("***** END ****");
-		}else{
-			System.out.println("Never at a high, skip...");
-		}
-		}
+	}
     	
     }

@@ -6,14 +6,13 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 public class Asset {
 	
 	private String name;
-	private static List<PoloniexChartData> priceList;
+	private List<PoloniexChartData> priceList;
 	private BigDecimal price;
 	
 	public Asset(String name, List<PoloniexChartData> poloniexChartData){
 		this.name 		= name;
-		this.price		= (poloniexChartData.get((poloniexChartData.size() - 1)).getClose());
-		setPriceList(poloniexChartData);
-		this.priceList = priceList;
+		this.price		= poloniexChartData.get((poloniexChartData.size() - 1)).getClose();
+		this.priceList 	= poloniexChartData;
 	}
 
 	public String getName() {
@@ -24,13 +23,13 @@ public class Asset {
 		this.name = name;
 	}
 	
-	public static List<PoloniexChartData> getPriceList(){
+	public List<PoloniexChartData> getPriceList(){
 		return priceList;
 		
 	}
 	
-	public static void setPriceList(List<PoloniexChartData> poloniexChartData){
-		priceList = poloniexChartData;
+	public void setPriceList(List<PoloniexChartData> poloniexChartData){
+		this.priceList = poloniexChartData;
 	}
 
 	public BigDecimal getPrice() {
