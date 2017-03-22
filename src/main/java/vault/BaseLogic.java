@@ -1,56 +1,35 @@
 package vault;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.knowm.xchange.currency.CurrencyPair;
-
-import javafx.application.Application;
-import javafx.collections.FXCollections;
+import MarketChartData.StockChartData;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import operator.TradingSystem;
+import stocks.Speculation;
+import stocks.StockAsset;
+import stocks.StockEntry;
 
-public class BaseLogic extends Application {
+public class BaseLogic extends Main {
 	
-	public static void main(String[] args) {
-        //launch(args);
-        try {
-			TradingSystem.marketsToWatch();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public static void populateEntryList(ObservableList<String> stats) throws IOException{
+		
+		//NOTE FOR HOME: 
+		List<StockChartData> stockChartData = Speculation.setStockChartData("Fb-0512-0317.csv");
+		
+		StockAsset stockAsset = new StockAsset("FB", stockChartData);
+		
+		StockEntry stockEntry = new StockEntry(stockAsset.getName(), stockAsset.getPriceList());
+		
+		if(stockEntry.entryList.get(0).equals(stockAsset.getPriceList().get(0))){
+			stats.add(stockAsset.getName() + " @ " + Speculation.HIGH_LOW + " day high!" + " Price: " 
+		+ stockEntry.entryList.get(0).getClose() + " Date: " + stockEntry.entryList.get(0).getDate());
+		}else{
+			stats.add("Not currently at a high...");
+			stats.add("Last high was: " + stockEntry.entryList.get(0).getDate() + " "
+					+ stockEntry.entryList.get(0).getClose());
 		}
-        
-    }
-    
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Stock Market Operator");
-        GridPane gridpane = new GridPane();
-        gridpane.getColumnConstraints().add(new ColumnConstraints(200));
-        gridpane.getColumnConstraints().add(new ColumnConstraints(200));
-        gridpane.getColumnConstraints().add(new ColumnConstraints(200));        
-        
-        List<CurrencyPair> marketList = TradingSystem.marketList;
-        List<String> marketNames = new ArrayList<>();
-        for(int x = 0; x < marketList.size(); x++){
-        	marketNames.add(marketList.get(x).toString());
-        }
-        
-        ObservableList<String> markets = FXCollections.observableArrayList(marketNames);
-        ListView<String> listView = new ListView<String>(markets);
-        GridPane.setColumnIndex(listView, 0);
-        
-        gridpane.getChildren().addAll(listView);      
-                
-        primaryStage.setScene(new Scene(gridpane, 600, 600));
-        primaryStage.show();
-    }
+		
+		
+	}
 
 }
