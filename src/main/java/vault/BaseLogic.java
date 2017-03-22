@@ -13,7 +13,7 @@ public class BaseLogic extends Main {
 	
 	public static void populateEntryList(ObservableList<String> stats) throws IOException{
 		
-		//NOTE FOR HOME: 
+		//NOTE FOR HOME: Action Listeners in Main, call methods in this class...
 		List<StockChartData> stockChartData = Speculation.setStockChartData("Fb-0512-0317.csv");
 		
 		StockAsset stockAsset = new StockAsset("FB", stockChartData);
