@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import vault.BaseLogic;
-
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
 import org.knowm.xchange.currency.CurrencyPair;
@@ -44,15 +42,14 @@ public class TradingSystem {
 	public static final BigDecimal BIGDECIMAL_ACCOUNT_SIZE = new BigDecimal(TradingSystem.ACCOUNT_SIZE, MathContext.DECIMAL32);
 
 	
-   /* public static void main(String[] args) throws Exception {
+   public static void main(String[] args) throws Exception {
     	
     	//marketsToWatch();
     	
     	//positionBackTest();
     	//marketsToClose();
     	
-    	vault.BaseLogic.launch(args);
-    }*/
+    }
     
     public static List<PoloniexChartData> setCustomPriceList(PoloniexMarketDataServiceRaw dataService, String currencyPairStr, Long dateFrom) throws IOException{
     	long dateTo = new Date().getTime() / 1000;
