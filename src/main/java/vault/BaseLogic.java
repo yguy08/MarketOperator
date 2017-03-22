@@ -10,7 +10,6 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -27,6 +26,7 @@ public class BaseLogic extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
     }
     
     @Override
