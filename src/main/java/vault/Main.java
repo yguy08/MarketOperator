@@ -47,17 +47,20 @@ public class Main extends Application  {
 		flowPane.setHgap(4);
 		flowPane.setPrefWrapLength(210);
 		
+		Button viewMarkets = new Button("View Markets");
+		viewMarkets.setPrefSize(100, 50);
 		Button entryFinderBtn = new Button("Entry Finder");
 		entryFinderBtn.setPrefSize(100,50);
 		Button exitFinderBtn = new Button("Exit Finder");
 		exitFinderBtn.setPrefSize(100, 50);
-		flowPane.getChildren().addAll(entryFinderBtn, exitFinderBtn);
+		flowPane.getChildren().addAll(viewMarkets,entryFinderBtn, exitFinderBtn);
 		borderPane.setLeft(flowPane);
 		
 		//Stat list
 		ObservableList<String> stats = FXCollections.observableArrayList();
 		ListView<String> statList = new ListView<>(stats);
-		statList.setMaxWidth(250);
+		statList.setMaxWidth(200);
+		statList.setMaxHeight(280);
 		BorderPane.setAlignment(statList,  Pos.CENTER_LEFT);
 		borderPane.setCenter(statList);
 		
