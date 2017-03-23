@@ -13,9 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -34,18 +33,13 @@ public class Main extends Application  {
 		BorderPane borderPane = new BorderPane();
 		
 		//header top
-		Text title = new Text("Market Operator");
-		title.setFill(Color.GREEN);
-		title.setFont(Font.font(null, FontWeight.NORMAL, 24));
+		Text title = setTitle();
 		BorderPane.setAlignment(title,  Pos.CENTER);
 		borderPane.setTop(title);
-		
-		//flow pane left
-		FlowPane flowPane = new FlowPane();
-		flowPane.setPadding(new Insets(10, 10, 10, 10));
-		flowPane.setVgap(4);
-		flowPane.setHgap(4);
-		flowPane.setPrefWrapLength(210);
+				
+		HBox hbox = new HBox();
+		hbox.setPadding(new Insets(15,12,15,12));
+		hbox.setSpacing(10);
 		
 		Button viewMarkets = new Button("View Markets");
 		viewMarkets.setPrefSize(100, 50);
@@ -53,33 +47,20 @@ public class Main extends Application  {
 		entryFinderBtn.setPrefSize(100,50);
 		Button exitFinderBtn = new Button("Exit Finder");
 		exitFinderBtn.setPrefSize(100, 50);
-		flowPane.getChildren().addAll(viewMarkets,entryFinderBtn, exitFinderBtn);
-		borderPane.setLeft(flowPane);
+		hbox.getChildren().addAll(viewMarkets,entryFinderBtn,exitFinderBtn);
+		
+		borderPane.setBottom(hbox);
 		
 		//Stat list
 		ObservableList<String> stats = FXCollections.observableArrayList();
 		ListView<String> statList = new ListView<>(stats);
-		statList.setMaxWidth(200);
-		statList.setMaxHeight(280);
 		BorderPane.setAlignment(statList,  Pos.CENTER_LEFT);
-		borderPane.setCenter(statList);
-		
-		//right chat
-		Rectangle rectangle = new Rectangle();
-		rectangle.setFill(Color.BLACK);
-		borderPane.setRight(rectangle);
-		
-		//bottom copyright or ticker?
-		Text copyright = new Text("2017");
-		BorderPane.setAlignment(copyright, Pos.CENTER);
-		borderPane.setBottom(copyright);
-		
+		borderPane.setCenter(statList);	
 		
 		Scene scene = new Scene(borderPane, 650, 350);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		System.out.println(scene.getHeight() + " " + scene.getWidth());
-		
 		
 		entryFinderBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e){
@@ -93,4 +74,13 @@ public class Main extends Application  {
 		});
 		
 	}
+	
+	public Text setTitle(){
+		Text title = new Text("Market Operator");
+		title.setFill(Color.GREEN);
+		title.setFont(Font.font(null, FontWeight.NORMAL, 24));		
+		return title;
+		
+	}
 }
+
