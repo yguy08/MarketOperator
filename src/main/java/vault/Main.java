@@ -84,7 +84,7 @@ public class Main extends Application  {
 		entryFinderBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e){
 				try {
-					StockLogic.populateEntryList(stats);
+					BaseLogic.populateEntryList(stats);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
