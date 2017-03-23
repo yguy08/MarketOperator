@@ -11,6 +11,11 @@ import stocks.StockEntry;
 
 public class BaseLogic extends Main {
 	
+	public static void populateMarketList(ObservableList<String> stats){
+		//
+		stats.add("FB");
+	}
+	
 	public static void populateEntryList(ObservableList<String> stats) throws IOException{
 		
 		//NOTE FOR HOME: Action Listeners in Main, call methods in this class...
