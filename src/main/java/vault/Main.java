@@ -73,6 +73,12 @@ public class Main extends Application  {
 			}
 		});
 		
+		viewMarkets.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e){
+				
+			}
+		});
+		
 	}
 	
 	public Text setTitle(){
