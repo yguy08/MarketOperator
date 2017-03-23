@@ -47,7 +47,9 @@ public class Main extends Application  {
 		entryFinderBtn.setPrefSize(100,50);
 		Button exitFinderBtn = new Button("Exit Finder");
 		exitFinderBtn.setPrefSize(100, 50);
-		hbox.getChildren().addAll(viewMarkets,entryFinderBtn,exitFinderBtn);
+		Button clearBtn = new Button("Clear");
+		clearBtn.setPrefSize(100, 50);
+		hbox.getChildren().addAll(viewMarkets,entryFinderBtn,exitFinderBtn, clearBtn);
 		
 		borderPane.setBottom(hbox);
 		
@@ -75,7 +77,13 @@ public class Main extends Application  {
 		
 		viewMarkets.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e){
-				
+				BaseLogic.populateMarketList(stats);
+			}
+		});
+		
+		clearBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e){
+				stats.removeAll(stats);
 			}
 		});
 		
@@ -89,4 +97,3 @@ public class Main extends Application  {
 		
 	}
 }
-
