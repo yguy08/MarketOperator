@@ -53,8 +53,8 @@ public class Main extends Application  {
 		
 		borderPane.setBottom(hbox);
 		
-		//Stat list
-		ObservableList<String> stats = FXCollections.observableArrayList();
+		//list
+		final ObservableList<String> stats = FXCollections.observableArrayList();
 		ListView<String> statList = new ListView<>(stats);
 		BorderPane.setAlignment(statList,  Pos.CENTER_LEFT);
 		borderPane.setCenter(statList);	
@@ -62,24 +62,30 @@ public class Main extends Application  {
 		Scene scene = new Scene(borderPane, 650, 350);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		System.out.println(scene.getHeight() + " " + scene.getWidth());
-		
-		entryFinderBtn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent e){
-				try {
-					BaseLogic.populateEntryList(stats);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
 		
 		viewMarkets.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e){
-				BaseLogic.populateMarketList(stats);
-			}
+				try{
+					stats.removeAll(stats);
+					BaseLogic.populateMarketList(stats);
+				}catch (Exception name){
+					stats.remove(stats);
+					stats.add("Error retrieving market list!");
+				}
+				}
 		});
+		
+		entryFinderBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e){
+					stats.removeAll(stats);
+					try {
+						BaseLogic.populateEntryList(stats);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			}
+			});
 		
 		clearBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e){
@@ -94,6 +100,6 @@ public class Main extends Application  {
 		title.setFill(Color.GREEN);
 		title.setFont(Font.font(null, FontWeight.NORMAL, 24));		
 		return title;
-		
 	}
+	
 }

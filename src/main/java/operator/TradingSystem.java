@@ -40,16 +40,6 @@ public class TradingSystem {
 	public static final BigDecimal RISK = new BigDecimal(0.01, MathContext.DECIMAL32);
 	public static final int ACCOUNT_SIZE = 3;
 	public static final BigDecimal BIGDECIMAL_ACCOUNT_SIZE = new BigDecimal(TradingSystem.ACCOUNT_SIZE, MathContext.DECIMAL32);
-
-	
-   public static void main(String[] args) throws Exception {
-    	
-    	//marketsToWatch();
-    	
-    	//positionBackTest();
-    	//marketsToClose();
-    	
-    }
     
     public static List<PoloniexChartData> setCustomPriceList(PoloniexMarketDataServiceRaw dataService, String currencyPairStr, Long dateFrom) throws IOException{
     	long dateTo = new Date().getTime() / 1000;
@@ -64,19 +54,11 @@ public class TradingSystem {
     	String assetName;
     	long dateFrom = new Date().getTime() / 1000 - (HIGH_LOW * 24 * 60 * 60);
     	long longerDate = new Date().getTime() / 1000 - (HIGH_LOW * 2 * 24 * 60 * 60);
-
-	    
-    	System.out.println("***** ALL Markets *****");
-		for(int x = 0; x < marketList.size();x++){
-			System.out.println(marketList.get(x));
-		}
 		
 		for(int x = 0; x < marketList.size();x++){
 		
 			assetName = marketList.get(x).toString();
-		
-			System.out.println("Market is: " + assetName);
-		
+			
 			priceList = setCustomPriceList((PoloniexMarketDataServiceRaw) dataService, assetName, dateFrom);
 		
 			Asset asset = new Asset(assetName, priceList);

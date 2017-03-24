@@ -9,7 +9,7 @@ import operator.TradingSystem;
 public class StockEntry extends StockAsset {
 	
 	String name;
-	List<StockChartData> entryList;
+	public List<StockChartData> entryList;
 	
 	public StockEntry(String name, List<StockChartData> priceList){
 		super(name, priceList);
