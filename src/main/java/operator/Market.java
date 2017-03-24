@@ -1,8 +1,8 @@
 package operator;
 
 public class Market {
-	
-	public Market(){
+	private String name;
+	public Market(String name){
 		
 	}
 	
