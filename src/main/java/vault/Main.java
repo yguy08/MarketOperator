@@ -59,7 +59,7 @@ public class Main extends Application  {
 		BorderPane.setAlignment(statList,  Pos.CENTER_LEFT);
 		borderPane.setCenter(statList);	
 		
-		Scene scene = new Scene(borderPane, 650, 350);
+		Scene scene = new Scene(borderPane, 1250, 750);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
@@ -90,6 +90,18 @@ public class Main extends Application  {
 		clearBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override public void handle(ActionEvent e){
 				stats.removeAll(stats);
+			}
+		});
+		
+		exitFinderBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override public void handle(ActionEvent e){
+				stats.removeAll(stats);
+				try {
+					BaseLogic.populateExitList(stats);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

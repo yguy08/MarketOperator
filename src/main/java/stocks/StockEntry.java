@@ -17,8 +17,7 @@ public class StockEntry extends StockAsset {
 		this.entryList 	= lastHighFinder(this.getPriceList());
 	}
 	
-    
-    //get entry list
+	//get entry list
 	public static List<StockChartData> highFinder(List<StockChartData> priceList){
 		List<StockChartData> e = new ArrayList<>();
 		int start = 0;
@@ -39,17 +38,16 @@ public class StockEntry extends StockAsset {
 	
 	public static List<StockChartData> lastHighFinder(List<StockChartData> priceList){
 		List<StockChartData> e = new ArrayList<>();
-		int start = 0;
 		BigDecimal currentDay, previousDay;
-		for(int x = start; x < TradingSystem.HIGH_LOW; x++){
-			currentDay = priceList.get(start).getClose();
+		for(int x = 0; x < TradingSystem.HIGH_LOW; x++){
+			currentDay = priceList.get(x).getClose();
 			previousDay = priceList.get(x + 1).getClose();
 			if(currentDay.compareTo(previousDay) < 0){
 				e.add(priceList.get(x + 1));
 				break;
 			}
 			if(x == TradingSystem.HIGH_LOW - 1 && currentDay.compareTo(previousDay) > 0){
-				e.add(priceList.get(start));
+				e.add(priceList.get(x));
 			}
 			
 		}

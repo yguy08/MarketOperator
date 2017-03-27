@@ -1,4 +1,5 @@
-package operator;
+package bitcoin;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
@@ -7,22 +8,31 @@ import java.util.List;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
-public class Position extends Entry {
+import operator.Position;
+import operator.TradingSystem;
+
+public class PoloPosition {
 	
-	BigDecimal trueRange;
+	public BigDecimal trueRange;
 	BigDecimal N;
-	BigDecimal entrySize;
+	public BigDecimal entrySize;
 	PoloniexChartData close;
-	
 	
 	public static final int LENGTH = 20; 
 	
-	
-	public Position(String name, List<PoloniexChartData> priceList){
-		super(name, priceList);
+	public PoloPosition(String name, List<PoloniexChartData> priceList){
 		this.trueRange 	= setAverageTrueRange(priceList);
 		this.entrySize	= setEntrySize(trueRange,TradingSystem.BIGDECIMAL_ACCOUNT_SIZE, TradingSystem.RISK);
-		//this.close		= closeLongFinder(priceList,trueRange);
+	}
+	
+	public PoloPosition(PoloAsset polo){
+		if(polo.priceList.size() > TradingSystem.HIGH_LOW){
+			this.trueRange	= setAverageTrueRange(polo.priceList);
+			this.entrySize 	= setEntrySize(trueRange, TradingSystem.BIGDECIMAL_ACCOUNT_SIZE, TradingSystem.RISK);
+		}else{
+			this.trueRange = new BigDecimal(0.00);
+			this.entrySize = new BigDecimal(0.00);
+		}
 	}
 	
 	public static BigDecimal setEntrySize(BigDecimal trueRange,BigDecimal accountSize, BigDecimal risk){
@@ -194,5 +204,6 @@ public class Position extends Entry {
 			return false;
 		}
 	}
+
 
 }
