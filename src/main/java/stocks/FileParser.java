@@ -21,6 +21,13 @@ public class FileParser {
 		return lines;
 	}
 	
+	public static List<String> readFedForexByLines(String fileName) throws IOException{
+	List<String> lines = Files.readAllLines(Paths.get(fileName));
+	lines.remove(0);
+	return lines;
+	
+	}
+	
 	
 	
 	
