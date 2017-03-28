@@ -1,37 +1,50 @@
 package backtest;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
+
+import operator.Entry;
+import operator.Market;
+import operator.TradingSystem;
 
 public class Backtest {
 	
-	public static String runBackTest(List<BigDecimal> closeList){
-		int nextEntry = 0;
-		if(closeList.size() < 20){
-			return "Not enough data!";
-		}else{
-			for(int x = 20; x < closeList.size();x++){
-				nextEntry = getNextHighLow(closeList, x);
-				break;
-			}
-		}
-		
-		return "Next high or low is: " + nextEntry;
+	BigDecimal start;
+	BigDecimal end;
+	
+	Market market;
+	
+	Entry entry;
+	
+	Result results;
+	
+	public Backtest(String market, String asset){
+		this.market = new Market(market, asset);
+		results = runBackTest();
 	}
 	
-	public static int getNextHighLow(List<BigDecimal> closeList, int start){
-		
-		for(int x = start; x < closeList.size();x++){
-			List<BigDecimal> subList = closeList.subList(x - 20, x);
-			if(subList.get(subList.size() - 1).equals(Collections.max(subList))){
-				return x;
-			}else if(subList.get(subList.size() - 1).equals(Collections.min(subList))){
-				return x;
+	//default no time specified
+	public Result runBackTest(){
+		if(market.getName().equals("digits")){
+			if(market.getPoloAsset().getCloseList().size() < TradingSystem.HIGH_LOW){
+				results.setEnoughHistory(false);
+			}else{
+				for(int x = TradingSystem.HIGH_LOW; x < market.getPoloAsset().getCloseList().size();x+=entry.next - x + 1){
+					entry = new Entry(this.market, x);
+					System.out.println(entry.next);
+					System.out.println(entry.start);
+					System.out.println(entry.entry);
+					System.out.println(entry.trueRange);
+					//find close
+				}
 			}
+	
+		}else{
+			results.haveData(false);
 		}
 		
-		return closeList.size();
+		return results;
+		
 	}
 	
 	public static BigDecimal calcATR(List<BigDecimal> closeList, int start){

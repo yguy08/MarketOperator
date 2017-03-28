@@ -131,7 +131,6 @@ public class Position extends Entry {
 	public static BigDecimal setAbsolute(BigDecimal num){
 		BigDecimal absolute = num.abs();
 		return absolute;
-		
 	}
 	
 	/*

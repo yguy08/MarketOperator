@@ -3,13 +3,18 @@ package operator;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
+
+import bitcoin.PoloAsset;
 
 public class Asset {
 	
 	private String name;
 	private List<PoloniexChartData> priceList;
 	private BigDecimal price;
+	
+	Market market;
 	
 	public Asset(String name, List<PoloniexChartData> poloniexChartData){
 		this.name 		= name;

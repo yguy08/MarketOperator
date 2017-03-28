@@ -1,40 +1,56 @@
 package operator;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
-public class Entry extends Asset {
+import bitcoin.PoloEntry;
+import truerange.Truerange;
+
+public class Entry {
 	
 	String name;
-	public List<PoloniexChartData> entryList;
+	public int start = TradingSystem.HIGH_LOW;
+	public int next;
+	
+	public BigDecimal longList;
+	public BigDecimal shortList;
+	
+	public BigDecimal entry;
+	
+	public BigDecimal trueRange;
+
+	PoloEntry poloEntry;
 	
 	public Entry(String name, List<PoloniexChartData> priceList){
-		super(name, priceList);
 		this.name 		= name;
-		this.entryList 	= highFinder(this.getPriceList());
 	}
 	
-    
-    //get entry list
-	public static List<PoloniexChartData> highFinder(List<PoloniexChartData> priceList){
-		List<PoloniexChartData> e = new ArrayList<>();
-		int start = priceList.size() - 1;
-		BigDecimal currentDay, previousDay;
-		for(int x = start; x >= 1; x--){
-					currentDay = priceList.get(start).getClose();
-					previousDay = priceList.get(x - 1).getClose();
-					if(currentDay.compareTo(previousDay) < 0){
-						break;
-					}
-					if(x == 1 && currentDay.compareTo(previousDay) > 0){
-						e.add(priceList.get(start));
-					}
-					
+	public Entry(Market market, int nextEntry) {
+    	if(market.getName().equals("digits")){
+    		next = getNextHighLow(market.poloAsset.getCloseList(), nextEntry);
+    		trueRange = Truerange.setAverageTrueRange(market.poloAsset.getCloseList(),next);
+    	}
+    }
+	
+	public int getNextHighLow(List<BigDecimal> closeList, int nextEntry){
+		
+		for(int x = nextEntry; x < closeList.size();x++){
+			List<BigDecimal> subList = closeList.subList(x - TradingSystem.HIGH_LOW, x);
+			if(subList.get(subList.size() - 1).equals(Collections.max(subList))){
+				//longList.add(closeList.get(x));
+				entry = closeList.get(x);
+				return x;
+			}else if(subList.get(subList.size() - 1).equals(Collections.min(subList))){
+				//shortList.add(closeList.get(x));
+				entry = closeList.get(x);
+				return x;
+			}
 		}
-		return e;
-
+		
+		return closeList.size();
 	}
 }
 

@@ -8,6 +8,8 @@ import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.PoloniexExchange;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
+import operator.Market;
+
 public class PoloMarket {
 		
 		public Exchange poloniex;

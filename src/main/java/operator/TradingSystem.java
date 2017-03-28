@@ -50,6 +50,7 @@ public class TradingSystem {
     	return myList;
     }
     
+    /*
     public static void marketsToWatch() throws Exception{
     	String assetName;
     	long dateFrom = new Date().getTime() / 1000 - (HIGH_LOW * 24 * 60 * 60);
@@ -82,6 +83,6 @@ public class TradingSystem {
 				System.out.println("Not at a high, skip...");
 			}
 		}
-	}
+	}*/
  
 }

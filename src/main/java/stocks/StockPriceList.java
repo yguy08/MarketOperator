@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import fileparser.FileParser;
+
 public class StockPriceList {
 	static List<BigDecimal> closeList;
 	static List<BigDecimal> highList;
