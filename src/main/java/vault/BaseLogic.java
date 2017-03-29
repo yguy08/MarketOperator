@@ -6,13 +6,14 @@ import java.util.List;
 import java.math.BigDecimal;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
-import bitcoin.PoloAsset;
-import bitcoin.PoloEntry;
-import bitcoin.PoloExit;
-import bitcoin.PoloMarket;
-import bitcoin.PoloPosition;
+
+import asset.PoloAsset;
+import entry.PoloEntry;
+import exit.PoloExit;
 import javafx.collections.ObservableList;
-import operator.TradingSystem;
+import market.PoloMarket;
+import position.PoloPosition;
+import trade.TradingSystem;
 
 public class BaseLogic extends Main {
 	

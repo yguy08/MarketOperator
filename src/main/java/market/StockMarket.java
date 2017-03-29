@@ -4,24 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import exchange.Exchange;
-import exchange.ExchangeFactory;
+import org.knowm.xchange.service.marketdata.MarketDataService;
+
 import fileparser.FileParser;
 
 public class StockMarket implements Market {
 	
 	List<String> assets = new ArrayList<>();
-	
-	Exchange exchange;
-	ExchangeFactory exchangeFactory;
-	
+		
 	public StockMarket(){
-		try {
-			setAssets();
-			setExchange();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		setAssets();
+		setExchange();
 	}
 	
 	@Override
@@ -30,12 +23,19 @@ public class StockMarket implements Market {
 	}
 
 	@Override
-	public void setAssets() throws IOException {
-		List<String> listFromFile = FileParser.readStockTickerList();
-		for(int z = 0; z < listFromFile.size(); z++){
-			String[] split = listFromFile.get(z).split(",");
-			assets.add(split[0]);
+	public void setAssets() {
+		List<String> listFromFile;
+		try {
+			listFromFile = FileParser.readStockTickerList();
+			for(int z = 0; z < listFromFile.size(); z++){
+				String[] split = listFromFile.get(z).split(",");
+				assets.add(split[0]);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	
 	}
 
 	@Override
@@ -45,19 +45,30 @@ public class StockMarket implements Market {
 
 	@Override
 	public void setExchange() {
-		exchangeFactory = new ExchangeFactory();
-		exchange = exchangeFactory.createExchange(STOCK_MARKET);
+		
 	}
 
 	@Override
 	public String getExchangeName() {
-		return exchange.getName();
+		return null;
 	}
 
 	@Override
 	public String getSingleAsset(String assetName) {
 		String singleAsset = assets.get(assets.indexOf(assetName));
 		return singleAsset;
+	}
+
+	@Override
+	public void setDataService() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MarketDataService getDataService() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

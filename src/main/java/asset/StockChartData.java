@@ -1,4 +1,4 @@
-package stocks;
+package asset;
 import java.math.BigDecimal;
 
 public class StockChartData {

@@ -1,11 +1,13 @@
 package market;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import exchange.Exchange;
-import exchange.ExchangeFactory;
+import org.knowm.xchange.Exchange;
+import org.knowm.xchange.ExchangeFactory;
+import org.knowm.xchange.currency.CurrencyPair;
+import org.knowm.xchange.poloniex.PoloniexExchange;
+import org.knowm.xchange.service.marketdata.MarketDataService;
 
 public class DigitalMarket implements Market {
 	
@@ -13,6 +15,22 @@ public class DigitalMarket implements Market {
 	
 	Exchange exchange;
 	ExchangeFactory exchangeFactory;
+	
+	MarketDataService dataService;
+	
+	public DigitalMarket(){
+		setExchange();
+		setAssets();
+		setDataService();
+	}
+	
+	public void setDataService(){
+		this.dataService = exchange.getMarketDataService();
+	}
+	
+	public MarketDataService getDataService(){
+		return this.dataService;
+	}
 
 	@Override
 	public String getName() {
@@ -20,30 +38,32 @@ public class DigitalMarket implements Market {
 	}
 
 	@Override
-	public void setAssets() throws IOException {
-		
+	public void setAssets() {
+		List<CurrencyPair> currencyPair = exchange.getExchangeSymbols();
+		for(CurrencyPair pair : currencyPair){
+			assets.add(pair.toString());
+		}
 	}
 
 	@Override
 	public List<String> getAssets() {
-		return null;
+		return this.assets;
 	}
 
 	@Override
 	public void setExchange() {
-		exchangeFactory = new ExchangeFactory();
-		exchange = exchangeFactory.createExchange(DIGITAL_MARKET);
+		this.exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	}
 
 	@Override
 	public String getExchangeName() {
-		return exchange.getName();
+		return exchange.getExchangeSpecification().toString();
 	}
 
 	@Override
 	public String getSingleAsset(String assetName) {
-		// TODO Auto-generated method stub
-		return null;
+		CurrencyPair currencyPair = new CurrencyPair(assetName);
+		return currencyPair.toString();
 	}
 	
 	

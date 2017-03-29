@@ -1,7 +1,8 @@
 package market;
 
-import java.io.IOException;
 import java.util.List;
+
+import org.knowm.xchange.service.marketdata.MarketDataService;
 
 public interface Market {
 	
@@ -10,7 +11,7 @@ public interface Market {
 	
 	public String getName();
 	
-	public void setAssets() throws IOException;
+	public void setAssets();
 	
 	public List<String> getAssets();
 	
@@ -19,6 +20,10 @@ public interface Market {
 	public String getExchangeName();
 	
 	public String getSingleAsset(String assetName);
+	
+	public void setDataService();
+	
+	public MarketDataService getDataService();
 	
 	
 }

@@ -1,4 +1,4 @@
-package operator;
+package trade;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -30,7 +30,7 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 public class TradingSystem {
 	
 	public static final Exchange poloniex 				= ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
-	public static final MarketDataService dataService 	= poloniex.getMarketDataService();;
+	public static final MarketDataService dataService 	= poloniex.getMarketDataService();
 	public static final List<CurrencyPair> marketList 	= poloniex.getExchangeSymbols();
 	
 	static List<PoloniexChartData> priceList;

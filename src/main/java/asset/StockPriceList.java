@@ -1,4 +1,4 @@
-package stocks;
+package asset;
 
 import java.io.IOException;
 import java.math.BigDecimal;

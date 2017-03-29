@@ -11,6 +11,8 @@ public class AssetFactory {
 		
 		if(market.getName().equals(Market.STOCK_MARKET)){
 			return new StockAsset();
+		}else if (market.getName().equals(Market.DIGITAL_MARKET)){
+			return new DigitalAsset(market);
 		}
 		
 		return null;

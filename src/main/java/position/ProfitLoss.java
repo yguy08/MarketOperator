@@ -1,4 +1,5 @@
-package operator;
+package position;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
@@ -7,23 +8,17 @@ import java.util.List;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
-public class Position extends Entry {
+import trade.TradingSystem;
+
+public class ProfitLoss {
 	
 	BigDecimal trueRange;
 	BigDecimal N;
 	BigDecimal entrySize;
 	PoloniexChartData close;
 	
-	
 	public static final int LENGTH = 20; 
 	
-	
-	public Position(String name, List<PoloniexChartData> priceList){
-		super(name, priceList);
-		this.trueRange 	= setAverageTrueRange(priceList);
-		this.entrySize	= setEntrySize(trueRange,TradingSystem.BIGDECIMAL_ACCOUNT_SIZE, TradingSystem.RISK);
-		//this.close		= closeLongFinder(priceList,trueRange);
-	}
 	
 	public static BigDecimal setEntrySize(BigDecimal trueRange,BigDecimal accountSize, BigDecimal risk){
 		BigDecimal size = accountSize.multiply(risk, MathContext.DECIMAL32);
@@ -113,7 +108,7 @@ public class Position extends Entry {
 					}if(count == TradingSystem.CLOSE | cutLoss(entry.getClose(), currentDay, trueRange)){
 						BigDecimal closed = currentDay;
 						c = priceList.get(x);
-						Position.setProfitLoss(closed, entry.getClose(), priceList.get(x).getDate());
+						setProfitLoss(closed, entry.getClose(), priceList.get(x).getDate());
 						z = x;
 						break PARENT;
 					}

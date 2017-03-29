@@ -1,4 +1,4 @@
-package bitcoin;
+package position;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
-import operator.Position;
-import operator.TradingSystem;
+import asset.PoloAsset;
+import trade.TradingSystem;
 
 public class PoloPosition {
 	
@@ -123,7 +123,7 @@ public class PoloPosition {
 					}if(count == TradingSystem.CLOSE | cutLoss(entry.getClose(), currentDay, trueRange)){
 						BigDecimal closed = currentDay;
 						c = priceList.get(x);
-						Position.setProfitLoss(closed, entry.getClose(), priceList.get(x).getDate());
+						setProfitLoss(closed, entry.getClose(), priceList.get(x).getDate());
 						z = x;
 						break PARENT;
 					}

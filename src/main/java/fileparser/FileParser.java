@@ -24,8 +24,12 @@ public class FileParser {
 	public static List<String> readFedForexByLines(String fileName) throws IOException{
 	List<String> lines = Files.readAllLines(Paths.get(fileName));
 	lines.remove(0);
-	return lines;
+		return lines;
+	}
 	
+	public static List<String> readStockTickerList() throws IOException{
+		List<String> lines = Files.readAllLines(Paths.get("StockTickerList.txt"));
+		return lines;
 	}
 	
 	

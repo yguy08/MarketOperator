@@ -4,14 +4,11 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
 
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
+import trade.TradingSystem;
 
-import operator.Entry;
-import operator.TradingSystem;
-
-public class Truerange {
+public class TrueRange {
 		
-	public Truerange(){
+	public TrueRange(){
 
 	}
 	

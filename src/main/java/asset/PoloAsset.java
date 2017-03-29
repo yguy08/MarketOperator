@@ -1,4 +1,4 @@
-package bitcoin;
+package asset;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -11,6 +11,8 @@ import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
+
+import market.PoloMarket;
 
 public class PoloAsset {
 	

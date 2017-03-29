@@ -7,12 +7,15 @@ public interface Asset {
 
 	public String getAsset();
 	
-	public void setPriceList();
+	public void setCloseList();
 	
-	public List<BigDecimal> getPriceList();
+	public List<BigDecimal> getCloseList();
 
 	void setAsset(String assetName);
-
+	
+	public void setAllPriceList();
+	
+	public List<?> getAllPriceList();
 	
 
 }

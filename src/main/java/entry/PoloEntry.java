@@ -1,4 +1,4 @@
-package bitcoin;
+package entry;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -6,7 +6,8 @@ import java.util.List;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
-import operator.TradingSystem;
+import asset.PoloAsset;
+import trade.TradingSystem;
 
 public class PoloEntry {
 	
