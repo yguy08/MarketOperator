@@ -14,6 +14,7 @@ public class StockAsset implements Asset {
 	String assetName;
 	List<StockChartData> priceList = new ArrayList<>();
 	List<BigDecimal> closeList	= new ArrayList<>();
+	List<BigDecimal> lowList = new ArrayList<>();
 	
 	
 	private List<StockChartData> priceSubList;
@@ -24,6 +25,7 @@ public class StockAsset implements Asset {
 		this.assetName	= assetName;
 		setPriceList(this.assetName);
 		setCloseList();
+		setLowList();
 	}
 
 	@Override
@@ -97,6 +99,18 @@ public class StockAsset implements Asset {
 	@Override
 	public List<BigDecimal> getCloseSubList() {
 		return this.closeSubList;
+	}
+
+	@Override
+	public void setLowList() {
+		for(int x = 0; x < priceList.size();x++ ){
+			this.lowList.add(this.priceList.get(x).getLow());
+		}
+	}
+
+	@Override
+	public List<BigDecimal> getLowList() {
+		return this.lowList;
 	}
 
 }
