@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
-import trade.TradingSystem;
+import tradeold.TradingSystem;
 
 public class ProfitLoss {
 	

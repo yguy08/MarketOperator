@@ -1,4 +1,4 @@
-package trade;
+package tradeold;
 
 public class TradeDemo {
 

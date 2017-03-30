@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
 
-import trade.TradingSystem;
+import tradeold.TradingSystem;
 
 public class TrueRange {
 		

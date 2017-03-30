@@ -1,6 +1,7 @@
 package asset;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -60,6 +61,18 @@ public class DigitalAsset implements Asset {
 	@Override
 	public String toString(){
 		return this.marketName + ": [ " + this.assetName + " ] " + this.priceList;   
+	}
+
+	@Override
+	public void setCloseList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<BigDecimal> getCloseList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import asset.PoloAsset;
-import trade.TradingSystem;
+import tradeold.TradingSystem;
 
 public class PoloExit {
 	

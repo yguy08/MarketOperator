@@ -13,7 +13,7 @@ import exit.PoloExit;
 import javafx.collections.ObservableList;
 import market.PoloMarket;
 import position.PoloPosition;
-import trade.TradingSystem;
+import tradeold.TradingSystem;
 
 public class BaseLogic extends Main {
 	
