@@ -10,6 +10,8 @@ public interface Speculate {
 	
 	void run();
 	
+	List<Entry> getEntryList();
+	
 	
 	
 	
