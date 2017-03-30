@@ -39,6 +39,8 @@ public class BackTest implements Speculate {
 			if(entry.isEntry()){
 				entryList.add(entry);
 				position = positionFactory.createPosition(this.market, this.asset, this.entry);
+				System.out.println(entry.toString());
+				System.out.println(position.toString());
 			}
 		}
 	}
