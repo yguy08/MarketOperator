@@ -21,6 +21,10 @@ public interface Asset {
 	
 	List<BigDecimal> getLowList();
 	
+	void setHighList();
+	
+	List<BigDecimal> getHighList();
+	
 	void setPriceSubList(List priceList);
 	
 	List<?> getPriceSubList();
