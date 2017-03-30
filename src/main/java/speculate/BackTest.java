@@ -7,6 +7,8 @@ import asset.Asset;
 import entry.Entry;
 import entry.EntryFactory;
 import market.Market;
+import position.Position;
+import position.PositionFactory;
 import speculate.Speculate;
 
 public class BackTest implements Speculate {
@@ -17,6 +19,9 @@ public class BackTest implements Speculate {
 	
 	EntryFactory entryFactory = new EntryFactory();
 	Entry entry;
+	
+	PositionFactory positionFactory = new PositionFactory();
+	Position position;
 	
 	List<Entry> entryList = new ArrayList<>();
 	
@@ -32,9 +37,15 @@ public class BackTest implements Speculate {
 			this.asset.setPriceSubList(this.asset.getPriceList().subList(x - Speculate.ENTRY, x + 1));
 			entry = entryFactory.findEntry(this.market, this.asset);
 			if(entry.isEntry()){
-				System.out.println(entry.toString());
+				entryList.add(entry);
+				position = positionFactory.createPosition(this.market, this.asset, this.entry);
 			}
 		}
+	}
+
+	@Override
+	public List<Entry> getEntryList() {
+		return this.entryList;
 	}
 	
 	
