@@ -8,16 +8,12 @@ public class MarketDemo {
 		
 		Market market = marketFactory.createMarket(Market.STOCK_MARKET);
 		
-		System.out.println(market.getName());
+		System.out.println(market.toString());
 		
-		for(String assets : market.getAssets()){
-			System.out.println(assets);
-		}
+		market = marketFactory.createMarket(Market.DIGITAL_MARKET);
 		
-		System.out.println(market.getExchangeName());
+		System.out.println(market.toString());
 		
-		System.out.println(market.getSingleAsset("FB"));
-
 	}
 
 }

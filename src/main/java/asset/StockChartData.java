@@ -30,5 +30,8 @@ public class StockChartData {
 		return close;
 	}
 	
-
+	@Override
+	public String toString(){
+		return date + " " + close + " " + high + " " + low;
+	}
 }

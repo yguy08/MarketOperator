@@ -4,21 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.knowm.xchange.service.marketdata.MarketDataService;
-
 import fileparser.FileParser;
 
 public class StockMarket implements Market {
 	
-	List<String> assets = new ArrayList<>();
-		
+	private String marketName = Market.STOCK_MARKET;
+	private List<String> assets = new ArrayList<>();
+	
 	public StockMarket(){
 		setAssets();
-		setExchange();
 	}
 	
 	@Override
-	public String getName() {
+	public String getMarketName() {
 		return STOCK_MARKET;
 	}
 
@@ -35,40 +33,18 @@ public class StockMarket implements Market {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
 
 	@Override
 	public List<String> getAssets() {
 		return this.assets;
 	}
-
+	
 	@Override
-	public void setExchange() {
-		
+	public String toString(){
+		return this.marketName + ": " + this.assets;
 	}
-
-	@Override
-	public String getExchangeName() {
-		return null;
-	}
-
-	@Override
-	public String getSingleAsset(String assetName) {
-		String singleAsset = assets.get(assets.indexOf(assetName));
-		return singleAsset;
-	}
-
-	@Override
-	public void setDataService() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public MarketDataService getDataService() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
 
 }

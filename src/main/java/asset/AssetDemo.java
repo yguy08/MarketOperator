@@ -8,19 +8,20 @@ public class AssetDemo {
 	public static void main(String[] args) {
 		
 		MarketFactory marketFactory = new MarketFactory();
-		
+
 		Market market = marketFactory.createMarket(Market.STOCK_MARKET);
 		
 		AssetFactory assetFactory = new AssetFactory();
 		
-		Asset asset = assetFactory.createAsset(market);
+		Asset asset = assetFactory.createAsset(market, "Fb");
 		
-		asset.setAsset(market.getSingleAsset("FB"));
+		System.out.println(asset.toString());
 		
-		System.out.println(asset.getAsset());
+		market = marketFactory.createMarket(Market.DIGITAL_MARKET);
 		
+		asset = assetFactory.createAsset(market, "XMR/BTC");
 		
-
+		System.out.println(asset.toString());
 	}
 
 }

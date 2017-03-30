@@ -19,8 +19,8 @@ public class BackTest implements Trade {
 	@Override
 	public void start(Market market, Asset asset) {
 		List<BigDecimal> priceList = new ArrayList<>();
-		for(int x = Trade.ENTRY; x < asset.getCloseList().size();x++){
-			priceList = asset.getCloseList().subList(x - 20, x);
+		for(int x = Trade.ENTRY; x < asset.getPriceList().size();x++){
+			priceList = asset.getPriceList().subList(x - 20, x);
 			Entry entry = findEntry(priceList);
 			if(entry.isEntry()){
 				entry.setLocation(x);

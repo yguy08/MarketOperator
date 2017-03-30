@@ -16,7 +16,8 @@ public class FileParser {
 	}
 	
 	public static List<String> readYahooStockFileByLines(String fileName) throws IOException{
-		List<String> lines = Files.readAllLines(Paths.get(fileName));
+		String csv = fileName + ".csv";
+		List<String> lines = Files.readAllLines(Paths.get(csv));
 		lines.remove(0);
 		return lines;
 	}

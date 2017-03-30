@@ -4,15 +4,15 @@ import market.Market;
 
 public class AssetFactory {
 	
-	public Asset createAsset(Market market){
+	public Asset createAsset(Market market, String assetName){
 		if(market == null){
 			return null;
 		}
 		
-		if(market.getName().equals(Market.STOCK_MARKET)){
-			return new StockAsset();
-		}else if (market.getName().equals(Market.DIGITAL_MARKET)){
-			return new DigitalAsset(market);
+		if(market.getMarketName().equals(Market.STOCK_MARKET)){
+			return new StockAsset(market,assetName);
+		}else if (market.getMarketName().equals(Market.DIGITAL_MARKET)){
+			return new DigitalAsset(market, assetName);
 		}
 		
 		return null;

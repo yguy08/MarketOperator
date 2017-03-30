@@ -7,67 +7,38 @@ import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.PoloniexExchange;
-import org.knowm.xchange.service.marketdata.MarketDataService;
 
 public class DigitalMarket implements Market {
 	
-	List<String> assets = new ArrayList<>();
+	public static final Exchange exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	
-	Exchange exchange;
-	ExchangeFactory exchangeFactory;
+	private String marketName = Market.DIGITAL_MARKET;
 	
-	MarketDataService dataService;
+	List<CurrencyPair> assets = new ArrayList<>();
 	
 	public DigitalMarket(){
-		setExchange();
 		setAssets();
-		setDataService();
 	}
 	
-	public void setDataService(){
-		this.dataService = exchange.getMarketDataService();
-	}
-	
-	public MarketDataService getDataService(){
-		return this.dataService;
-	}
-
 	@Override
-	public String getName() {
-		return DIGITAL_MARKET;
+	public String getMarketName() {
+		return this.marketName;
 	}
-
+	
 	@Override
 	public void setAssets() {
-		List<CurrencyPair> currencyPair = exchange.getExchangeSymbols();
-		for(CurrencyPair pair : currencyPair){
-			assets.add(pair.toString());
-		}
+		assets = exchange.getExchangeSymbols();
 	}
-
+	
 	@Override
-	public List<String> getAssets() {
+	public List<CurrencyPair> getAssets() {
 		return this.assets;
 	}
-
-	@Override
-	public void setExchange() {
-		this.exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
-	}
-
-	@Override
-	public String getExchangeName() {
-		return exchange.getExchangeSpecification().toString();
-	}
-
-	@Override
-	public String getSingleAsset(String assetName) {
-		CurrencyPair currencyPair = new CurrencyPair(assetName);
-		return currencyPair.toString();
-	}
 	
-	
-	
+	@Override
+	public String toString(){
+		return this.marketName + ": " + this.assets;
+	}
 	
 
 }
