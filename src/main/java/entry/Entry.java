@@ -1,66 +1,41 @@
 package entry;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.Collections;
-import java.util.List;
 
-import asset.StockChartData;
+import asset.Asset;
 
-public class Entry {
+public interface Entry {
 	
-	Boolean entry = false;
-	String direction = null;
-	int location;
+	void setEntry();
 	
-	StockChartData stockChartData;
+	Entry getEntry();
 	
-	public Entry(List<BigDecimal> priceList){
-		entry = setEntry(priceList);
-	}
-
-	public Boolean setEntry(List<BigDecimal> priceList){
-		BigDecimal currentDay = priceList.get(priceList.size() - 1);
-		BigDecimal previousDay = Collections.max(priceList);
-		if(priceList.get(priceList.size() - 1).compareTo(Collections.max(priceList)) == 0){
-			setDirection("long");
-			return true;
-		}else if(priceList.get(priceList.size() - 1).equals(Collections.min(priceList))){
-			setDirection("short");
-			return true;
-		}
-		
-		return false;
-	}
+	void setDate();
 	
-	public void setDirection(String direction){
-		this.direction = direction;
-	}
+	String getDate();
 	
-	public String getDirection(){
-		return this.direction;
-	}
+	void setCurrentPrice();
 	
-	public Boolean isEntry(){
-		return entry;
-	}
+	BigDecimal getCurrentPrice();
 	
-	public int getLocation(){
-		return this.location;
-	}
+	void setMaxPrice();
 	
-	public void setLocation(int location){
-		this.location = location;
-	}
+	BigDecimal getMaxPrice();
 	
-	public void setStockChartData(StockChartData stockChartData){
-		this.stockChartData = stockChartData;
-	}
+	void setMinPrice();
 	
-	@Override
-	public String toString(){
-		return "New Entry: " + this.direction + " " + this.stockChartData.getDate() + " " + this.stockChartData.getClose();
-	}
+	BigDecimal getMinPrice();
 	
+	void setDirection();
+	
+	String getDirection();
+	
+	void setLocationAsIndex();
+	
+	int getLocationIndex();
+	
+	Boolean isEntry();
+	
+	void setPriceSubList(Asset asset);
 	
 }
