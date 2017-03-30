@@ -4,46 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import asset.Asset;
-import asset.StockChartData;
 import entry.Entry;
+import entry.EntryFactory;
 import market.Market;
+import speculate.Speculate;
 
 public class BackTest implements Speculate {
 	
 	String tradeStyle;
+	Market market;
+	Asset asset;
+	
+	EntryFactory entryFactory = new EntryFactory();
+	Entry entry;
 	
 	List<Entry> entryList = new ArrayList<>();
 	
 	public BackTest(Market market, Asset asset){
 		this.tradeStyle = Speculate.BACK_TEST;
-		setEntries(asset);
-	}
-
-	@Override
-	public void setEntries(Asset asset) {
-		for(int x = Speculate.ENTRY; x < asset.getCloseList().size();x++){
-			Entry entry = new Entry(asset.getCloseList().subList(x - Speculate.ENTRY, x - 1));
-			if(entry.isEntry()){
-				entry.setLocation(x);
-				entry.setStockChartData((StockChartData) asset.getPriceList().get(entry.getLocation()));
-				entryList.add(entry);
-			}
-		}
-	}
-
-	@Override
-	public List<Entry> getEntries() {
-		return this.entryList;
+		this.market = market;
+		this.asset = asset;
+		run();
 	}
 	
-	@Override
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		for(Entry e : entryList){
-			sb.append(e.toString() + "\n");
+	public void run(){
+		for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
+			this.asset.setPriceSubList(this.asset.getPriceList().subList(x - Speculate.ENTRY, x + 1));
+			entry = entryFactory.findEntry(this.market, this.asset);
+			if(entry.isEntry()){
+				System.out.println(entry.toString());
+			}
 		}
-		
-		return sb.toString();
 	}
 	
 	
