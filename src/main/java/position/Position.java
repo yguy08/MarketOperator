@@ -18,13 +18,11 @@ public interface Position {
 	
 	BigDecimal getUnitSize();
 	
-	void setPositionSize();
-	
-	BigDecimal getPositionSize();
-	
 	void setStop();
 	
 	BigDecimal getStop();
+	
+	void open();
 	
 	void setExit();
 	
