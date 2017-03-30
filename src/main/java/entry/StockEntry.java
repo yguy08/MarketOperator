@@ -124,9 +124,9 @@ public class StockEntry implements Entry {
 	@Override
 	public void setDirection() {
 		if(isEntry() && this.currentPrice.compareTo(this.maxPrice) == 0){
-			this.direction = "long";
+			this.direction = Entry.LONG;
 		}else if(isEntry() && this.currentPrice.compareTo(this.minPrice) == 0){
-			this.direction = "short";
+			this.direction = Entry.SHORT;
 		}else{
 			this.direction = "Not an Entry";
 		}
@@ -157,6 +157,4 @@ public class StockEntry implements Entry {
 		this.priceSubList = (List<StockChartData>) asset.getPriceSubList();
 	}
 	
-	
-
 }
