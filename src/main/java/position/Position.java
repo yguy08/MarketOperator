@@ -10,6 +10,14 @@ public interface Position {
 	
 	BigDecimal getTrueRange();
 	
+	void setDollarVol();
+	
+	BigDecimal getDollarVol();
+	
+	void setUnitSize();
+	
+	BigDecimal getUnitSize();
+	
 	void setPositionSize();
 	
 	BigDecimal getPositionSize();
