@@ -40,21 +40,6 @@ public class StockEntry implements Entry {
 	}
 	
 	@Override
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append(this.market.getMarketName() + ":");
-		sb.append(" [$" + this.asset.getAsset() + "]");
-		sb.append(" Date:" + this.Date);
-		sb.append(" Current price:" + this.currentPrice);
-		sb.append(" Max price:" + this.maxPrice);
-		sb.append(" Min price:" + this.minPrice);
-		sb.append(" Entry:" + this.isEntry);
-		sb.append(" Direction:" + this.direction);
-		sb.append(" Index:" + this.locationIndex);
-		return sb.toString();
-	}
-	
-	@Override
 	public void setEntry() {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
@@ -157,4 +142,21 @@ public class StockEntry implements Entry {
 		this.priceSubList = (List<StockChartData>) asset.getPriceSubList();
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.market.getMarketName() + ":");
+		sb.append(" [$" + this.asset.getAsset() + "]");
+		sb.append(" Date:" + this.Date);
+		sb.append(" Current price:" + this.currentPrice);
+		sb.append(" Max price:" + this.maxPrice);
+		sb.append(" Min price:" + this.minPrice);
+		sb.append(" Entry:" + this.isEntry);
+		sb.append(" Direction:" + this.direction);
+		sb.append(" Index:" + this.locationIndex);
+		return sb.toString();
+	}
+	
+	
+
 }
