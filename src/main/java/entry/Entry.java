@@ -6,6 +6,9 @@ import asset.Asset;
 
 public interface Entry {
 	
+	String LONG = "Long";
+	String SHORT = "Short";
+	
 	void setEntry();
 	
 	Entry getEntry();
