@@ -31,6 +31,7 @@ public class StockPosition implements Position {
 		setTrueRange();
 		setDollarVol();
 		setUnitSize();
+		setStop();
 	}
 
 	@Override
