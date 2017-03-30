@@ -17,5 +17,13 @@ public interface Asset {
 	
 	List<BigDecimal> getCloseList();
 	
+	void setPriceSubList(List priceList);
+	
+	List<?> getPriceSubList();
+	
+	void setCloseSubList();
+	
+	List getCloseSubList();
+	
 
 }
