@@ -98,7 +98,12 @@ public class StockPosition implements Position {
 
 	@Override
 	public void setStop() {
-		this.stop = Speculate.STOP.multiply(trueRange, MathContext.DECIMAL32);
+		if(this.entry.getDirection().equals(Entry.LONG)){
+			this.stop = this.entry.getCurrentPrice().subtract(Speculate.STOP.multiply(trueRange, MathContext.DECIMAL32));
+		}else if(this.entry.getDirection().equals(Entry.SHORT)){
+			this.stop = this.entry.getCurrentPrice().add(Speculate.STOP.multiply(trueRange, MathContext.DECIMAL32));
+		}
+		
 	}
 
 	@Override
