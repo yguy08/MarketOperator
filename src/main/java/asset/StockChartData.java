@@ -32,6 +32,6 @@ public class StockChartData {
 	
 	@Override
 	public String toString(){
-		return date + " " + close + " " + high + " " + low;
+		return this.date + " " + " close: " + this.close + " high: " + this.high + " low: " + this.low;
 	}
 }
