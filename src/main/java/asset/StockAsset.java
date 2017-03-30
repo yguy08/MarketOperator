@@ -15,6 +15,10 @@ public class StockAsset implements Asset {
 	List<StockChartData> priceList = new ArrayList<>();
 	List<BigDecimal> closeList	= new ArrayList<>();
 	
+	
+	private List<StockChartData> priceSubList;
+	List<BigDecimal> closeSubList	= new ArrayList<>();
+	
 	public StockAsset(Market market, String assetName){
 		this.marketName = market.getMarketName();
 		this.assetName	= assetName;
@@ -36,6 +40,7 @@ public class StockAsset implements Asset {
 	public void setPriceList(String assetName) {
 		List<String> myString;
 		try {
+			//reversed for stocks
 			myString = FileParser.readYahooStockFileByLines(assetName);
 			for(int z = myString.size() - 1; z >= 0; z--){
 				String[] split = myString.get(z).split(",");
@@ -60,7 +65,6 @@ public class StockAsset implements Asset {
 
 	@Override
 	public void setCloseList() {
-		//reverse and add close
 		for(int x = 0; x < priceList.size();x++ ){
 			this.closeList.add(this.priceList.get(x).getClose());
 		}
@@ -71,6 +75,28 @@ public class StockAsset implements Asset {
 		// TODO Auto-generated method stub
 		return this.closeList;
 	}
-	
+
+	@Override
+	public void setPriceSubList(List priceList) {
+		List<StockChartData> stockChartData = (List<StockChartData>) priceList;
+		this.priceSubList = stockChartData;
+	}
+
+	@Override
+	public List<StockChartData> getPriceSubList() {
+		return this.priceSubList;
+	}
+
+	@Override
+	public void setCloseSubList() {
+		for(int x = 0; x < this.priceSubList.size();x++ ){
+			this.closeSubList.add(this.priceSubList.get(x).getClose());
+		}		
+	}
+
+	@Override
+	public List<BigDecimal> getCloseSubList() {
+		return this.closeSubList;
+	}
 
 }
