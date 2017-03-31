@@ -2,11 +2,14 @@ package position;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import asset.Asset;
+import asset.StockChartData;
 import entry.Entry;
 import exit.Exit;
 import market.Market;
@@ -18,131 +21,135 @@ public class StockPosition implements Position {
 	Asset asset;
 	Entry entry;
 	
-	BigDecimal trueRange;
-	BigDecimal dollarVol;
-	BigDecimal unit;
+	String Date;
+	BigDecimal currentPrice;
+	BigDecimal maxPrice;
+	BigDecimal minPrice;
+	int locationIndex;
+	
+	BigDecimal profitLoss;
+	
+	BigDecimal maxUnitSize;
 	
 	BigDecimal stop;
+	
+	Boolean open;
+	
+	List<StockChartData> priceSubList = new ArrayList<>();
+	List<BigDecimal> subListClose = new ArrayList<>();
 	
 	public StockPosition(Market market, Asset asset, Entry entry){
 		this.market = market;
 		this.asset = asset;
 		this.entry = entry;
-		setTrueRange();
-		setDollarVol();
-		setUnitSize();
-		setStop();
-	}
-
-	@Override
-	public void setTrueRange() {
-		//consider instance where list is too small...
-		if(this.asset.getCloseList().size() < Speculate.MOVING_AVG){
-			//skip?
-		}
-		
-		//set first TR for 0 position (H-L)
-		BigDecimal tR = ((this.asset.getHighList().get(0)).subtract(this.asset.getCloseList().get(0)).abs());
-		for(int x = 1; x < Speculate.MOVING_AVG; x++){
-			List<BigDecimal> trList = Arrays.asList(
-				this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
-				this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
-				this.asset.getCloseList().get(x-1).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32));
-				
-				tR = tR.add(Collections.max(trList));
-		}
-		
-		tR = tR.divide(new BigDecimal(Speculate.MOVING_AVG), MathContext.DECIMAL32);
-		
-		//20 exponential moving average
-		for(int x = Speculate.MOVING_AVG; x < this.entry.getLocationIndex();x++){
-			List<BigDecimal> trList = Arrays.asList(
-					this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
-					this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
-					this.asset.getCloseList().get(x-1).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32));
-					
-					tR = tR.multiply(new BigDecimal(Speculate.MOVING_AVG - 1), MathContext.DECIMAL32)
-					.add((Collections.max(trList)), MathContext.DECIMAL32).
-					divide(new BigDecimal(Speculate.MOVING_AVG), MathContext.DECIMAL32);
-		}
-		
-		this.trueRange = tR;
-	}
-
-	@Override
-	public BigDecimal getTrueRange() {
-		return this.trueRange;
-	}
-	
-	@Override
-	public void setDollarVol() {
-		// Dollar Volatility = N (ATR) * price
-		this.dollarVol = this.trueRange.multiply(entry.getCurrentPrice(), MathContext.DECIMAL32);
-	}
-
-	@Override
-	public BigDecimal getDollarVol() {
-		return this.dollarVol;
-	}
-
-	@Override
-	public void setUnitSize() {
-		// Position size = equity * risk / dollar vol
-		this.unit = (Speculate.STOCK_EQUITY.multiply(Speculate.RISK, MathContext.DECIMAL32)).divide(this.dollarVol, MathContext.DECIMAL32);
-	}
-
-	@Override
-	public BigDecimal getUnitSize() {
-		return this.unit;
-	}
-
-	@Override
-	public void setStop() {
-		if(this.entry.getDirection().equals(Entry.LONG)){
-			this.stop = this.entry.getCurrentPrice().subtract(Speculate.STOP.multiply(trueRange, MathContext.DECIMAL32));
-		}else if(this.entry.getDirection().equals(Entry.SHORT)){
-			this.stop = this.entry.getCurrentPrice().add(Speculate.STOP.multiply(trueRange, MathContext.DECIMAL32));
-		}
-		
-	}
-
-	@Override
-	public BigDecimal getStop() {
-		return this.stop;
+		this.open = true;
+		setPriceSubList(this.asset);
+		setDate();
+		setCurrentPrice();
+		setMaxPrice();
+		setMinPrice();
+		setLocationAsIndex();
+		setExit();
 	}
 
 	@Override
 	public void setExit() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Exit getExit() {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Entry.LONG){
+			this.open = false;
+			setProfitLoss();
+		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Entry.SHORT){
+			this.open = false;
+			setProfitLoss();
+		}else{
+			this.open = true;
+		}
 	}
 
 	@Override
 	public Boolean isOpen() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.open;
 	}
-
-	@Override
-	public void open() {
-		// TODO Auto-generated method stub
-		
+	
+	public void setProfitLoss(){
+		BigDecimal calcPL = this.currentPrice.subtract(this.entry.getCurrentPrice());
+		calcPL = calcPL.divide(this.entry.getCurrentPrice(), MathContext.DECIMAL32);
+		if(this.entry.getDirection() == Entry.LONG){
+			this.profitLoss = calcPL.multiply(new BigDecimal(100.00));
+		}else{
+			this.profitLoss = calcPL.multiply(new BigDecimal(100.00));
+		}
 	}
 	
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("ATR: " + this.trueRange);
-		sb.append(" Dollar vol: " + this.dollarVol);
-		sb.append(" Unit size: " + this.unit);
-		sb.append(" Stop: " + this.stop);
+		sb.append("[POSITION]");
+		sb.append(" Open: " + this.entry.getCurrentPrice());
+		sb.append(" Closed: " + this.currentPrice);
+		sb.append(" P/L: " + this.profitLoss);
+		sb.append(" Close index: " + this.locationIndex);
 		return sb.toString();
+	}
+
+	@Override
+	public void setCustomUnitSize() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public BigDecimal getCustomUnitSize() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPriceSubList(Asset asset) {
+		this.priceSubList = (List<StockChartData>) asset.getPriceSubList();		
+	}
+
+	@Override
+	public void setDate() {
+		this.Date = this.priceSubList.get(this.priceSubList.size() - 1).getDate();		
+	}
+
+	@Override
+	public void setCurrentPrice() {
+		this.currentPrice = this.priceSubList.get(this.priceSubList.size() - 1).getClose();		
+	}
+
+	@Override
+	public void setMaxPrice() {
+		List<BigDecimal> maxList = new ArrayList<>();
+		for(int x = 0; x < this.priceSubList.size(); x++){
+			maxList.add(this.priceSubList.get(x).getClose());
+		}
+		
+		this.maxPrice = Collections.max(maxList);		
+	}
+
+	@Override
+	public void setMinPrice() {
+		List<BigDecimal> minList = new ArrayList<>();
+		for(int x = 0; x < this.priceSubList.size(); x++){
+			minList.add(this.priceSubList.get(x).getClose());
+		}
+		
+		this.minPrice = Collections.min(minList);
+		
+	}
+
+	@Override
+	public void setLocationAsIndex() {
+		this.locationIndex = this.asset.getPriceList().indexOf(this.priceSubList.get(this.priceSubList.size() - 1));
+		
+	}
+
+	@Override
+	public int getLocationIndex() {
+		// TODO Auto-generated method stub
+		return this.locationIndex;
 	}
 
 }

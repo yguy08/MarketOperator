@@ -63,48 +63,6 @@ public class Main extends Application  {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
-		viewMarkets.setOnAction(new EventHandler<ActionEvent>(){
-			@Override public void handle(ActionEvent e){
-				try{
-					stats.removeAll(stats);
-					BaseLogic.populateMarketList(stats);
-				}catch (Exception name){
-					stats.remove(stats);
-					stats.add("Error retrieving market list!");
-				}
-				}
-		});
-		
-		entryFinderBtn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent e){
-					stats.removeAll(stats);
-					try {
-						BaseLogic.populateEntryList(stats);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-			}
-			});
-		
-		clearBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override public void handle(ActionEvent e){
-				stats.removeAll(stats);
-			}
-		});
-		
-		exitFinderBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override public void handle(ActionEvent e){
-				stats.removeAll(stats);
-				try {
-					BaseLogic.populateExitList(stats);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		
 	}
 	
 	public Text setTitle(){

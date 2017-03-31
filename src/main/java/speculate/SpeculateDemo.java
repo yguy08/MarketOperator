@@ -21,7 +21,7 @@ public class SpeculateDemo {
 	
 	Speculate speculate = speculateFactory.startSpeculating(Speculate.BACK_TEST, market, asset);
 	
-	System.out.println(speculate.toString());
+	//System.out.println(speculate.toString());
 	
 	}
 	

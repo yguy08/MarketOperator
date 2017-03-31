@@ -11,8 +11,6 @@ public interface Entry {
 	
 	void setEntry();
 	
-	Entry getEntry();
-	
 	void setDate();
 	
 	String getDate();
@@ -41,4 +39,26 @@ public interface Entry {
 	
 	void setPriceSubList(Asset asset);
 	
+	void setTrueRange();
+	
+	BigDecimal getTrueRange();
+	
+	void setDollarVol();
+	
+	BigDecimal getDollarVol();
+	
+	void setATRUnitSize();
+	
+	BigDecimal getATRUnitSize();
+	
+	void setStop();
+	
+	BigDecimal getStop();
+	
+	void setMaxUnitSize();
+	
+	BigDecimal getMaxUnitSize();
+	
+	
+
 }

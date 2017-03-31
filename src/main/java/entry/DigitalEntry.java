@@ -18,12 +18,6 @@ public class DigitalEntry implements Entry {
 	}
 
 	@Override
-	public Entry getEntry() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void setDate() {
 		// TODO Auto-generated method stub
 		
@@ -105,6 +99,66 @@ public class DigitalEntry implements Entry {
 	public void setPriceSubList(Asset asset) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void setTrueRange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getTrueRange() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setDollarVol() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getDollarVol() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setATRUnitSize() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getATRUnitSize() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setStop() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getStop() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setMaxUnitSize() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getMaxUnitSize() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

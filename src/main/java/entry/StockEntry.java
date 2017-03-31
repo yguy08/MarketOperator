@@ -1,13 +1,16 @@
 package entry;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import asset.Asset;
 import asset.StockChartData;
 import market.Market;
+import speculate.Speculate;
 
 public class StockEntry implements Entry {
 	
@@ -24,6 +27,11 @@ public class StockEntry implements Entry {
 	int locationIndex;
 	String direction = null;
 	Boolean isEntry = false;
+	BigDecimal averageTrueRange;
+	BigDecimal dollarVol;
+	BigDecimal ATRunit;
+	BigDecimal stop;
+	BigDecimal maxUnitSize;
 	
 	
 	public StockEntry(Market market, Asset asset){
@@ -43,17 +51,23 @@ public class StockEntry implements Entry {
 	public void setEntry() {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
+			setDirection();
+			setTrueRange();
+			setDollarVol();
+			setATRUnitSize();
+			setStop();
+			setMaxUnitSize();
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
+			setDirection();
+			setTrueRange();
+			setDollarVol();
+			setATRUnitSize();
+			setStop();
+			setMaxUnitSize();
 		}else{
 			this.isEntry = false;
 		}
-	}
-
-	@Override
-	public Entry getEntry() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -149,12 +163,108 @@ public class StockEntry implements Entry {
 		sb.append(" [$" + this.asset.getAsset() + "]");
 		sb.append(" Date:" + this.Date);
 		sb.append(" Current price:" + this.currentPrice);
-		sb.append(" Max price:" + this.maxPrice);
-		sb.append(" Min price:" + this.minPrice);
+		sb.append(" Max:" + this.maxPrice);
+		sb.append(" Min:" + this.minPrice + "\n");
 		sb.append(" Entry:" + this.isEntry);
 		sb.append(" Direction:" + this.direction);
 		sb.append(" Index:" + this.locationIndex);
+		sb.append(" ATR: " + this.averageTrueRange);
+		sb.append(" Max Unit Size: " + this.maxUnitSize);
+		sb.append(" ATR Unit size: " + this.ATRunit);
+		sb.append(" Stop: " + this.stop);
+		
 		return sb.toString();
+	}
+	
+	//True Range of prices per share, measured in Dollars per Share..if True Range is 1.25 it means max daily variations is $1.25 per share
+	@Override
+	public void setTrueRange() {
+		//consider instance where list is too small...
+		if(this.asset.getCloseList().size() < Speculate.MOVING_AVG){
+			//skip?
+		}
+		
+		//set first TR for 0 position (H-L)
+		BigDecimal tR = ((this.asset.getHighList().get(0)).subtract(this.asset.getCloseList().get(0)).abs());
+		for(int x = 1; x < Speculate.MOVING_AVG; x++){
+			List<BigDecimal> trList = Arrays.asList(
+				this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
+				this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
+				this.asset.getCloseList().get(x-1).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32));
+				
+				tR = tR.add(Collections.max(trList));
+		}
+		
+		tR = tR.divide(new BigDecimal(Speculate.MOVING_AVG), MathContext.DECIMAL32);
+		
+		//20 exponential moving average
+		for(int x = Speculate.MOVING_AVG; x < this.getLocationIndex();x++){
+			List<BigDecimal> trList = Arrays.asList(
+					this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
+					this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
+					this.asset.getCloseList().get(x-1).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32));
+					
+					tR = tR.multiply(new BigDecimal(Speculate.MOVING_AVG - 1), MathContext.DECIMAL32)
+					.add((Collections.max(trList)), MathContext.DECIMAL32).
+					divide(new BigDecimal(Speculate.MOVING_AVG), MathContext.DECIMAL32);
+		}
+		
+		this.averageTrueRange = tR;
+	}
+
+	@Override
+	public BigDecimal getTrueRange() {
+		return this.averageTrueRange;
+	}
+
+	@Override
+	public void setDollarVol() {
+		// Dollar Volatility = N (ATR) * Dollars per point
+		this.dollarVol = this.averageTrueRange.multiply(new BigDecimal(1.00), MathContext.DECIMAL32);
+	}
+
+	@Override
+	public BigDecimal getDollarVol() {
+		return this.dollarVol;
+	}
+
+	@Override
+	public void setATRUnitSize() {
+		// Position size = equity * risk / dollar vol or Max unit size = dollar vol
+		this.ATRunit = (Speculate.STOCK_EQUITY.multiply(Speculate.RISK, MathContext.DECIMAL32))
+				.divide(this.getDollarVol(), MathContext.DECIMAL32);
+	}
+
+	@Override
+	public BigDecimal getATRUnitSize() {
+		return this.ATRunit;
+	}
+
+	@Override
+	public void setStop() {
+		if(this.getDirection().equals(Entry.LONG)){
+			this.stop = this.getCurrentPrice().subtract(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
+		}else if(this.getDirection().equals(Entry.SHORT)){
+			this.stop = this.getCurrentPrice().add(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
+		}
+		
+	}
+
+	@Override
+	public BigDecimal getStop() {
+		// TODO Auto-generated method stub
+		return this.stop;
+	}
+
+	@Override
+	public void setMaxUnitSize() {
+		this.maxUnitSize = Speculate.STOCK_EQUITY.divide(this.getCurrentPrice(), MathContext.DECIMAL32);		
+	}
+
+	@Override
+	public BigDecimal getMaxUnitSize() {
+		// TODO Auto-generated method stub
+		return this.maxUnitSize;
 	}
 	
 	

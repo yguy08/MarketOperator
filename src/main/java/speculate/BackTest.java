@@ -38,9 +38,15 @@ public class BackTest implements Speculate {
 			entry = entryFactory.findEntry(this.market, this.asset);
 			if(entry.isEntry()){
 				entryList.add(entry);
-				position = positionFactory.createPosition(this.market, this.asset, this.entry);
 				System.out.println(entry.toString());
-				System.out.println(position.toString());
+				for(int y = this.entry.getLocationIndex();y<this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
+					this.asset.setPriceSubList(this.asset.getPriceList().subList(y - Speculate.EXIT, y + 1));
+					this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
+					if(position.isOpen() == false){
+						System.out.println(position.toString());
+						break;
+					}
+				}
 			}
 		}
 	}
