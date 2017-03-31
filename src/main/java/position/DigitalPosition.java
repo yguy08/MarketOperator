@@ -14,57 +14,75 @@ public class DigitalPosition implements Position {
 	}
 
 	@Override
-	public void setTrueRange() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public BigDecimal getTrueRange() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setPositionSize() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public BigDecimal getPositionSize() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setStop() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public BigDecimal getStop() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void setExit() {
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Exit getExit() {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
 	public Boolean isOpen() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void setProfitLoss() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setCustomUnitSize() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getCustomUnitSize() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPriceSubList(Asset asset) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDate() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setCurrentPrice() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setMaxPrice() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setMinPrice() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLocationAsIndex() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getLocationIndex() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

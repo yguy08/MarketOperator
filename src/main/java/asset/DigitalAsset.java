@@ -1,6 +1,7 @@
 package asset;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -28,6 +29,9 @@ public class DigitalAsset implements Asset {
 		this.marketName = market.getMarketName();
 		this.assetName	= assetName;
 		setPriceList(this.assetName);
+		setCloseList();
+		setLowList();
+		setHighList();
 	}
 
 	@Override
@@ -60,6 +64,66 @@ public class DigitalAsset implements Asset {
 	@Override
 	public String toString(){
 		return this.marketName + ": [ " + this.assetName + " ] " + this.priceList;   
+	}
+
+	@Override
+	public void setCloseList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<BigDecimal> getCloseList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setLowList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<BigDecimal> getLowList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setHighList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<BigDecimal> getHighList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPriceSubList(List priceList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<?> getPriceSubList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCloseSubList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List getCloseSubList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

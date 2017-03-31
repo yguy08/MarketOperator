@@ -1,5 +1,6 @@
 package asset;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface Asset {
@@ -10,7 +11,27 @@ public interface Asset {
 	
 	void setPriceList(String assetName);
 	
-	List getPriceList();
+	List<?> getPriceList();
+	
+	void setCloseList();
+	
+	List<BigDecimal> getCloseList();
+	
+	void setLowList();
+	
+	List<BigDecimal> getLowList();
+	
+	void setHighList();
+	
+	List<BigDecimal> getHighList();
+	
+	void setPriceSubList(List priceList);
+	
+	List<?> getPriceSubList();
+	
+	void setCloseSubList();
+	
+	List getCloseSubList();
 	
 
 }

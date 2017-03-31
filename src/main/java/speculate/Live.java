@@ -15,13 +15,13 @@ public class Live implements Speculate {
 	}
 
 	@Override
-	public void setEntries(Asset asset) {
+	public void run() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Entry> getEntries() {
+	public List<Entry> getEntryList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

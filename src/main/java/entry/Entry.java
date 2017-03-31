@@ -1,50 +1,64 @@
 package entry;
 
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.List;
 
-public class Entry {
-	
-	Boolean entry = false;
-	String direction = null;
-	int location;
-	
-	public Entry(List<BigDecimal> priceList){
-		entry = setEntry(priceList);
-	}
+import asset.Asset;
 
-	public Boolean setEntry(List<BigDecimal> priceList){
-		if(priceList.get(priceList.size() - 1).equals(Collections.max(priceList))){
-			setDirection("long");
-			return true;
-		}else if(priceList.get(priceList.size() - 1).equals(Collections.min(priceList))){
-			setDirection("short");
-			return true;
-		}
-		
-		return false;
-	}
+public interface Entry {
 	
-	public void setDirection(String direction){
-		this.direction = direction;
-	}
+	String LONG = "Long";
+	String SHORT = "Short";
 	
-	public String getDirection(){
-		return this.direction;
-	}
+	void setEntry();
 	
-	public Boolean isEntry(){
-		return entry;
-	}
+	void setDate();
 	
-	public int getLocation(){
-		return this.location;
-	}
+	String getDate();
 	
-	public void setLocation(int location){
-		this.location = location;
-	}
+	void setCurrentPrice();
+	
+	BigDecimal getCurrentPrice();
+	
+	void setMaxPrice();
+	
+	BigDecimal getMaxPrice();
+	
+	void setMinPrice();
+	
+	BigDecimal getMinPrice();
+	
+	void setDirection();
+	
+	String getDirection();
+	
+	void setLocationAsIndex();
+	
+	int getLocationIndex();
+	
+	Boolean isEntry();
+	
+	void setPriceSubList(Asset asset);
+	
+	void setTrueRange();
+	
+	BigDecimal getTrueRange();
+	
+	void setDollarVol();
+	
+	BigDecimal getDollarVol();
+	
+	void setATRUnitSize();
+	
+	BigDecimal getATRUnitSize();
+	
+	void setStop();
+	
+	BigDecimal getStop();
+	
+	void setMaxUnitSize();
+	
+	BigDecimal getMaxUnitSize();
 	
 	
+
 }

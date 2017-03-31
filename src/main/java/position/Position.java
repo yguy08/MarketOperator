@@ -2,31 +2,32 @@ package position;
 
 import java.math.BigDecimal;
 
+import asset.Asset;
+
 public interface Position {
 	
-	BigDecimal getEntryPrice();
+	void setExit();
 	
-	void setEntryPrice();
-	
-	int getEntryDate();
-	
-	void setEntryDate();
-	
-	BigDecimal getAverageTrueRange();
-	
-	void setAverageTrueRange();
-	
-	BigDecimal getExitPrice();
-	
-	void setExitPrice();
-	
-	int getExitDate();
-	
-	void setExitDate();
+	Boolean isOpen();
 	
 	void setProfitLoss();
 	
-	BigDecimal getProfitLoss();
+	void setCustomUnitSize();
 	
+	BigDecimal getCustomUnitSize();
+	
+	void setPriceSubList(Asset asset);
+	
+	void setDate();
+	
+	void setCurrentPrice();
+	
+	void setMaxPrice();
+	
+	void setMinPrice();
+	
+	void setLocationAsIndex();
+	
+	int getLocationIndex();
 	
 }
