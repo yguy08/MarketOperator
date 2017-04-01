@@ -15,7 +15,7 @@ public class SpeculateDemo {
 	
 	AssetFactory assetFactory = new AssetFactory();
 	
-	Asset asset = assetFactory.createAsset(market, "GDX");
+	Asset asset = assetFactory.createAsset(market, "FB");
 	
 	SpeculateFactory speculateFactory = new SpeculateFactory();
 	

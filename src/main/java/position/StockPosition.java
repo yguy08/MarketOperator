@@ -3,17 +3,13 @@ package position;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import asset.Asset;
 import asset.StockChartData;
 import entry.Entry;
-import exit.Exit;
 import market.Market;
-import speculate.Speculate;
 
 public class StockPosition implements Position {
 	
@@ -76,7 +72,8 @@ public class StockPosition implements Position {
 		if(this.entry.getDirection() == Entry.LONG){
 			this.profitLoss = calcPL.multiply(new BigDecimal(100.00));
 		}else{
-			//update for shorts...
+			//negate for shorts since lower price would be a win, higher a loss
+			calcPL = calcPL.negate();
 			this.profitLoss = calcPL.multiply(new BigDecimal(100.00));
 		}
 	}
