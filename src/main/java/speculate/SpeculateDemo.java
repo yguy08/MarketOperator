@@ -15,14 +15,12 @@ public class SpeculateDemo {
 	
 	AssetFactory assetFactory = new AssetFactory();
 	
-	Asset asset = assetFactory.createAsset(market, "Fb");
+	Asset asset = assetFactory.createAsset(market, "GDX");
 	
 	SpeculateFactory speculateFactory = new SpeculateFactory();
 	
 	Speculate speculate = speculateFactory.startSpeculating(Speculate.BACK_TEST, market, asset);
 	
-	//System.out.println(speculate.toString());
-	
 	}
-	
+
 }

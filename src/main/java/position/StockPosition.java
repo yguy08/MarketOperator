@@ -76,6 +76,7 @@ public class StockPosition implements Position {
 		if(this.entry.getDirection() == Entry.LONG){
 			this.profitLoss = calcPL.multiply(new BigDecimal(100.00));
 		}else{
+			//update for shorts...
 			this.profitLoss = calcPL.multiply(new BigDecimal(100.00));
 		}
 	}
