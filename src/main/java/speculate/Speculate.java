@@ -22,11 +22,8 @@ public interface Speculate {
 	
 	int MOVING_AVG = 20;
 	
-	void run();
+	void setAccountEquity(BigDecimal tradeResult);
 	
-	List<Entry> getEntryList();
-	
-	
-	
+	BigDecimal getAccountEquity();
 	
 }

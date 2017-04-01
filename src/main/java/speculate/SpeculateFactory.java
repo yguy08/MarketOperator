@@ -5,14 +5,12 @@ import market.Market;
 
 public class SpeculateFactory {
 	
-	public Speculate startSpeculating(String tradeType, Market market, Asset asset){
-		if(tradeType == null){
+	public Speculate startSpeculating(Market market, Asset asset){
+		if(market == null){
 			return null;
 		}
-		if(tradeType.equalsIgnoreCase(Speculate.BACK_TEST)){
-			return new BackTest(market, asset);
-		}else if(tradeType.equalsIgnoreCase(Speculate.LIVE)){
-			return new Live(market,asset);
+		if(market.getMarketName().equalsIgnoreCase(Market.STOCK_MARKET)){
+			return new StockSpeculation(market, asset);
 		}
 		
 		return null;

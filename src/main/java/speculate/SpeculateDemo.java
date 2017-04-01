@@ -2,6 +2,8 @@ package speculate;
 
 import asset.Asset;
 import asset.AssetFactory;
+import backtest.BackTest;
+import backtest.BackTestFactory;
 import market.Market;
 import market.MarketFactory;
 
@@ -19,7 +21,7 @@ public class SpeculateDemo {
 	
 	SpeculateFactory speculateFactory = new SpeculateFactory();
 	
-	Speculate speculate = speculateFactory.startSpeculating(Speculate.BACK_TEST, market, asset);
+	Speculate speculate = speculateFactory.startSpeculating(market, asset);
 	
 	}
 

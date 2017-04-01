@@ -1,4 +1,4 @@
-package speculate;
+package backtest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import position.Position;
 import position.PositionFactory;
 import speculate.Speculate;
 
-public class BackTest implements Speculate {
+public class StockBackTest implements BackTest {
 	
 	String tradeStyle;
 	Market market;
@@ -25,14 +25,15 @@ public class BackTest implements Speculate {
 	
 	List<Entry> entryList = new ArrayList<>();
 	
-	public BackTest(Market market, Asset asset){
+	public StockBackTest(Market market, Asset asset, Speculate speculate){
 		this.tradeStyle = Speculate.BACK_TEST;
 		this.market = market;
 		this.asset = asset;
-		run();
+		runBackTest();
 	}
-	
-	public void run(){
+
+	@Override
+	public void runBackTest() {
 		for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
 			this.asset.setPriceSubList(this.asset.getPriceList().subList(x - Speculate.ENTRY, x + 1));
 			entry = entryFactory.findEntry(this.market, this.asset);
@@ -49,12 +50,7 @@ public class BackTest implements Speculate {
 				}
 			}
 		}
+		
 	}
 
-	@Override
-	public List<Entry> getEntryList() {
-		return this.entryList;
-	}
-	
-	
 }
