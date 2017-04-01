@@ -10,7 +10,7 @@ public interface Speculate {
 	String BACK_TEST = "Back Test";
 	String LIVE = "Live";
 	
-	BigDecimal STOCK_EQUITY = new BigDecimal(100_000.00); 
+	BigDecimal STOCK_EQUITY = new BigDecimal(10_000.00); 
 	BigDecimal DIGITAL_EQUITY = new BigDecimal(10.00000000);
 	
 	BigDecimal RISK = new BigDecimal(0.01);
