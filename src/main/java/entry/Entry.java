@@ -59,6 +59,8 @@ public interface Entry {
 	
 	BigDecimal getMaxUnitSize();
 	
+	void updateAccountBalance();
+	
 	
 
 }

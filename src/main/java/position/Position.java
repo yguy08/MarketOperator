@@ -30,4 +30,6 @@ public interface Position {
 	
 	int getLocationIndex();
 	
+	void updateAccountBalance();
+	
 }

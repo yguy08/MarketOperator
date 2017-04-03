@@ -10,12 +10,12 @@ public class StockSpeculation implements Speculate {
 	BigDecimal accountEquity;
 	
 	public StockSpeculation(Market market, Asset asset) {
-		this.accountEquity = Speculate.DIGITAL_EQUITY;
+		this.accountEquity = Speculate.STOCK_EQUITY;
 	}
 
 	@Override
 	public void setAccountEquity(BigDecimal tradeResult) {
-		this.accountEquity.add(tradeResult);
+		this.accountEquity = this.accountEquity.add(tradeResult);
 	}
 
 	@Override

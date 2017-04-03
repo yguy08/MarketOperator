@@ -16,6 +16,7 @@ public class StockEntry implements Entry {
 	
 	Market market;
 	Asset asset;
+	Speculate speculator;
 	
 	List<StockChartData> priceSubList = new ArrayList<>();
 	List<BigDecimal> subListClose = new ArrayList<>();
@@ -47,6 +48,20 @@ public class StockEntry implements Entry {
 		setDirection();
 	}
 	
+	public StockEntry(Market market, Asset asset, Speculate speculator){
+		this.market = market;
+		this.asset	= asset;
+		this.speculator = speculator;
+		setPriceSubList(this.asset);
+		setDate();
+		setCurrentPrice();
+		setMaxPrice();
+		setMinPrice();
+		setLocationAsIndex();
+		setEntry();
+		setDirection();
+	}
+	
 	@Override
 	public void setEntry() {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
@@ -57,6 +72,7 @@ public class StockEntry implements Entry {
 			setATRUnitSize();
 			setStop();
 			setMaxUnitSize();
+			updateAccountBalance();
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
 			setDirection();
@@ -65,6 +81,7 @@ public class StockEntry implements Entry {
 			setATRUnitSize();
 			setStop();
 			setMaxUnitSize();
+			updateAccountBalance();
 		}else{
 			this.isEntry = false;
 		}
@@ -172,7 +189,7 @@ public class StockEntry implements Entry {
 		sb.append(" Max Unit Size: " + this.maxUnitSize);
 		sb.append(" ATR Unit size: " + this.ATRunit);
 		sb.append(" Stop: " + this.stop);
-		
+		sb.append(" Account balance: " + this.speculator.getAccountEquity());
 		return sb.toString();
 	}
 	
@@ -265,6 +282,12 @@ public class StockEntry implements Entry {
 	public BigDecimal getMaxUnitSize() {
 		// TODO Auto-generated method stub
 		return this.maxUnitSize;
+	}
+
+	@Override
+	public void updateAccountBalance() {
+		BigDecimal entrySize = this.ATRunit.multiply(this.currentPrice, MathContext.DECIMAL32).negate();
+		this.speculator.setAccountEquity(entrySize);
 	}
 	
 	

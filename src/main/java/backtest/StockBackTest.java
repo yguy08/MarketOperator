@@ -16,6 +16,7 @@ public class StockBackTest implements BackTest {
 	String tradeStyle;
 	Market market;
 	Asset asset;
+	Speculate speculator;
 	
 	EntryFactory entryFactory = new EntryFactory();
 	Entry entry;
@@ -29,6 +30,7 @@ public class StockBackTest implements BackTest {
 		this.tradeStyle = Speculate.BACK_TEST;
 		this.market = market;
 		this.asset = asset;
+		this.speculator = speculate;
 		runBackTest();
 	}
 
@@ -36,13 +38,13 @@ public class StockBackTest implements BackTest {
 	public void runBackTest() {
 		for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
 			this.asset.setPriceSubList(this.asset.getPriceList().subList(x - Speculate.ENTRY, x + 1));
-			entry = entryFactory.findEntry(this.market, this.asset);
+			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
 			if(entry.isEntry()){
 				entryList.add(entry);
 				System.out.println(entry.toString());
 				for(int y = this.entry.getLocationIndex();y<this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
 					this.asset.setPriceSubList(this.asset.getPriceList().subList(y - Speculate.EXIT, y + 1));
-					this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
+					this.position = positionFactory.createPosition(this.market, this.asset, this.entry, this.speculator);
 					if(position.isOpen() == false){
 						System.out.println(position.toString());
 						break;

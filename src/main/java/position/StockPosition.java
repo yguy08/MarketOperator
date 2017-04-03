@@ -10,12 +10,14 @@ import asset.Asset;
 import asset.StockChartData;
 import entry.Entry;
 import market.Market;
+import speculate.Speculate;
 
 public class StockPosition implements Position {
 	
 	Market market;
 	Asset asset;
 	Entry entry;
+	Speculate speculator;
 	
 	String Date;
 	BigDecimal currentPrice;
@@ -47,15 +49,32 @@ public class StockPosition implements Position {
 		setLocationAsIndex();
 		setExit();
 	}
+	
+	public StockPosition(Market market, Asset asset, Entry entry, Speculate speculator){
+		this.market = market;
+		this.asset = asset;
+		this.entry = entry;
+		this.speculator = speculator;
+		this.open = true;
+		setPriceSubList(this.asset);
+		setDate();
+		setCurrentPrice();
+		setMaxPrice();
+		setMinPrice();
+		setLocationAsIndex();
+		setExit();
+	}
 
 	@Override
 	public void setExit() {
 		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Entry.LONG){
 			this.open = false;
 			setProfitLoss();
+			updateAccountBalance();
 		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Entry.SHORT){
 			this.open = false;
 			setProfitLoss();
+			updateAccountBalance();
 		}else{
 			this.open = true;
 		}
@@ -86,6 +105,7 @@ public class StockPosition implements Position {
 		sb.append(" Closed: " + this.currentPrice);
 		sb.append(" P/L: " + this.profitLoss);
 		sb.append(" Close index: " + this.locationIndex);
+		sb.append("Account bal: " + this.speculator.getAccountEquity());
 		return sb.toString();
 	}
 
@@ -148,6 +168,12 @@ public class StockPosition implements Position {
 	public int getLocationIndex() {
 		// TODO Auto-generated method stub
 		return this.locationIndex;
+	}
+
+	@Override
+	public void updateAccountBalance() {
+		BigDecimal close = this.currentPrice.multiply(this.entry.getATRUnitSize(), MathContext.DECIMAL32);
+		this.speculator.setAccountEquity(close);
 	}
 
 }
