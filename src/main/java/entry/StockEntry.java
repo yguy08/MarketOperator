@@ -28,6 +28,7 @@ public class StockEntry implements Entry {
 	BigDecimal averageTrueRange;
 	BigDecimal stop;
 	BigDecimal unitSize;
+	BigDecimal orderTotal;
 	
 	int locationIndex;
 	String direction = null;
@@ -57,6 +58,14 @@ public class StockEntry implements Entry {
 		setLocationAsIndex();
 		setEntry();
 		
+		if(this.isEntry){
+			setTrueRange();
+			setStop();
+			setUnitSize();
+			setOrderTotal();
+			updateAccountBalance();
+		}
+		
 	}
 	
 	@Override
@@ -64,17 +73,9 @@ public class StockEntry implements Entry {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
 			this.direction = Entry.LONG;
-			setTrueRange();
-			setStop();
-			setUnitSize();
-			updateAccountBalance();
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
 			this.direction = Entry.SHORT;
-			setTrueRange();
-			setStop();
-			setUnitSize();
-			updateAccountBalance();
 		}else{
 			this.isEntry = false;
 		}
@@ -224,6 +225,11 @@ public class StockEntry implements Entry {
 	}
 	
 	@Override
+	public void setOrderTotal() {
+		this.orderTotal = this.unitSize.multiply(this.currentPrice, MathContext.DECIMAL32);
+	}
+	
+	@Override
 	public void updateAccountBalance() {
 		BigDecimal entrySize = this.unitSize.multiply(this.currentPrice, MathContext.DECIMAL32).negate();
 		this.speculator.setAccountEquity(entrySize);
@@ -242,10 +248,10 @@ public class StockEntry implements Entry {
 		sb.append(" Direction:" + this.direction);
 		sb.append(" ATR: " + this.averageTrueRange);
 		sb.append(" Unit Size: " + this.unitSize);
+		sb.append(" Order Total: " + this.orderTotal);
 		sb.append(" Stop: " + this.stop);
 		sb.append(" Account balance: " + this.speculator.getAccountEquity());
 		return sb.toString();
 	}	
-	
 
 }
