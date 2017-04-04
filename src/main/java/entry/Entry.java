@@ -27,8 +27,6 @@ public interface Entry {
 	
 	BigDecimal getMinPrice();
 	
-	void setDirection();
-	
 	String getDirection();
 	
 	void setLocationAsIndex();
