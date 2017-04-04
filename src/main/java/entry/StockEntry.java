@@ -57,7 +57,7 @@ public class StockEntry implements Entry {
 		setMinPrice();
 		setLocationAsIndex();
 		setEntry();
-		setDirection();
+		
 	}
 	
 	@Override
@@ -65,12 +65,14 @@ public class StockEntry implements Entry {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
 			setTrueRange();
+			setDirection();
 			setStop();
 			setUnitSize();
 			updateAccountBalance();
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
 			setTrueRange();
+			setDirection();
 			setStop();
 			setUnitSize();
 			updateAccountBalance();
