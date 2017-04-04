@@ -25,7 +25,7 @@ public interface Asset {
 	
 	List<BigDecimal> getHighList();
 	
-	void setPriceSubList(List priceList);
+	void setPriceSubList(int start, int end);
 	
 	List<?> getPriceSubList();
 	
@@ -33,5 +33,4 @@ public interface Asset {
 	
 	List getCloseSubList();
 	
-
 }
