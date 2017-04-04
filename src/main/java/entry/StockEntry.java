@@ -43,7 +43,6 @@ public class StockEntry implements Entry {
 		setMinPrice();
 		setLocationAsIndex();
 		setEntry();
-		setDirection();
 	}
 	
 	public StockEntry(Market market, Asset asset, Speculate speculator){
@@ -64,15 +63,15 @@ public class StockEntry implements Entry {
 	public void setEntry() {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
+			this.direction = Entry.LONG;
 			setTrueRange();
-			setDirection();
 			setStop();
 			setUnitSize();
 			updateAccountBalance();
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
+			this.direction = Entry.SHORT;
 			setTrueRange();
-			setDirection();
 			setStop();
 			setUnitSize();
 			updateAccountBalance();
@@ -129,17 +128,6 @@ public class StockEntry implements Entry {
 	@Override
 	public BigDecimal getMinPrice() {
 		return this.minPrice;
-	}
-	
-	@Override
-	public void setDirection() {
-		if(isEntry() && this.currentPrice.compareTo(this.maxPrice) == 0){
-			this.direction = Entry.LONG;
-		}else if(isEntry() && this.currentPrice.compareTo(this.minPrice) == 0){
-			this.direction = Entry.SHORT;
-		}else{
-			this.direction = "Not an Entry";
-		}
 	}
 
 	@Override
