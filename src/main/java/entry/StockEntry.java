@@ -2,6 +2,7 @@ package entry;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,15 +26,13 @@ public class StockEntry implements Entry {
 	BigDecimal currentPrice;
 	BigDecimal maxPrice;
 	BigDecimal minPrice;
+	BigDecimal averageTrueRange;
+	BigDecimal stop;
+	BigDecimal unitSize;
+	
 	int locationIndex;
 	String direction = null;
-	Boolean isEntry = false;
-	BigDecimal averageTrueRange;
-	BigDecimal dollarVol;
-	BigDecimal ATRunit;
-	BigDecimal stop;
-	BigDecimal maxUnitSize;
-	
+	Boolean isEntry = false;	
 	
 	public StockEntry(Market market, Asset asset){
 		this.market = market;
@@ -68,19 +67,15 @@ public class StockEntry implements Entry {
 			this.isEntry = true;
 			setDirection();
 			setTrueRange();
-			setDollarVol();
-			setATRUnitSize();
 			setStop();
-			setMaxUnitSize();
+			setUnitSize();
 			updateAccountBalance();
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
 			setDirection();
 			setTrueRange();
-			setDollarVol();
-			setATRUnitSize();
 			setStop();
-			setMaxUnitSize();
+			setUnitSize();
 			updateAccountBalance();
 		}else{
 			this.isEntry = false;
@@ -173,26 +168,6 @@ public class StockEntry implements Entry {
 		this.priceSubList = (List<StockChartData>) this.asset.getPriceSubList();
 	}
 	
-	@Override
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append(this.market.getMarketName() + ":");
-		sb.append(" [$" + this.asset.getAsset() + "]");
-		sb.append(" Date:" + this.Date);
-		sb.append(" Current price:" + this.currentPrice);
-		sb.append(" Max:" + this.maxPrice);
-		sb.append(" Min:" + this.minPrice + "\n");
-		sb.append(" Entry:" + this.isEntry);
-		sb.append(" Direction:" + this.direction);
-		sb.append(" Index:" + this.locationIndex);
-		sb.append(" ATR: " + this.averageTrueRange);
-		sb.append(" Max Unit Size: " + this.maxUnitSize);
-		sb.append(" ATR Unit size: " + this.ATRunit);
-		sb.append(" Stop: " + this.stop);
-		sb.append(" Account balance: " + this.speculator.getAccountEquity());
-		return sb.toString();
-	}
-	
 	//True Range of prices per share, measured in Dollars per Share..if True Range is 1.25 it means max daily variations is $1.25 per share
 	@Override
 	public void setTrueRange() {
@@ -235,29 +210,6 @@ public class StockEntry implements Entry {
 	}
 
 	@Override
-	public void setDollarVol() {
-		// Dollar Volatility = N (ATR) * Dollars per point
-		this.dollarVol = this.averageTrueRange.multiply(new BigDecimal(1.00), MathContext.DECIMAL32);
-	}
-
-	@Override
-	public BigDecimal getDollarVol() {
-		return this.dollarVol;
-	}
-
-	@Override
-	public void setATRUnitSize() {
-		// Position size = equity * risk / dollar vol or Max unit size = dollar vol
-		this.ATRunit = (Speculate.STOCK_EQUITY.multiply(Speculate.RISK, MathContext.DECIMAL32))
-				.divide(this.getDollarVol(), MathContext.DECIMAL32);
-	}
-
-	@Override
-	public BigDecimal getATRUnitSize() {
-		return this.ATRunit;
-	}
-
-	@Override
 	public void setStop() {
 		if(this.getDirection().equals(Entry.LONG)){
 			this.stop = this.getCurrentPrice().subtract(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
@@ -272,24 +224,41 @@ public class StockEntry implements Entry {
 		// TODO Auto-generated method stub
 		return this.stop;
 	}
-
+	
 	@Override
-	public void setMaxUnitSize() {
-		this.maxUnitSize = Speculate.STOCK_EQUITY.divide(this.getCurrentPrice(), MathContext.DECIMAL32);		
+	public void setUnitSize() {
+		this.unitSize = Speculate.STOCK_EQUITY.multiply(Speculate.RISK, MathContext.DECIMAL32)
+				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 	}
-
+	
 	@Override
-	public BigDecimal getMaxUnitSize() {
-		// TODO Auto-generated method stub
-		return this.maxUnitSize;
+	public BigDecimal getUnitSize() {
+		return this.unitSize;
 	}
-
+	
 	@Override
 	public void updateAccountBalance() {
-		BigDecimal entrySize = this.ATRunit.multiply(this.currentPrice, MathContext.DECIMAL32).negate();
+		BigDecimal entrySize = this.unitSize.multiply(this.currentPrice, MathContext.DECIMAL32).negate();
 		this.speculator.setAccountEquity(entrySize);
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.market.getMarketName() + ":");
+		sb.append(" [$" + this.asset.getAsset() + "]");
+		sb.append(" Date:" + this.Date);
+		sb.append(" Current price:" + this.currentPrice);
+		sb.append(" Max:" + this.maxPrice);
+		sb.append(" Min:" + this.minPrice + "\n");
+		sb.append(" Entry:" + this.isEntry);
+		sb.append(" Direction:" + this.direction);
+		sb.append(" ATR: " + this.averageTrueRange);
+		sb.append(" Unit Size: " + this.unitSize);
+		sb.append(" Stop: " + this.stop);
+		sb.append(" Account balance: " + this.speculator.getAccountEquity());
+		return sb.toString();
+	}	
 	
 
 }
