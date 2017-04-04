@@ -236,6 +236,11 @@ public class StockEntry implements Entry {
 	}
 	
 	@Override
+	public BigDecimal getOrderTotal() {
+		return this.orderTotal;
+	}
+	
+	@Override
 	public void updateAccountBalance() {
 		BigDecimal entrySize = this.unitSize.multiply(this.currentPrice, MathContext.DECIMAL32).negate();
 		this.speculator.setAccountEquity(entrySize);
