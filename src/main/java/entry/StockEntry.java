@@ -215,8 +215,14 @@ public class StockEntry implements Entry {
 	
 	@Override
 	public void setUnitSize() {
-		this.unitSize = Speculate.STOCK_EQUITY.multiply(Speculate.RISK, MathContext.DECIMAL32)
+		BigDecimal max = Speculate.STOCK_EQUITY.divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal size = Speculate.STOCK_EQUITY.multiply(Speculate.RISK, MathContext.DECIMAL32)
 				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		if(size.compareTo(max) > 0){
+			this.unitSize = max;
+		}else{
+			this.unitSize = size;
+		}
 	}
 	
 	@Override
@@ -248,7 +254,7 @@ public class StockEntry implements Entry {
 		sb.append(" Unit Size: " + this.unitSize);
 		sb.append(" Total: " + this.orderTotal);
 		sb.append(" Stop: " + this.stop);
-		sb.append(" Account bal: " + this.speculator.getAccountEquity());
+		sb.append(" Cash bal: " + this.speculator.getAccountEquity());
 		return sb.toString();
 	}	
 
