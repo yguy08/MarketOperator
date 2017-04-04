@@ -172,7 +172,7 @@ public class StockPosition implements Position {
 
 	@Override
 	public void updateAccountBalance() {
-		BigDecimal close = this.currentPrice.multiply(this.entry.getATRUnitSize(), MathContext.DECIMAL32);
+		BigDecimal close = this.currentPrice.multiply(this.entry.getUnitSize(), MathContext.DECIMAL32);
 		this.speculator.setAccountEquity(close);
 	}
 
