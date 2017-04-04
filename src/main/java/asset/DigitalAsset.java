@@ -24,6 +24,14 @@ public class DigitalAsset implements Asset {
 	String assetName;
 	
 	List<PoloniexChartData> priceList = new ArrayList<>();
+	List<BigDecimal> closeList	= new ArrayList<>();
+	List<BigDecimal> lowList = new ArrayList<>();
+	List<BigDecimal> highList = new ArrayList<>();
+	
+	
+	private List<PoloniexChartData> priceSubList;
+	
+	List<BigDecimal> closeSubList	= new ArrayList<>();
 	
 	public DigitalAsset(Market market, String assetName){
 		this.marketName = market.getMarketName();
@@ -49,7 +57,7 @@ public class DigitalAsset implements Asset {
 		long date = new Date().getTime() / 1000;
 		CurrencyPair currencyPair = new CurrencyPair(assetName);
 		try {
-			priceList = Arrays.asList(((PoloniexMarketDataServiceRaw) dataService).getPoloniexChartData(currencyPair, date - 365 * 24 * 60 * 60,
+			this.priceList = Arrays.asList(((PoloniexMarketDataServiceRaw) dataService).getPoloniexChartData(currencyPair, date - 365 * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -68,62 +76,49 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public void setCloseList() {
-		// TODO Auto-generated method stub
+		for(int i = 0; i < this.priceList.size();i++){
+			this.closeList.add(this.getPriceList().get(i).getClose());
+		}
 		
 	}
 
 	@Override
 	public List<BigDecimal> getCloseList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.closeList;
 	}
 
 	@Override
 	public void setLowList() {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < this.priceList.size();i++){
+			this.lowList.add(this.getPriceList().get(i).getLow());
+		}
 	}
 
 	@Override
 	public List<BigDecimal> getLowList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.lowList;
 	}
 
 	@Override
 	public void setHighList() {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < this.priceList.size();i++){
+			this.highList.add(this.getPriceList().get(i).getHigh());
+		}
 	}
 
 	@Override
 	public List<BigDecimal> getHighList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.highList;
 	}
 
 	@Override
-	public void setPriceSubList(List priceList) {
-		// TODO Auto-generated method stub
-		
+	public void setPriceSubList(int start, int end) {
+		this.priceSubList = this.priceList.subList(start, end);
 	}
 
 	@Override
-	public List<?> getPriceSubList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setCloseSubList() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List getCloseSubList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PoloniexChartData> getPriceSubList() {
+		return this.priceSubList;
 	}
 
 }

@@ -14,6 +14,8 @@ public class BackTestFactory {
 		
 		if(market.getMarketName() == Market.STOCK_MARKET){
 			return new StockBackTest(market, asset, speculate);
+		}else if(market.getMarketName() == Market.DIGITAL_MARKET){
+			return new DigitalBackTest(market, asset, speculate);
 		}
 		
 		return null;

@@ -1,9 +1,6 @@
 package speculate;
 
 import java.math.BigDecimal;
-import java.util.List;
-
-import entry.Entry;
 
 public interface Speculate {
 
@@ -11,7 +8,7 @@ public interface Speculate {
 	String LIVE = "Live";
 	
 	BigDecimal STOCK_EQUITY = new BigDecimal(10_000.00); 
-	BigDecimal DIGITAL_EQUITY = new BigDecimal(10.00000000);
+	BigDecimal DIGITAL_EQUITY = new BigDecimal(3.00000000);
 	
 	BigDecimal RISK = new BigDecimal(0.01);
 	
@@ -25,5 +22,7 @@ public interface Speculate {
 	void setAccountEquity(BigDecimal tradeResult);
 	
 	BigDecimal getAccountEquity();
+	
+	void getAllEntries();
 	
 }

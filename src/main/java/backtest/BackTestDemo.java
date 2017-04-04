@@ -13,11 +13,11 @@ public class BackTestDemo {
 
 		MarketFactory marketFactory = new MarketFactory();
 		
-		Market market = marketFactory.createMarket(Market.STOCK_MARKET);
+		Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
 		
 		AssetFactory assetFactory = new AssetFactory();
 		
-		Asset asset = assetFactory.createAsset(market, "FB");
+		Asset asset = assetFactory.createAsset(market, "GAME/BTC");
 		
 		SpeculateFactory speculateFactory = new SpeculateFactory();
 		

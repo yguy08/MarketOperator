@@ -15,7 +15,7 @@ public class PositionFactory {
 		if(market.getMarketName().equalsIgnoreCase(Market.STOCK_MARKET)){
 			return new StockPosition(market, asset, entry, speculator);
 		}else if(market.getMarketName().equalsIgnoreCase(Market.DIGITAL_MARKET)){
-			return new DigitalPosition(market, asset, entry);
+			return new DigitalPosition(market, asset, entry, speculator);
 		}
 		
 		return null;

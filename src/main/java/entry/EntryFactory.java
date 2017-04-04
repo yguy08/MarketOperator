@@ -14,7 +14,7 @@ public class EntryFactory {
 		if(market.getMarketName().equals(Market.STOCK_MARKET)){
 			return new StockEntry(market, asset, speculator);
 		}else if(market.getMarketName().equals(Market.DIGITAL_MARKET)){
-			return new DigitalEntry(market, asset);
+			return new DigitalEntry(market, asset, speculator);
 		}
 		
 		return null;

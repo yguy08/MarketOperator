@@ -27,6 +27,12 @@ public class StockSpeculation implements Speculate {
 	public String toString(){
 		return "[ACCOUNT]" + this.accountEquity;
 	}
+
+	@Override
+	public void getAllEntries() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

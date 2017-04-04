@@ -13,15 +13,17 @@ public class SpeculateDemo {
 	
 	MarketFactory marketFactory = new MarketFactory();
 	
-	Market market = marketFactory.createMarket(Market.STOCK_MARKET);
+	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
 	
 	AssetFactory assetFactory = new AssetFactory();
 	
-	Asset asset = assetFactory.createAsset(market, "FB");
+	Asset asset = assetFactory.createAsset(market, "XMR/BTC");
 	
-	SpeculateFactory speculateFactory = new SpeculateFactory();
+	Speculate speculator = new DigitalSpeculation(market, asset);
 	
-	Speculate speculate = speculateFactory.startSpeculating(market, asset);
+	speculator.getAllEntries();
+	
+	
 	
 	}
 

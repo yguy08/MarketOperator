@@ -29,8 +29,4 @@ public interface Asset {
 	
 	List<?> getPriceSubList();
 	
-	void setCloseSubList();
-	
-	List getCloseSubList();
-	
 }
