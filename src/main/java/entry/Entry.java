@@ -49,6 +49,8 @@ public interface Entry {
 	
 	BigDecimal getUnitSize();
 	
+	void setOrderTotal();
+	
 	void updateAccountBalance();
 
 }
