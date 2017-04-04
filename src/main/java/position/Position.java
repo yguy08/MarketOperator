@@ -22,6 +22,8 @@ public interface Position {
 	
 	int getLocationIndex();
 	
+	void setTradeResult();
+	
 	void updateAccountBalance();
 	
 }
