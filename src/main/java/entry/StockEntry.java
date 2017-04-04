@@ -38,7 +38,7 @@ public class StockEntry implements Entry {
 	public StockEntry(Market market, Asset asset){
 		this.market = market;
 		this.asset	= asset;
-		setPriceSubList(this.asset);
+		setPriceSubList();
 		setDate();
 		setCurrentPrice();
 		setMaxPrice();
@@ -52,7 +52,7 @@ public class StockEntry implements Entry {
 		this.market = market;
 		this.asset	= asset;
 		this.speculator = speculator;
-		setPriceSubList(this.asset);
+		setPriceSubList();
 		setDate();
 		setCurrentPrice();
 		setMaxPrice();
@@ -169,8 +169,8 @@ public class StockEntry implements Entry {
 	}
 
 	@Override
-	public void setPriceSubList(Asset asset) {
-		this.priceSubList = (List<StockChartData>) asset.getPriceSubList();
+	public void setPriceSubList() {
+		this.priceSubList = (List<StockChartData>) this.asset.getPriceSubList();
 	}
 	
 	@Override
