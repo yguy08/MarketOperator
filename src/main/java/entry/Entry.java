@@ -37,7 +37,7 @@ public interface Entry {
 	
 	Boolean isEntry();
 	
-	void setPriceSubList(Asset asset);
+	void setPriceSubList();
 	
 	void setTrueRange();
 	
@@ -59,8 +59,6 @@ public interface Entry {
 	
 	BigDecimal getMaxUnitSize();
 	
-	void updateAccountBalance();
-	
-	
+	void updateAccountBalance();	
 
 }
