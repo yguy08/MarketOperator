@@ -1,9 +1,5 @@
 package position;
 
-import java.math.BigDecimal;
-
-import asset.Asset;
-
 public interface Position {
 	
 	void setExit();
