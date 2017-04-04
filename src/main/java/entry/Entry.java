@@ -43,22 +43,14 @@ public interface Entry {
 	
 	BigDecimal getTrueRange();
 	
-	void setDollarVol();
-	
-	BigDecimal getDollarVol();
-	
-	void setATRUnitSize();
-	
-	BigDecimal getATRUnitSize();
-	
 	void setStop();
 	
 	BigDecimal getStop();
 	
-	void setMaxUnitSize();
+	void setUnitSize();
 	
-	BigDecimal getMaxUnitSize();
+	BigDecimal getUnitSize();
 	
-	void updateAccountBalance();	
+	void updateAccountBalance();
 
 }
