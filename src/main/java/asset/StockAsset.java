@@ -82,8 +82,7 @@ public class StockAsset implements Asset {
 
 	@Override
 	public void setPriceSubList(int start, int end) {
-		List<StockChartData> stockChartData = (List<StockChartData>) priceList;
-		this.priceSubList = stockChartData;
+		this.priceSubList = (List<StockChartData>) this.priceList.subList(start, end);
 	}
 
 	@Override
