@@ -20,7 +20,6 @@ public class StockEntry implements Entry {
 	Speculate speculator;
 	
 	List<StockChartData> priceSubList = new ArrayList<>();
-	List<BigDecimal> subListClose = new ArrayList<>();
 	
 	String Date;
 	BigDecimal currentPrice;
