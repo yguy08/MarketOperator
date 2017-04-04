@@ -2,6 +2,7 @@ package position;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +24,7 @@ public class StockPosition implements Position {
 	BigDecimal currentPrice;
 	BigDecimal maxPrice;
 	BigDecimal minPrice;
+	BigDecimal tradeResult;
 	int locationIndex;
 	
 	BigDecimal profitLoss;
@@ -69,10 +71,12 @@ public class StockPosition implements Position {
 		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Entry.LONG){
 			this.open = false;
 			setProfitLoss();
+			setTradeResult();
 			updateAccountBalance();
 		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Entry.SHORT){
 			this.open = false;
 			setProfitLoss();
+			setTradeResult();
 			updateAccountBalance();
 		}else{
 			this.open = true;
@@ -88,11 +92,11 @@ public class StockPosition implements Position {
 		BigDecimal calcPL = this.currentPrice.subtract(this.entry.getCurrentPrice());
 		calcPL = calcPL.divide(this.entry.getCurrentPrice(), MathContext.DECIMAL32);
 		if(this.entry.getDirection() == Entry.LONG){
-			this.profitLoss = calcPL.multiply(new BigDecimal(100.00));
+			this.profitLoss = calcPL;
 		}else{
 			//negate for shorts since lower price would be a win, higher a loss
 			calcPL = calcPL.negate();
-			this.profitLoss = calcPL.multiply(new BigDecimal(100.00));
+			this.profitLoss = calcPL;
 		}
 	}
 	
@@ -102,9 +106,9 @@ public class StockPosition implements Position {
 		sb.append("[POSITION]");
 		sb.append(" Open: " + this.entry.getCurrentPrice());
 		sb.append(" Closed: " + this.currentPrice);
-		sb.append(" P/L: " + this.profitLoss);
-		sb.append(" Close index: " + this.locationIndex);
-		sb.append("Account bal: " + this.speculator.getAccountEquity());
+		sb.append(" P/L: " + this.profitLoss.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
+		sb.append(" Trade Result: " + this.tradeResult);
+		sb.append(" Account bal: " + this.speculator.getAccountEquity());
 		return sb.toString();
 	}
 
@@ -139,9 +143,7 @@ public class StockPosition implements Position {
 		for(int x = 0; x < this.priceSubList.size(); x++){
 			minList.add(this.priceSubList.get(x).getClose());
 		}
-		
 		this.minPrice = Collections.min(minList);
-		
 	}
 
 	@Override
@@ -158,8 +160,14 @@ public class StockPosition implements Position {
 
 	@Override
 	public void updateAccountBalance() {
-		BigDecimal close = this.currentPrice.multiply(this.entry.getUnitSize(), MathContext.DECIMAL32);
-		this.speculator.setAccountEquity(close);
+		this.speculator.setAccountEquity(this.tradeResult.add(this.entry.getOrderTotal(), MathContext.DECIMAL32));
+	}
+
+	@Override
+	public void setTradeResult() {
+		this.tradeResult = this.entry.getOrderTotal().multiply(this.profitLoss)
+				.add(this.entry.getOrderTotal())
+				.subtract(this.entry.getOrderTotal(), MathContext.DECIMAL32);
 	}
 
 }
