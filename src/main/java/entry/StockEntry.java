@@ -238,19 +238,17 @@ public class StockEntry implements Entry {
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
+		sb.append("[ENTRY]");
 		sb.append(this.market.getMarketName() + ":");
 		sb.append(" [$" + this.asset.getAsset() + "]");
-		sb.append(" Date:" + this.Date);
-		sb.append(" Current price:" + this.currentPrice);
-		sb.append(" Max:" + this.maxPrice);
-		sb.append(" Min:" + this.minPrice + "\n");
-		sb.append(" Entry:" + this.isEntry);
+		sb.append(" " + this.Date);
+		sb.append(" Price:" + this.currentPrice);
 		sb.append(" Direction:" + this.direction);
 		sb.append(" ATR: " + this.averageTrueRange);
 		sb.append(" Unit Size: " + this.unitSize);
-		sb.append(" Order Total: " + this.orderTotal);
+		sb.append(" Total: " + this.orderTotal);
 		sb.append(" Stop: " + this.stop);
-		sb.append(" Account balance: " + this.speculator.getAccountEquity());
+		sb.append(" Account bal: " + this.speculator.getAccountEquity());
 		return sb.toString();
 	}	
 
