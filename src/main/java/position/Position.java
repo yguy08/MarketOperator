@@ -12,11 +12,7 @@ public interface Position {
 	
 	void setProfitLoss();
 	
-	void setCustomUnitSize();
-	
-	BigDecimal getCustomUnitSize();
-	
-	void setPriceSubList(Asset asset);
+	void setPriceSubList();
 	
 	void setDate();
 	
