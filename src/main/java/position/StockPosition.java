@@ -34,14 +34,13 @@ public class StockPosition implements Position {
 	Boolean open;
 	
 	List<StockChartData> priceSubList = new ArrayList<>();
-	List<BigDecimal> subListClose = new ArrayList<>();
 	
 	public StockPosition(Market market, Asset asset, Entry entry){
 		this.market = market;
 		this.asset = asset;
 		this.entry = entry;
 		this.open = true;
-		setPriceSubList(this.asset);
+		setPriceSubList();
 		setDate();
 		setCurrentPrice();
 		setMaxPrice();
@@ -56,7 +55,7 @@ public class StockPosition implements Position {
 		this.entry = entry;
 		this.speculator = speculator;
 		this.open = true;
-		setPriceSubList(this.asset);
+		setPriceSubList();
 		setDate();
 		setCurrentPrice();
 		setMaxPrice();
@@ -110,21 +109,8 @@ public class StockPosition implements Position {
 	}
 
 	@Override
-	public void setCustomUnitSize() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public BigDecimal getCustomUnitSize() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setPriceSubList(Asset asset) {
-		this.priceSubList = (List<StockChartData>) asset.getPriceSubList();		
+	public void setPriceSubList() {
+		this.priceSubList = (List<StockChartData>) this.asset.getPriceSubList();		
 	}
 
 	@Override
