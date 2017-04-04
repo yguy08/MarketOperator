@@ -65,14 +65,12 @@ public class StockEntry implements Entry {
 	public void setEntry() {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
-			setDirection();
 			setTrueRange();
 			setStop();
 			setUnitSize();
 			updateAccountBalance();
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
-			setDirection();
 			setTrueRange();
 			setStop();
 			setUnitSize();
