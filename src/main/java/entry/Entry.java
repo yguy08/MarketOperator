@@ -51,6 +51,8 @@ public interface Entry {
 	
 	void setOrderTotal();
 	
+	BigDecimal getOrderTotal();
+	
 	void updateAccountBalance();
 
 }
