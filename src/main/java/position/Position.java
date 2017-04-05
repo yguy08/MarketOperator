@@ -1,16 +1,26 @@
 package position;
 
+import java.math.BigDecimal;
+
 public interface Position {
 	
 	void setExit();
 	
 	Boolean isOpen();
 	
-	void setProfitLoss();
+	void setProfitLossPercent();
+	
+	BigDecimal getProfitLossPercent();
+	
+	void setProfitLossAmount();
+	
+	BigDecimal getProfitLossAmount();
 	
 	void setPriceSubList();
 	
 	void setDate();
+	
+	String getDate();
 	
 	void setCurrentPrice();
 	
@@ -21,9 +31,5 @@ public interface Position {
 	void setLocationAsIndex();
 	
 	int getLocationIndex();
-	
-	void setTradeResult();
-	
-	void updateAccountBalance();
 	
 }
