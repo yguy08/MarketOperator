@@ -72,8 +72,13 @@ public class DigitalAsset implements Asset {
 	}
 	
 	@Override
-	public String toString(){
-		return this.marketName + ": [ " + this.assetName + " ] " + this.priceList;   
+	public void setPriceSubList(int start, int end) {
+		this.priceSubList = this.priceList.subList(start, end);
+	}
+	
+	@Override
+	public List<PoloniexChartData> getPriceSubList() {
+		return this.priceSubList;
 	}
 
 	@Override
@@ -112,15 +117,10 @@ public class DigitalAsset implements Asset {
 	public List<BigDecimal> getHighList() {
 		return this.highList;
 	}
-
+	
 	@Override
-	public void setPriceSubList(int start, int end) {
-		this.priceSubList = this.priceList.subList(start, end);
-	}
-
-	@Override
-	public List<PoloniexChartData> getPriceSubList() {
-		return this.priceSubList;
+	public String toString(){
+		return this.marketName + ": [ " + this.assetName + " ] " + this.priceList;   
 	}
 
 }
