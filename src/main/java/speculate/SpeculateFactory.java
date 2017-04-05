@@ -1,18 +1,17 @@
 package speculate;
 
-import asset.Asset;
 import market.Market;
 
 public class SpeculateFactory {
 	
-	public Speculate startSpeculating(Market market, Asset asset){
+	public Speculate startSpeculating(Market market){
 		if(market == null){
 			return null;
 		}
 		if(market.getMarketName().equalsIgnoreCase(Market.STOCK_MARKET)){
-			return new StockSpeculation(market, asset);
+			return new StockSpeculation(market);
 		}else if(market.getMarketName().equalsIgnoreCase(Market.DIGITAL_MARKET)){
-			return new DigitalSpeculation(market, asset);
+			return new DigitalSpeculation(market);
 		}
 		
 		return null;
