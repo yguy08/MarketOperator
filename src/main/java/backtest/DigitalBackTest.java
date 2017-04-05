@@ -40,7 +40,7 @@ public class DigitalBackTest implements BackTest {
 					this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
 					this.position = positionFactory.createPosition(this.market, this.asset, this.entry, this.speculator);
 					if(position.isOpen() == false){
-						//System.out.println(position.toString());
+						System.out.println(position.toString());
 						break;
 					}
 				}
