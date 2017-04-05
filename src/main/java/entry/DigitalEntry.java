@@ -19,7 +19,6 @@ public class DigitalEntry implements Entry {
 	
 	Market market;
 	Asset asset;
-	Speculate speculator;
 	
 	List<PoloniexChartData> priceSubList = new ArrayList<>();
 	
@@ -35,27 +34,6 @@ public class DigitalEntry implements Entry {
 	int locationIndex;
 	String direction = null;
 	Boolean isEntry = false;
-	
-	public DigitalEntry(Market market, Asset asset, Speculate speculator){
-		this.market = market;
-		this.asset	= asset;
-		this.speculator = speculator;
-		setPriceSubList();
-		setDate();
-		setCurrentPrice();
-		setMaxPrice();
-		setMinPrice();
-		setLocationAsIndex();
-		setEntry();
-		
-		if(this.isEntry){
-			setTrueRange();
-			setStop();
-			setUnitSize();
-			setOrderTotal();
-			updateAccountBalance();
-		}
-	}
 	
 	public DigitalEntry(Market market, Asset asset){
 		this.market = market;
@@ -80,10 +58,10 @@ public class DigitalEntry implements Entry {
 	public void setEntry() {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
-			this.direction = Entry.LONG;
+			this.direction = Speculate.LONG;
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
-			this.direction = Entry.SHORT;
+			this.direction = Speculate.SHORT;
 		}else{
 			this.isEntry = false;
 		}
@@ -207,9 +185,9 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setStop() {
-		if(this.getDirection().equals(Entry.LONG)){
+		if(this.getDirection().equals(Speculate.LONG)){
 			this.stop = this.getCurrentPrice().subtract(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
-		}else if(this.getDirection().equals(Entry.SHORT)){
+		}else if(this.getDirection().equals(Speculate.SHORT)){
 			this.stop = this.getCurrentPrice().add(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
 		}
 		
@@ -249,12 +227,6 @@ public class DigitalEntry implements Entry {
 	}
 	
 	@Override
-	public void updateAccountBalance() {
-		BigDecimal entrySize = this.unitSize.multiply(this.currentPrice, MathContext.DECIMAL32).negate();
-		this.speculator.setAccountEquity(entrySize);
-	}
-	
-	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ENTRY]");
@@ -267,7 +239,6 @@ public class DigitalEntry implements Entry {
 		sb.append(" Unit Size: " + this.unitSize);
 		sb.append(" Total: " + this.orderTotal);
 		sb.append(" Stop: " + this.stop);
-		//sb.append(" Cash bal: " + this.speculator.getAccountEquity());
 		return sb.toString();
 	}
 
