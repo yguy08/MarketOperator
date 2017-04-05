@@ -2,12 +2,7 @@ package entry;
 
 import java.math.BigDecimal;
 
-import asset.Asset;
-
 public interface Entry {
-	
-	String LONG = "Long";
-	String SHORT = "Short";
 	
 	void setEntry();
 	
@@ -52,7 +47,5 @@ public interface Entry {
 	void setOrderTotal();
 	
 	BigDecimal getOrderTotal();
-	
-	void updateAccountBalance();
 
 }
