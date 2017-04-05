@@ -2,8 +2,6 @@ package speculate;
 
 import asset.Asset;
 import asset.AssetFactory;
-import backtest.BackTest;
-import backtest.BackTestFactory;
 import market.Market;
 import market.MarketFactory;
 
@@ -13,18 +11,20 @@ public class SpeculateDemo {
 	
 	MarketFactory marketFactory = new MarketFactory();
 	
-	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+	Market market = marketFactory.createMarket(Market.STOCK_MARKET);
 	
 	AssetFactory assetFactory = new AssetFactory();
 	
-	Asset asset = assetFactory.createAsset(market, "XMR/BTC");
+	Asset asset = assetFactory.createAsset(market, "GDX");
 	
-	Speculate speculator = new DigitalSpeculation(market, asset);
+	SpeculateFactory speculateFactory = new SpeculateFactory();
+	
+	Speculate speculate  = speculateFactory.startSpeculating(market);
 	
 	//WORK HERE!!!
-	//speculator.getAllEntries();
+	//speculate.getAllEntries(market);
 	
-	speculator.runBackTestOnAllMarkets(market);
+	speculate.backTestSingleAsset(market,asset);
 	
 	}
 
