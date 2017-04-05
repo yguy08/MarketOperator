@@ -24,10 +24,9 @@ public class StockMarket implements Market {
 	public void setAssets() {
 		List<String> listFromFile;
 		try {
-			listFromFile = FileParser.readStockTickerList();
+			listFromFile = FileParser.readETFList();
 			for(int z = 0; z < listFromFile.size(); z++){
-				String[] split = listFromFile.get(z).split(",");
-				assets.add(split[0]);
+				this.assets.add(listFromFile.get(z));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
