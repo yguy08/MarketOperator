@@ -21,9 +21,10 @@ public class SpeculateDemo {
 	
 	Speculate speculator = new DigitalSpeculation(market, asset);
 	
-	speculator.getAllEntries();
+	//WORK HERE!!!
+	//speculator.getAllEntries();
 	
-	
+	speculator.runBackTestOnAllMarkets(market);
 	
 	}
 

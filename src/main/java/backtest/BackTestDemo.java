@@ -17,7 +17,8 @@ public class BackTestDemo {
 		
 		AssetFactory assetFactory = new AssetFactory();
 		
-		Asset asset = assetFactory.createAsset(market, "GAME/BTC");
+		for(int i=0;i<market.getAssets().size();i++){
+		Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
 		
 		SpeculateFactory speculateFactory = new SpeculateFactory();
 		
@@ -26,6 +27,8 @@ public class BackTestDemo {
 		BackTestFactory backTestFactory = new BackTestFactory();
 		
 		BackTest backtest = backTestFactory.newBackTest(market, asset, speculate);
+		
+		}
 		
 		
 	}

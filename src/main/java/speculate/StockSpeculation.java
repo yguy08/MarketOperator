@@ -33,6 +33,12 @@ public class StockSpeculation implements Speculate {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void runBackTestOnAllMarkets(Market market) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

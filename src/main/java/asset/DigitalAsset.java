@@ -57,7 +57,9 @@ public class DigitalAsset implements Asset {
 		long date = new Date().getTime() / 1000;
 		CurrencyPair currencyPair = new CurrencyPair(assetName);
 		try {
-			this.priceList = Arrays.asList(((PoloniexMarketDataServiceRaw) dataService).getPoloniexChartData(currencyPair, date - 365 * 24 * 60 * 60,
+			this.priceList = Arrays
+					.asList(((PoloniexMarketDataServiceRaw) dataService)
+					.getPoloniexChartData(currencyPair, date - 365 * 5 * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
 		} catch (IOException e) {
 			e.printStackTrace();

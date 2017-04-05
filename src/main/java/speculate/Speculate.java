@@ -2,6 +2,12 @@ package speculate;
 
 import java.math.BigDecimal;
 
+import asset.Asset;
+import asset.AssetFactory;
+import backtest.BackTest;
+import backtest.BackTestFactory;
+import market.Market;
+
 public interface Speculate {
 
 	String BACK_TEST = "Back Test";
@@ -24,5 +30,7 @@ public interface Speculate {
 	BigDecimal getAccountEquity();
 	
 	void getAllEntries();
+
+	void runBackTestOnAllMarkets(Market market);
 	
 }
