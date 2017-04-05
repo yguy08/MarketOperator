@@ -18,16 +18,16 @@ public class StockPosition implements Position {
 	Market market;
 	Asset asset;
 	Entry entry;
-	Speculate speculator;
 	
 	String Date;
 	BigDecimal currentPrice;
 	BigDecimal maxPrice;
 	BigDecimal minPrice;
-	BigDecimal tradeResult;
+	
 	int locationIndex;
 	
-	BigDecimal profitLoss;
+	BigDecimal profitLossPercent;
+	BigDecimal profitLossAmount;
 	
 	BigDecimal maxUnitSize;
 	
@@ -50,34 +50,17 @@ public class StockPosition implements Position {
 		setLocationAsIndex();
 		setExit();
 	}
-	
-	public StockPosition(Market market, Asset asset, Entry entry, Speculate speculator){
-		this.market = market;
-		this.asset = asset;
-		this.entry = entry;
-		this.speculator = speculator;
-		this.open = true;
-		setPriceSubList();
-		setDate();
-		setCurrentPrice();
-		setMaxPrice();
-		setMinPrice();
-		setLocationAsIndex();
-		setExit();
-	}
 
 	@Override
 	public void setExit() {
-		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Entry.LONG){
+		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Speculate.LONG){
 			this.open = false;
-			setProfitLoss();
-			setTradeResult();
-			updateAccountBalance();
-		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Entry.SHORT){
+			setProfitLossPercent();
+			setProfitLossAmount();
+		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Speculate.SHORT){
 			this.open = false;
-			setProfitLoss();
-			setTradeResult();
-			updateAccountBalance();
+			setProfitLossPercent();
+			setProfitLossAmount();
 		}else{
 			this.open = true;
 		}
@@ -88,28 +71,31 @@ public class StockPosition implements Position {
 		return this.open;
 	}
 	
-	public void setProfitLoss(){
-		BigDecimal calcPL = this.currentPrice.subtract(this.entry.getCurrentPrice());
-		calcPL = calcPL.divide(this.entry.getCurrentPrice(), MathContext.DECIMAL32);
-		if(this.entry.getDirection() == Entry.LONG){
-			this.profitLoss = calcPL;
+	@Override
+	public void setProfitLossPercent(){
+		BigDecimal calcPL = this.currentPrice.subtract(this.entry.getCurrentPrice())
+				.divide(this.entry.getCurrentPrice(), MathContext.DECIMAL32);
+		if(this.entry.getDirection() == Speculate.LONG){
+			this.profitLossPercent = calcPL;
 		}else{
 			//negate for shorts since lower price would be a win, higher a loss
-			calcPL = calcPL.negate();
-			this.profitLoss = calcPL;
+			this.profitLossPercent = calcPL.negate();
 		}
 	}
 	
 	@Override
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append("[POSITION]");
-		sb.append(" Open: " + this.entry.getCurrentPrice());
-		sb.append(" Closed: " + this.currentPrice);
-		sb.append(" P/L: " + this.profitLoss.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
-		sb.append(" Trade Result: " + this.tradeResult);
-		sb.append(" Account bal: " + this.speculator.getAccountEquity());
-		return sb.toString();
+	public BigDecimal getProfitLossPercent() {
+		return this.profitLossPercent;
+	}
+	
+	@Override
+	public void setProfitLossAmount() {
+		this.profitLossAmount = this.entry.getOrderTotal().multiply(this.profitLossPercent, MathContext.DECIMAL32);
+	}
+
+	@Override
+	public BigDecimal getProfitLossAmount() {
+		return this.profitLossAmount;
 	}
 
 	@Override
@@ -120,6 +106,12 @@ public class StockPosition implements Position {
 	@Override
 	public void setDate() {
 		this.Date = this.priceSubList.get(this.priceSubList.size() - 1).getDate();		
+	}
+	
+	@Override
+	public String getDate() {
+		// TODO Auto-generated method stub
+		return this.Date;
 	}
 
 	@Override
@@ -157,17 +149,19 @@ public class StockPosition implements Position {
 		// TODO Auto-generated method stub
 		return this.locationIndex;
 	}
-
+	
 	@Override
-	public void updateAccountBalance() {
-		this.speculator.setAccountEquity(this.tradeResult.add(this.entry.getOrderTotal(), MathContext.DECIMAL32));
-	}
-
-	@Override
-	public void setTradeResult() {
-		this.tradeResult = this.entry.getOrderTotal().multiply(this.profitLoss)
-				.add(this.entry.getOrderTotal())
-				.subtract(this.entry.getOrderTotal(), MathContext.DECIMAL32);
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("[POSITION]");
+		sb.append(" " + this.asset.getAsset());
+		sb.append(" Entry Date: " + this.entry.getDate());
+		sb.append(" Entry Price: " + this.entry.getCurrentPrice());
+		sb.append(" Close Date: " + this.getDate());
+		sb.append(" Close Price: " + this.currentPrice);
+		sb.append(" P/L %: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
+		sb.append(" P/L Amount: " + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN));
+		return sb.toString();
 	}
 
 }
