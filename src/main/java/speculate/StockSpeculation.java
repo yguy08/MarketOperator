@@ -1,15 +1,24 @@
 package speculate;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 import asset.Asset;
+import asset.AssetFactory;
+import backtest.BackTest;
+import backtest.BackTestFactory;
+import entry.DigitalEntry;
+import entry.Entry;
+import entry.EntryFactory;
 import market.Market;
 
 public class StockSpeculation implements Speculate {
 
 	BigDecimal accountEquity;
+	BigDecimal totalReturnPercent;
 	
-	public StockSpeculation(Market market, Asset asset) {
+	public StockSpeculation(Market market) {
 		this.accountEquity = Speculate.STOCK_EQUITY;
 	}
 
@@ -24,22 +33,58 @@ public class StockSpeculation implements Speculate {
 	}
 	
 	@Override
-	public String toString(){
-		return "[ACCOUNT]" + this.accountEquity;
+	public void setTotalReturnPercent() {
+		this.totalReturnPercent = this.accountEquity.subtract(Speculate.STOCK_EQUITY, MathContext.DECIMAL32)
+				.divide(Speculate.STOCK_EQUITY, MathContext.DECIMAL32)
+				.setScale(2, RoundingMode.HALF_DOWN)
+				.multiply(new BigDecimal(100.00), MathContext.DECIMAL32); 
 	}
 
 	@Override
-	public void getAllEntries() {
-		// TODO Auto-generated method stub
-		
+	public BigDecimal getTotalReturnPercent() {
+		return this.totalReturnPercent;
 	}
 
 	@Override
-	public void runBackTestOnAllMarkets(Market market) {
-		// TODO Auto-generated method stub
-		
+	public void getAllEntriesSingleMarket(Market market) {
+		AssetFactory assetFactory = new AssetFactory();
+		EntryFactory entryFactory = new EntryFactory();
+		for(int i = 0; i < market.getAssets().size();i++){
+			Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
+			asset.setPriceSubList(asset.getPriceList().size() - Speculate.ENTRY, asset.getPriceList().size());
+			Entry entry = entryFactory.findEntry(market, asset);
+			if(entry.isEntry()){
+				System.out.println(entry.toString());
+			}
+		}		
+	}
+
+	@Override
+	public void backTestAllAssetsSingleMarket(Market market) {
+		AssetFactory assetFactory = new AssetFactory();
+		SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(market);
+		for(int i=0; i < market.getAssets().size();i++){
+				Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
+				BackTestFactory backTestFactory = new BackTestFactory();
+				BackTest backtest = backTestFactory.newBackTest(market, asset, speculate);
+				System.out.println(asset.getAsset() + " " + speculate.toString());
+			}
+	}
+
+	@Override
+	public void backTestSingleAsset(Market market, Asset asset) {
+		SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(market);
+		BackTestFactory backTestFactory = new BackTestFactory();
+		BackTest backtest = backTestFactory.newBackTest(market, asset, speculate);
+		System.out.println(asset.getAsset() + " " + speculate.toString());
 	}
 	
+	@Override
+	public String toString(){
+		return "[ACCOUNT] " + "Balance: " + this.accountEquity + " Total Return (%): " + this.getTotalReturnPercent();
+	}
 	
 
 }
