@@ -60,11 +60,6 @@ public class StockAsset implements Asset {
 	public List<StockChartData> getPriceList() {
 		return this.priceList;
 	}
-	
-	@Override
-	public String toString(){
-		return this.marketName + ": [ $" + this.assetName + " ] " + " " + this.priceList;
-	}
 
 	@Override
 	public void setCloseList() {
@@ -111,6 +106,11 @@ public class StockAsset implements Asset {
 	@Override
 	public List<BigDecimal> getHighList() {
 		return this.highList;
+	}
+	
+	@Override
+	public String toString(){
+		return this.marketName + ": [ $" + this.assetName + " ] " + " " + this.priceList;
 	}
 
 }
