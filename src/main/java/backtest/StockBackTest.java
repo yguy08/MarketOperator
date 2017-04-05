@@ -1,8 +1,5 @@
 package backtest;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import asset.Asset;
 import entry.Entry;
 import entry.EntryFactory;
@@ -24,10 +21,7 @@ public class StockBackTest implements BackTest {
 	PositionFactory positionFactory = new PositionFactory();
 	Position position;
 	
-	List<Entry> entryList = new ArrayList<>();
-	
 	public StockBackTest(Market market, Asset asset, Speculate speculate){
-		this.tradeStyle = Speculate.BACK_TEST;
 		this.market = market;
 		this.asset = asset;
 		this.speculator = speculate;
@@ -40,8 +34,7 @@ public class StockBackTest implements BackTest {
 			this.asset.setPriceSubList(x - Speculate.ENTRY, x + 1);
 			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
 			if(entry.isEntry()){
-				entryList.add(entry);
-				System.out.println(entry.toString());
+				//System.out.println(entry.toString());
 				for(int y = this.entry.getLocationIndex();y<this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
 					this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
 					this.position = positionFactory.createPosition(this.market, this.asset, this.entry, this.speculator);
@@ -52,6 +45,8 @@ public class StockBackTest implements BackTest {
 				}
 			}
 		}
+		
+		System.out.println(this.speculator);
 		
 	}
 
