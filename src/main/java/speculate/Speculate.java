@@ -31,21 +31,13 @@ public interface Speculate {
 	
 	BigDecimal getTotalReturnPercent();
 	
-	//Get all current entries
-	void getAllEntriesSingleMarket(Market market);
+	//Get all current entries for a Single Market
+	void getLatestEntriesSingleMarket(Market market);
 
 	void backTestAllAssetsSingleMarket(Market market);
 	
 	void backTestSingleAsset(Market market, Asset asset);
 	
 	void getAllOpenPositionsSingleMarket(Market market);
-	
-	default void getAllEntriesAllMarkets() {
-		
-	}
-	
-	default void backTestAllAssetsAllMarkets(){
-		
-	}
 	
 }
