@@ -22,7 +22,7 @@ public class BackTestDemo {
 		
 		SpeculateFactory speculateFactory = new SpeculateFactory();
 		
-		Speculate speculate = speculateFactory.startSpeculating(market, asset);
+		Speculate speculate = speculateFactory.startSpeculating(market);
 		
 		BackTestFactory backTestFactory = new BackTestFactory();
 		

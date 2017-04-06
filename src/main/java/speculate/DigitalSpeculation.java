@@ -16,7 +16,7 @@ import market.Market;
 public class DigitalSpeculation implements Speculate {
 	
 	BigDecimal accountEquity;
-	BigDecimal totalReturnPercent;
+	BigDecimal totalReturnPercent = new BigDecimal(0.00) ;
 	
 	public DigitalSpeculation(Market market) {
 		this.accountEquity = Speculate.DIGITAL_EQUITY;
@@ -34,9 +34,11 @@ public class DigitalSpeculation implements Speculate {
 	
 	@Override
 	public void setTotalReturnPercent() {
-		this.totalReturnPercent = this.accountEquity.subtract(Speculate.STOCK_EQUITY, MathContext.DECIMAL32)
-				.divide(Speculate.STOCK_EQUITY, MathContext.DECIMAL32)
-				.setScale(2, RoundingMode.HALF_DOWN);		
+		//update for positions never closed...
+		this.totalReturnPercent = this.accountEquity.subtract(Speculate.DIGITAL_EQUITY, MathContext.DECIMAL32)
+				.divide(Speculate.DIGITAL_EQUITY, MathContext.DECIMAL32)
+				.setScale(2, RoundingMode.HALF_DOWN)
+				.multiply(new BigDecimal(100.00), MathContext.DECIMAL32);		
 	}
 
 	@Override
@@ -49,11 +51,15 @@ public class DigitalSpeculation implements Speculate {
 		AssetFactory assetFactory = new AssetFactory();
 		EntryFactory entryFactory = new EntryFactory();
 		for(int i = 0; i < market.getAssets().size();i++){
+			if(market.getAssets().get(i).toString().endsWith("BTC")){
 			Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
 			asset.setPriceSubList(asset.getPriceList().size() - Speculate.ENTRY, asset.getPriceList().size());
 			Entry entry = entryFactory.findEntry(market, asset);
 			if(entry.isEntry()){
 				System.out.println(entry.toString());
+			}
+			}else{
+				continue;
 			}
 		}		
 	}
@@ -64,11 +70,15 @@ public class DigitalSpeculation implements Speculate {
 		SpeculateFactory speculateFactory = new SpeculateFactory();
 		Speculate speculate = speculateFactory.startSpeculating(market);
 		for(int i=0; i < market.getAssets().size();i++){
+			if(market.getAssets().get(i).toString().endsWith("BTC")){
 				Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
 				BackTestFactory backTestFactory = new BackTestFactory();
 				BackTest backtest = backTestFactory.newBackTest(market, asset, speculate);
 				System.out.println(asset.getAsset() + " " + speculate.toString());
+			}else{
+				continue;
 			}
+		}
 	}
 
 	@Override
@@ -89,6 +99,12 @@ public class DigitalSpeculation implements Speculate {
 	@Override
 	public String toString(){
 		return "[ACCOUNT] " + "Balance: " + this.accountEquity + " Total Return (%): " + this.getTotalReturnPercent();
+	}
+
+	@Override
+	public void getAllOpenPositionsSingleMarket(Market market) {
+		
+		
 	}
 
 }

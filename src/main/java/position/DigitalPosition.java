@@ -28,8 +28,8 @@ public class DigitalPosition implements Position {
 	BigDecimal minPrice;
 	int locationIndex;
 	
-	BigDecimal profitLossPercent;
-	BigDecimal profitLossAmount;
+	BigDecimal profitLossPercent = new BigDecimal(0.00);
+	BigDecimal profitLossAmount = new BigDecimal(0.00);
 	
 	BigDecimal maxUnitSize;
 	
@@ -159,7 +159,7 @@ public class DigitalPosition implements Position {
 		sb.append(" " + this.asset.getAsset());
 		sb.append(" Entry Date: " + this.entry.getDate());
 		sb.append(" Entry Price: " + this.entry.getCurrentPrice());
-		sb.append(" Close Date: " + this.entry.getDate());
+		sb.append(" Close Date: " + this.getDate());
 		sb.append(" Close Price: " + this.currentPrice);
 		sb.append(" P/L %: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
 		sb.append(" P/L Amount: " + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN));

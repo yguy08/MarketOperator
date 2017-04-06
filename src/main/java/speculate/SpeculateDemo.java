@@ -11,20 +11,25 @@ public class SpeculateDemo {
 	
 	MarketFactory marketFactory = new MarketFactory();
 	
-	Market market = marketFactory.createMarket(Market.STOCK_MARKET);
+	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
 	
 	AssetFactory assetFactory = new AssetFactory();
 	
-	Asset asset = assetFactory.createAsset(market, "GDX");
+	Asset asset = assetFactory.createAsset(market, "GAME/BTC");
 	
 	SpeculateFactory speculateFactory = new SpeculateFactory();
 	
 	Speculate speculate  = speculateFactory.startSpeculating(market);
 	
 	//WORK HERE!!!
-	//speculate.getAllEntries(market);
+	//speculate.getAllEntriesSingleMarket(market);
+	//TODO
+	//view things from speculation class. Right now some logic is in backtest and position, would like to move this to speculate class
+	//instead of updating account and seeing things from comments in back test, need back test to take hold itself...
 	
 	speculate.backTestSingleAsset(market,asset);
+	
+	//speculate.backTestAllAssetsSingleMarket(market);
 	
 	}
 
