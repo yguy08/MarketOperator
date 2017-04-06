@@ -65,6 +65,8 @@ public class DigitalPosition implements Position {
 			setProfitLossAmount();
 		}else{
 			this.open = true;
+			setProfitLossPercent();
+			setProfitLossAmount();
 		}
 	}
 
