@@ -26,11 +26,12 @@ public class StockPosition implements Position {
 	
 	int locationIndex;
 	
-	BigDecimal profitLossPercent;
-	BigDecimal profitLossAmount;
+	BigDecimal profitLossPercent = new BigDecimal(0.00);
+	BigDecimal profitLossAmount = new BigDecimal(0.00);
 	
 	BigDecimal maxUnitSize;
 	
+	//delete if not used
 	BigDecimal stop;
 	
 	Boolean open;
@@ -63,6 +64,8 @@ public class StockPosition implements Position {
 			setProfitLossAmount();
 		}else{
 			this.open = true;
+			setProfitLossPercent();
+			setProfitLossAmount();
 		}
 	}
 
