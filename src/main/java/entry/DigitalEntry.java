@@ -232,13 +232,13 @@ public class DigitalEntry implements Entry {
 		sb.append("[ENTRY]");
 		sb.append(this.market.getMarketName() + ":");
 		sb.append(" [$" + this.asset.getAsset() + "]");
-		sb.append(" " + this.Date);
+		sb.append(" Date: " + this.Date);
 		sb.append(" Price:" + this.currentPrice);
 		sb.append(" Direction:" + this.direction);
 		sb.append(" ATR: " + this.averageTrueRange);
 		sb.append(" Unit Size: " + this.unitSize);
-		sb.append(" Total: " + this.orderTotal);
-		sb.append(" Stop: " + this.stop);
+		sb.append(" Total: " + this.orderTotal.setScale(8, RoundingMode.HALF_DOWN));
+		sb.append(" Stop: " + this.stop.setScale(8, RoundingMode.HALF_DOWN));
 		return sb.toString();
 	}
 
