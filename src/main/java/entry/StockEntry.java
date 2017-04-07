@@ -17,6 +17,7 @@ public class StockEntry implements Entry {
 	
 	Market market;
 	Asset asset;
+	Speculate speculator;
 	
 	List<StockChartData> priceSubList = new ArrayList<>();
 	
@@ -33,9 +34,10 @@ public class StockEntry implements Entry {
 	String direction = null;
 	Boolean isEntry = false;	
 	
-	public StockEntry(Market market, Asset asset){
+	public StockEntry(Market market, Asset asset, Speculate speculator){
 		this.market = market;
 		this.asset	= asset;
+		this.speculator = speculator;
 		setPriceSubList();
 		setDate();
 		setCurrentPrice();
@@ -193,14 +195,13 @@ public class StockEntry implements Entry {
 
 	@Override
 	public BigDecimal getStop() {
-		// TODO Auto-generated method stub
 		return this.stop;
 	}
 	
 	@Override
 	public void setUnitSize() {
-		BigDecimal max = Speculate.STOCK_EQUITY.divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = Speculate.STOCK_EQUITY.multiply(Speculate.RISK, MathContext.DECIMAL32)
+		BigDecimal max = this.speculator.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal size = this.speculator.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
 				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		if(size.compareTo(max) > 0){
 			this.unitSize = max;
