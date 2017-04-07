@@ -31,7 +31,6 @@ public class DigitalSpeculation implements Speculate {
 	
 	@Override
 	public void setTotalReturnPercent() {
-		//update for positions never closed...
 		this.totalReturnPercent = this.accountEquity.subtract(Speculate.DIGITAL_EQUITY, MathContext.DECIMAL32)
 				.divide(Speculate.DIGITAL_EQUITY, MathContext.DECIMAL32)
 				.setScale(2, RoundingMode.HALF_DOWN)
@@ -44,48 +43,90 @@ public class DigitalSpeculation implements Speculate {
 	}
 	
 	@Override
-	public void getLatestEntriesSingleMarket(Market market) {
-		//REMOVE SPECULATE WHEN REMOVED FROM BACKTEST
+	public void getLastEntrySingleMarket(Market market) {
 		SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(market);
+		Speculate speculator = speculateFactory.startSpeculating(market);
 		for(int i=0; i < market.getAssets().size();i++){
 			AssetFactory assetFactory = new AssetFactory();
 			Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
 			BackTestFactory backTestFactory = new BackTestFactory();
-			BackTest backtest = backTestFactory.newBackTest(market, asset, speculate);
+			BackTest backtest = backTestFactory.newBackTest(market, asset, speculator);
 			System.out.println(backtest.getLastEntry().toString());
+		}		
+	}
+	
+	@Override
+	public void getLastPositionSingleMarket(Market market) {
+		SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculator = speculateFactory.startSpeculating(market);
+		for(int i=0; i < market.getAssets().size();i++){
+			AssetFactory assetFactory = new AssetFactory();
+			Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
+			BackTestFactory backTestFactory = new BackTestFactory();
+			BackTest backtest = backTestFactory.newBackTest(market, asset, speculator);
+			System.out.println(backtest.getLastPosition().toString());
+		}		
+	}
+	
+	@Override
+	public void getCurrentEntriesSingleMarket(Market market) {
+		SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculator = speculateFactory.startSpeculating(market);
+		for(int i=0; i < market.getAssets().size();i++){
+			AssetFactory assetFactory = new AssetFactory();
+			Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
+			BackTestFactory backTestFactory = new BackTestFactory();
+			BackTest backtest = backTestFactory.newBackTest(market, asset, speculator);
+			
+			if(backtest.getLastEntry().getLocationIndex() == backtest.getAsset().getPriceList().size() - 1){
+				System.out.println(backtest.getLastEntry().toString());
+			}
 		}		
 	}
 
 	@Override
 	public void getAllOpenPositionsSingleMarket(Market market) {
-		//REMOVE SPECULATE WHEN REMOVED FROM BACKTEST
 		SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(market);
+		Speculate speculator = speculateFactory.startSpeculating(market);
 		for(int i=0; i < market.getAssets().size();i++){
 			AssetFactory assetFactory = new AssetFactory();
 			Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
 			BackTestFactory backTestFactory = new BackTestFactory();
-			BackTest backtest = backTestFactory.newBackTest(market, asset, speculate);
+			BackTest backtest = backTestFactory.newBackTest(market, asset, speculator);
+			if(backtest.getLastPosition().isOpen()){
 			System.out.println(backtest.getLastPosition().toString());
+			}
+		}
+	}
+	
+	@Override
+	public void getPositionsToCloseSingleMarket(Market market) {
+		SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculator = speculateFactory.startSpeculating(market);
+		for(int i=0; i < market.getAssets().size();i++){
+			AssetFactory assetFactory = new AssetFactory();
+			Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
+			BackTestFactory backTestFactory = new BackTestFactory();
+			BackTest backtest = backTestFactory.newBackTest(market, asset, speculator);
+			if(backtest.getLastPosition().isOpen() == false){
+				System.out.println(backtest.getLastPosition().toString());
+			}
 		}
 	}
 
 	@Override
 	public void backTestSingleAsset(Market market, Asset asset) {
 		SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(market);
+		Speculate speculator = speculateFactory.startSpeculating(market);
 		BackTestFactory backTestFactory = new BackTestFactory();
-		BackTest backtest = backTestFactory.newBackTest(market, asset, speculate);
+		BackTest backtest = backTestFactory.newBackTest(market, asset, speculator);
 		for(int i = 0; i < backtest.getEntryList().size();i++){
-			speculate.setAccountEquity(backtest.getPositionList().get(i).getProfitLossAmount());
-			speculate.setTotalReturnPercent();
+			speculator.setAccountEquity(backtest.getPositionList().get(i).getProfitLossAmount());
+			speculator.setTotalReturnPercent();
 			System.out.println(backtest.getEntryList().get(i).toString());
 			System.out.println(backtest.getPositionList().get(i).toString());
-			System.out.println(speculate.toString());
+			System.out.println(speculator.toString());
 		}
-		
-		
 	}
 	
 	@Override
@@ -105,7 +146,6 @@ public class DigitalSpeculation implements Speculate {
 					System.out.println(speculate.toString());
 				}
 			}
-	
 	}
 	
 	@Override
