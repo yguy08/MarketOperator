@@ -11,21 +11,29 @@ public class SpeculateDemo {
 	
 	MarketFactory marketFactory = new MarketFactory();
 	
-	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+	Market market = marketFactory.createMarket(Market.STOCK_MARKET);
 	
 	AssetFactory assetFactory = new AssetFactory();
 	
-	Asset asset = assetFactory.createAsset(market, "XMR/BTC");
+	Asset asset = assetFactory.createAsset(market, "GDX");
 	
 	SpeculateFactory speculateFactory = new SpeculateFactory();
 	
 	Speculate speculate  = speculateFactory.startSpeculating(market);
 	
-	speculate.getAllOpenPositionsSingleMarket(market);
+	//speculate.getLastEntrySingleMarket(market);
 	
-	//speculate.getLatestEntriesSingleMarket(market);
+	//speculate.getLastPositionSingleMarket(market);
+	
+	//speculate.getCurrentEntriesSingleMarket(market);
+	
+	//speculate.getAllOpenPositionsSingleMarket(market);
+	
+	//speculate.getPositionsToCloseSingleMarket(market);
 	
 	//speculate.backTestAllAssetsSingleMarket(market);
+	
+	speculate.backTestAllAssetsSingleMarket(market);
 	
 	}
 
