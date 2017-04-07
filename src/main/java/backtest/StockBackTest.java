@@ -15,6 +15,7 @@ public class StockBackTest implements BackTest {
 	
 	Market market;
 	Asset asset;
+	Speculate speculator;
 	
 	EntryFactory entryFactory = new EntryFactory();
 	Entry entry;
@@ -24,10 +25,10 @@ public class StockBackTest implements BackTest {
 	Position position;
 	List<Position> positionList = new ArrayList<>();
 	
-	//REMOVE SPECULATE FROM CONSTRUCTOR ARGS...not needed!
-	public StockBackTest(Market market, Asset asset, Speculate speculate){
+	public StockBackTest(Market market, Asset asset, Speculate speculator){
 		this.market = market;
 		this.asset = asset;
+		this.speculator = speculator;
 		runBackTest();
 	}
 
@@ -35,7 +36,7 @@ public class StockBackTest implements BackTest {
 	public void runBackTest() {
 		for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
 			this.asset.setPriceSubList(x - Speculate.ENTRY, x + 1);
-			entry = entryFactory.findEntry(this.market, this.asset);
+			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
 			if(entry.isEntry()){
 				setEntryList(entry);
 				for(int y = this.entry.getLocationIndex();y<this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
@@ -84,6 +85,11 @@ public class StockBackTest implements BackTest {
 	@Override
 	public Position getLastPosition() {
 		return this.positionList.get(this.positionList.size()-1);
+	}
+
+	@Override
+	public Asset getAsset() {
+		return this.asset;
 	}
 
 }
