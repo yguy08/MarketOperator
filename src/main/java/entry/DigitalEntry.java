@@ -19,6 +19,7 @@ public class DigitalEntry implements Entry {
 	
 	Market market;
 	Asset asset;
+	Speculate speculator;
 	
 	List<PoloniexChartData> priceSubList = new ArrayList<>();
 	
@@ -35,9 +36,10 @@ public class DigitalEntry implements Entry {
 	String direction = null;
 	Boolean isEntry = false;
 	
-	public DigitalEntry(Market market, Asset asset){
+	public DigitalEntry(Market market, Asset asset, Speculate speculator){
 		this.market = market;
 		this.asset	= asset;
+		this.speculator = speculator;
 		setPriceSubList();
 		setDate();
 		setCurrentPrice();
@@ -201,8 +203,8 @@ public class DigitalEntry implements Entry {
 	
 	@Override
 	public void setUnitSize() {
-		BigDecimal max = Speculate.DIGITAL_EQUITY.divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = Speculate.DIGITAL_EQUITY.multiply(Speculate.RISK, MathContext.DECIMAL32)
+		BigDecimal max = this.speculator.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal size = this.speculator.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
 				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		if(size.compareTo(max) > 0){
 			this.unitSize = max;
