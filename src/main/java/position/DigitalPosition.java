@@ -158,6 +158,7 @@ public class DigitalPosition implements Position {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("[POSITION]");
+		sb.append(" Open?: " + this.open);
 		sb.append(" " + this.asset.getAsset());
 		sb.append(" Entry Date: " + this.entry.getDate());
 		sb.append(" Entry Price: " + this.entry.getCurrentPrice());

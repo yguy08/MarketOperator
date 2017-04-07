@@ -21,11 +21,11 @@ public class SpeculateDemo {
 	
 	Speculate speculate  = speculateFactory.startSpeculating(market);
 	
-	//speculate.getAllOpenPositionsSingleMarket(market);
+	speculate.getAllOpenPositionsSingleMarket(market);
 	
 	//speculate.getLatestEntriesSingleMarket(market);
 	
-	speculate.backTestAllAssetsSingleMarket(market);
+	//speculate.backTestAllAssetsSingleMarket(market);
 	
 	}
 
