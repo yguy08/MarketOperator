@@ -2,6 +2,7 @@ package backtest;
 
 import java.util.List;
 
+import asset.Asset;
 import entry.Entry;
 import position.Position;
 
@@ -20,5 +21,7 @@ public interface BackTest {
 	Entry getLastEntry();
 	
 	Position getLastPosition();
+	
+	Asset getAsset();
 	
 }
