@@ -24,10 +24,6 @@ public class BackTestDemo {
 		
 		Speculate speculate = speculateFactory.startSpeculating(market);
 		
-		BackTestFactory backTestFactory = new BackTestFactory();
-		
-		BackTest backtest = backTestFactory.newBackTest(market, asset, speculate);
-		
 		}
 		
 		
