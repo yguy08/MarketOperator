@@ -31,13 +31,44 @@ public interface Speculate {
 	
 	BigDecimal getTotalReturnPercent();
 	
-	//Get all current entries for a Single Market
-	void getLatestEntriesSingleMarket(Market market);
-
+	/**
+	 * Get the last entry for all assets in a single market
+	 * May or may not still be open   
+	 * @param market
+	 */
+	void getLastEntrySingleMarket(Market market);
+	
+	/**
+	 * Get the last position for all assets in a single market
+	 * May or may not still be open, marked true or false
+	 * @param market
+	 */
+	void getLastPositionSingleMarket(Market market);
+	
+	/**
+	 * Get the entries for today
+	 * Can open these right away
+	 * @param market
+	 */
+	void getCurrentEntriesSingleMarket(Market market);
+	
+	/**
+	 * Get all open positions for a single market
+	 * @param market
+	 */
+	void getAllOpenPositionsSingleMarket(Market market);
+	
+	/**
+	 * Get current positions to close
+	 */
+	void getPositionsToCloseSingleMarket(Market market);
+	
+	/**
+	 * 
+	 * @param market
+	 */
 	void backTestAllAssetsSingleMarket(Market market);
 	
 	void backTestSingleAsset(Market market, Asset asset);
-	
-	void getAllOpenPositionsSingleMarket(Market market);
 	
 }
