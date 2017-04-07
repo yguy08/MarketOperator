@@ -31,9 +31,6 @@ public class StockPosition implements Position {
 	
 	BigDecimal maxUnitSize;
 	
-	//delete if not used
-	BigDecimal stop;
-	
 	Boolean open;
 	
 	List<StockChartData> priceSubList = new ArrayList<>();
@@ -157,13 +154,20 @@ public class StockPosition implements Position {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("[POSITION]");
-		sb.append(" " + this.asset.getAsset());
-		sb.append(" Entry Date: " + this.entry.getDate());
-		sb.append(" Entry Price: " + this.entry.getCurrentPrice());
-		sb.append(" Close Date: " + this.getDate());
-		sb.append(" Close Price: " + this.currentPrice);
-		sb.append(" P/L %: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
-		sb.append(" P/L Amount: " + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN));
+		sb.append(" $" + this.asset.getAsset());
+		sb.append(" Open:" + this.open);
+		sb.append(" Entry [Date: " + this.entry.getDate());
+		sb.append(" Price: " + this.entry.getCurrentPrice() + "]");
+		
+		if(this.isOpen()){
+			sb.append(" Current [Date: " + this.getDate());
+			sb.append(" Price: " + this.currentPrice + "]");
+		}else{
+			sb.append(" Close [Date: " + this.getDate());
+			sb.append(" Price: " + this.currentPrice + "]");
+		}
+		sb.append(" P/L [%: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
+		sb.append(" Amount: $" + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN) + "]");
 		return sb.toString();
 	}
 
