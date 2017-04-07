@@ -6,15 +6,15 @@ import speculate.Speculate;
 
 public class EntryFactory {
 	
-	public Entry findEntry(Market market, Asset asset){
+	public Entry findEntry(Market market, Asset asset, Speculate speculator){
 		if(market == null){
 			return null;
 		}
 		
 		if(market.getMarketName().equals(Market.STOCK_MARKET)){
-			return new StockEntry(market, asset);
+			return new StockEntry(market, asset, speculator);
 		}else if(market.getMarketName().equals(Market.DIGITAL_MARKET)){
-			return new DigitalEntry(market, asset);
+			return new DigitalEntry(market, asset, speculator);
 		}
 		
 		return null;
