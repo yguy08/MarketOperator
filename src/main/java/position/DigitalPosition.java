@@ -12,7 +12,6 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import asset.Asset;
 import asset.StockChartData;
 import entry.Entry;
-import exit.Exit;
 import market.Market;
 import speculate.Speculate;
 
@@ -32,8 +31,6 @@ public class DigitalPosition implements Position {
 	BigDecimal profitLossAmount = new BigDecimal(0.00);
 	
 	BigDecimal maxUnitSize;
-	
-	BigDecimal stop;
 	
 	Boolean open;
 	
@@ -158,14 +155,19 @@ public class DigitalPosition implements Position {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("[POSITION]");
-		sb.append(" Open?: " + this.open);
 		sb.append(" " + this.asset.getAsset());
-		sb.append(" Entry Date: " + this.entry.getDate());
-		sb.append(" Entry Price: " + this.entry.getCurrentPrice());
-		sb.append(" Close Date: " + this.getDate());
-		sb.append(" Close Price: " + this.currentPrice);
-		sb.append(" P/L %: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
-		sb.append(" P/L Amount: " + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN));
+		sb.append(" Open:" + this.open);
+		sb.append(" Entry [Date:" + this.entry.getDate());
+		sb.append(" Price: " + this.entry.getCurrentPrice() + "]");
+		if(this.isOpen()){
+			sb.append(" Current [Date: " + this.getDate());
+			sb.append(" Price: " + this.currentPrice + "]");
+		}else{
+			sb.append(" Close [Date: " + this.getDate());
+			sb.append(" Price: " + this.currentPrice + "]");
+		}
+		sb.append(" P/L [%: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
+		sb.append(" Amount: $" + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN) + "]");
 		return sb.toString();
 	}
 
