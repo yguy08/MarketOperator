@@ -19,6 +19,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import market.Market;
+import market.MarketFactory;
+import speculate.Speculate;
+import speculate.SpeculateFactory;
 
 public class Main extends Application  {
 	public static void main(String[] args) {
@@ -41,15 +45,15 @@ public class Main extends Application  {
 		hbox.setPadding(new Insets(15,12,15,12));
 		hbox.setSpacing(10);
 		
-		Button viewMarkets = new Button("View Markets");
-		viewMarkets.setPrefSize(100, 50);
-		Button entryFinderBtn = new Button("Entry Finder");
-		entryFinderBtn.setPrefSize(100,50);
-		Button exitFinderBtn = new Button("Exit Finder");
-		exitFinderBtn.setPrefSize(100, 50);
+		Button viewOpen = new Button("View Open");
+		viewOpen.setPrefSize(200, 50);
+		Button viewClose = new Button("View Close");
+		viewClose.setPrefSize(200,50);
+		Button backTest = new Button("BackTest");
+		backTest.setPrefSize(200,50);
 		Button clearBtn = new Button("Clear");
-		clearBtn.setPrefSize(100, 50);
-		hbox.getChildren().addAll(viewMarkets,entryFinderBtn,exitFinderBtn, clearBtn);
+		clearBtn.setPrefSize(200, 50);
+		hbox.getChildren().addAll(viewOpen,viewClose,backTest,clearBtn);
 		
 		borderPane.setBottom(hbox);
 		
@@ -63,12 +67,48 @@ public class Main extends Application  {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
+		viewOpen.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	MarketFactory marketFactory = new MarketFactory();
+		    	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+		    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		    	Speculate speculate  = speculateFactory.startSpeculating(market);
+		    	speculate.getAllOpenPositionsWithEntry(market, stats);
+		    }
+		});
+		
+		viewClose.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	MarketFactory marketFactory = new MarketFactory();
+		    	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+		    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		    	Speculate speculate  = speculateFactory.startSpeculating(market);
+		    	speculate.getPositionsToCloseSingleMarket(market,stats);
+		    }
+		});
+		
+		backTest.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	MarketFactory marketFactory = new MarketFactory();
+		    	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+		    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		    	Speculate speculate  = speculateFactory.startSpeculating(market);
+		    	speculate.backTest(market, stats);
+		    }
+		});
+		
+		clearBtn.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	stats.removeAll(stats);
+		    }
+		});
+		
 	}
 	
 	public Text setTitle(){
 		Text title = new Text("Market Operator");
 		title.setFill(Color.GREEN);
-		title.setFont(Font.font(null, FontWeight.NORMAL, 24));		
+		title.setFont(Font.font(null, FontWeight.NORMAL, 24));
 		return title;
 	}
 	

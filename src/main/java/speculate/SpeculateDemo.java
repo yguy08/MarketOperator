@@ -11,11 +11,11 @@ public class SpeculateDemo {
 	
 	MarketFactory marketFactory = new MarketFactory();
 	
-	Market market = marketFactory.createMarket(Market.STOCK_MARKET);
+	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
 	
 	AssetFactory assetFactory = new AssetFactory();
 	
-	Asset asset = assetFactory.createAsset(market, "GDX");
+	Asset asset = assetFactory.createAsset(market, "XMR/BTC");
 	
 	SpeculateFactory speculateFactory = new SpeculateFactory();
 	
@@ -27,13 +27,13 @@ public class SpeculateDemo {
 	
 	//speculate.getCurrentEntriesSingleMarket(market);
 	
-	//speculate.getAllOpenPositionsSingleMarket(market);
-	
 	//speculate.getPositionsToCloseSingleMarket(market);
 	
 	//speculate.backTestAllAssetsSingleMarket(market);
 	
-	speculate.backTestAllAssetsSingleMarket(market);
+	//speculate.backTestSingleAsset(market, asset);
+	
+	//to-do...add close to position list. figure out longs only and backtest...
 	
 	}
 

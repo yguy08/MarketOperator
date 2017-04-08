@@ -1,8 +1,10 @@
 package speculate;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import asset.Asset;
+import javafx.collections.ObservableList;
 import market.Market;
 
 public interface Speculate {
@@ -62,6 +64,13 @@ public interface Speculate {
 	 * Get current positions to close
 	 */
 	void getPositionsToCloseSingleMarket(Market market);
+	
+	public void getAllOpenPositionsWithEntry(Market market, ObservableList<String> obsList);
+	
+	void getPositionsToCloseSingleMarket(Market market, ObservableList<String> obsList);
+	
+	void backTest(Market market, ObservableList<String> obsList);
+
 	
 	/**
 	 * 

@@ -3,10 +3,14 @@ package entry;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
@@ -71,7 +75,12 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setDate() {
-		this.Date = this.priceSubList.get(this.priceSubList.size() - 1).getDate().toString();
+		TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(timeZone);
+		SimpleDateFormat simpleDateFormat = 
+		       new SimpleDateFormat("MMM dd yyyy", Locale.US);
+		simpleDateFormat.setTimeZone(timeZone);
+		this.Date = simpleDateFormat.format(this.priceSubList.get(this.priceSubList.size() - 1).getDate()).toString();
 	}
 
 	@Override
@@ -231,8 +240,7 @@ public class DigitalEntry implements Entry {
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("[ENTRY]");
-		sb.append(this.market.getMarketName() + ":");
+		sb.append("[ENTRY] ");
 		sb.append(" [$" + this.asset.getAsset() + "]");
 		sb.append(" Date: " + this.Date);
 		sb.append(" Price:" + this.currentPrice);

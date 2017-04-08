@@ -3,9 +3,13 @@ package position;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
@@ -106,7 +110,12 @@ public class DigitalPosition implements Position {
 
 	@Override
 	public void setDate() {
-		this.Date = this.priceSubList.get(this.priceSubList.size() - 1).getDate().toString();		
+		TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(timeZone);
+		SimpleDateFormat simpleDateFormat = 
+		       new SimpleDateFormat("MMM dd yyyy", Locale.US);
+		simpleDateFormat.setTimeZone(timeZone);
+		this.Date = simpleDateFormat.format(this.priceSubList.get(this.priceSubList.size() - 1).getDate()).toString();		
 	}
 	
 	@Override
@@ -167,7 +176,9 @@ public class DigitalPosition implements Position {
 			sb.append(" Price: " + this.currentPrice + "]");
 		}
 		sb.append(" P/L [%: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
-		sb.append(" Amount: $" + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN) + "]");
+		sb.append(" Amount: " + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN) + "]");
+		sb.append(" Max Price: [" + this.maxPrice + "]");
+		sb.append(" Min Price: [" + this.minPrice + "]" );
 		return sb.toString();
 	}
 

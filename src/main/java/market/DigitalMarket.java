@@ -10,6 +10,8 @@ import org.knowm.xchange.poloniex.PoloniexExchange;
 
 public class DigitalMarket implements Market {
 	
+	//consider changing to bitcoin market, then have ETH, XMR and other curriencies as markets...
+	
 	public static final Exchange exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	
 	private String marketName = Market.DIGITAL_MARKET;
