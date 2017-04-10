@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import asset.Asset;
+import entry.Entry;
 import javafx.collections.ObservableList;
 import market.Market;
+import position.Position;
 
 public interface Speculate {
 
@@ -32,6 +34,22 @@ public interface Speculate {
 	void setTotalReturnPercent();
 	
 	BigDecimal getTotalReturnPercent();
+	
+	void setEntryList(Entry entry);
+	
+	List<Entry> getEntryList();
+	
+	void setSortedEntryList(List<Entry> entryList);
+	
+	List<Entry> getSortedEntryList();
+	
+	void setPositionList(Position position);
+	
+	List<Position> getPositionList();
+	
+	void setSortedPositionList(List<Position> positionList);
+	
+	List<Position> getSortedPositionList();
 	
 	/**
 	 * Get the last entry for all assets in a single market
@@ -70,7 +88,8 @@ public interface Speculate {
 	void getPositionsToCloseSingleMarket(Market market, ObservableList<String> obsList);
 	
 	void backTest(Market market, ObservableList<String> obsList);
-
+	
+	void newBackTest(Market market, Speculate speculate, ObservableList<String> obsList);
 	
 	/**
 	 * 
