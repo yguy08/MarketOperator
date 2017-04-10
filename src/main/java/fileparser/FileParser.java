@@ -39,12 +39,34 @@ public class FileParser {
 		return lines;
 	}
 	
-	public static List<String> generateYahooURL() {
+	public static List<String> readForexList() throws IOException{
+		List<String> lines = Files.readAllLines(Paths.get("ForexFiles/forex.csv"));
+		return lines;
+	}
+	
+	public static List<String> generateETFYahooURL() {
 		try {
 			List<String> etfs = readETFList();
 			List<String> urls = new ArrayList<>();
 			for(int i = 0; i < etfs.size();i++){
-				String url = "http://chart.finance.yahoo.com/table.csv?s=" +etfs.get(i)+"&a=3&b=5&c=2012&d=3&e=5&f=2017&g=d&ignore=.csv";
+				String url = "http://chart.finance.yahoo.com/table.csv?s=" +etfs.get(i)+"&a=3&b=5&c=2016&d=3&e=5&f=2017&g=d&ignore=.csv";
+				urls.add(url);
+			}
+			return urls;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	public static List<String> generateForexYahooURL() {
+		try {
+			List<String> forex = readForexList();
+			List<String> urls = new ArrayList<>();
+			for(int i = 0; i < forex.size();i++){
+				String url = "http://chart.finance.yahoo.com/table.csv?s=" +forex.get(i)+"&a=3&b=5&c=2005&d=3&e=5&f=2017&g=d&ignore=.csv";
 				urls.add(url);
 			}
 			return urls;
