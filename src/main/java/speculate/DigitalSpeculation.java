@@ -3,18 +3,34 @@ package speculate;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 import asset.Asset;
 import asset.AssetFactory;
 import backtest.BackTest;
 import backtest.BackTestFactory;
+import entry.Entry;
 import javafx.collections.ObservableList;
 import market.Market;
+import position.Position;
 
 public class DigitalSpeculation implements Speculate {
 	
 	BigDecimal accountEquity;
-	BigDecimal totalReturnPercent = new BigDecimal(0.00) ;
+	BigDecimal totalReturnPercent = new BigDecimal(0.00);
+	
+	
+	List<Entry> entryList = new ArrayList<>();
+	List<Entry> sortedEntryList = new ArrayList<>();
+	
+	List<Position> positionList = new ArrayList<>();
+	List<Position> sortedPositionList = new ArrayList<>();
+	
+	BigDecimal maxUnits = new BigDecimal(4.00);
 	
 	public DigitalSpeculation(Market market) {
 		this.accountEquity = Speculate.DIGITAL_EQUITY;
@@ -218,5 +234,96 @@ public class DigitalSpeculation implements Speculate {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void setEntryList(Entry entry) {
+		this.entryList.add(entry);		
+	}
+
+	@Override
+	public List<Entry> getEntryList() {
+		return this.entryList;
+	}
+
+	@Override
+	public void setSortedEntryList(List<Entry> entryList) {
+		Collections.sort(entryList, new Comparator<Entry>() {
+		    public int compare(Entry o1, Entry o2) {
+		        return o1.getDateTime().compareTo(o2.getDateTime());
+		    }
+		});
+		
+		this.sortedEntryList = entryList;
+	}
+
+	@Override
+	public List<Entry> getSortedEntryList() {
+		return this.sortedEntryList;
+	}
+	
+
+
+	@Override
+	public void setPositionList(Position position) {
+		this.positionList.add(position);
+		
+	}
+
+	@Override
+	public List<Position> getPositionList() {
+		return this.positionList;
+	}
+
+	@Override
+	public void setSortedPositionList(List<Position> positionList) {
+		Collections.sort(positionList, new Comparator<Position>() {
+		    public int compare(Position o1, Position o2) {
+		        return o1.getDateTime().compareTo(o2.getDateTime());
+		    }
+		});
+		
+		this.sortedPositionList = positionList;
+		
+	}
+
+	@Override
+	public List<Position> getSortedPositionList() {
+		return this.sortedPositionList;
+	}
+
+	@Override
+	public void newBackTest(Market market, Speculate speculate, ObservableList<String> obsList) {
+		AssetFactory assetFactory = new AssetFactory();
+		BackTestFactory backTestFactory = new BackTestFactory();
+		Asset asset; 
+		BackTest backtest;
+		for(int i=0; i < market.getAssets().size();i++){
+			asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
+			backtest = backTestFactory.newBackTest(market, asset, speculate);
+			for(int x = 0; x < backtest.getEntryList().size();x++){
+				setEntryList(backtest.getEntryList().get(x));
+			}
+			
+			for(int y = 0; y < backtest.getPositionList().size();y++){
+				setPositionList(backtest.getPositionList().get(y));
+			}
+		}
+		
+		setSortedEntryList(this.entryList);
+		setSortedPositionList(this.positionList);
+				
+		for(int p = 0; p < this.getSortedEntryList().size();p++){
+			Date start = this.getSortedEntryList().get(p).getDateTime();
+			obsList.add(start.toString());
+			obsList.add(this.getSortedEntryList().get(p).toString());
+			
+			for(int t = 0; t < this.getSortedPositionList().size();t++){
+				if(this.getSortedPositionList().get(t).getDateTime().compareTo(start) == 0){
+					obsList.add(this.getSortedPositionList().get(t).toString());
+				}
+			}
+		}
+	
 	}
 }
