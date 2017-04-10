@@ -1,6 +1,8 @@
 package entry;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
 
 public interface Entry {
 	
@@ -47,5 +49,7 @@ public interface Entry {
 	void setOrderTotal();
 	
 	BigDecimal getOrderTotal();
+
+	Date getDateTime();
 
 }
