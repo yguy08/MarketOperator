@@ -3,6 +3,8 @@ package entry;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.Date;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
@@ -250,6 +253,22 @@ public class DigitalEntry implements Entry {
 		sb.append(" Total: " + this.orderTotal.setScale(8, RoundingMode.HALF_DOWN));
 		sb.append(" Stop: " + this.stop.setScale(8, RoundingMode.HALF_DOWN));
 		return sb.toString();
+	}
+
+	@Override
+	public Date getDateTime() {
+		String date = this.getDate();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateTime;
+		try {
+			dateTime = df.parse(date);
+			return dateTime;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }
