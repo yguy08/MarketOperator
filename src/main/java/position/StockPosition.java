@@ -3,8 +3,12 @@ package position;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import asset.Asset;
@@ -169,6 +173,23 @@ public class StockPosition implements Position {
 		sb.append(" P/L [%: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
 		sb.append(" Amount: $" + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN) + "]");
 		return sb.toString();
+	}
+	
+	@Override
+	public Date getDateTime() {
+		String date = this.getDate();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateTime;
+		try {
+			dateTime = df.parse(date);
+			return dateTime;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
 	}
 
 }
