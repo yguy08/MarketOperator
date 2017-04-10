@@ -1,6 +1,7 @@
 package position;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public interface Position {
 	
@@ -31,5 +32,8 @@ public interface Position {
 	void setLocationAsIndex();
 	
 	int getLocationIndex();
+	
+	Date getDateTime();
+
 	
 }
