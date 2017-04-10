@@ -3,10 +3,14 @@ package entry;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
 
 import asset.Asset;
 import asset.StockChartData;
@@ -229,7 +233,6 @@ public class StockEntry implements Entry {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ENTRY]");
-		sb.append(this.market.getMarketName() + ":");
 		sb.append(" [$" + this.asset.getAsset() + "]");
 		sb.append(" Date: " + this.Date);
 		sb.append(" Price:" + this.currentPrice);
@@ -239,6 +242,23 @@ public class StockEntry implements Entry {
 		sb.append(" Total: $" + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
 		sb.append(" Stop: " + this.stop.setScale(2, RoundingMode.HALF_DOWN));
 		return sb.toString();
+	}
+
+	@Override
+	public Date getDateTime() {
+		String date = this.getDate();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateTime;
+		try {
+			dateTime = df.parse(date);
+			return dateTime;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
 	}	
 
 }
