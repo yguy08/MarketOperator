@@ -3,10 +3,13 @@ package position;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -180,6 +183,22 @@ public class DigitalPosition implements Position {
 		sb.append(" Max Price: [" + this.maxPrice + "]");
 		sb.append(" Min Price: [" + this.minPrice + "]" );
 		return sb.toString();
+	}
+
+	@Override
+	public java.util.Date getDateTime() {
+		String date = this.getDate();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateTime;
+		try {
+			dateTime = df.parse(date);
+			return dateTime;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }
