@@ -1,6 +1,10 @@
 package vault;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -23,8 +27,12 @@ import market.Market;
 import market.MarketFactory;
 import speculate.Speculate;
 import speculate.SpeculateFactory;
+import utils.SaveToFile;
 
 public class Main extends Application  {
+	
+	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -53,12 +61,14 @@ public class Main extends Application  {
 		backTest.setPrefSize(200,50);
 		Button clearBtn = new Button("Clear");
 		clearBtn.setPrefSize(200, 50);
-		hbox.getChildren().addAll(viewOpen,viewClose,backTest,clearBtn);
+		Button saveBtn = new Button("Save");
+		saveBtn.setPrefSize(200, 50);
+		hbox.getChildren().addAll(viewOpen,viewClose,backTest,clearBtn, saveBtn);
 		
 		borderPane.setBottom(hbox);
 		
 		//list
-		final ObservableList<String> stats = FXCollections.observableArrayList();
+		final ObservableList<String> stats = FXCollections.observableArrayList(Market.DIGITAL_MARKET, Market.STOCK_MARKET);
 		ListView<String> statList = new ListView<>(stats);
 		BorderPane.setAlignment(statList,  Pos.CENTER_LEFT);
 		borderPane.setCenter(statList);	
@@ -69,9 +79,11 @@ public class Main extends Application  {
 		
 		viewOpen.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
+		    	String marketName = statList.getSelectionModel().getSelectedItem();
 		    	MarketFactory marketFactory = new MarketFactory();
-		    	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+		    	Market market = marketFactory.createMarket(marketName);
 		    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		    	stats.removeAll(stats);
 		    	Speculate speculate  = speculateFactory.startSpeculating(market);
 		    	speculate.getAllOpenPositionsWithEntry(market, stats);
 		    }
@@ -79,9 +91,11 @@ public class Main extends Application  {
 		
 		viewClose.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
+		    	String marketName = statList.getSelectionModel().getSelectedItem();
 		    	MarketFactory marketFactory = new MarketFactory();
-		    	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+		    	Market market = marketFactory.createMarket(marketName);
 		    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		    	stats.removeAll(stats);
 		    	Speculate speculate  = speculateFactory.startSpeculating(market);
 		    	speculate.getPositionsToCloseSingleMarket(market,stats);
 		    }
@@ -89,17 +103,39 @@ public class Main extends Application  {
 		
 		backTest.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
+		    	String marketName = statList.getSelectionModel().getSelectedItem();
+		    	stats.removeAll(stats);
 		    	MarketFactory marketFactory = new MarketFactory();
-		    	Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+		    	Market market = marketFactory.createMarket(marketName);
 		    	SpeculateFactory speculateFactory = new SpeculateFactory();
 		    	Speculate speculate  = speculateFactory.startSpeculating(market);
-		    	speculate.backTest(market, stats);
+		    	speculate.newBackTest(market, speculate, stats);
+		    }
+		});
+		
+		saveBtn.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	StringBuilder sb = new StringBuilder();
+		    	for(int x = 0; x < stats.size();x++){
+		    		sb.append(stats.get(x).toString() + "\n");
+		    	}
+		    	
+		    	String results = sb.toString();
+		    	long date = System.currentTimeMillis();
+		    	try {
+					SaveToFile.writeToTextFile(Long.toString(date), results);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    	
 		    }
 		});
 		
 		clearBtn.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	stats.removeAll(stats);
+		    	stats.addAll(Market.DIGITAL_MARKET, Market.STOCK_MARKET);
 		    }
 		});
 		
