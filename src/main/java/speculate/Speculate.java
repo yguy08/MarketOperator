@@ -3,11 +3,10 @@ package speculate;
 import java.math.BigDecimal;
 import java.util.List;
 
-import asset.Asset;
 import entry.Entry;
-import javafx.collections.ObservableList;
 import market.Market;
 import position.Position;
+import vault.Vault;
 
 public interface Speculate {
 
@@ -35,6 +34,12 @@ public interface Speculate {
 	
 	BigDecimal getTotalReturnPercent();
 	
+	void getAllOpenPositions(Vault vault);
+	
+	void getPositionsToClose(Vault vault);
+	
+	void runBackTest(Vault vault);
+	
 	void setEntryList(Entry entry);
 	
 	List<Entry> getEntryList();
@@ -51,70 +56,12 @@ public interface Speculate {
 	
 	List<Position> getSortedPositionList();
 	
-	Speculate newNewBackTest(Market market, Speculate speculate);
+	int getUnit();
 	
 	public Market getMarket();
 	
 	void addUnit();
 	
-	void subtractUnit();
-	
-	/**
-	 * Get the last entry for all assets in a single market
-	 * May or may not still be open   
-	 * @param market
-	 */
-	void getLastEntrySingleMarket(Market market);
-	
-	/**
-	 * Get the last position for all assets in a single market
-	 * May or may not still be open, marked true or false
-	 * @param market
-	 */
-	void getLastPositionSingleMarket(Market market);
-	
-	/**
-	 * Get the entries for today
-	 * Can open these right away
-	 * @param market
-	 */
-	void getCurrentEntriesSingleMarket(Market market);
-	
-	/**
-	 * Get all open positions for a single market
-	 * @param market
-	 */
-	void getAllOpenPositionsSingleMarket(Market market);
-	
-	/**
-	 * Get current positions to close
-	 */
-	void getPositionsToCloseSingleMarket(Market market);
-	
-	public void getAllOpenPositionsWithEntry(Market market, ObservableList<String> obsList);
-	
-	void getPositionsToCloseSingleMarket(Market market, ObservableList<String> obsList);
-	
-	void backTest(Market market, ObservableList<String> obsList);
-	
-	void newBackTest(Market market, Speculate speculate, ObservableList<String> obsList);
-	
-	void setBuyEntryList(Entry entry);
-	
-	List<Entry> getBuyEntryList();
-	
-	void setBuyPositionList(Position position);
-	
-	List<Entry> getBuyPositionList();
-	
-	/**
-	 * 
-	 * @param market
-	 */
-	void backTestAllAssetsSingleMarket(Market market);
-	
-	void backTestSingleAsset(Market market, Asset asset);
-
-	int getUnit();
+	void subtractUnit();	
 	
 }
