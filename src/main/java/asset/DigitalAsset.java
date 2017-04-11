@@ -3,37 +3,24 @@ package asset;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-import org.knowm.xchange.currency.CurrencyPair;
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
-import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
-import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
-import org.knowm.xchange.service.marketdata.MarketDataService;
-
-import market.DigitalMarket;
+import utils.FileParser;
 import market.Market;
 
-public class DigitalAsset implements Asset {
-	
-	public static final MarketDataService dataService 	= DigitalMarket.exchange.getMarketDataService();
+public class StockAsset implements Asset {
 	
 	String marketName;
 	String assetName;
-	
-	List<PoloniexChartData> priceList = new ArrayList<>();
+	List<StockChartData> priceList = new ArrayList<>();
 	List<BigDecimal> closeList	= new ArrayList<>();
 	List<BigDecimal> lowList = new ArrayList<>();
 	List<BigDecimal> highList = new ArrayList<>();
 	
 	
-	private List<PoloniexChartData> priceSubList;
+	private List<StockChartData> priceSubList;
 	
-	List<BigDecimal> closeSubList	= new ArrayList<>();
-	
-	public DigitalAsset(Market market, String assetName){
+	public StockAsset(Market market, String assetName){
 		this.marketName = market.getMarketName();
 		this.assetName	= assetName;
 		setPriceList(this.assetName);
@@ -54,50 +41,53 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public void setPriceList(String assetName) {
-		long date = new Date().getTime() / 1000;
-		CurrencyPair currencyPair = new CurrencyPair(assetName);
+		List<String> myString;
 		try {
-			this.priceList = Arrays
-					.asList(((PoloniexMarketDataServiceRaw) dataService)
-					.getPoloniexChartData(currencyPair, date - 365 * 5 * 24 * 60 * 60,
-					date, PoloniexChartDataPeriodType.PERIOD_86400));
+			//reversed for stocks
+			myString = FileParser.readYahooStockFileByLines(assetName);
+			for(int z = myString.size() - 1; z >= 0; z--){
+				String[] split = myString.get(z).split(",");
+				StockChartData chartData = new StockChartData((String) split[0], new BigDecimal(split[4]), 
+						new BigDecimal(split[2]), new BigDecimal(split[3]));
+				priceList.add(chartData);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public List<PoloniexChartData> getPriceList() {
+	public List<StockChartData> getPriceList() {
 		return this.priceList;
-	}
-	
-	@Override
-	public void setPriceSubList(int start, int end) {
-		this.priceSubList = this.priceList.subList(start, end);
-	}
-	
-	@Override
-	public List<PoloniexChartData> getPriceSubList() {
-		return this.priceSubList;
 	}
 
 	@Override
 	public void setCloseList() {
-		for(int i = 0; i < this.priceList.size();i++){
-			this.closeList.add(this.getPriceList().get(i).getClose());
+		for(int x = 0; x < priceList.size();x++ ){
+			this.closeList.add(this.priceList.get(x).getClose());
 		}
-		
 	}
 
 	@Override
 	public List<BigDecimal> getCloseList() {
+		// TODO Auto-generated method stub
 		return this.closeList;
 	}
 
 	@Override
+	public void setPriceSubList(int start, int end) {
+		this.priceSubList = (List<StockChartData>) this.priceList.subList(start, end);
+	}
+
+	@Override
+	public List<StockChartData> getPriceSubList() {
+		return this.priceSubList;
+	}
+
+	@Override
 	public void setLowList() {
-		for(int i = 0; i < this.priceList.size();i++){
-			this.lowList.add(this.getPriceList().get(i).getLow());
+		for(int x = 0; x < priceList.size();x++ ){
+			this.lowList.add(this.priceList.get(x).getLow());
 		}
 	}
 
@@ -108,8 +98,8 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public void setHighList() {
-		for(int i = 0; i < this.priceList.size();i++){
-			this.highList.add(this.getPriceList().get(i).getHigh());
+		for(int x = 0; x < priceList.size();x++ ){
+			this.highList.add(this.priceList.get(x).getHigh());
 		}
 	}
 
@@ -120,7 +110,7 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public String toString(){
-		return this.marketName + ": [ " + this.assetName + " ] " + this.priceList;   
+		return this.marketName + ": [ $" + this.assetName + " ] " + " " + this.priceList;
 	}
 
 }
