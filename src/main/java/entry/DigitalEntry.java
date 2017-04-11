@@ -258,7 +258,7 @@ public class DigitalEntry implements Entry {
 	@Override
 	public Date getDateTime() {
 		String date = this.getDate();
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat df = new SimpleDateFormat("MMM dd yyyy");
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);

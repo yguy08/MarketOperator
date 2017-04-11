@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import asset.Asset;
 import asset.AssetFactory;
@@ -30,10 +32,21 @@ public class DigitalSpeculation implements Speculate {
 	List<Position> positionList = new ArrayList<>();
 	List<Position> sortedPositionList = new ArrayList<>();
 	
-	BigDecimal maxUnits = new BigDecimal(4.00);
+	List<Entry> buyEntryList = new ArrayList<>();
+	List<Position> buyPositionList = new ArrayList<>();
+	
+	int maxUnits = 4;
+	int unit = 0;
+	
+	Market market;
 	
 	public DigitalSpeculation(Market market) {
 		this.accountEquity = Speculate.DIGITAL_EQUITY;
+		this.market = market;
+	}
+	
+	public Market getMarket(){
+		return this.market;
 	}
 
 	@Override
@@ -291,9 +304,64 @@ public class DigitalSpeculation implements Speculate {
 	public List<Position> getSortedPositionList() {
 		return this.sortedPositionList;
 	}
+	
+	@Override
+	public void addUnit(){
+		++this.unit;
+	}
+	
+	@Override
+	public void subtractUnit(){
+		--this.unit;
+	}
+	
+	public int getUnit(){
+		return this.unit;
+	}
 
 	@Override
 	public void newBackTest(Market market, Speculate speculate, ObservableList<String> obsList) {
+		for(int p = 1; p < speculate.getSortedEntryList().size();p++){
+			Calendar d1 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+			d1.setTime(speculate.getSortedEntryList().get(p).getDateTime());
+			Calendar d2 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+			d2.setTime(speculate.getSortedEntryList().get(p-1).getDateTime());
+			int z = d1.compareTo(d2);
+			if(d1.compareTo(d2) == 0){
+				if(speculate.getUnit() < 4){
+					obsList.add(speculate.getSortedEntryList().get(p).toString());
+					speculate.addUnit();
+					speculate.setBuyEntryList(speculate.getSortedEntryList().get(p));
+				}else{
+					
+				}
+				continue;
+			}else if(d1.compareTo(d2) > 0){
+				if(speculate.getUnit() < 4){
+					obsList.add(speculate.getSortedEntryList().get(p).toString());
+					speculate.addUnit();
+					speculate.setBuyEntryList(speculate.getSortedEntryList().get(p));
+				}else{
+					
+				}
+				
+				for(int x = 0; x < speculate.getSortedPositionList().size();x++){
+					Calendar d3 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+					d3.setTime(speculate.getPositionList().get(x).getDateTime());
+					if(d3.equals(d1)){
+						obsList.add(speculate.getSortedPositionList().get(x).toString());
+						speculate.subtractUnit();
+						speculate.setAccountEquity(speculate.getSortedPositionList().get(x).getProfitLossAmount());
+						speculate.setBuyPositionList(speculate.getSortedPositionList().get(x));
+						obsList.add(speculate.toString());
+					}
+				}
+			}
+		}
+	}
+	
+	@Override
+	public Speculate newNewBackTest(Market market, Speculate speculate) {
 		AssetFactory assetFactory = new AssetFactory();
 		BackTestFactory backTestFactory = new BackTestFactory();
 		Asset asset; 
@@ -302,28 +370,42 @@ public class DigitalSpeculation implements Speculate {
 			asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
 			backtest = backTestFactory.newBackTest(market, asset, speculate);
 			for(int x = 0; x < backtest.getEntryList().size();x++){
-				setEntryList(backtest.getEntryList().get(x));
+				speculate.setEntryList(backtest.getEntryList().get(x));
 			}
 			
 			for(int y = 0; y < backtest.getPositionList().size();y++){
-				setPositionList(backtest.getPositionList().get(y));
+				speculate.setPositionList(backtest.getPositionList().get(y));
 			}
 		}
 		
-		setSortedEntryList(this.entryList);
-		setSortedPositionList(this.positionList);
-				
-		for(int p = 0; p < this.getSortedEntryList().size();p++){
-			Date start = this.getSortedEntryList().get(p).getDateTime();
-			obsList.add(start.toString());
-			obsList.add(this.getSortedEntryList().get(p).toString());
-			
-			for(int t = 0; t < this.getSortedPositionList().size();t++){
-				if(this.getSortedPositionList().get(t).getDateTime().compareTo(start) == 0){
-					obsList.add(this.getSortedPositionList().get(t).toString());
-				}
-			}
-		}
-	
+		speculate.setSortedEntryList(this.entryList);
+		speculate.setSortedPositionList(this.positionList);
+		return speculate;
 	}
+
+	@Override
+	public void setBuyEntryList(Entry entry) {
+		// TODO Auto-generated method stub
+		this.buyEntryList.add(entry);
+	}
+
+	@Override
+	public List<Entry> getBuyEntryList() {
+		// TODO Auto-generated method stub
+		return this.buyEntryList;
+	}
+
+	@Override
+	public void setBuyPositionList(Position position) {
+		this.buyPositionList.add(position);
+	}
+
+	@Override
+	public List<Entry> getBuyPositionList() {
+		// TODO Auto-generated method stub
+		return this.buyEntryList;
+	}
+	
+	
+
 }

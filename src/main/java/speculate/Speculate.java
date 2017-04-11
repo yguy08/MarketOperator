@@ -51,6 +51,14 @@ public interface Speculate {
 	
 	List<Position> getSortedPositionList();
 	
+	Speculate newNewBackTest(Market market, Speculate speculate);
+	
+	public Market getMarket();
+	
+	void addUnit();
+	
+	void subtractUnit();
+	
 	/**
 	 * Get the last entry for all assets in a single market
 	 * May or may not still be open   
@@ -91,6 +99,14 @@ public interface Speculate {
 	
 	void newBackTest(Market market, Speculate speculate, ObservableList<String> obsList);
 	
+	void setBuyEntryList(Entry entry);
+	
+	List<Entry> getBuyEntryList();
+	
+	void setBuyPositionList(Position position);
+	
+	List<Entry> getBuyPositionList();
+	
 	/**
 	 * 
 	 * @param market
@@ -98,5 +114,7 @@ public interface Speculate {
 	void backTestAllAssetsSingleMarket(Market market);
 	
 	void backTestSingleAsset(Market market, Asset asset);
+
+	int getUnit();
 	
 }

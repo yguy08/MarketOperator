@@ -56,6 +56,11 @@ public class DigitalPosition implements Position {
 		setLocationAsIndex();
 		setExit();
 	}
+	
+	@Override
+	public Entry getEntry(){
+		return this.entry;
+	}
 
 	@Override
 	public void setExit() {
@@ -188,7 +193,7 @@ public class DigitalPosition implements Position {
 	@Override
 	public java.util.Date getDateTime() {
 		String date = this.getDate();
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat df = new SimpleDateFormat("MMM dd yyyy");
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);

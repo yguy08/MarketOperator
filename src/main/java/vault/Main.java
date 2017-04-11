@@ -1,11 +1,8 @@
 package vault;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import backtest.BackTest;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +28,8 @@ import utils.SaveToFile;
 
 public class Main extends Application  {
 	
+	BackTest backtest;
+	Speculate speculate;
 	
 	
 	public static void main(String[] args) {
@@ -39,11 +38,18 @@ public class Main extends Application  {
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+	
 		primaryStage.setTitle("Market Operator");
 		
 		//border pane
 		BorderPane borderPane = new BorderPane();
 		
+		//list and load data by calling speculate
+		final ObservableList<String> stats = FXCollections.observableArrayList();
+		ListView<String> statList = new ListView<>(stats);
+		BorderPane.setAlignment(statList,  Pos.CENTER_LEFT);
+		borderPane.setCenter(statList);
+	     
 		//header top
 		Text title = setTitle();
 		BorderPane.setAlignment(title,  Pos.CENTER);
@@ -55,23 +61,36 @@ public class Main extends Application  {
 		
 		Button viewOpen = new Button("View Open");
 		viewOpen.setPrefSize(200, 50);
+		viewOpen.setVisible(false);
 		Button viewClose = new Button("View Close");
 		viewClose.setPrefSize(200,50);
-		Button backTest = new Button("BackTest");
+		viewClose.setVisible(false);
+		Button backTest = new Button("Back Test");
 		backTest.setPrefSize(200,50);
+		backTest.setVisible(false);
 		Button clearBtn = new Button("Clear");
 		clearBtn.setPrefSize(200, 50);
+		clearBtn.setVisible(false);
 		Button saveBtn = new Button("Save");
 		saveBtn.setPrefSize(200, 50);
-		hbox.getChildren().addAll(viewOpen,viewClose,backTest,clearBtn, saveBtn);
+		saveBtn.setVisible(false);
+		hbox.getChildren().addAll(viewOpen,viewClose,backTest,clearBtn,saveBtn);
+		
+		//load data in background
+		Runnable r = new Runnable() {
+	         public void run() {
+	     		speculate = speculate();
+	     		viewOpen.setVisible(true);
+	     		viewClose.setVisible(true);
+	     		backTest.setVisible(true);
+	     		clearBtn.setVisible(true);
+	     		saveBtn.setVisible(true);
+	     	}
+	     };
+
+	     new Thread(r).start();
 		
 		borderPane.setBottom(hbox);
-		
-		//list
-		final ObservableList<String> stats = FXCollections.observableArrayList(Market.DIGITAL_MARKET, Market.STOCK_MARKET);
-		ListView<String> statList = new ListView<>(stats);
-		BorderPane.setAlignment(statList,  Pos.CENTER_LEFT);
-		borderPane.setCenter(statList);	
 		
 		Scene scene = new Scene(borderPane, 1250, 750);
 		primaryStage.setScene(scene);
@@ -103,13 +122,8 @@ public class Main extends Application  {
 		
 		backTest.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	String marketName = statList.getSelectionModel().getSelectedItem();
 		    	stats.removeAll(stats);
-		    	MarketFactory marketFactory = new MarketFactory();
-		    	Market market = marketFactory.createMarket(marketName);
-		    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		    	Speculate speculate  = speculateFactory.startSpeculating(market);
-		    	speculate.newBackTest(market, speculate, stats);
+		    	speculate.newBackTest(speculate.getMarket(), speculate, stats);
 		    }
 		});
 		
@@ -146,6 +160,16 @@ public class Main extends Application  {
 		title.setFill(Color.GREEN);
 		title.setFont(Font.font(null, FontWeight.NORMAL, 24));
 		return title;
+	}
+	
+	static Speculate speculate() {
+		MarketFactory marketFactory = new MarketFactory();
+		Market market = marketFactory.createMarket(Market.DIGITAL_MARKET);
+		SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate  = speculateFactory.startSpeculating(market);
+		speculate.newNewBackTest(market, speculate);
+		return speculate;
+		
 	}
 	
 }

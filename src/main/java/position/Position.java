@@ -3,6 +3,8 @@ package position;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import entry.Entry;
+
 public interface Position {
 	
 	void setExit();
@@ -34,6 +36,8 @@ public interface Position {
 	int getLocationIndex();
 	
 	Date getDateTime();
+
+	Entry getEntry();
 
 	
 }
