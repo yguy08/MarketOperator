@@ -4,21 +4,18 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
-
 import asset.Asset;
 import asset.AssetFactory;
 import backtest.BackTest;
 import backtest.BackTestFactory;
 import entry.Entry;
-import javafx.collections.ObservableList;
 import market.Market;
 import position.Position;
+import utils.DateUtils;
 import vault.Vault;
 
 public class StockSpeculation implements Speculate {
@@ -32,7 +29,7 @@ public class StockSpeculation implements Speculate {
 	List<Position> positionList = new ArrayList<>();
 	List<Position> sortedPositionList = new ArrayList<>();
 	
-	BigDecimal maxUnits = new BigDecimal(4.00);
+	List<Entry> unitList = new ArrayList<>();
 	
 	public StockSpeculation(Market market) {
 		this.accountEquity = Speculate.STOCK_EQUITY;
@@ -69,7 +66,7 @@ public class StockSpeculation implements Speculate {
 		for(int i=0; i < vault.market.getAssets().size();i++){
 			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
 			backtest = backTestFactory.newBackTest(vault.market, asset, vault.speculate);
-			if(backtest.getLastPosition().isOpen()){
+			if(backtest.getLastPosition() != null && backtest.getLastPosition().isOpen()){
 				vault.resultsList.add(backtest.getLastEntry().toString());
 				vault.resultsList.add(backtest.getLastPosition().toString());
 			}
@@ -85,7 +82,7 @@ public class StockSpeculation implements Speculate {
 		for(int i=0; i < vault.market.getAssets().size();i++){
 			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
 			backtest = backTestFactory.newBackTest(vault.market, asset, vault.speculate);
-			if(backtest.getLastPosition().isOpen() == false){
+			if(backtest.getLastPosition() != null && backtest.getLastPosition().isOpen() == false){
 				vault.resultsList.add(backtest.getLastEntry().toString());
 				vault.resultsList.add(backtest.getLastPosition().toString());
 			}
@@ -101,32 +98,52 @@ public class StockSpeculation implements Speculate {
 		for(int i=0; i < vault.market.getAssets().size();i++){
 			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
 			backtest = backTestFactory.newBackTest(vault.market, asset, vault.speculate);
-			for(int x = 0; x < backtest.getEntryList().size();x++){
-				vault.speculate.setEntryList(backtest.getEntryList().get(x));
-				vault.speculate.setPositionList(backtest.getPositionList().get(x));
-			}			
+			if(backtest.getEntryList().size() > 0){
+				for(int x = 0; x < backtest.getEntryList().size();x++){
+					vault.speculate.setEntryList(backtest.getEntryList().get(x));
+					vault.speculate.setPositionList(backtest.getPositionList().get(x));
+				}
+			}
 		}
 		
 		//set sorted lists by date
 		vault.speculate.setSortedEntryList(vault.speculate.getEntryList());
 		vault.speculate.setSortedPositionList(vault.speculate.getPositionList());
 		
-		for(int i = 0; i < vault.speculate.getSortedEntryList().size();i++){
-			Date date = vault.speculate.getSortedEntryList().get(i).getDateTime();
-			while(vault.speculate.getSortedEntryList().get(i).getDateTime().equals(date)){
-				vault.resultsList.add(vault.speculate.getSortedEntryList().get(i).toString());
-				i++;
+		//get start date and number of days since
+		Date startDate = vault.speculate.getSortedEntryList().get(0).getDateTime();
+		int days = DateUtils.getNumberOfDaysSinceDate(startDate);
+		
+		vault.resultsList.add("***** START BACKTEST: " + DateUtils.dateToSimpleDateFormat(startDate));
+		
+		for(int z = 0; z < days; z++){
+			Date date = DateUtils.addDays(startDate, z);
+			vault.resultsList.add("DATE: " + DateUtils.dateToSimpleDateFormat(date));
+			for(int k = 0; k < vault.speculate.getSortedEntryList().size();k++){
+				Date entryDate = vault.speculate.getSortedEntryList().get(k).getDateTime();
+				if(entryDate.equals(date) && this.unitList.size() < MAX_UNITS){
+					vault.resultsList.add(vault.speculate.getSortedEntryList().get(k).toString());
+					vault.speculate.addUnit(vault.speculate.getSortedEntryList().get(k));
+				}
 			}
 			
-			for(int z = 0; z < vault.speculate.getSortedPositionList().size();z++){
-				if(vault.speculate.getSortedPositionList().get(z).getDateTime().equals(date)){
-					vault.resultsList.add(vault.speculate.getSortedPositionList().get(z).toString());
-					vault.speculate.setAccountEquity(vault.speculate.getSortedPositionList().get(z).getProfitLossAmount());
-					vault.speculate.setTotalReturnPercent();
-					vault.resultsList.add(vault.speculate.toString());
+			for(int t = 0; t < vault.speculate.getSortedPositionList().size();t++){
+				Date closeDate = vault.speculate.getSortedPositionList().get(t).getDateTime();
+				if(closeDate.equals(date)){
+					for(int q = 0; q < this.unitList.size(); q++){
+						if(vault.speculate.getSortedPositionList().get(t).getEntry().equals(this.unitList.get(q))){
+							vault.resultsList.add(vault.speculate.getSortedPositionList().get(t).toString());
+							vault.speculate.subtractUnit(vault.speculate.getSortedPositionList().get(t));
+							vault.speculate.setAccountEquity(vault.speculate.getSortedPositionList().get(t).getProfitLossAmount());
+							vault.speculate.setTotalReturnPercent();
+							vault.resultsList.add(vault.speculate.toString());
+						}
+					}
 				}
 			}
 		}
+		
+		vault.resultsList.add(" ***** END BACKTEST ***** ");
 	}
 	
 	@Override
@@ -184,34 +201,21 @@ public class StockSpeculation implements Speculate {
 	public List<Position> getSortedPositionList() {
 		return this.sortedPositionList;
 	}
-
-	@Override
-	public Market getMarket() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addUnit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void subtractUnit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int getUnit() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 	@Override
 	public String toString(){
-		return "[ACCOUNT] " + "Balance: " + this.accountEquity + " Total Return (%): " + this.getTotalReturnPercent();
+		return "[ACCOUNT] " + "Balance: $" + this.accountEquity.setScale(2, RoundingMode.HALF_DOWN) + " Total Return: " + this.getTotalReturnPercent() + "% " + " Units: " + this.unitList.size();
+	}
+
+	@Override
+	public void addUnit(Entry entry) {
+		this.unitList.add(entry);
+	}
+
+	@Override
+	public void subtractUnit(Position position) {
+		int e = this.unitList.indexOf(position.getEntry());
+		this.unitList.remove(e);
 	}
 
 	
