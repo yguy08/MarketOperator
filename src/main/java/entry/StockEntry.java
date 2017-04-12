@@ -16,6 +16,7 @@ import asset.Asset;
 import asset.StockChartData;
 import market.Market;
 import speculate.Speculate;
+import utils.DateUtils;
 
 public class StockEntry implements Entry {
 	
@@ -251,7 +252,7 @@ public class StockEntry implements Entry {
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);
-			return dateTime;
+			return DateUtils.localDateToUTCDate(dateTime);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
