@@ -16,6 +16,7 @@ import asset.StockChartData;
 import entry.Entry;
 import market.Market;
 import speculate.Speculate;
+import utils.DateUtils;
 
 public class StockPosition implements Position {
 	
@@ -32,8 +33,6 @@ public class StockPosition implements Position {
 	
 	BigDecimal profitLossPercent = new BigDecimal(0.00);
 	BigDecimal profitLossAmount = new BigDecimal(0.00);
-	
-	BigDecimal maxUnitSize;
 	
 	Boolean open;
 	
@@ -114,7 +113,6 @@ public class StockPosition implements Position {
 	
 	@Override
 	public String getDate() {
-		// TODO Auto-generated method stub
 		return this.Date;
 	}
 
@@ -145,12 +143,10 @@ public class StockPosition implements Position {
 	@Override
 	public void setLocationAsIndex() {
 		this.locationIndex = this.asset.getPriceList().indexOf(this.priceSubList.get(this.priceSubList.size() - 1));
-		
 	}
 
 	@Override
 	public int getLocationIndex() {
-		// TODO Auto-generated method stub
 		return this.locationIndex;
 	}
 	
@@ -182,20 +178,16 @@ public class StockPosition implements Position {
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);
-			return dateTime;
+			return DateUtils.localDateToUTCDate(dateTime);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return null;
-		
+		return null;		
 	}
 
 	@Override
 	public Entry getEntry() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.entry;
 	}
 
 }
