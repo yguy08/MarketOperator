@@ -21,6 +21,7 @@ import asset.StockChartData;
 import entry.Entry;
 import market.Market;
 import speculate.Speculate;
+import utils.DateUtils;
 
 public class DigitalPosition implements Position {
 	
@@ -32,12 +33,11 @@ public class DigitalPosition implements Position {
 	BigDecimal currentPrice;
 	BigDecimal maxPrice;
 	BigDecimal minPrice;
+	
 	int locationIndex;
 	
 	BigDecimal profitLossPercent = new BigDecimal(0.00);
 	BigDecimal profitLossAmount = new BigDecimal(0.00);
-	
-	BigDecimal maxUnitSize;
 	
 	Boolean open;
 	
@@ -55,11 +55,6 @@ public class DigitalPosition implements Position {
 		setMinPrice();
 		setLocationAsIndex();
 		setExit();
-	}
-	
-	@Override
-	public Entry getEntry(){
-		return this.entry;
 	}
 
 	@Override
@@ -118,17 +113,11 @@ public class DigitalPosition implements Position {
 
 	@Override
 	public void setDate() {
-		TimeZone timeZone = TimeZone.getTimeZone("UTC");
-		Calendar calendar = Calendar.getInstance(timeZone);
-		SimpleDateFormat simpleDateFormat = 
-		       new SimpleDateFormat("MMM dd yyyy", Locale.US);
-		simpleDateFormat.setTimeZone(timeZone);
-		this.Date = simpleDateFormat.format(this.priceSubList.get(this.priceSubList.size() - 1).getDate()).toString();		
+		this.Date = DateUtils.dateToSimpleDateFormat(this.priceSubList.get(this.priceSubList.size() - 1).getDate());
 	}
 	
 	@Override
 	public String getDate() {
-		// TODO Auto-generated method stub
 		return this.Date;
 	}
 
@@ -164,7 +153,6 @@ public class DigitalPosition implements Position {
 
 	@Override
 	public int getLocationIndex() {
-		// TODO Auto-generated method stub
 		return this.locationIndex;
 	}
 	
@@ -191,19 +179,23 @@ public class DigitalPosition implements Position {
 	}
 
 	@Override
-	public java.util.Date getDateTime() {
+	public Date getDateTime() {
 		String date = this.getDate();
-		DateFormat df = new SimpleDateFormat("MMM dd yyyy");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);
-			return dateTime;
+			return DateUtils.localDateToUTCDate(dateTime);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public Entry getEntry(){
+		return this.entry;
 	}
 
 }
