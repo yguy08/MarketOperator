@@ -20,5 +20,12 @@ public class Vault {
 		this.speculate = speculateFactory.startSpeculating(this.market);
 		this.resultsList = resultsList;
 	}
+	
+	public Vault(String marketName){
+		MarketFactory marketFactory = new MarketFactory();
+		this.market = marketFactory.createMarket(marketName);
+		SpeculateFactory speculateFactory = new SpeculateFactory();
+		this.speculate = speculateFactory.startSpeculating(this.market);
+	}
 
 }
