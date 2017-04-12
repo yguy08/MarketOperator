@@ -126,7 +126,7 @@ public class DigitalSpeculation implements Speculate {
 		
 		for(int i = 0; i < vault.speculate.getSortedEntryList().size();i++){
 			Date date = vault.speculate.getSortedEntryList().get(i).getDateTime();
-			while(vault.speculate.getSortedEntryList().get(i).getDateTime().equals(date)){
+			while(vault.speculate.getSortedEntryList().get(i).getDateTime().equals(date) && i < vault.speculate.getSortedEntryList().size() - 1){
 				vault.resultsList.add(vault.speculate.getSortedEntryList().get(i).toString());
 				i++;
 			}

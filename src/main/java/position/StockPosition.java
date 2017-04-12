@@ -192,4 +192,10 @@ public class StockPosition implements Position {
 		
 	}
 
+	@Override
+	public Entry getEntry() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

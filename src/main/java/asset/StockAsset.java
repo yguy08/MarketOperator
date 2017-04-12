@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import fileparser.FileParser;
+import utils.FileParser;
 import market.Market;
 
 public class StockAsset implements Asset {
