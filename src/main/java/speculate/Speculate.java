@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import entry.Entry;
-import market.Market;
 import position.Position;
 import vault.Vault;
 
@@ -25,6 +24,8 @@ public interface Speculate {
 	int ENTRY = 25;
 	int EXIT  = 10;
 	int MOVING_AVG = 20;
+	
+	int MAX_UNITS = 5;
 	
 	void setAccountEquity(BigDecimal tradeResult);
 	
@@ -56,12 +57,8 @@ public interface Speculate {
 	
 	List<Position> getSortedPositionList();
 	
-	int getUnit();
+	void addUnit(Entry entry);
 	
-	public Market getMarket();
-	
-	void addUnit();
-	
-	void subtractUnit();	
+	void subtractUnit(Position position);
 	
 }
