@@ -21,6 +21,7 @@ import asset.Asset;
 import asset.StockChartData;
 import market.Market;
 import speculate.Speculate;
+import utils.DateUtils;
 
 public class DigitalEntry implements Entry {
 	
@@ -78,12 +79,7 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setDate() {
-		TimeZone timeZone = TimeZone.getTimeZone("UTC");
-		Calendar calendar = Calendar.getInstance(timeZone);
-		SimpleDateFormat simpleDateFormat = 
-		       new SimpleDateFormat("MMM dd yyyy", Locale.US);
-		simpleDateFormat.setTimeZone(timeZone);
-		this.Date = simpleDateFormat.format(this.priceSubList.get(this.priceSubList.size() - 1).getDate()).toString();
+		this.Date = DateUtils.dateToSimpleDateFormat(this.priceSubList.get(this.priceSubList.size() - 1).getDate());
 	}
 
 	@Override
@@ -209,7 +205,6 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public BigDecimal getStop() {
-		// TODO Auto-generated method stub
 		return this.stop;
 	}
 	
@@ -258,13 +253,12 @@ public class DigitalEntry implements Entry {
 	@Override
 	public Date getDateTime() {
 		String date = this.getDate();
-		DateFormat df = new SimpleDateFormat("MMM dd yyyy");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);
-			return dateTime;
+			return DateUtils.localDateToUTCDate(dateTime);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
