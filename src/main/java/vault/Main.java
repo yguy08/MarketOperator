@@ -115,7 +115,6 @@ public class Main extends Application  {
     	try {
 			SaveToFile.writeToTextFile(Long.toString(date), results);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
     }
