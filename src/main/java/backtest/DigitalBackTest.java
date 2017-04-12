@@ -37,8 +37,8 @@ public class DigitalBackTest implements BackTest {
 		for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
 			this.asset.setPriceSubList(x - Speculate.ENTRY, x + 1);
 			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
-			//only longs for now...
-			if(entry.isEntry() && entry.getDirection().equals(Speculate.LONG)){
+			//only longs for now...if last p eq nul...
+			if(entry.isEntry()){
 				setEntryList(entry);
 				for(int y = this.entry.getLocationIndex();y<this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
 					this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
