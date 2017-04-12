@@ -70,7 +70,6 @@ public class StockAsset implements Asset {
 
 	@Override
 	public List<BigDecimal> getCloseList() {
-		// TODO Auto-generated method stub
 		return this.closeList;
 	}
 
