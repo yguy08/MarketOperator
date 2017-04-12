@@ -39,7 +39,7 @@ public class StockBackTest implements BackTest {
 			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
 			if(entry.isEntry()){
 				setEntryList(entry);
-				for(int y = this.entry.getLocationIndex();y<this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
+				for(int y = this.entry.getLocationIndex(); y < this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
 					this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
 					this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
 					if(position.isOpen() == false){
@@ -79,12 +79,20 @@ public class StockBackTest implements BackTest {
 
 	@Override
 	public Entry getLastEntry() {
-		return this.entryList.get(this.entryList.size()-1);
+		if(this.entryList.size() > 0){
+			return this.entryList.get(this.entryList.size() - 1);
+		}else{
+			return null;
+		}
 	}
 
 	@Override
 	public Position getLastPosition() {
-		return this.positionList.get(this.positionList.size()-1);
+		if(this.positionList.size() > 0){
+			return this.positionList.get(this.positionList.size() - 1);
+		}else{
+			return null;
+		}
 	}
 
 	@Override
