@@ -1,8 +1,9 @@
 package entry;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
+
+import speculate.Speculate;
 
 public interface Entry {
 	
@@ -42,7 +43,7 @@ public interface Entry {
 	
 	BigDecimal getStop();
 	
-	void setUnitSize();
+	void setUnitSize(Speculate speculate);
 	
 	BigDecimal getUnitSize();
 	
