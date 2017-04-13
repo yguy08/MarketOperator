@@ -29,7 +29,12 @@ public class DigitalMarket implements Market {
 	
 	@Override
 	public void setAssets() {
-		assets = exchange.getExchangeSymbols();
+		List<CurrencyPair> btcOnly = exchange.getExchangeSymbols();
+		for(CurrencyPair pairs : btcOnly){
+			if(pairs.counter.equals(Currency.BTC)){
+				this.assets.add(pairs);
+			}
+		}
 	}
 	
 	@Override
