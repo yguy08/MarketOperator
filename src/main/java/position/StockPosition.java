@@ -57,15 +57,15 @@ public class StockPosition implements Position {
 		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Speculate.LONG){
 			this.open = false;
 			setProfitLossPercent();
-			setProfitLossAmount();
+			setProfitLossAmount(this.entry);
 		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Speculate.SHORT){
 			this.open = false;
 			setProfitLossPercent();
-			setProfitLossAmount();
+			setProfitLossAmount(this.entry);
 		}else{
 			this.open = true;
 			setProfitLossPercent();
-			setProfitLossAmount();
+			setProfitLossAmount(this.entry);
 		}
 	}
 
@@ -92,8 +92,8 @@ public class StockPosition implements Position {
 	}
 	
 	@Override
-	public void setProfitLossAmount() {
-		this.profitLossAmount = this.entry.getOrderTotal().multiply(this.profitLossPercent, MathContext.DECIMAL32);
+	public void setProfitLossAmount(Entry entry) {
+		this.profitLossAmount = entry.getOrderTotal().multiply(this.profitLossPercent, MathContext.DECIMAL32);
 	}
 
 	@Override
