@@ -25,7 +25,7 @@ public interface Speculate {
 	int EXIT  = 10;
 	int MOVING_AVG = 20;
 	
-	int MAX_UNITS = 15;
+	int MAX_UNITS = 4;
 	
 	void setAccountEquity(BigDecimal tradeResult);
 	
