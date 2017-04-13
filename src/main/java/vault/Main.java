@@ -20,6 +20,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import market.Market;
+import speculate.Speculate;
+import speculate.SpeculateFactory;
 import utils.SaveToFile;
 
 public class Main extends Application  {
@@ -33,7 +35,7 @@ public class Main extends Application  {
 	Text speculateTitle;
 	HBox chooseMarket, speculateMainHbox;
 	Scene chooseMarketScene, speculateScene;
-	Button btnStock, btnDigital, viewOpen, viewClose, backTest, clearBtn, saveBtn;
+	Button btnStock, btnDigital, viewOpen, viewClose, backTest, newEntries, clearBtn, saveBtn;
 	Stage chooseMarketStage, speculateStage;
 	
 	
@@ -78,6 +80,7 @@ public class Main extends Application  {
 	     		viewOpen.setVisible(true);
 	     		viewClose.setVisible(true);
 	     		backTest.setVisible(true);
+	     		newEntries.setVisible(true);
 	     		clearBtn.setVisible(true);
 	     		saveBtn.setVisible(true);
 	     	}
@@ -88,17 +91,30 @@ public class Main extends Application  {
     
     public void viewOpenClicked(ActionEvent e){
     	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	this.vault.speculate.getAllOpenPositions(this.vault);
+    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
+    	speculate.getAllOpenPositions(this.vault, speculate);
     }
     
     public void viewCloseClicked(ActionEvent e){
     	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	this.vault.speculate.getPositionsToClose(this.vault);
+    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
+    	speculate.getPositionsToClose(this.vault, speculate);
     }
     
     public void backTestClicked(ActionEvent e){
     	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	this.vault.speculate.runBackTest(this.vault);
+    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
+    	speculate.runBackTest(this.vault, speculate);
+    }
+    
+    public void newEntriesClicked(ActionEvent e){
+    	this.vault.resultsList.removeAll(this.vault.resultsList);
+    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
+    	speculate.getNewEntries(this.vault, speculate);
     }
     
     public void clearBtnClicked(ActionEvent e){
@@ -155,10 +171,15 @@ public class Main extends Application  {
 		viewClose.setVisible(false);
 		viewClose.setOnAction(e-> viewCloseClicked(e));
 		
-		backTest = new Button("Back Test");
+		backTest = new Button("Backtest");
 		backTest.setPrefSize(200,50);
 		backTest.setVisible(false);
 		backTest.setOnAction(e-> backTestClicked(e));
+		
+		newEntries = new Button("New Entries");
+		newEntries.setPrefSize(200,50);
+		newEntries.setVisible(false);
+		newEntries.setOnAction(e-> newEntriesClicked(e));
 		
 		clearBtn = new Button("Clear");
 		clearBtn.setPrefSize(200, 50);
@@ -171,7 +192,7 @@ public class Main extends Application  {
 		saveBtn.setOnAction(e-> saveBtnClicked(e));
 		
 		//add btns to Hbox
-		speculateMainHbox.getChildren().addAll(viewOpen,viewClose,backTest,clearBtn,saveBtn);
+		speculateMainHbox.getChildren().addAll(viewOpen,viewClose,backTest,newEntries, clearBtn,saveBtn);
 		
 		//add hbox to border pane
 		speculatePane.setBottom(speculateMainHbox);
