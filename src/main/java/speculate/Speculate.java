@@ -25,7 +25,7 @@ public interface Speculate {
 	int EXIT  = 10;
 	int MOVING_AVG = 20;
 	
-	int MAX_UNITS = 6;
+	int MAX_UNITS = 15;
 	
 	void setAccountEquity(BigDecimal tradeResult);
 	
@@ -35,30 +35,12 @@ public interface Speculate {
 	
 	BigDecimal getTotalReturnPercent();
 	
-	void getAllOpenPositions(Vault vault);
+	void getAllOpenPositions(Vault vault, Speculate speculate);
 	
-	void getPositionsToClose(Vault vault);
+	void getNewEntries(Vault vault, Speculate speculate);
 	
-	void runBackTest(Vault vault);
-	
-	void setEntryList(Entry entry);
-	
-	List<Entry> getEntryList();
-	
-	void setSortedEntryList(List<Entry> entryList);
-	
-	List<Entry> getSortedEntryList();
-	
-	void setPositionList(Position position);
-	
-	List<Position> getPositionList();
-	
-	void setSortedPositionList(List<Position> positionList);
-	
-	List<Position> getSortedPositionList();
-	
-	void addUnit(Entry entry);
-	
-	void subtractUnit(Position position);
+	void getPositionsToClose(Vault vault, Speculate speculate);
+
+	void runBackTest(Vault vault, Speculate speculate);
 	
 }
