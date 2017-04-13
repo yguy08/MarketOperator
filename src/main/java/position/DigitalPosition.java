@@ -62,15 +62,15 @@ public class DigitalPosition implements Position {
 		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Speculate.LONG){
 			this.open = false;
 			setProfitLossPercent();
-			setProfitLossAmount();
+			setProfitLossAmount(this.entry);
 		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Speculate.SHORT){
 			this.open = false;
 			setProfitLossPercent();
-			setProfitLossAmount();
+			setProfitLossAmount(this.entry);
 		}else{
 			this.open = true;
 			setProfitLossPercent();
-			setProfitLossAmount();
+			setProfitLossAmount(this.entry);
 		}
 	}
 
@@ -97,8 +97,8 @@ public class DigitalPosition implements Position {
 	}
 	
 	@Override
-	public void setProfitLossAmount() {
-		this.profitLossAmount = this.entry.getOrderTotal().multiply(this.profitLossPercent, MathContext.DECIMAL32);
+	public void setProfitLossAmount(Entry entry) {
+		this.profitLossAmount = entry.getOrderTotal().multiply(this.profitLossPercent, MathContext.DECIMAL32);
 	}
 
 	@Override
@@ -185,7 +185,7 @@ public class DigitalPosition implements Position {
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);
-			return DateUtils.localDateToUTCDate(dateTime);
+			return DateUtils.dateToUTCMidnight(dateTime);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
