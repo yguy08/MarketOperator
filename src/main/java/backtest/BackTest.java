@@ -10,6 +10,8 @@ public interface BackTest {
 	
 	void runBackTest();
 	
+	void protoBackTest();
+	
 	void setEntryList(Entry entry);
 	
 	List<Entry> getEntryList();
@@ -22,6 +24,18 @@ public interface BackTest {
 	
 	Position getLastPosition();
 	
-	Asset getAsset();
+	void setSortedEntryList(List<Entry> entryList);
+	
+	List<Entry> getSortedEntryList();
+	
+	void setSortedPositionList(List<Position> positionList);
+	
+	List<Position> getSortedPositionList();
+	
+	void addUnit(Entry entry);
+	
+	void subtractUnit(Position position);
+	
+	List<String> getResultsList();
 	
 }
