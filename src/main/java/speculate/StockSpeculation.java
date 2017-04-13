@@ -58,30 +58,47 @@ public class StockSpeculation implements Speculate {
 		return this.totalReturnPercent;
 	}
 	
-	public void getAllOpenPositions(Vault vault) {
+	public void getAllOpenPositions(Vault vault, Speculate speculate) {
 		AssetFactory assetFactory = new AssetFactory();
 		BackTestFactory backTestFactory = new BackTestFactory();
 		Asset asset;
 		BackTest backtest;
 		for(int i=0; i < vault.market.getAssets().size();i++){
 			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
-			backtest = backTestFactory.newBackTest(vault.market, asset, vault.speculate);
+			backtest = backTestFactory.newBackTest(vault.market, asset, speculate);
+			backtest.runBackTest();
 			if(backtest.getLastPosition() != null && backtest.getLastPosition().isOpen()){
 				vault.resultsList.add(backtest.getLastEntry().toString());
 				vault.resultsList.add(backtest.getLastPosition().toString());
 			}
 		}
 	}
+	
+	@Override
+	public void getNewEntries(Vault vault, Speculate speculate) {
+		BackTestFactory backTestFactory = new BackTestFactory(); 
+		BackTest backtest = backTestFactory.protoBackTest(vault.market, speculate);
+		backtest.protoBackTest();
+		Date utcMidnight = DateUtils.getCurrentDateToUTCDateMidnight();
+		for(int i = backtest.getSortedEntryList().size() - 1; i > 0; i--){
+			if(backtest.getSortedEntryList().get(i).getDateTime().equals(utcMidnight)){
+				vault.resultsList.add(backtest.getLastEntry().toString());
+			}else{
+				break;
+			}
+		}
+	}
 
 	@Override
-	public void getPositionsToClose(Vault vault) {
+	public void getPositionsToClose(Vault vault, Speculate speculate) {
 		AssetFactory assetFactory = new AssetFactory();
 		BackTestFactory backTestFactory = new BackTestFactory();
 		Asset asset; 
 		BackTest backtest;
 		for(int i=0; i < vault.market.getAssets().size();i++){
 			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
-			backtest = backTestFactory.newBackTest(vault.market, asset, vault.speculate);
+			backtest = backTestFactory.newBackTest(vault.market, asset, speculate);
+			backtest.runBackTest();
 			if(backtest.getLastPosition() != null && backtest.getLastPosition().isOpen() == false){
 				vault.resultsList.add(backtest.getLastEntry().toString());
 				vault.resultsList.add(backtest.getLastPosition().toString());
@@ -90,134 +107,23 @@ public class StockSpeculation implements Speculate {
 	}
 	
 	@Override
-	public void runBackTest(Vault vault) {
-		AssetFactory assetFactory = new AssetFactory();
-		BackTestFactory backTestFactory = new BackTestFactory();
-		Asset asset; 
-		BackTest backtest;
-		for(int i=0; i < vault.market.getAssets().size();i++){
-			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
-			backtest = backTestFactory.newBackTest(vault.market, asset, vault.speculate);
-			if(backtest.getEntryList().size() > 0){
-				for(int x = 0; x < backtest.getEntryList().size();x++){
-					vault.speculate.setEntryList(backtest.getEntryList().get(x));
-					vault.speculate.setPositionList(backtest.getPositionList().get(x));
-				}
-			}
+	public void runBackTest(Vault vault, Speculate speculate) {
+		BackTestFactory backTestFactory = new BackTestFactory(); 
+		BackTest backtest = backTestFactory.protoBackTest(vault.market, speculate);
+		backtest.protoBackTest();
+		for(int i = 0; i < backtest.getResultsList().size();i++){
+			vault.resultsList.add(backtest.getResultsList().get(i));
 		}
-		
-		//set sorted lists by date
-		vault.speculate.setSortedEntryList(vault.speculate.getEntryList());
-		vault.speculate.setSortedPositionList(vault.speculate.getPositionList());
-		
-		//get start date and number of days since
-		Date startDate = vault.speculate.getSortedEntryList().get(0).getDateTime();
-		int days = DateUtils.getNumberOfDaysSinceDate(startDate);
-		
-		vault.resultsList.add("***** START BACKTEST: " + DateUtils.dateToSimpleDateFormat(startDate));
-		
-		for(int z = 0; z < days; z++){
-			Date date = DateUtils.addDays(startDate, z);
-			vault.resultsList.add("DATE: " + DateUtils.dateToSimpleDateFormat(date));
-			for(int k = 0; k < vault.speculate.getSortedEntryList().size();k++){
-				Date entryDate = vault.speculate.getSortedEntryList().get(k).getDateTime();
-				if(entryDate.equals(date) && this.unitList.size() < MAX_UNITS){
-					vault.resultsList.add(vault.speculate.getSortedEntryList().get(k).toString());
-					vault.speculate.addUnit(vault.speculate.getSortedEntryList().get(k));
-				}
-			}
-			
-			for(int t = 0; t < vault.speculate.getSortedPositionList().size();t++){
-				Date closeDate = vault.speculate.getSortedPositionList().get(t).getDateTime();
-				if(closeDate.equals(date)){
-					for(int q = 0; q < this.unitList.size(); q++){
-						if(vault.speculate.getSortedPositionList().get(t).getEntry().equals(this.unitList.get(q))){
-							vault.resultsList.add(vault.speculate.getSortedPositionList().get(t).toString());
-							vault.speculate.subtractUnit(vault.speculate.getSortedPositionList().get(t));
-							vault.speculate.setAccountEquity(vault.speculate.getSortedPositionList().get(t).getProfitLossAmount());
-							vault.speculate.setTotalReturnPercent();
-							vault.resultsList.add(vault.speculate.toString());
-						}
-					}
-				}
-			}
-		}
-		
-		vault.resultsList.add(" ***** END BACKTEST ***** ");
-	}
-	
-	@Override
-	public void setEntryList(Entry entry) {
-		this.entryList.add(entry);		
-	}
-
-	@Override
-	public List<Entry> getEntryList() {
-		return this.entryList;
-	}
-
-	@Override
-	public void setSortedEntryList(List<Entry> entryList) {
-		Collections.sort(entryList, new Comparator<Entry>() {
-		    public int compare(Entry o1, Entry o2) {
-		        return o1.getDateTime().compareTo(o2.getDateTime());
-		    }
-		});
-		
-		this.sortedEntryList = entryList;
-	}
-
-	@Override
-	public List<Entry> getSortedEntryList() {
-		return this.sortedEntryList;
-	}
-	
-
-
-	@Override
-	public void setPositionList(Position position) {
-		this.positionList.add(position);
-		
-	}
-
-	@Override
-	public List<Position> getPositionList() {
-		return this.positionList;
-	}
-
-	@Override
-	public void setSortedPositionList(List<Position> positionList) {
-		Collections.sort(positionList, new Comparator<Position>() {
-		    public int compare(Position o1, Position o2) {
-		        return o1.getDateTime().compareTo(o2.getDateTime());
-		    }
-		});
-		
-		this.sortedPositionList = positionList;
-		
-	}
-
-	@Override
-	public List<Position> getSortedPositionList() {
-		return this.sortedPositionList;
 	}
 	
 	@Override
 	public String toString(){
-		return "[ACCOUNT] " + "Balance: $" + this.accountEquity.setScale(2, RoundingMode.HALF_DOWN) + " Total Return: " + this.getTotalReturnPercent() + "% " + " Units: " + this.unitList.size();
+		StringBuilder sb = new StringBuilder();
+		sb.append("[ACCOUNT] ");
+		sb.append("Balance: $" + this.accountEquity.setScale(2, RoundingMode.HALF_DOWN));
+		sb.append(" Total Return: " + this.getTotalReturnPercent() + "% ");
+		sb.append(" Units: " + this.unitList.size());
+		return sb.toString();
 	}
-
-	@Override
-	public void addUnit(Entry entry) {
-		this.unitList.add(entry);
-	}
-
-	@Override
-	public void subtractUnit(Position position) {
-		int e = this.unitList.indexOf(position.getEntry());
-		this.unitList.remove(e);
-	}
-
-	
 
 }
