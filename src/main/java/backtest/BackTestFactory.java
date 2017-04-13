@@ -20,5 +20,20 @@ public class BackTestFactory {
 		
 		return null;
 	}
+	
+	public BackTest protoBackTest(Market market, Speculate speculator){
+		
+		if(market == null){
+		return null;
+		}
+		
+		if(market.getMarketName() == Market.STOCK_MARKET){
+			return new StockBackTest(market, speculator);
+		}else if(market.getMarketName() == Market.DIGITAL_MARKET){
+			return new DigitalBackTest(market, speculator);
+		}
+		
+		return null;
+	}
 
 }
