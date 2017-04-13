@@ -15,7 +15,7 @@ public interface Position {
 	
 	BigDecimal getProfitLossPercent();
 	
-	void setProfitLossAmount();
+	void setProfitLossAmount(Entry entry);
 	
 	BigDecimal getProfitLossAmount();
 	
