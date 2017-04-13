@@ -59,7 +59,7 @@ public class DigitalEntry implements Entry {
 		if(this.isEntry){
 			setTrueRange();
 			setStop();
-			setUnitSize();
+			setUnitSize(speculator);
 			setOrderTotal();
 		}
 	}
@@ -209,9 +209,9 @@ public class DigitalEntry implements Entry {
 	}
 	
 	@Override
-	public void setUnitSize() {
-		BigDecimal max = this.speculator.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = this.speculator.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
+	public void setUnitSize(Speculate speculate) {
+		BigDecimal max = speculate.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal size = speculate.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
 				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		if(size.compareTo(max) > 0){
 			this.unitSize = max;
@@ -240,7 +240,7 @@ public class DigitalEntry implements Entry {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ENTRY] ");
 		sb.append(" [$" + this.asset.getAsset() + "]");
-		sb.append(" Date: " + this.Date);
+		sb.append(" Date: " + this.getDateTime());
 		sb.append(" Price:" + this.currentPrice);
 		sb.append(" Direction:" + this.direction);
 		sb.append(" ATR: " + this.averageTrueRange);
@@ -257,7 +257,7 @@ public class DigitalEntry implements Entry {
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);
-			return DateUtils.localDateToUTCDate(dateTime);
+			return DateUtils.dateToUTCMidnight(dateTime);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
