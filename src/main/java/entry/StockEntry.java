@@ -54,7 +54,7 @@ public class StockEntry implements Entry {
 		if(this.isEntry){
 			setTrueRange();
 			setStop();
-			setUnitSize();
+			setUnitSize(speculator);
 			setOrderTotal();
 		}
 	}
@@ -204,9 +204,9 @@ public class StockEntry implements Entry {
 	}
 	
 	@Override
-	public void setUnitSize() {
-		BigDecimal max = this.speculator.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = this.speculator.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
+	public void setUnitSize(Speculate speculate) {
+		BigDecimal max = speculate.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal size = speculate.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
 				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		if(size.compareTo(max) > 0){
 			this.unitSize = max;
@@ -254,7 +254,6 @@ public class StockEntry implements Entry {
 			dateTime = df.parse(date);
 			return DateUtils.localDateToUTCDate(dateTime);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
