@@ -6,36 +6,34 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-import market.Market;
-import vault.Vault;
-
 public class DateUtils {
 
 	public static void main(String[] args) {
-		
-		ListStockEntryDates();
 
-	}
-	
-	static void ListStockEntryDates(){
-		Vault vault = new Vault(Market.STOCK_MARKET);
-		vault.speculate.runBackTest(vault);
-		System.out.println("START DATE: " + dateToSimpleDateFormat(vault.speculate.getSortedEntryList().get(0).getDateTime()));
-		Date startDate = localDateToUTCDate(vault.speculate.getSortedEntryList().get(0).getDateTime());
-		int daysSince = DateUtils.getNumberOfDaysSinceDate(vault.speculate.getSortedEntryList().get(0).getDateTime());
-		for(int i = 0; i < daysSince; i++) {
-			Date date = addDays(startDate, i);
-			System.out.println(dateToSimpleDateFormat(date));
-		}
 	}
 	
 	public static Date addDays(Date date, int num){
 		Calendar cal = new GregorianCalendar(TimeZone.getDefault());
-		cal.setTime(localDateToUTCDate(date));
+		cal.setTime(date);
 		setTimeToMidnight(cal);
 		cal.add(Calendar.DATE, num);
 		Date addDay = cal.getTime();
 		return localDateToUTCDate(addDay);
+	}
+	
+	public static Date dateToUTCMidnight(Date date){
+		Calendar cal = new GregorianCalendar(TimeZone.getDefault());
+		cal.setTime(date);
+		setTimeToMidnight(cal);
+		Date d = cal.getTime();
+		return localDateToUTCDate(d);
+	}
+	
+	public static Date getCurrentDateToUTCDateMidnight(){
+		Date d = new Date();
+		Date utcDate = localDateToUTCDate(d);
+		Date utcMidnight = dateToUTCMidnight(utcDate);
+		return utcMidnight;
 	}
 	
 	public static String dateToSimpleDateFormat(Date date){
