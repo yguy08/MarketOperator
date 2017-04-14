@@ -5,6 +5,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import market.Market;
+
 public class FileParser {
 	
 	public static List<String> readTextFileByLines(String fileName) throws IOException{
@@ -39,6 +41,11 @@ public class FileParser {
 		return lines;
 	}
 	
+	public static List<String> readMarketList(String marketName) throws IOException{
+		List<String> lines = Files.readAllLines(Paths.get(marketName + "/MarketList.csv"));
+		return lines;
+	}
+	
 	public static List<String> readForexList() throws IOException{
 		List<String> lines = Files.readAllLines(Paths.get("ForexFiles/forex.csv"));
 		return lines;
@@ -54,24 +61,32 @@ public class FileParser {
 			}
 			return urls;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 		
 	}
 	
-	public static List<String> generateForexYahooURL() {
+	public static byte[] readPoloniexFile(String assetName){
+		try{
+			byte[] poloJSON = Files.readAllBytes(Paths.get(Market.POLONIEX_OFFLINE + "/" + assetName + ".txt"));
+			return poloJSON;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static List<String> generatePoloURL() {
 		try {
-			List<String> forex = readForexList();
+			List<String> poloList = readMarketList(Market.POLONIEX_OFFLINE);
 			List<String> urls = new ArrayList<>();
-			for(int i = 0; i < forex.size();i++){
-				String url = "http://chart.finance.yahoo.com/table.csv?s=" +forex.get(i)+"&a=3&b=5&c=2005&d=3&e=5&f=2017&g=d&ignore=.csv";
-				urls.add(url);
+			for(int i = 0; i < poloList.size();i++){
+				String url = "https://poloniex.com/public?command=returnChartData&currencyPair=BTC_"+poloList.get(i)+"&start=1389716471&end=9999999999&period=86400";
+				urls.add("start " + "\"polo\" " + "\"" + url + "\"");
 			}
 			return urls;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

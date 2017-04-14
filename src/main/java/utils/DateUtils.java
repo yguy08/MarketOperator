@@ -37,9 +37,10 @@ public class DateUtils {
 	}
 	
 	public static String dateToSimpleDateFormat(Date date){
+		Date utcDate = localDateToUTCDate(date);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		formatter.setLenient(false);
-		return formatter.format(date);
+		return formatter.format(utcDate);
 	}
 	
 	public static Date getCurrentUTCDate(){
@@ -63,7 +64,7 @@ public class DateUtils {
 		Long days = Math.abs((currentDate.getTime() - sinceDate.getTime())) / 86400000;
 		String toInt = days.toString();
 		return Integer.parseInt(toInt);
-	}
+	}	
 	
 	public static void setTimeToMidnight(Calendar date){
 		date.set(Calendar.HOUR_OF_DAY, 0);
@@ -71,5 +72,11 @@ public class DateUtils {
 		date.set(Calendar.SECOND, 0);
 		date.set(Calendar.MILLISECOND, 0);
 	}
-
+	
+	 public static Date UnixTimestampToDate(int unixTimeStamp) {
+		 Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+		 calendar.setTimeInMillis(Long.parseLong(unixTimeStamp + "000"));
+		 return calendar.getTime();
+	
+	 }
 }
