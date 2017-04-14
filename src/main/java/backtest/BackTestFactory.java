@@ -16,6 +16,8 @@ public class BackTestFactory {
 			return new StockBackTest(market, asset, speculator);
 		}else if(market.getMarketName() == Market.DIGITAL_MARKET){
 			return new DigitalBackTest(market, asset, speculator);
+		}else if(market.getMarketName() == Market.POLONIEX_OFFLINE){
+			return new DigitalBackTest(market, speculator);
 		}
 		
 		return null;
@@ -30,6 +32,8 @@ public class BackTestFactory {
 		if(market.getMarketName() == Market.STOCK_MARKET){
 			return new StockBackTest(market, speculator);
 		}else if(market.getMarketName() == Market.DIGITAL_MARKET){
+			return new DigitalBackTest(market, speculator);
+		}else if(market.getMarketName() == Market.POLONIEX_OFFLINE){
 			return new DigitalBackTest(market, speculator);
 		}
 		

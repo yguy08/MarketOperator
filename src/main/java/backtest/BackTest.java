@@ -1,8 +1,8 @@
 package backtest;
 
+import java.util.Date;
 import java.util.List;
 
-import asset.Asset;
 import entry.Entry;
 import position.Position;
 
@@ -37,5 +37,13 @@ public interface BackTest {
 	void subtractUnit(Position position);
 	
 	List<String> getResultsList();
+	
+	String getStartBackTestToString();
+	
+	void setStartDate(Date date);
+	
+	String getStartDate();
+	
+	void dataSetUp();
 	
 }

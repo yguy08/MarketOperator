@@ -1,5 +1,7 @@
 package backtest;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -38,6 +40,8 @@ public class DigitalBackTest implements BackTest {
 	
 	List<String> resultsList = new ArrayList<>();
 	
+	String startDate;
+	
 	public DigitalBackTest(Market market, Asset asset, Speculate speculator){
 		this.market = market;
 		this.asset = asset;
@@ -73,38 +77,13 @@ public class DigitalBackTest implements BackTest {
 	
 	@Override
 	public void protoBackTest() {
-	AssetFactory assetFactory = new AssetFactory();
-	for(int f = 0; f < this.market.getAssets().size(); f++){
-		this.asset = assetFactory.createAsset(this.market, this.market.getAssets().get(f).toString());
-		for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
-			this.asset.setPriceSubList(x - Speculate.ENTRY, x + 1);
-			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
-			if(entry.isEntry() && entry.getDirection() == Speculate.LONG){
-				setEntryList(entry);
-				for(int y = this.entry.getLocationIndex(); y < this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
-					this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
-					this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
-					if(position.isOpen() == false){
-						setPositionList(position);
-						break;
-					//for if a position is still open
-					}else if(position.isOpen() && x == this.asset.getPriceList().size() - 1){
-						setPositionList(position);
-						break;
-					}
-				}
-			}
-		}
-	}
-		
-		setSortedEntryList(this.entryList);
-		setSortedPositionList(this.positionList);
 		
 		//get start date and number of days since
 		Date startDate = this.getSortedEntryList().get(0).getDateTime();
+		this.setStartDate(startDate);
 		int days = DateUtils.getNumberOfDaysSinceDate(startDate);
 		
-		this.resultsList.add("***** START BACKTEST: " + DateUtils.dateToSimpleDateFormat(startDate));
+		this.resultsList.add(this.getStartBackTestToString());
 		
 		for(int z = 0; z <= days; z++){
 			Date date = DateUtils.addDays(startDate, z);
@@ -122,6 +101,7 @@ public class DigitalBackTest implements BackTest {
 			
 			for(int t = 0; t < this.getSortedPositionList().size();t++){
 				Date closeDate = this.getSortedPositionList().get(t).getDateTime();
+				int numDays = DateUtils.getNumberOfDaysSinceDate(this.getSortedPositionList().get(t).getDateTime());
 				if(closeDate.equals(date)){
 					for(int q = 0; q < this.unitList.size(); q++){
 						if(this.getSortedPositionList().get(t).getEntry().equals(this.unitList.get(q))){
@@ -226,6 +206,60 @@ public class DigitalBackTest implements BackTest {
 	@Override
 	public List<String> getResultsList() {
 		return this.resultsList;
+	}
+
+	@Override
+	public String getStartBackTestToString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("***** START BACKTEST: ");
+		sb.append(" Date: " + this.getStartDate());
+		sb.append(" Balance: " + Speculate.DIGITAL_EQUITY);
+		sb.append(" Entry: " + Speculate.ENTRY);
+		sb.append(" Exit: " + Speculate.EXIT);
+		sb.append(" Units: " + Speculate.MAX_UNITS);
+		sb.append(" Risk: " + Speculate.RISK.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(1) + "%");
+		sb.append(" Stop: " + Speculate.STOP);
+		return sb.toString();
+	}
+
+	@Override
+	public void setStartDate(Date date) {
+		this.startDate = DateUtils.dateToSimpleDateFormat(date);
+	}
+
+	@Override
+	public String getStartDate() {
+		return this.startDate;
+	}
+
+	@Override
+	public void dataSetUp() {
+		AssetFactory assetFactory = new AssetFactory();
+		for(int f = 0; f < this.market.getAssets().size(); f++){
+			this.asset = assetFactory.createAsset(this.market, this.market.getAssets().get(f).toString());
+			for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
+				this.asset.setPriceSubList(x - Speculate.ENTRY, x + 1);
+				entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
+				if(entry.isEntry() && entry.getDirection() == Speculate.LONG){
+					setEntryList(entry);
+					for(int y = this.entry.getLocationIndex(); y < this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
+						this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
+						this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
+						if(position.isOpen() == false){
+							setPositionList(position);
+							break;
+						//for if a position is still open
+						}else if(position.isOpen() && x == this.asset.getPriceList().size() - 1){
+							setPositionList(position);
+							break;
+						}
+					}
+				}
+			}
+		}
+			
+			setSortedEntryList(this.entryList);
+			setSortedPositionList(this.positionList);
 	}
 
 }

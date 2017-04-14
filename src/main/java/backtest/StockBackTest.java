@@ -236,4 +236,22 @@ public class StockBackTest implements BackTest {
 		return this.resultsList;
 	}
 
+	@Override
+	public String getStartBackTestToString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setStartDate(Date date) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getStartDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
