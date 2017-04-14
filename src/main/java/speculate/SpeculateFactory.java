@@ -12,6 +12,8 @@ public class SpeculateFactory {
 			return new StockSpeculation(market);
 		}else if(market.getMarketName().equalsIgnoreCase(Market.DIGITAL_MARKET)){
 			return new DigitalSpeculation(market);
+		}else if(market.getMarketName().equalsIgnoreCase(Market.POLONIEX_OFFLINE)){
+			return new DigitalSpeculation(market);
 		}
 		
 		return null;

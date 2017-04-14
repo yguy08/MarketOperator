@@ -39,4 +39,14 @@ public interface Speculate {
 
 	void runBackTest(Vault vault, Speculate speculate);
 	
+	int getEntryDays();
+	
+	int getExitDays();
+	
+	int getMaxUnits();
+	
+	BigDecimal getRisk();
+	
+	BigDecimal getStop();
+	
 }

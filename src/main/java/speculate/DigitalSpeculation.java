@@ -57,30 +57,33 @@ public class DigitalSpeculation implements Speculate {
 	}
 	
 	public void getAllOpenPositions(Vault vault, Speculate speculate) {
-		AssetFactory assetFactory = new AssetFactory();
-		BackTestFactory backTestFactory = new BackTestFactory();
-		Asset asset;
-		BackTest backtest;
-		for(int i=0; i < vault.market.getAssets().size();i++){
-			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
-			backtest = backTestFactory.newBackTest(vault.market, asset, speculate);
-			backtest.runBackTest();
-			if(backtest.getLastPosition() != null && backtest.getLastPosition().isOpen()){
-				vault.resultsList.add(backtest.getLastEntry().toString());
-				vault.resultsList.add(backtest.getLastPosition().toString());
+		for(int i = 0; i < vault.backtest.getPositionList().size();i++){
+			if(vault.backtest.getPositionList().get(i).isOpen()){
+				vault.resultsList.add(vault.backtest.getPositionList().get(i).toString());
+			}else{
+				
 			}
 		}
 	}
 	
 	@Override
 	public void getNewEntries(Vault vault, Speculate speculate) {
-		BackTestFactory backTestFactory = new BackTestFactory(); 
-		BackTest backtest = backTestFactory.protoBackTest(vault.market, speculate);
-		backtest.protoBackTest();
-		Date utcMidnight = DateUtils.getCurrentDateToUTCDateMidnight();
-		for(int i = backtest.getSortedEntryList().size() - 1; i > 0; i--){
-			if(backtest.getSortedEntryList().get(i).getDateTime().equals(utcMidnight)){
-				vault.resultsList.add(backtest.getLastEntry().toString());
+		for(int i = 0; i < vault.backtest.getEntryList().size(); i++){
+			int days = DateUtils.getNumberOfDaysSinceDate(vault.backtest.getEntryList().get(i).getDateTime());
+			if(days <= 7){
+				vault.resultsList.add(vault.backtest.getEntryList().get(i).toString());
+			}
+		}
+	}
+	
+	@Override
+	public void getPositionsToClose(Vault vault, Speculate speculate) {
+		for(int i = vault.backtest.getSortedPositionList().size() - 1; i > 0; i--){
+			int days = DateUtils.getNumberOfDaysSinceDate(vault.backtest.getSortedPositionList().get(i).getDateTime());
+			if(days <= 7){
+				if(vault.backtest.getSortedPositionList().get(i).isOpen() == false){
+					vault.resultsList.add(vault.backtest.getSortedPositionList().get(i).toString());
+				}
 			}else{
 				break;
 			}
@@ -88,26 +91,10 @@ public class DigitalSpeculation implements Speculate {
 	}
 	
 	@Override
-	public void getPositionsToClose(Vault vault, Speculate speculate) {
-		AssetFactory assetFactory = new AssetFactory();
-		BackTestFactory backTestFactory = new BackTestFactory();
-		Asset asset; 
-		BackTest backtest;
-		for(int i=0; i < vault.market.getAssets().size();i++){
-			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
-			backtest = backTestFactory.newBackTest(vault.market, asset, speculate);
-			backtest.runBackTest();
-			if(backtest.getLastPosition() != null && backtest.getLastPosition().isOpen() == false){
-				vault.resultsList.add(backtest.getLastEntry().toString());
-				vault.resultsList.add(backtest.getLastPosition().toString());
-			}
-		}
-	}
-	
-	@Override
 	public void runBackTest(Vault vault, Speculate speculate) {
-		BackTestFactory backTestFactory = new BackTestFactory(); 
-		BackTest backtest = backTestFactory.protoBackTest(vault.market, speculate);
+		BackTestFactory backTestFactory = new BackTestFactory();
+		BackTest backtest = backTestFactory.protoBackTest(vault.market, vault.speculate);
+		backtest.dataSetUp();
 		backtest.protoBackTest();
 		for(int i = 0; i < backtest.getResultsList().size();i++){
 			vault.resultsList.add(backtest.getResultsList().get(i));
@@ -116,7 +103,32 @@ public class DigitalSpeculation implements Speculate {
 	
 	@Override
 	public String toString(){
-		return "[ACCOUNT] " + "Balance: $" + this.accountEquity.setScale(2, RoundingMode.HALF_DOWN) + " Total Return: " + this.getTotalReturnPercent() + "% " + " Units: " + this.unitList.size();
+		return "[ACCOUNT] " + "Balance: " + this.accountEquity.setScale(2, RoundingMode.HALF_DOWN) + " Total Return: " + this.getTotalReturnPercent() + "% " + " Units: " + this.unitList.size();
+	}
+
+	@Override
+	public int getEntryDays() {
+		return ENTRY;
+	}
+
+	@Override
+	public int getExitDays() {
+		return EXIT;
+	}
+
+	@Override
+	public int getMaxUnits() {
+		return MAX_UNITS;
+	}
+
+	@Override
+	public BigDecimal getRisk() {
+		return RISK;
+	}
+
+	@Override
+	public BigDecimal getStop() {
+		return STOP;
 	}
 	
 	
