@@ -35,7 +35,7 @@ public class Main extends Application  {
 	Text speculateTitle;
 	HBox chooseMarket, speculateMainHbox;
 	Scene chooseMarketScene, speculateScene;
-	Button btnStock, btnDigital, viewOpen, viewClose, backTest, newEntries, clearBtn, saveBtn;
+	Button btnStock, btnDigital, viewOpen, viewClose, backTest, newEntries, clearBtn, saveBtn, btnPoloOffline;
 	Stage chooseMarketStage, speculateStage;
 	
 	
@@ -68,9 +68,12 @@ public class Main extends Application  {
         if (e.getSource() == btnStock){
         	chooseMarketStage.close();
         	marketName = Market.STOCK_MARKET;
-        }else{
+        }else if (e.getSource() == btnDigital){
         	chooseMarketStage.close();
         	marketName = Market.DIGITAL_MARKET;
+        }else{
+        	chooseMarketStage.close();
+        	marketName = Market.POLONIEX_OFFLINE;
         }
         
 		//load data in background (for digital currencies)
@@ -197,7 +200,7 @@ public class Main extends Application  {
 		//add hbox to border pane
 		speculatePane.setBottom(speculateMainHbox);
 		
-		chooseMarketScene = new Scene(chooseMarketPane, 300, 80);
+		chooseMarketScene = new Scene(chooseMarketPane, 450, 300);
 		speculateScene = new Scene(speculatePane, 1250, 750);
 		
 		chooseMarketStage = new Stage();
@@ -213,14 +216,17 @@ public class Main extends Application  {
 		//market buttons
 		btnStock = new Button("Stock Market");
 		btnDigital = new Button("Digital Market");
+		btnPoloOffline = new Button("Poloniex Offline");
 		
 		//set button size
 		btnStock.setPrefSize(150, 50);
 		btnDigital.setPrefSize(150, 50);
+		btnPoloOffline.setPrefSize(150, 50);
 		
 		//set button onclick
 		btnStock.setOnAction(e-> ButtonClicked(e));
 		btnDigital.setOnAction(e-> ButtonClicked(e));
+		btnPoloOffline.setOnAction(e-> ButtonClicked(e));
 		
 		//popup border pane
 		chooseMarketPane = new BorderPane();
@@ -231,7 +237,7 @@ public class Main extends Application  {
 		chooseMarket.setSpacing(10);
 		
 		//add buttons to hbox
-		chooseMarket.getChildren().addAll(btnStock,btnDigital);
+		chooseMarket.getChildren().addAll(btnStock,btnDigital, btnPoloOffline);
 		
 		//set borderpane
 		BorderPane.setAlignment(chooseMarket,  Pos.CENTER);
