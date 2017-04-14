@@ -240,7 +240,7 @@ public class DigitalEntry implements Entry {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ENTRY] ");
 		sb.append(" [$" + this.asset.getAsset() + "]");
-		sb.append(" Date: " + this.getDateTime());
+		sb.append(" Date: " + DateUtils.dateToSimpleDateFormat(this.getDateTime()));
 		sb.append(" Price:" + this.currentPrice);
 		sb.append(" Direction:" + this.direction);
 		sb.append(" ATR: " + this.averageTrueRange);

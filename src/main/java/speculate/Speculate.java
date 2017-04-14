@@ -1,10 +1,6 @@
 package speculate;
 
 import java.math.BigDecimal;
-import java.util.List;
-
-import entry.Entry;
-import position.Position;
 import vault.Vault;
 
 public interface Speculate {
@@ -16,16 +12,16 @@ public interface Speculate {
 	String SHORT = "Short";
 	
 	BigDecimal STOCK_EQUITY = new BigDecimal(10_000.00); 
-	BigDecimal DIGITAL_EQUITY = new BigDecimal(10.00000000);
+	BigDecimal DIGITAL_EQUITY = new BigDecimal(5.00000000);
 	
-	BigDecimal RISK = new BigDecimal(0.02);
-	BigDecimal STOP = new BigDecimal(1.00);
+	BigDecimal RISK = new BigDecimal(0.015);
+	BigDecimal STOP = new BigDecimal(2.00);
 	
 	int ENTRY = 25;
 	int EXIT  = 10;
 	int MOVING_AVG = 20;
 	
-	int MAX_UNITS = 4;
+	int MAX_UNITS = 5;
 	
 	void setAccountEquity(BigDecimal tradeResult);
 	

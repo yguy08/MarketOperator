@@ -7,17 +7,12 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
-
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import asset.Asset;
-import asset.StockChartData;
 import entry.Entry;
 import market.Market;
 import speculate.Speculate;
@@ -59,10 +54,16 @@ public class DigitalPosition implements Position {
 
 	@Override
 	public void setExit() {
-		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Speculate.LONG){
-			this.open = false;
-			setProfitLossPercent();
-			setProfitLossAmount(this.entry);
+		if(this.entry.getDirection() == Speculate.LONG){
+			if(this.currentPrice.compareTo(this.minPrice) == 0 || this.currentPrice.compareTo(this.entry.getStop()) < 0){
+				this.open = false;
+				setProfitLossPercent();
+				setProfitLossAmount(this.entry);
+			}else{
+				this.open = true;
+				setProfitLossPercent();
+				setProfitLossAmount(this.entry);
+			}
 		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Speculate.SHORT){
 			this.open = false;
 			setProfitLossPercent();
@@ -185,7 +186,7 @@ public class DigitalPosition implements Position {
 		Date dateTime;
 		try {
 			dateTime = df.parse(date);
-			return DateUtils.dateToUTCMidnight(dateTime);
+			return DateUtils.localDateToUTCDate(dateTime);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
