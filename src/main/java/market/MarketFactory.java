@@ -11,6 +11,8 @@ public class MarketFactory {
 			return new StockMarket();
 		}else if (marketName.equalsIgnoreCase(Market.DIGITAL_MARKET)){
 			return new DigitalMarket();
+		}else if(marketName.equalsIgnoreCase(Market.POLONIEX_OFFLINE)){
+			return new PoloniexOffline();
 		}
 		
 		return null;
