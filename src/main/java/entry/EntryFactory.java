@@ -15,6 +15,8 @@ public class EntryFactory {
 			return new StockEntry(market, asset, speculator);
 		}else if(market.getMarketName().equals(Market.DIGITAL_MARKET)){
 			return new DigitalEntry(market, asset, speculator);
+		}else if(market.getMarketName().equals(Market.POLONIEX_OFFLINE)){
+			return new PoloniexOfflineEntry(market, asset, speculator);
 		}
 		
 		return null;

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import asset.StockChartData;
 import market.Market;
 import speculate.Speculate;
 import utils.DateUtils;
+import utils.StringFormatter;
 
 public class DigitalEntry implements Entry {
 	
@@ -66,7 +68,9 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setEntry() {
-		if(this.currentPrice.compareTo(this.maxPrice) == 0){
+		if(this.maxPrice.compareTo(minPrice) == 0){
+			this.isEntry = false;
+		}else if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
 			this.direction = Speculate.LONG;
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
@@ -240,13 +244,13 @@ public class DigitalEntry implements Entry {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ENTRY] ");
 		sb.append(" [$" + this.asset.getAsset() + "]");
-		sb.append(" Date: " + DateUtils.dateToSimpleDateFormat(this.getDateTime()));
-		sb.append(" Price:" + this.currentPrice);
+		sb.append(" Date: " + this.getDate());
+		sb.append(" Price:" + StringFormatter.bigDecimalToEightString(this.currentPrice));
 		sb.append(" Direction:" + this.direction);
-		sb.append(" ATR: " + this.averageTrueRange);
+		sb.append(" ATR: " + StringFormatter.bigDecimalToEightString(this.averageTrueRange));
 		sb.append(" Unit Size: " + this.unitSize);
 		sb.append(" Total: " + this.orderTotal.setScale(8, RoundingMode.HALF_DOWN));
-		sb.append(" Stop: " + this.stop.setScale(8, RoundingMode.HALF_DOWN));
+		sb.append(" Stop: " + StringFormatter.bigDecimalToEightString(this.stop));
 		return sb.toString();
 	}
 
