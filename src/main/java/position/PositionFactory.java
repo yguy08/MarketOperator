@@ -16,6 +16,8 @@ public class PositionFactory {
 			return new StockPosition(market, asset, entry);
 		}else if(market.getMarketName().equalsIgnoreCase(Market.DIGITAL_MARKET)){
 			return new DigitalPosition(market, asset, entry);
+		}else if(market.getMarketName().equalsIgnoreCase(Market.POLONIEX_OFFLINE)){
+			return new PoloniexOfflinePosition(market, asset, entry);
 		}
 		
 		return null;

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import asset.Asset;
 import entry.Entry;
@@ -18,8 +17,9 @@ import market.Market;
 import speculate.Speculate;
 import utils.DateUtils;
 import utils.StringFormatter;
+import asset.PoloniexOfflineChartData;
 
-public class DigitalPosition implements Position {
+public class PoloniexOfflinePosition implements Position {
 	
 	Market market;
 	Asset asset;
@@ -37,9 +37,9 @@ public class DigitalPosition implements Position {
 	
 	Boolean open;
 	
-	List<PoloniexChartData> priceSubList = new ArrayList<>();
+	List<PoloniexOfflineChartData> priceSubList = new ArrayList<>();
 	
-	public DigitalPosition(Market market, Asset asset, Entry entry){
+	public PoloniexOfflinePosition(Market market, Asset asset, Entry entry){
 		this.market = market;
 		this.asset = asset;
 		this.entry = entry;
@@ -110,7 +110,7 @@ public class DigitalPosition implements Position {
 
 	@Override
 	public void setPriceSubList() {
-		this.priceSubList = (List<PoloniexChartData>) this.asset.getPriceSubList();		
+		this.priceSubList = (List<PoloniexOfflineChartData>) this.asset.getPriceSubList();		
 	}
 
 	@Override
