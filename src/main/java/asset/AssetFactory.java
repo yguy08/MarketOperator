@@ -13,6 +13,8 @@ public class AssetFactory {
 			return new StockAsset(market,assetName);
 		}else if (market.getMarketName().equals(Market.DIGITAL_MARKET)){
 			return new DigitalAsset(market, assetName);
+		}else if (market.getMarketName().equals(Market.POLONIEX_OFFLINE)){
+			return new PoloniexOfflineAsset(market, assetName);
 		}
 		
 		return null;
