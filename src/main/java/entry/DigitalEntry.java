@@ -38,6 +38,8 @@ public class DigitalEntry implements Entry {
 	BigDecimal orderTotal;
 	BigDecimal volume;
 	
+	String assetName;
+		
 	int locationIndex;
 	String direction = null;
 	Boolean isEntry = false;
@@ -46,6 +48,7 @@ public class DigitalEntry implements Entry {
 		this.market = market;
 		this.asset	= asset;
 		this.speculator = speculator;
+		this.assetName = asset.getAsset();
 		setPriceSubList();
 		setDate();
 		setCurrentPrice();
@@ -199,12 +202,10 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setStop() {
-		if(this.getDirection().equals(Speculate.LONG)){
-			this.stop = this.getCurrentPrice().subtract(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
-		}else if(this.getDirection().equals(Speculate.SHORT)){
-			this.stop = this.getCurrentPrice().add(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
-		}
-		
+		BigDecimal longStop = this.getCurrentPrice().subtract(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
+		BigDecimal shortStop = this.getCurrentPrice().add(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
+		boolean isLong = this.getDirection().equals(Speculate.LONG);
+		this.stop = isLong ? longStop : shortStop;
 	}
 
 	@Override
@@ -243,7 +244,7 @@ public class DigitalEntry implements Entry {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ENTRY] ");
-		sb.append(" [$" + this.asset.getAsset() + "]");
+		sb.append(" [$" + this.getAssetName() + "]");
 		sb.append(" Date: " + this.getDate());
 		sb.append(" Price:" + StringFormatter.bigDecimalToEightString(this.currentPrice));
 		sb.append(" Direction:" + this.direction);
@@ -278,6 +279,73 @@ public class DigitalEntry implements Entry {
 	@Override
 	public void setVolume() {
 		this.volume = this.priceSubList.get(this.priceSubList.size() - 1).getVolume();		
+	}
+
+	@Override
+	public boolean isLong() {
+		return (this.direction == Speculate.LONG) ? true : false;
+	}
+
+	@Override
+	public Entry copy(Entry entry, Speculate speculator) {
+		Entry digitalEntry = new DigitalEntry();
+		digitalEntry.setDate(entry.getDate());
+		digitalEntry.setDirection(entry.getDirection());
+		digitalEntry.setCurrentPrice(entry.getCurrentPrice());
+		digitalEntry.setTrueRange(entry.getTrueRange());
+		digitalEntry.setStop(entry.getStop());
+		digitalEntry.setUnitSize(speculator);
+		digitalEntry.setOrderTotal();
+		digitalEntry.setAssetName(entry.getAssetName());
+		digitalEntry.setVolume(entry.getVolume());
+		return digitalEntry;
+	}
+	
+	public DigitalEntry(){
+		
+	}
+
+	@Override
+	public void setTrueRange(BigDecimal trueRange) {
+		this.averageTrueRange = trueRange;
+	}
+
+	@Override
+	public void setStop(BigDecimal stop) {
+		this.stop = stop;
+	}
+
+	@Override
+	public void setCurrentPrice(BigDecimal currentPrice) {
+		this.currentPrice = currentPrice;
+	}
+
+	@Override
+	public void setAssetName(String assetName) {
+		this.assetName = assetName;
+	}
+
+	@Override
+	public String getAssetName() {
+		return this.assetName;
+	}
+
+	@Override
+	public void setVolume(BigDecimal volume) {
+		this.volume = volume;
+	}
+
+	@Override
+	public void setDate(String date) {
+		this.Date = date;
+	}
+	
+	@Override
+	public void setDirection(String direction){
+		boolean isFormat = (direction == Speculate.LONG || direction == Speculate.SHORT) ? true : false;
+		if(isFormat){
+			this.direction = direction;
+		}
 	}
 
 }
