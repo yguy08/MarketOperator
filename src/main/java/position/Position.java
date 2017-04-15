@@ -11,6 +11,8 @@ public interface Position {
 	
 	Boolean isOpen();
 	
+	void setAssetName(String assetName);
+	
 	void setProfitLossPercent();
 	
 	BigDecimal getProfitLossPercent();
@@ -29,7 +31,19 @@ public interface Position {
 	
 	void setMaxPrice();
 	
+	void setMaxPrice(BigDecimal maxPrice);
+	
+	void setMinPrice(BigDecimal minPrice);
+	
 	void setMinPrice();
+	
+	BigDecimal getMaxPrice();
+	
+	BigDecimal getMinPrice();
+	
+	void setOpen(boolean isOpen);
+	
+	String getAssetName();
 	
 	void setLocationAsIndex();
 	
@@ -38,6 +52,23 @@ public interface Position {
 	Date getDateTime();
 
 	Entry getEntry();
+	
+	Position copy(Position position, Entry entry);
+	
+	void setCurrentPrice(BigDecimal currentPrice);
+	
+	BigDecimal getCurrentPrice();
 
+	void setProfitLossPercent(Position position);
+
+	void setEntryDate(String date);
+	
+	String getEntryDate();
+	
+	void setEntryPrice(BigDecimal entryPrice);
+	
+	BigDecimal getEntryPrice();
+	
+	void setDate(String date);
 	
 }

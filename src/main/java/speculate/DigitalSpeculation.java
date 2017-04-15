@@ -4,10 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import asset.Asset;
-import asset.AssetFactory;
 import backtest.BackTest;
 import backtest.BackTestFactory;
 import entry.Entry;
@@ -58,10 +55,10 @@ public class DigitalSpeculation implements Speculate {
 	
 	public void getAllOpenPositions(Vault vault, Speculate speculate) {
 		for(int i = 0; i < vault.backtest.getPositionList().size();i++){
-			if(vault.backtest.getPositionList().get(i).isOpen()){
+			boolean isPositionOpen = vault.backtest.getPositionList().get(i).isOpen(); 
+			
+			if(isPositionOpen){
 				vault.resultsList.add(vault.backtest.getPositionList().get(i).toString());
-			}else{
-				
 			}
 		}
 	}
@@ -93,11 +90,12 @@ public class DigitalSpeculation implements Speculate {
 	@Override
 	public void runBackTest(Vault vault, Speculate speculate) {
 		BackTestFactory backTestFactory = new BackTestFactory();
-		BackTest backtest = backTestFactory.protoBackTest(vault.market, vault.speculate);
-		backtest.dataSetUp();
-		backtest.protoBackTest();
-		for(int i = 0; i < backtest.getResultsList().size();i++){
-			vault.resultsList.add(backtest.getResultsList().get(i));
+		BackTest runbacktest = backTestFactory.protoBackTest(vault.market, vault.speculate);
+		runbacktest.setSortedEntryList(vault.backtest.getEntryList());
+		runbacktest.setSortedPositionList(vault.backtest.getPositionList());
+		runbacktest.protoBackTest();
+		for(int i = 0; i < runbacktest.getResultsList().size();i++){
+			vault.resultsList.add(runbacktest.getResultsList().get(i));
 		}
 	}
 	
@@ -129,6 +127,16 @@ public class DigitalSpeculation implements Speculate {
 	@Override
 	public BigDecimal getStop() {
 		return STOP;
+	}
+
+	@Override
+	public Speculate copy(Speculate speculate) {
+		Speculate digitalSpeculation = new DigitalSpeculation();
+		return digitalSpeculation;
+	}
+	
+	public DigitalSpeculation(){
+		
 	}
 	
 	

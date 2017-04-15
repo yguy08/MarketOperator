@@ -64,7 +64,13 @@ public class DateUtils {
 		Long days = Math.abs((currentDate.getTime() - sinceDate.getTime())) / 86400000;
 		String toInt = days.toString();
 		return Integer.parseInt(toInt);
-	}	
+	}
+	
+	public static int getNumberOfDaysFromDate(Date dateToCompare, Date dateOf){
+		Long days = Math.abs((dateOf.getTime() - dateToCompare.getTime())) / 86400000;
+		String toInt = days.toString();
+		return Integer.parseInt(toInt);
+	}
 	
 	public static void setTimeToMidnight(Calendar date){
 		date.set(Calendar.HOUR_OF_DAY, 0);

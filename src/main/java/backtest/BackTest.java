@@ -46,4 +46,9 @@ public interface BackTest {
 	
 	void dataSetUp();
 	
+	void setEntryList(List<Entry> entryList);
+	
+	void setPositionList(List<Position> positionList);	
+	
+	
 }

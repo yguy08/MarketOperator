@@ -30,12 +30,19 @@ public class DigitalPosition implements Position {
 	BigDecimal maxPrice;
 	BigDecimal minPrice;
 	
+	BigDecimal entryPrice;
+	
+	String entryDate;
+	
 	int locationIndex;
 	
 	BigDecimal profitLossPercent = new BigDecimal(0.00);
 	BigDecimal profitLossAmount = new BigDecimal(0.00);
 	
 	Boolean open;
+	Boolean isLong;
+	
+	String assetName;
 	
 	List<PoloniexChartData> priceSubList = new ArrayList<>();
 	
@@ -44,7 +51,11 @@ public class DigitalPosition implements Position {
 		this.asset = asset;
 		this.entry = entry;
 		this.open = true;
+		this.isLong = this.entry.getDirection() == Speculate.LONG;
+		this.assetName = this.entry.getAssetName();
+		this.entryPrice = this.entry.getCurrentPrice();
 		setPriceSubList();
+		setEntryDate(this.entry.getDate());
 		setDate();
 		setCurrentPrice();
 		setMaxPrice();
@@ -55,25 +66,21 @@ public class DigitalPosition implements Position {
 
 	@Override
 	public void setExit() {
-		if(this.entry.getDirection() == Speculate.LONG){
-			if(this.currentPrice.compareTo(this.minPrice) == 0 || this.currentPrice.compareTo(this.entry.getStop()) < 0){
-				this.open = false;
-				setProfitLossPercent();
-				setProfitLossAmount(this.entry);
-			}else{
-				this.open = true;
-				setProfitLossPercent();
-				setProfitLossAmount(this.entry);
-			}
-		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Speculate.SHORT){
-			this.open = false;
-			setProfitLossPercent();
-			setProfitLossAmount(this.entry);
-		}else{
-			this.open = true;
-			setProfitLossPercent();
-			setProfitLossAmount(this.entry);
-		}
+		
+		boolean isEqualToHigh = this.currentPrice.compareTo(this.maxPrice) == 0;
+		boolean isEqualToLow = this.currentPrice.compareTo(this.minPrice) == 0;
+		boolean isLongLessThanStop = this.currentPrice.compareTo(this.entry.getStop()) < 0;
+		boolean isShortLessThanStop = this.currentPrice.compareTo(this.entry.getStop()) > 0;
+		
+		boolean isLessThanStop = isLong ? isLongLessThanStop : isShortLessThanStop;
+		boolean isBreakOutDown = isLong ? isEqualToLow : isEqualToHigh;
+		
+		boolean isClose = (isBreakOutDown || isLessThanStop);
+		
+		this.open = isClose ? false : true;
+		
+		setProfitLossPercent();
+		setProfitLossAmount(this.entry);
 	}
 
 	@Override
@@ -85,12 +92,7 @@ public class DigitalPosition implements Position {
 	public void setProfitLossPercent(){
 		BigDecimal calcPL = this.currentPrice.subtract(this.entry.getCurrentPrice())
 				.divide(this.entry.getCurrentPrice(), MathContext.DECIMAL32);
-		if(this.entry.getDirection() == Speculate.LONG){
-			this.profitLossPercent = calcPL;
-		}else{
-			//negate for shorts since lower price would be a win, higher a loss
-			this.profitLossPercent = calcPL.negate();
-		}
+		this.profitLossPercent = (isLong) ? calcPL : calcPL.negate();
 	}
 	
 	@Override
@@ -162,10 +164,10 @@ public class DigitalPosition implements Position {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("[POSITION]");
-		sb.append(" " + this.asset.getAsset());
+		sb.append(" " + this.getAssetName());
 		sb.append(" Open:" + this.open);
-		sb.append(" Entry [Date:" + this.entry.getDate());
-		sb.append(" Price: " + StringFormatter.bigDecimalToEightString(this.entry.getCurrentPrice()) + "]");
+		sb.append(" Entry [Date:" + this.getEntryDate());
+		sb.append(" Price: " + StringFormatter.bigDecimalToEightString(this.getEntryPrice()) + "]");
 		if(this.isOpen()){
 			sb.append(" Current [Date: " + this.getDate());
 			sb.append(" Price: " + StringFormatter.bigDecimalToEightString(this.currentPrice) + "]");
@@ -174,7 +176,7 @@ public class DigitalPosition implements Position {
 			sb.append(" Price: " + StringFormatter.bigDecimalToEightString(this.currentPrice) + "]");
 		}
 		sb.append(" P/L [%: " + this.profitLossPercent.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(2, RoundingMode.HALF_DOWN) + "%");
-		sb.append(" Amount: " + this.profitLossAmount.setScale(2, RoundingMode.HALF_DOWN) + "]");
+		sb.append(" Amount: " + this.profitLossAmount.setScale(4, RoundingMode.HALF_DOWN) + "]");
 		sb.append(" High: [" + StringFormatter.bigDecimalToEightString(this.maxPrice) + "]");
 		sb.append(" Low: [" + StringFormatter.bigDecimalToEightString(this.minPrice) + "]" );
 		return sb.toString();
@@ -195,9 +197,102 @@ public class DigitalPosition implements Position {
 		return null;
 	}
 	
+	public DigitalPosition(){
+		
+	}
+	
 	@Override
 	public Entry getEntry(){
 		return this.entry;
+	}
+
+	@Override
+	public Position copy(Position position, Entry entry) {
+		Position digitalPosition = new DigitalPosition();
+		digitalPosition.setAssetName(position.getAssetName());
+		digitalPosition.setOpen(position.isOpen());
+		digitalPosition.setMaxPrice(position.getMaxPrice());
+		digitalPosition.setMinPrice(position.getMinPrice());
+		digitalPosition.setDate(position.getDate());
+		digitalPosition.setEntryPrice(entry.getCurrentPrice());
+		digitalPosition.setEntryDate(entry.getDate());
+		digitalPosition.setCurrentPrice(position.getCurrentPrice());
+		digitalPosition.setProfitLossPercent(position);
+		digitalPosition.setProfitLossAmount(entry);
+		return digitalPosition;
+	}
+	
+	public BigDecimal getCurrentPrice(){
+		return this.currentPrice;
+	}
+
+	@Override
+	public void setCurrentPrice(BigDecimal currentPrice) {
+		this.currentPrice = currentPrice;
+	}
+	
+	public void setProfitLossPercent(Position position){
+		this.profitLossPercent = position.getProfitLossPercent();
+	}
+
+	@Override
+	public void setAssetName(String assetName) {
+		this.assetName = assetName;
+	}
+
+	@Override
+	public void setEntryDate(String date) {
+		this.entryDate = date;
+	}
+
+	@Override
+	public String getEntryDate() {
+		return this.entryDate;
+	}
+
+	@Override
+	public void setEntryPrice(BigDecimal entryPrice) {
+		this.entryPrice = entryPrice;
+	}
+
+	@Override
+	public BigDecimal getEntryPrice() {
+		return this.entryPrice;
+	}
+
+	@Override
+	public void setDate(String date) {
+		this.Date = date;
+	}
+
+	@Override
+	public void setMaxPrice(BigDecimal maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+
+	@Override
+	public void setMinPrice(BigDecimal minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	@Override
+	public BigDecimal getMaxPrice() {
+		return this.maxPrice;
+	}
+
+	@Override
+	public BigDecimal getMinPrice() {
+		return this.minPrice;
+	}
+
+	@Override
+	public void setOpen(boolean isOpen) {
+		this.open = isOpen;
+	}
+
+	@Override
+	public String getAssetName() {
+		return this.assetName;
 	}
 
 }

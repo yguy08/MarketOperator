@@ -15,6 +15,7 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.DigitalMarket;
 import market.Market;
+import speculate.Speculate;
 
 public class DigitalAsset implements Asset {
 	
@@ -59,7 +60,7 @@ public class DigitalAsset implements Asset {
 		try {
 			this.priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
-					.getPoloniexChartData(currencyPair, date - 365 * 5 * 24 * 60 * 60,
+					.getPoloniexChartData(currencyPair, date - Speculate.DAYS * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
 		} catch (IOException e) {
 			e.printStackTrace();
