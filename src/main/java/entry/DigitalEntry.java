@@ -4,22 +4,17 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 import java.util.Date;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import asset.Asset;
-import asset.StockChartData;
 import market.Market;
 import speculate.Speculate;
 import utils.DateUtils;
@@ -41,6 +36,7 @@ public class DigitalEntry implements Entry {
 	BigDecimal stop;
 	BigDecimal unitSize;
 	BigDecimal orderTotal;
+	BigDecimal volume;
 	
 	int locationIndex;
 	String direction = null;
@@ -55,6 +51,7 @@ public class DigitalEntry implements Entry {
 		setCurrentPrice();
 		setMaxPrice();
 		setMinPrice();
+		setVolume();
 		setLocationAsIndex();
 		setEntry();
 		
@@ -68,16 +65,19 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setEntry() {
-		if(this.maxPrice.compareTo(minPrice) == 0){
-			this.isEntry = false;
-		}else if(this.currentPrice.compareTo(this.maxPrice) == 0){
-			this.isEntry = true;
-			this.direction = Speculate.LONG;
-		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
-			this.isEntry = true;
-			this.direction = Speculate.SHORT;
+		//filters
+		boolean isHighEqualToLow = this.maxPrice.compareTo(this.minPrice) == 0;
+		boolean isBelowVolumeFilter = this.volume.compareTo(Speculate.VOLUME_FILTER) < 0;
+		boolean isFilteredIn = !(isHighEqualToLow || isBelowVolumeFilter);
+		
+		boolean isEqualToHigh = this.currentPrice.compareTo(this.maxPrice) == 0;
+		boolean isEqualToLow = this.currentPrice.compareTo(this.minPrice) == 0;
+		
+		this.isEntry = (isEqualToHigh || isEqualToLow) ? isFilteredIn : false;
+		if(isEntry){
+			this.direction = isEqualToHigh ? Speculate.LONG : Speculate.SHORT;
 		}else{
-			this.isEntry = false;
+			
 		}
 	}
 
@@ -251,6 +251,7 @@ public class DigitalEntry implements Entry {
 		sb.append(" Unit Size: " + this.unitSize);
 		sb.append(" Total: " + this.orderTotal.setScale(8, RoundingMode.HALF_DOWN));
 		sb.append(" Stop: " + StringFormatter.bigDecimalToEightString(this.stop));
+		sb.append(" Volume: " + StringFormatter.bigDecimalToEightString(this.getVolume()));
 		return sb.toString();
 	}
 
@@ -267,6 +268,16 @@ public class DigitalEntry implements Entry {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public BigDecimal getVolume() {
+		return this.volume;
+	}
+
+	@Override
+	public void setVolume() {
+		this.volume = this.priceSubList.get(this.priceSubList.size() - 1).getVolume();		
 	}
 
 }
