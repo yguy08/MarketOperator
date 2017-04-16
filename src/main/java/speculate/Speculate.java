@@ -14,18 +14,18 @@ public interface Speculate {
 	BigDecimal STOCK_EQUITY = new BigDecimal(10_000.00); 
 	BigDecimal DIGITAL_EQUITY = new BigDecimal(5.00000000);
 	
-	BigDecimal RISK = new BigDecimal(0.01);
+	BigDecimal RISK = new BigDecimal(0.03);
 	BigDecimal STOP = new BigDecimal(2.00);
 	
-	BigDecimal VOLUME_FILTER = new BigDecimal(20.00);
+	BigDecimal VOLUME_FILTER = new BigDecimal(10.00);
 	
 	int ENTRY = 25;
 	int EXIT  = 10;
 	int MOVING_AVG = 20;
 	
-	int MAX_UNITS = 5;
+	int MAX_UNITS = 6;
 	
-	int DAYS = 365;
+	int DAYS = 365 * 2;
 	
 	boolean LONG_FILTER = true;
 	

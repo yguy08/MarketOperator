@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import entry.Entry;
+import javafx.collections.ObservableList;
 import position.Position;
 
 public interface BackTest {
@@ -49,6 +50,4 @@ public interface BackTest {
 	void setEntryList(List<Entry> entryList);
 	
 	void setPositionList(List<Position> positionList);	
-	
-	
 }

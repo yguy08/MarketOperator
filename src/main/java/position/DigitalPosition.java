@@ -45,6 +45,7 @@ public class DigitalPosition implements Position {
 	String assetName;
 	
 	List<PoloniexChartData> priceSubList = new ArrayList<>();
+	private BigDecimal currentEntryPrice;
 	
 	public DigitalPosition(Market market, Asset asset, Entry entry){
 		this.market = market;
@@ -214,16 +215,12 @@ public class DigitalPosition implements Position {
 		digitalPosition.setMaxPrice(position.getMaxPrice());
 		digitalPosition.setMinPrice(position.getMinPrice());
 		digitalPosition.setDate(position.getDate());
-		digitalPosition.setEntryPrice(entry.getCurrentPrice());
-		digitalPosition.setEntryDate(entry.getDate());
+		digitalPosition.setEntryPrice(position.getEntryPrice());
+		digitalPosition.setEntryDate(position.getEntryDate());
 		digitalPosition.setCurrentPrice(position.getCurrentPrice());
 		digitalPosition.setProfitLossPercent(position);
 		digitalPosition.setProfitLossAmount(entry);
 		return digitalPosition;
-	}
-	
-	public BigDecimal getCurrentPrice(){
-		return this.currentPrice;
 	}
 
 	@Override
@@ -293,6 +290,12 @@ public class DigitalPosition implements Position {
 	@Override
 	public String getAssetName() {
 		return this.assetName;
+	}
+
+	@Override
+	public BigDecimal getCurrentPrice() {
+		// TODO Auto-generated method stub
+		return this.currentPrice;
 	}
 
 }

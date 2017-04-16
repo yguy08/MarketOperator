@@ -38,7 +38,6 @@ public class Main extends Application  {
 	Button btnStock, btnDigital, viewOpen, viewClose, backTest, newEntries, clearBtn, saveBtn, btnPoloOffline;
 	Stage chooseMarketStage, speculateStage;
 	
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -66,14 +65,14 @@ public class Main extends Application  {
     public void ButtonClicked(ActionEvent e){
     	String marketName;
         if (e.getSource() == btnStock){
-        	chooseMarketStage.close();
         	marketName = Market.STOCK_MARKET;
+            chooseMarketStage.close();
         }else if (e.getSource() == btnDigital){
-        	chooseMarketStage.close();
         	marketName = Market.DIGITAL_MARKET;
+            chooseMarketStage.close();
         }else{
-        	chooseMarketStage.close();
         	marketName = Market.POLONIEX_OFFLINE;
+            chooseMarketStage.close();
         }
         
 		//load data in background (for digital currencies)
@@ -85,57 +84,10 @@ public class Main extends Application  {
 	     		backTest.setVisible(true);
 	     		newEntries.setVisible(true);
 	     		clearBtn.setVisible(true);
-	     		saveBtn.setVisible(true);
-	     	}
+	     		saveBtn.setVisible(true);	         }
 	     };
 	     
 	     new Thread(r).start();
-    }
-    
-    public void viewOpenClicked(ActionEvent e){
-    	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
-    	speculate.getAllOpenPositions(this.vault, speculate);
-    }
-    
-    public void viewCloseClicked(ActionEvent e){
-    	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
-    	speculate.getPositionsToClose(this.vault, speculate);
-    }
-    
-    public void backTestClicked(ActionEvent e){
-    	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
-    	speculate.runBackTest(this.vault, speculate);
-    }
-    
-    public void newEntriesClicked(ActionEvent e){
-    	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
-    	speculate.getNewEntries(this.vault, speculate);
-    }
-    
-    public void clearBtnClicked(ActionEvent e){
-    	this.vault.resultsList.removeAll(this.vault.resultsList);
-    }
-    
-    public void saveBtnClicked(ActionEvent e){
-    	StringBuilder sb = new StringBuilder();
-    	for(int x = 0; x < resultsList.size();x++){
-    		sb.append(resultsList.get(x).toString() + "\n");
-    	}
-    	String results = sb.toString();
-    	long date = System.currentTimeMillis();
-    	try {
-			SaveToFile.writeToTextFile(Long.toString(date), results);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
     }
     
     void setMainStage(){
@@ -200,17 +152,9 @@ public class Main extends Application  {
 		//add hbox to border pane
 		speculatePane.setBottom(speculateMainHbox);
 		
-		chooseMarketScene = new Scene(chooseMarketPane, 450, 300);
 		speculateScene = new Scene(speculatePane, 1250, 750);
-		
-		chooseMarketStage = new Stage();
-		chooseMarketStage.setScene(chooseMarketScene);
-        
-		//tell stage it is meant to pop-up (Modal)
-		chooseMarketStage.initModality(Modality.APPLICATION_MODAL);
-		chooseMarketStage.setTitle("Choose Market");
-		
-	}
+	
+    }
     
 	void setChooseMarketPopup(){
 		//market buttons
@@ -242,6 +186,62 @@ public class Main extends Application  {
 		//set borderpane
 		BorderPane.setAlignment(chooseMarket,  Pos.CENTER);
 		chooseMarketPane.setCenter(chooseMarket);
+		
+		chooseMarketScene = new Scene(chooseMarketPane, 450, 300);
+		chooseMarketStage = new Stage();
+		
+		chooseMarketStage.setScene(chooseMarketScene);
+        
+		//tell stage it is meant to pop-up (Modal)
+		chooseMarketStage.initModality(Modality.APPLICATION_MODAL);
+		chooseMarketStage.setTitle("Choose Market");
+
 	}
+	
+    public void viewOpenClicked(ActionEvent e){
+    	this.vault.resultsList.removeAll(this.vault.resultsList);
+    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
+    	speculate.getAllOpenPositions(this.vault, speculate);
+    }
+    
+    public void viewCloseClicked(ActionEvent e){
+    	this.vault.resultsList.removeAll(this.vault.resultsList);
+    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
+    	speculate.getPositionsToClose(this.vault, speculate);
+    }
+    
+    public void backTestClicked(ActionEvent e){
+    	this.vault.resultsList.removeAll(this.vault.resultsList);
+    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
+    	speculate.runBackTest(this.vault, this.vault.speculate);
+    }
+    
+    public void newEntriesClicked(ActionEvent e){
+    	this.vault.resultsList.removeAll(this.vault.resultsList);
+    	SpeculateFactory speculateFactory = new SpeculateFactory();
+		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
+    	speculate.getNewEntries(this.vault, speculate);
+    }
+    
+    public void clearBtnClicked(ActionEvent e){
+    	this.vault.resultsList.removeAll(this.vault.resultsList);
+    }
+    
+    public void saveBtnClicked(ActionEvent e){
+    	StringBuilder sb = new StringBuilder();
+    	for(int x = 0; x < resultsList.size();x++){
+    		sb.append(resultsList.get(x).toString() + "\n");
+    	}
+    	String results = sb.toString();
+    	long date = System.currentTimeMillis();
+    	try {
+			SaveToFile.writeToTextFile(Long.toString(date), results);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    }
 	
 }

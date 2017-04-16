@@ -12,6 +12,7 @@ import asset.Asset;
 import asset.AssetFactory;
 import entry.Entry;
 import entry.EntryFactory;
+import javafx.collections.ObservableList;
 import market.Market;
 import position.Position;
 import position.PositionFactory;
@@ -172,11 +173,15 @@ public class DigitalBackTest implements BackTest {
 	public void setSortedEntryList(List<Entry> entryList) {
 		Collections.sort(entryList, new Comparator<Entry>() {
 		    public int compare(Entry o1, Entry o2) {
+		    	System.out.println("Comparing: " + o1.toString() + o2.toString());
 		        return o1.getDateTime().compareTo(o2.getDateTime());
 		    }
 		});
 		
 		this.sortedEntryList = entryList;
+		for(Entry entries : this.sortedEntryList){
+			System.out.println(entries.toString());
+		}
 	}
 
 	@Override
@@ -188,6 +193,7 @@ public class DigitalBackTest implements BackTest {
 	public void setSortedPositionList(List<Position> positionList) {
 		Collections.sort(positionList, new Comparator<Position>() {
 		    public int compare(Position o1, Position o2) {
+		    	System.out.println(o1.getDateTime() + " " + o2.getDateTime());
 		        return o1.getDateTime().compareTo(o2.getDateTime());
 		    }
 		});
@@ -252,6 +258,7 @@ public class DigitalBackTest implements BackTest {
 				boolean isFilteredEntry = Speculate.LONG_FILTER ? (entry.isEntry() && entry.isLong()) : entry.isEntry();
 				if(isFilteredEntry){
 					setEntryList(entry);
+					System.out.println(entry.toString());
 					for(int y = this.entry.getLocationIndex(); y < this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
 						this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
 						this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
