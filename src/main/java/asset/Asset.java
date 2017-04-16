@@ -29,4 +29,9 @@ public interface Asset {
 	
 	List<?> getPriceSubList();
 	
+	String getAssetName();
+	
+	String getMarketName();
+	
+	void setMarketName(String marketName);
 }

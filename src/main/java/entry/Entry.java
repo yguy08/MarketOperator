@@ -2,6 +2,7 @@ package entry;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import asset.Asset;
 import speculate.Speculate;
@@ -9,20 +10,16 @@ import speculate.Speculate;
 public interface Entry {
 	
 	void setEntry();
-	
-	void setDate();
-	
+		
 	String getDate();
-	
-	void setCurrentPrice();
-	
+		
 	BigDecimal getCurrentPrice();
 	
-	void setMaxPrice();
+	void setMaxPrice(List<?> priceSubList);
 	
 	BigDecimal getMaxPrice();
 	
-	void setMinPrice();
+	void setMinPrice(List<?> priceSubList);
 	
 	BigDecimal getMinPrice();
 	
@@ -63,8 +60,6 @@ public interface Entry {
 	Date getDateTime();
 	
 	BigDecimal getVolume();
-	
-	void setVolume();
 	
 	boolean isLong();
 	

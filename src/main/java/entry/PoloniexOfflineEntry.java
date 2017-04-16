@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
+
 import asset.Asset;
 import asset.PoloniexOfflineChartData;
 import market.Market;
@@ -27,28 +29,28 @@ public class PoloniexOfflineEntry implements Entry {
 	
 	List<PoloniexOfflineChartData> priceSubList = new ArrayList<>();
 	
-	String Date;
-	BigDecimal currentPrice;
-	BigDecimal maxPrice;
-	BigDecimal minPrice;
-	BigDecimal averageTrueRange;
-	BigDecimal stop;
-	BigDecimal unitSize;
-	BigDecimal orderTotal;
+	String assetName, Date, direction = null;
+	
+	BigDecimal currentPrice, maxPrice, minPrice, 
+				averageTrueRange, stop, unitSize, 
+				orderTotal, volume;
+
 	
 	int locationIndex;
-	String direction = null;
+	
 	Boolean isEntry = false;	
 	
 	public PoloniexOfflineEntry(Market market, Asset asset, Speculate speculator){
 		this.market = market;
 		this.asset	= asset;
 		this.speculator = speculator;
+		setAssetName(this.asset.getAsset());
 		setPriceSubList();
-		setDate();
-		setCurrentPrice();
-		setMaxPrice();
-		setMinPrice();
+		setDate(DateUtils.dateToSimpleDateFormat(this.priceSubList.get(this.priceSubList.size() - 1).getDate()));
+		setCurrentPrice(this.priceSubList.get(this.priceSubList.size() - 1).getClose());
+		setMaxPrice(this.priceSubList);
+		setMinPrice(this.priceSubList);
+		setVolume(this.priceSubList.get(this.priceSubList.size()-1).getVolume());
 		setLocationAsIndex();
 		setEntry();
 		
@@ -60,49 +62,73 @@ public class PoloniexOfflineEntry implements Entry {
 		}
 	}
 	
+	public PoloniexOfflineEntry(Entry entry, Speculate speculator){
+		setDate(entry.getDate());
+		setDirection(entry.getDirection());
+		setCurrentPrice(entry.getCurrentPrice());
+		setTrueRange(entry.getTrueRange());
+		setStop(entry.getStop());
+		setUnitSize(speculator);
+		setOrderTotal();
+		setAssetName(entry.getAssetName());
+		setVolume(entry.getVolume());
+	}
+	
 	@Override
-	public void setEntry() {
-		if(this.maxPrice.compareTo(minPrice) == 0){
-			this.isEntry = false;
-		}else if(this.currentPrice.compareTo(this.maxPrice) == 0){
-			this.isEntry = true;
-			this.direction = Speculate.LONG;
-		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
-			this.isEntry = true;
-			this.direction = Speculate.SHORT;
-		}else{
-			this.isEntry = false;
-		}
+	public Entry copy(Entry entry, Speculate speculator) {
+		Entry digitalEntry = new PoloniexOfflineEntry(entry, speculator);
+		return digitalEntry;
 	}
 
 	@Override
-	public void setDate() {
-		this.Date = DateUtils.dateToSimpleDateFormat(this.priceSubList.get(this.priceSubList.size() - 1).getDate());
+	public void setEntry() {
+		//filters
+		boolean isHighEqualToLow = this.maxPrice.compareTo(this.minPrice) == 0;
+		boolean isBelowVolumeFilter = this.volume.compareTo(Speculate.VOLUME_FILTER) < 0;
+		boolean isFilteredIn = !(isHighEqualToLow || isBelowVolumeFilter);
+		
+		boolean isEqualToHigh = this.currentPrice.compareTo(this.maxPrice) == 0;
+		boolean isEqualToLow = this.currentPrice.compareTo(this.minPrice) == 0;
+		
+		this.isEntry = (isEqualToHigh || isEqualToLow) ? isFilteredIn : false;
+		if(isEntry){
+			this.direction = isEqualToHigh ? Speculate.LONG : Speculate.SHORT;
+		}else{
+			
+		}
 	}
 
 	@Override
 	public String getDate() {
 		return this.Date;
 	}
-
+	
 	@Override
-	public void setCurrentPrice() {
-		this.currentPrice = this.priceSubList.get(this.priceSubList.size() - 1).getClose();		
+	public void setDate(String date) {
+		this.Date = date;
 	}
 
 	@Override
 	public BigDecimal getCurrentPrice() {
 		return this.currentPrice;
 	}
+	
+	@Override
+	public void setCurrentPrice(BigDecimal currentPrice) {
+		this.currentPrice = currentPrice;
+	}
 
 	@Override
-	public void setMaxPrice() {
+	public void setMaxPrice(List<?> priceSubList) {
 		List<BigDecimal> maxList = new ArrayList<>();
-		for(int x = 0; x < this.priceSubList.size(); x++){
-			maxList.add(this.priceSubList.get(x).getClose());
+		List<PoloniexOfflineChartData> lastXDaysList = (List<PoloniexOfflineChartData>) priceSubList;
+		System.out.println("Finding max price for: " + lastXDaysList.get(0).toString());
+		for(int x = 0; x < lastXDaysList.size(); x++){
+			maxList.add(lastXDaysList.get(x).getClose());
 		}
 		
 		this.maxPrice = Collections.max(maxList);
+		System.out.println("Max price is " + this.maxPrice);
 	}
 
 	@Override
@@ -111,13 +137,16 @@ public class PoloniexOfflineEntry implements Entry {
 	}
 
 	@Override
-	public void setMinPrice() {
+	public void setMinPrice(List<?> priceSubList) {
 		List<BigDecimal> minList = new ArrayList<>();
+		List<PoloniexOfflineChartData> lastXDaysList = (List<PoloniexOfflineChartData>) priceSubList;
+		System.out.println("Finding min price for: " + lastXDaysList.get(0).toString());
 		for(int x = 0; x < this.priceSubList.size(); x++){
 			minList.add(this.priceSubList.get(x).getClose());
 		}
 		
-		this.minPrice = Collections.min(minList);		
+		this.minPrice = Collections.min(minList);
+		System.out.println("Min price is " + this.maxPrice);
 	}
 
 	@Override
@@ -193,12 +222,10 @@ public class PoloniexOfflineEntry implements Entry {
 
 	@Override
 	public void setStop() {
-		if(this.getDirection().equals(Speculate.LONG)){
-			this.stop = this.getCurrentPrice().subtract(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
-		}else if(this.getDirection().equals(Speculate.SHORT)){
-			this.stop = this.getCurrentPrice().add(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
-		}
-		
+		BigDecimal longStop = this.getCurrentPrice().subtract(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
+		BigDecimal shortStop = this.getCurrentPrice().add(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
+		boolean isLong = this.getDirection().equals(Speculate.LONG);
+		this.stop = isLong ? longStop : shortStop;
 	}
 
 	@Override
@@ -237,7 +264,7 @@ public class PoloniexOfflineEntry implements Entry {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ENTRY] ");
-		sb.append(" [$" + this.asset.getAsset() + "]");
+		sb.append(" [$" + this.getAssetName() + "]");
 		sb.append(" Date: " + this.getDate());
 		sb.append(" Price:" + StringFormatter.bigDecimalToEightString(this.currentPrice));
 		sb.append(" Direction:" + this.direction);
@@ -245,6 +272,7 @@ public class PoloniexOfflineEntry implements Entry {
 		sb.append(" Unit Size: " + this.unitSize);
 		sb.append(" Total: " + this.orderTotal.setScale(8, RoundingMode.HALF_DOWN));
 		sb.append(" Stop: " + StringFormatter.bigDecimalToEightString(this.stop));
+		sb.append(" Volume: " + StringFormatter.bigDecimalToEightString(this.getVolume()));
 		return sb.toString();
 	}
 
@@ -263,4 +291,46 @@ public class PoloniexOfflineEntry implements Entry {
 		return null;
 	}
 
+	@Override
+	public BigDecimal getVolume() {
+		return this.volume;
+	}
+	
+	@Override
+	public void setVolume(BigDecimal volume) {
+		this.volume = volume;
+	}
+
+	@Override
+	public boolean isLong() {
+		return (this.direction == Speculate.LONG) ? true : false;
+	}
+
+	@Override
+	public void setTrueRange(BigDecimal trueRange) {
+		this.averageTrueRange = trueRange;
+	}
+
+	@Override
+	public void setStop(BigDecimal stop) {
+		this.stop = stop;
+	}
+
+	@Override
+	public void setAssetName(String assetName) {
+		this.assetName = assetName;
+	}
+
+	@Override
+	public String getAssetName() {
+		return this.assetName;
+	}
+	
+	@Override
+	public void setDirection(String direction){
+		boolean isFormat = (direction == Speculate.LONG || direction == Speculate.SHORT) ? true : false;
+		if(isFormat){
+			this.direction = direction;
+		}
+	}
 }

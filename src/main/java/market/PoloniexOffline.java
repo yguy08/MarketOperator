@@ -24,7 +24,7 @@ public class PoloniexOffline implements Market {
 	public void setAssets() {
 		List<String> listFromFile;
 		try {
-			listFromFile = FileParser.readMarketList(this.getMarketName());
+			listFromFile = FileParser.readMarketList(Market.DIGITAL_MARKET);
 			for(int z = 0; z < listFromFile.size(); z++){
 				this.assets.add(listFromFile.get(z));
 			}
