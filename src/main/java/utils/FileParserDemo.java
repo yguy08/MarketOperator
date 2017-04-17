@@ -5,7 +5,7 @@ import java.util.List;
 public class FileParserDemo {
 
 	public static void main(String[] args) {
-		getPoloURL();
+		
 
 	}
 	
@@ -25,5 +25,7 @@ public class FileParserDemo {
 			System.out.println(poloUrls.get(i));
 		}
 	}
+	
+
 
 }

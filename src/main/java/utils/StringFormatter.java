@@ -5,8 +5,6 @@ import java.text.DecimalFormat;
 
 public class StringFormatter {
 	
-	
-	
 	/**
 	 * Convert big decimal to eight decimal places (satoshi)
 	 * @param big decimal
