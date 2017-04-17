@@ -55,6 +55,26 @@ public class DigitalPosition implements Position {
 		setLocationAsIndex();
 		setExit();
 	}
+	
+	public DigitalPosition(){
+		
+	}
+	
+	@Override
+	public Position copy(Position position, Entry entry) {
+		Position digitalPosition = new DigitalPosition();
+		digitalPosition.setAssetName(position.getAssetName());
+		digitalPosition.setOpen(position.isOpen());
+		digitalPosition.setMaxPrice(position.getMaxPrice());
+		digitalPosition.setMinPrice(position.getMinPrice());
+		digitalPosition.setDate(position.getDate());
+		digitalPosition.setEntryPrice(position.getEntryPrice());
+		digitalPosition.setEntryDate(position.getEntryDate());
+		digitalPosition.setCurrentPrice(position.getCurrentPrice());
+		digitalPosition.setProfitLossPercent(position);
+		digitalPosition.setProfitLossAmount(entry);
+		return digitalPosition;
+	}
 
 	@Override
 	public void setExit() {
@@ -189,29 +209,9 @@ public class DigitalPosition implements Position {
 		return null;
 	}
 	
-	public DigitalPosition(){
-		
-	}
-	
 	@Override
 	public Entry getEntry(){
 		return this.entry;
-	}
-
-	@Override
-	public Position copy(Position position, Entry entry) {
-		Position digitalPosition = new DigitalPosition();
-		digitalPosition.setAssetName(position.getAssetName());
-		digitalPosition.setOpen(position.isOpen());
-		digitalPosition.setMaxPrice(position.getMaxPrice());
-		digitalPosition.setMinPrice(position.getMinPrice());
-		digitalPosition.setDate(position.getDate());
-		digitalPosition.setEntryPrice(position.getEntryPrice());
-		digitalPosition.setEntryDate(position.getEntryDate());
-		digitalPosition.setCurrentPrice(position.getCurrentPrice());
-		digitalPosition.setProfitLossPercent(position);
-		digitalPosition.setProfitLossAmount(entry);
-		return digitalPosition;
 	}
 
 	@Override
