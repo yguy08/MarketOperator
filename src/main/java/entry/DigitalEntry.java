@@ -108,13 +108,11 @@ public class DigitalEntry implements Entry {
 	public void setMaxPrice(List<?> priceSubList) {
 		List<BigDecimal> maxList = new ArrayList<>();
 		List<PoloniexChartData> lastXDaysList = (List<PoloniexChartData>) priceSubList;
-		System.out.println("Finding max price for: " + lastXDaysList.get(0).toString());
 		for(int x = 0; x < lastXDaysList.size(); x++){
 			maxList.add(lastXDaysList.get(x).getClose());
 		}
 		
 		this.maxPrice = Collections.max(maxList);
-		System.out.println("Max price is " + this.maxPrice);
 	}
 
 	@Override
@@ -132,7 +130,6 @@ public class DigitalEntry implements Entry {
 		}
 		
 		this.minPrice = Collections.min(minList);
-		System.out.println("Min price is " + this.maxPrice);
 	}
 
 	@Override
@@ -224,11 +221,8 @@ public class DigitalEntry implements Entry {
 		BigDecimal max = speculate.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		BigDecimal size = speculate.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
 				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		if(size.compareTo(max) > 0){
-			this.unitSize = max;
-		}else{
-			this.unitSize = size;
-		}
+		this.unitSize = (size.compareTo(max) > 0) ? max : size;
+
 	}
 	
 	@Override
@@ -333,6 +327,7 @@ public class DigitalEntry implements Entry {
 	
 	@Override
 	public void setDirection(String direction){
+		//make sure direction is formatted correctly before assigning
 		boolean isFormat = (direction == Speculate.LONG || direction == Speculate.SHORT) ? true : false;
 		if(isFormat){
 			this.direction = direction;
