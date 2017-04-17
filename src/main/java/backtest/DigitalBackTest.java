@@ -12,7 +12,6 @@ import asset.Asset;
 import asset.AssetFactory;
 import entry.Entry;
 import entry.EntryFactory;
-import javafx.collections.ObservableList;
 import market.Market;
 import position.Position;
 import position.PositionFactory;
