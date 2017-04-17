@@ -8,6 +8,8 @@ public interface Speculate {
 	String BACK_TEST = "Back Test";
 	String LIVE = "Live";
 	
+	String POLONIEX_OFFLINE   = "Poloniex Offline Market";
+	
 	String LONG = "Long";
 	String SHORT = "Short";
 	
