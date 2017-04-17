@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface Asset {
 
-	void setAsset(String assetName);
+	void setAssetName(String assetName);
 	
 	String getAsset();
 	
@@ -33,5 +33,6 @@ public interface Asset {
 	
 	String getMarketName();
 	
-	void setMarketName(String marketName);
+	void setMarketName(String marketName);	
+
 }
