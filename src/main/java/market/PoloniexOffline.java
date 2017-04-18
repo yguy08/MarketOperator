@@ -1,35 +1,36 @@
 package market;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.FileParser;
+import speculate.Speculate;
 
 public class PoloniexOffline implements Market {
 	
-	private String marketName = Market.STOCK_MARKET;
+	private String marketName;
 	private List<String> assets = new ArrayList<>();
 	
 	public PoloniexOffline(){
+		setMarketName(Speculate.POLONIEX_OFFLINE);
 		setAssets();
+	}
+	
+	@Override
+	public void setMarketName(String marketName) {
+		this.marketName = marketName;		
 	}
 
 	@Override
 	public String getMarketName() {
-		return POLONIEX_OFFLINE;
+		return this.marketName;
 	}
 
 	@Override
 	public void setAssets() {
-		List<String> listFromFile;
-		try {
-			listFromFile = FileParser.readMarketList(Market.DIGITAL_MARKET);
-			for(int z = 0; z < listFromFile.size(); z++){
-				this.assets.add(listFromFile.get(z));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		List<String> assetsFromMarketList;
+		assetsFromMarketList = Market.getOfflineAssets(this.marketName);
+		for(int i = 0; i < assetsFromMarketList.size(); i++){
+			this.assets.add(assetsFromMarketList.get(i));
 		}
 	}
 

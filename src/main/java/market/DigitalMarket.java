@@ -22,6 +22,7 @@ public class DigitalMarket implements Market {
 	List<CurrencyPair> assets = new ArrayList<>();
 	
 	public DigitalMarket(){
+		setMarketName(Market.DIGITAL_MARKET);
 		setAssets();
 	}
 	
@@ -53,6 +54,11 @@ public class DigitalMarket implements Market {
 	@Override
 	public String toString(){
 		return this.marketName + ": " + this.assets;
+	}
+
+	@Override
+	public void setMarketName(String marketName) {
+		this.marketName = Market.DIGITAL_MARKET;		
 	}
 	
 

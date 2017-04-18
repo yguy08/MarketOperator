@@ -1,5 +1,8 @@
 package market;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 public interface Market {
@@ -10,9 +13,33 @@ public interface Market {
 		
 	String getMarketName();
 	
+	void setMarketName(String marketName);
+	
 	void setAssets();
 	
-	List getAssets();
+	List<?> getAssets();
+	
+	static void setOfflineAssets(String marketName){
+		
+	}
+	
+	static List<String> getOfflineAssets(String marketName){
+		List<String> assetNames;
+		
+		if(marketName.equals(POLONIEX_OFFLINE)){
+			marketName = DIGITAL_MARKET;
+		}
+		
+		try {
+			assetNames = Files.readAllLines(Paths.get(marketName + "/MarketList.csv"));
+			return assetNames;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 	
 	
 }

@@ -1,7 +1,7 @@
 package asset;
 
-import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class PoloniexOfflineAsset implements Asset {
 	public List<PoloniexOfflineChartData> priceSubList;
 	
 	public PoloniexOfflineAsset(Market market, String assetName){
-		setAsset(assetName);
 		setMarketName(market.getMarketName());
+		setAssetName(assetName);
 		setPriceList(this.assetName);
 		setCloseList();
 		setLowList();
@@ -31,8 +31,8 @@ public class PoloniexOfflineAsset implements Asset {
 	}
 
 	@Override
-	public void setAsset(String assetName) {
-		int i = assetName.indexOf("BTC");
+	public void setAssetName(String assetName) {
+		int i = assetName.lastIndexOf("BTC");
 		this.assetName = assetName.substring(0, i - 1) + "/BTC";
 		SaveToFile.writeToMarketLog(this.assetName);
 	}
@@ -44,15 +44,15 @@ public class PoloniexOfflineAsset implements Asset {
 
 	@Override
 	public void setPriceList(String assetName) {
+		//for offline, asset cannot have "/" in file name
+		String assetFileName = assetName.replace("/", "");
+		
 		try {
-			int i = assetName.indexOf("BTC");
-			String fileAssetName = assetName.substring(0, i - 1) + "BTC";
-			List<?> priceList = FileParser.readTextFileByLines(Market.DIGITAL_MARKET + "/" + fileAssetName + ".txt");
-			SaveToFile.writeToMarketLog(this.getMarketName() + "/" + fileAssetName + ": " + priceList.toString());
-			for(int z = 0; i < priceList.size(); i++){
+			List<?> priceList = FileParser.parsePoloFile(Market.DIGITAL_MARKET + "/" + assetFileName + ".txt");
+			for(int z = 0; z < priceList.size(); z++){
 				this.priceList.add((PoloniexOfflineChartData) priceList.get(z));
 			}
-		} catch (IOException e) {
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
@@ -110,13 +110,12 @@ public class PoloniexOfflineAsset implements Asset {
 	
 	@Override
 	public String toString(){
-		return this.marketName + ": [ $" + this.assetName + " ] " + " " + this.priceList;
+		return this.marketName + ": [ " + this.assetName + " ] " + " " + this.priceList;
 	}
 
 	@Override
 	public String getAsset() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.assetName;
 	}
 
 	@Override

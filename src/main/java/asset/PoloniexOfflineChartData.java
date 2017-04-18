@@ -17,7 +17,7 @@ public class PoloniexOfflineChartData {
 
 	  @JsonCreator
 	  public PoloniexOfflineChartData(Date date, BigDecimal high, BigDecimal low, BigDecimal open, 
-			  BigDecimal close, BigDecimal volume, BigDecimal quoteVolume,BigDecimal weightedAverage) {
+			  BigDecimal close, BigDecimal volume, BigDecimal quoteVolume, BigDecimal weightedAverage) {
 	    this.date = date;
 	    this.high = high;
 	    this.low = low;

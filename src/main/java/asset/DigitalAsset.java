@@ -37,7 +37,7 @@ public class DigitalAsset implements Asset {
 	
 	public DigitalAsset(Market market, String assetName){
 		setMarketName(market.getMarketName());
-		setAsset(assetName);
+		setAssetName(assetName);
 		setPriceList(this.assetName);
 		setCloseList();
 		setLowList();
@@ -45,7 +45,7 @@ public class DigitalAsset implements Asset {
 	}
 
 	@Override
-	public void setAsset(String assetName) {
+	public void setAssetName(String assetName) {
 		this.assetName = assetName;
 	}
 

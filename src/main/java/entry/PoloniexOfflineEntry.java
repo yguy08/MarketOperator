@@ -12,8 +12,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
-
 import asset.Asset;
 import asset.PoloniexOfflineChartData;
 import market.Market;
@@ -93,8 +91,6 @@ public class PoloniexOfflineEntry implements Entry {
 		this.isEntry = (isEqualToHigh || isEqualToLow) ? isFilteredIn : false;
 		if(isEntry){
 			this.direction = isEqualToHigh ? Speculate.LONG : Speculate.SHORT;
-		}else{
-			
 		}
 	}
 
@@ -122,7 +118,6 @@ public class PoloniexOfflineEntry implements Entry {
 	public void setMaxPrice(List<?> priceSubList) {
 		List<BigDecimal> maxList = new ArrayList<>();
 		List<PoloniexOfflineChartData> lastXDaysList = (List<PoloniexOfflineChartData>) priceSubList;
-		System.out.println("Finding max price for: " + lastXDaysList.get(0).toString());
 		for(int x = 0; x < lastXDaysList.size(); x++){
 			maxList.add(lastXDaysList.get(x).getClose());
 		}
@@ -140,7 +135,6 @@ public class PoloniexOfflineEntry implements Entry {
 	public void setMinPrice(List<?> priceSubList) {
 		List<BigDecimal> minList = new ArrayList<>();
 		List<PoloniexOfflineChartData> lastXDaysList = (List<PoloniexOfflineChartData>) priceSubList;
-		System.out.println("Finding min price for: " + lastXDaysList.get(0).toString());
 		for(int x = 0; x < this.priceSubList.size(); x++){
 			minList.add(this.priceSubList.get(x).getClose());
 		}
@@ -236,13 +230,9 @@ public class PoloniexOfflineEntry implements Entry {
 	@Override
 	public void setUnitSize(Speculate speculate) {
 		BigDecimal max = speculate.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = speculate.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
-				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		if(size.compareTo(max) > 0){
-			this.unitSize = max;
-		}else{
-			this.unitSize = size;
-		}
+		BigDecimal size = speculate.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32).divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		
+		this.unitSize = (size.compareTo(max) > 0) ? max : size;
 	}
 	
 	@Override
