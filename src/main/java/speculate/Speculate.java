@@ -12,9 +12,9 @@ public interface Speculate {
 	String SHORT = "Short";
 	
 	BigDecimal STOCK_EQUITY = new BigDecimal(10_000.00); 
-	BigDecimal DIGITAL_EQUITY = new BigDecimal(5.00000000);
+	BigDecimal DIGITAL_EQUITY = new BigDecimal(4.00000000);
 	
-	BigDecimal RISK = new BigDecimal(0.03);
+	BigDecimal RISK = new BigDecimal(0.01);
 	BigDecimal STOP = new BigDecimal(2.00);
 	
 	BigDecimal VOLUME_FILTER = new BigDecimal(10.00);
@@ -23,9 +23,9 @@ public interface Speculate {
 	int EXIT  = 10;
 	int MOVING_AVG = 20;
 	
-	int MAX_UNITS = 6;
+	int MAX_UNITS = 8;
 	
-	int DAYS = 365 * 2;
+	int DAYS = 365 * 1;
 	
 	boolean LONG_FILTER = true;
 	
