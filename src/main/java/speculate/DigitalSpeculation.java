@@ -29,6 +29,16 @@ public class DigitalSpeculation implements Speculate {
 	public DigitalSpeculation(Market market) {
 		this.accountEquity = Speculate.DIGITAL_EQUITY;
 	}
+	
+	public DigitalSpeculation(){
+		
+	}
+	
+	@Override
+	public Speculate copy(Speculate speculate) {
+		Speculate digitalSpeculation = new DigitalSpeculation();
+		return digitalSpeculation;
+	}
 
 	@Override
 	public void setAccountEquity(BigDecimal tradeResult) {
@@ -56,7 +66,6 @@ public class DigitalSpeculation implements Speculate {
 	public void getAllOpenPositions(Vault vault, Speculate speculate) {
 		for(int i = 0; i < vault.backtest.getPositionList().size();i++){
 			boolean isPositionOpen = vault.backtest.getPositionList().get(i).isOpen(); 
-			
 			if(isPositionOpen){
 				vault.resultsList.add(vault.backtest.getPositionList().get(i).toString());
 			}
@@ -94,14 +103,9 @@ public class DigitalSpeculation implements Speculate {
 		runbacktest.setSortedEntryList(vault.backtest.getEntryList());
 		runbacktest.setSortedPositionList(vault.backtest.getPositionList());
 		runbacktest.protoBackTest();
-		for(int i = 0; i < runbacktest.getResultsList().size();i++){
-			vault.resultsList.add(runbacktest.getResultsList().get(i));
+		for(String results : runbacktest.getResultsList()){
+			vault.resultsList.add(results);
 		}
-	}
-	
-	@Override
-	public String toString(){
-		return "[ACCOUNT] " + "Balance: " + this.accountEquity.setScale(2, RoundingMode.HALF_DOWN) + " Total Return: " + this.getTotalReturnPercent() + "% " + " Units: " + this.unitList.size();
 	}
 
 	@Override
@@ -128,17 +132,15 @@ public class DigitalSpeculation implements Speculate {
 	public BigDecimal getStop() {
 		return STOP;
 	}
-
+	
 	@Override
-	public Speculate copy(Speculate speculate) {
-		Speculate digitalSpeculation = new DigitalSpeculation();
-		return digitalSpeculation;
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(" [ACCOUNT] ");
+		sb.append(" Balance: " + this.accountEquity.setScale(2, RoundingMode.HALF_DOWN));
+		sb.append(" Total Return: " + this.getTotalReturnPercent() + "%");
+		sb.append(" Units: " + this.unitList.size());
+		return sb.toString();
 	}
 	
-	public DigitalSpeculation(){
-		
-	}
-	
-	
-
 }

@@ -126,4 +126,40 @@ public class StockSpeculation implements Speculate {
 		return sb.toString();
 	}
 
+	@Override
+	public int getEntryDays() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getExitDays() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMaxUnits() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public BigDecimal getRisk() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BigDecimal getStop() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Speculate copy(Speculate speculate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

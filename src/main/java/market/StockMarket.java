@@ -43,6 +43,12 @@ public class StockMarket implements Market {
 	public String toString(){
 		return this.marketName + ": " + this.assets;
 	}
+
+	@Override
+	public void setMarketName(String marketName) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

@@ -190,4 +190,100 @@ public class StockPosition implements Position {
 		return this.entry;
 	}
 
+	@Override
+	public void setAssetName(String assetName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setMaxPrice(BigDecimal maxPrice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setMinPrice(BigDecimal minPrice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getMaxPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BigDecimal getMinPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setOpen(boolean isOpen) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getAssetName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Position copy(Position position, Entry entry) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCurrentPrice(BigDecimal currentPrice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getCurrentPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setProfitLossPercent(Position position) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEntryDate(String date) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getEntryDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setEntryPrice(BigDecimal entryPrice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getEntryPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setDate(String date) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

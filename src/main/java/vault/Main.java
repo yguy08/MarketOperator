@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -35,7 +36,7 @@ public class Main extends Application  {
 	Text speculateTitle;
 	HBox chooseMarket, speculateMainHbox;
 	Scene chooseMarketScene, speculateScene;
-	Button btnStock, btnDigital, viewOpen, viewClose, backTest, newEntries, clearBtn, saveBtn, btnPoloOffline;
+	Button btnStock, btnDigital, viewOpen, viewClose, backTest, newEntries, clearBtn, saveBtn, btnDigitalOffline;
 	Stage chooseMarketStage, speculateStage;
 	
 	public static void main(String[] args) {
@@ -158,19 +159,19 @@ public class Main extends Application  {
     
 	void setChooseMarketPopup(){
 		//market buttons
-		btnStock = new Button("Stock Market");
 		btnDigital = new Button("Digital Market");
-		btnPoloOffline = new Button("Poloniex Offline");
+		btnDigitalOffline = new Button("Poloniex Offline");
+		btnStock = new Button("Stock Market");
 		
 		//set button size
-		btnStock.setPrefSize(150, 50);
 		btnDigital.setPrefSize(150, 50);
-		btnPoloOffline.setPrefSize(150, 50);
+		btnDigitalOffline.setPrefSize(150, 50);
+		btnStock.setPrefSize(150, 50);
 		
 		//set button onclick
-		btnStock.setOnAction(e-> ButtonClicked(e));
 		btnDigital.setOnAction(e-> ButtonClicked(e));
-		btnPoloOffline.setOnAction(e-> ButtonClicked(e));
+		btnDigitalOffline.setOnAction(e-> ButtonClicked(e));
+		btnStock.setOnAction(e-> ButtonClicked(e));
 		
 		//popup border pane
 		chooseMarketPane = new BorderPane();
@@ -181,7 +182,7 @@ public class Main extends Application  {
 		chooseMarket.setSpacing(10);
 		
 		//add buttons to hbox
-		chooseMarket.getChildren().addAll(btnStock,btnDigital, btnPoloOffline);
+		chooseMarket.getChildren().addAll(btnDigital, btnDigitalOffline, btnStock);
 		
 		//set borderpane
 		BorderPane.setAlignment(chooseMarket,  Pos.CENTER);
@@ -235,6 +236,7 @@ public class Main extends Application  {
     	for(int x = 0; x < resultsList.size();x++){
     		sb.append(resultsList.get(x).toString() + "\n");
     	}
+    	
     	String results = sb.toString();
     	long date = System.currentTimeMillis();
     	try {

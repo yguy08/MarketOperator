@@ -3,24 +3,27 @@ package position;
 import asset.Asset;
 import entry.Entry;
 import market.Market;
-import speculate.Speculate;
 
 public class PositionFactory {
 	
 	public Position createPosition(Market market, Asset asset, Entry entry){
-		if(market == null){
-			return null;
+		Position position;
+		switch(market.getMarketName()){
+		case Market.DIGITAL_MARKET:
+			position = new DigitalPosition(market, asset, entry);
+			break;
+		case Market.POLONIEX_OFFLINE:
+			position = new PoloniexOfflinePosition(market, asset, entry);
+			break;
+		case Market.STOCK_MARKET:
+			position = new StockPosition(market, asset, entry);
+			break;
+		default:
+			position = null;
+			break;
 		}
 		
-		if(market.getMarketName().equalsIgnoreCase(Market.STOCK_MARKET)){
-			return new StockPosition(market, asset, entry);
-		}else if(market.getMarketName().equalsIgnoreCase(Market.DIGITAL_MARKET)){
-			return new DigitalPosition(market, asset, entry);
-		}else if(market.getMarketName().equalsIgnoreCase(Market.POLONIEX_OFFLINE)){
-			return new PoloniexOfflinePosition(market, asset, entry);
-		}
-		
-		return null;
+		return position;
 	}
 
 }
