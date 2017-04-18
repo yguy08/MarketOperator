@@ -26,8 +26,13 @@ public interface Market {
 	static List<String> getOfflineAssets(String marketName){
 		List<String> assetNames;
 		
-		if(marketName.equals(POLONIEX_OFFLINE)){
-			marketName = DIGITAL_MARKET;
+		switch(marketName){
+			case POLONIEX_OFFLINE: 	
+				marketName = DIGITAL_MARKET;
+				break;
+			default: 
+				marketName = DIGITAL_MARKET;
+				break;
 		}
 		
 		try {
@@ -40,6 +45,8 @@ public interface Market {
 		return null;
 		
 	}
+	
+
 	
 	
 }
