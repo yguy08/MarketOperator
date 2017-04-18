@@ -9,6 +9,8 @@ import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.PoloniexExchange;
 
+import utils.SaveToFile;
+
 public class DigitalMarket implements Market {
 	
 	//consider changing to bitcoin market, then have ETH, XMR and other curriencies as markets...
@@ -20,6 +22,7 @@ public class DigitalMarket implements Market {
 	List<CurrencyPair> assets = new ArrayList<>();
 	
 	public DigitalMarket(){
+		setMarketName(Market.DIGITAL_MARKET);
 		setAssets();
 	}
 	
@@ -31,11 +34,16 @@ public class DigitalMarket implements Market {
 	@Override
 	public void setAssets() {
 		List<CurrencyPair> btcOnly = exchange.getExchangeSymbols();
+		List<String> btcOnlyList = new ArrayList<>();
 		for(CurrencyPair pairs : btcOnly){
 			if(pairs.counter.equals(Currency.BTC)){
 				this.assets.add(pairs);
+				btcOnlyList.add(pairs.toString());
 			}
 		}
+		
+		//SaveToFile.writeMarketListToFile(this, btcOnlyList);
+		
 	}
 	
 	@Override
@@ -46,6 +54,11 @@ public class DigitalMarket implements Market {
 	@Override
 	public String toString(){
 		return this.marketName + ": " + this.assets;
+	}
+
+	@Override
+	public void setMarketName(String marketName) {
+		this.marketName = Market.DIGITAL_MARKET;		
 	}
 	
 

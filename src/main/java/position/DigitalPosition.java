@@ -25,27 +25,18 @@ public class DigitalPosition implements Position {
 	Asset asset;
 	Entry entry;
 	
-	String Date;
-	BigDecimal currentPrice;
-	BigDecimal maxPrice;
-	BigDecimal minPrice;
-	
-	BigDecimal entryPrice;
-	
-	String entryDate;
-	
+	String Date, entryDate;
+	BigDecimal currentPrice, maxPrice, minPrice, entryPrice;	
 	int locationIndex;
 	
 	BigDecimal profitLossPercent = new BigDecimal(0.00);
 	BigDecimal profitLossAmount = new BigDecimal(0.00);
 	
-	Boolean open;
-	Boolean isLong;
+	Boolean open, isLong;
 	
 	String assetName;
 	
 	List<PoloniexChartData> priceSubList = new ArrayList<>();
-	private BigDecimal currentEntryPrice;
 	
 	public DigitalPosition(Market market, Asset asset, Entry entry){
 		this.market = market;
@@ -63,6 +54,26 @@ public class DigitalPosition implements Position {
 		setMinPrice();
 		setLocationAsIndex();
 		setExit();
+	}
+	
+	public DigitalPosition(){
+		
+	}
+	
+	@Override
+	public Position copy(Position position, Entry entry) {
+		Position digitalPosition = new DigitalPosition();
+		digitalPosition.setAssetName(position.getAssetName());
+		digitalPosition.setOpen(position.isOpen());
+		digitalPosition.setMaxPrice(position.getMaxPrice());
+		digitalPosition.setMinPrice(position.getMinPrice());
+		digitalPosition.setDate(position.getDate());
+		digitalPosition.setEntryPrice(position.getEntryPrice());
+		digitalPosition.setEntryDate(position.getEntryDate());
+		digitalPosition.setCurrentPrice(position.getCurrentPrice());
+		digitalPosition.setProfitLossPercent(position);
+		digitalPosition.setProfitLossAmount(entry);
+		return digitalPosition;
 	}
 
 	@Override
@@ -198,29 +209,9 @@ public class DigitalPosition implements Position {
 		return null;
 	}
 	
-	public DigitalPosition(){
-		
-	}
-	
 	@Override
 	public Entry getEntry(){
 		return this.entry;
-	}
-
-	@Override
-	public Position copy(Position position, Entry entry) {
-		Position digitalPosition = new DigitalPosition();
-		digitalPosition.setAssetName(position.getAssetName());
-		digitalPosition.setOpen(position.isOpen());
-		digitalPosition.setMaxPrice(position.getMaxPrice());
-		digitalPosition.setMinPrice(position.getMinPrice());
-		digitalPosition.setDate(position.getDate());
-		digitalPosition.setEntryPrice(position.getEntryPrice());
-		digitalPosition.setEntryDate(position.getEntryDate());
-		digitalPosition.setCurrentPrice(position.getCurrentPrice());
-		digitalPosition.setProfitLossPercent(position);
-		digitalPosition.setProfitLossAmount(entry);
-		return digitalPosition;
 	}
 
 	@Override
@@ -294,7 +285,6 @@ public class DigitalPosition implements Position {
 
 	@Override
 	public BigDecimal getCurrentPrice() {
-		// TODO Auto-generated method stub
 		return this.currentPrice;
 	}
 

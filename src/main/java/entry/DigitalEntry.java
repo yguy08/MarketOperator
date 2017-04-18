@@ -48,13 +48,13 @@ public class DigitalEntry implements Entry {
 		this.market = market;
 		this.asset	= asset;
 		this.speculator = speculator;
-		this.assetName = asset.getAsset();
+		setAssetName(this.asset.getAsset());
 		setPriceSubList();
-		setDate();
-		setCurrentPrice();
-		setMaxPrice();
-		setMinPrice();
-		setVolume();
+		setDate(DateUtils.dateToSimpleDateFormat(this.priceSubList.get(this.priceSubList.size() - 1).getDate()));
+		setCurrentPrice(this.priceSubList.get(this.priceSubList.size() - 1).getClose());
+		setMaxPrice(this.priceSubList);
+		setMinPrice(this.priceSubList);
+		setVolume(this.priceSubList.get(this.priceSubList.size()-1).getVolume());
 		setLocationAsIndex();
 		setEntry();
 		
@@ -85,30 +85,31 @@ public class DigitalEntry implements Entry {
 	}
 
 	@Override
-	public void setDate() {
-		this.Date = DateUtils.dateToSimpleDateFormat(this.priceSubList.get(this.priceSubList.size() - 1).getDate());
-	}
-
-	@Override
 	public String getDate() {
 		return this.Date;
 	}
-
+	
 	@Override
-	public void setCurrentPrice() {
-		this.currentPrice = this.priceSubList.get(this.priceSubList.size() - 1).getClose();		
+	public void setDate(String date) {
+		this.Date = date;
 	}
 
 	@Override
 	public BigDecimal getCurrentPrice() {
 		return this.currentPrice;
 	}
+	
+	@Override
+	public void setCurrentPrice(BigDecimal currentPrice) {
+		this.currentPrice = currentPrice;
+	}
 
 	@Override
-	public void setMaxPrice() {
+	public void setMaxPrice(List<?> priceSubList) {
 		List<BigDecimal> maxList = new ArrayList<>();
-		for(int x = 0; x < this.priceSubList.size(); x++){
-			maxList.add(this.priceSubList.get(x).getClose());
+		List<PoloniexChartData> lastXDaysList = (List<PoloniexChartData>) priceSubList;
+		for(int x = 0; x < lastXDaysList.size(); x++){
+			maxList.add(lastXDaysList.get(x).getClose());
 		}
 		
 		this.maxPrice = Collections.max(maxList);
@@ -120,13 +121,15 @@ public class DigitalEntry implements Entry {
 	}
 
 	@Override
-	public void setMinPrice() {
+	public void setMinPrice(List<?> priceSubList) {
 		List<BigDecimal> minList = new ArrayList<>();
+		List<PoloniexChartData> lastXDaysList = (List<PoloniexChartData>) priceSubList;
+		System.out.println("Finding min price for: " + lastXDaysList.get(0).toString());
 		for(int x = 0; x < this.priceSubList.size(); x++){
 			minList.add(this.priceSubList.get(x).getClose());
 		}
 		
-		this.minPrice = Collections.min(minList);		
+		this.minPrice = Collections.min(minList);
 	}
 
 	@Override
@@ -218,11 +221,8 @@ public class DigitalEntry implements Entry {
 		BigDecimal max = speculate.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		BigDecimal size = speculate.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
 				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		if(size.compareTo(max) > 0){
-			this.unitSize = max;
-		}else{
-			this.unitSize = size;
-		}
+		this.unitSize = (size.compareTo(max) > 0) ? max : size;
+
 	}
 	
 	@Override
@@ -275,10 +275,10 @@ public class DigitalEntry implements Entry {
 	public BigDecimal getVolume() {
 		return this.volume;
 	}
-
+	
 	@Override
-	public void setVolume() {
-		this.volume = this.priceSubList.get(this.priceSubList.size() - 1).getVolume();		
+	public void setVolume(BigDecimal volume) {
+		this.volume = volume;
 	}
 
 	@Override
@@ -316,11 +316,6 @@ public class DigitalEntry implements Entry {
 	}
 
 	@Override
-	public void setCurrentPrice(BigDecimal currentPrice) {
-		this.currentPrice = currentPrice;
-	}
-
-	@Override
 	public void setAssetName(String assetName) {
 		this.assetName = assetName;
 	}
@@ -329,19 +324,10 @@ public class DigitalEntry implements Entry {
 	public String getAssetName() {
 		return this.assetName;
 	}
-
-	@Override
-	public void setVolume(BigDecimal volume) {
-		this.volume = volume;
-	}
-
-	@Override
-	public void setDate(String date) {
-		this.Date = date;
-	}
 	
 	@Override
 	public void setDirection(String direction){
+		//make sure direction is formatted correctly before assigning
 		boolean isFormat = (direction == Speculate.LONG || direction == Speculate.SHORT) ? true : false;
 		if(isFormat){
 			this.direction = direction;

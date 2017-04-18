@@ -1,0 +1,3 @@
+[POSITION] BBR/BTC Open:false Entry [Date:2017-04-15 Price: 0.00040305] Close [Date: 2017-04-18 Price: 0.00030445] P/L [%: -24.46% Amount: -0.1089] High: [0.00040305] Low: [0.00023141]
+[POSITION] BELA/BTC Open:false Entry [Date:2017-03-26 Price: 0.00006325] Close [Date: 2017-04-16 Price: 0.0000976] P/L [%: 54.31% Amount: 0.2333] High: [0.0001589] Low: [0.0000976]
+[POSITION] VTC/BTC Open:false Entry [Date:2017-04-09 Price: 0.00011324] Close [Date: 2017-04-13 Price: 0.00008416] P/L [%: -25.68% Amount: -0.1353] High: [0.00014478] Low: [0.00005351]

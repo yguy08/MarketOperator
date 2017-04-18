@@ -16,6 +16,7 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 import market.DigitalMarket;
 import market.Market;
 import speculate.Speculate;
+import utils.SaveToFile;
 
 public class DigitalAsset implements Asset {
 	
@@ -35,8 +36,8 @@ public class DigitalAsset implements Asset {
 	List<BigDecimal> closeSubList	= new ArrayList<>();
 	
 	public DigitalAsset(Market market, String assetName){
-		this.marketName = market.getMarketName();
-		this.assetName	= assetName;
+		setMarketName(market.getMarketName());
+		setAssetName(assetName);
 		setPriceList(this.assetName);
 		setCloseList();
 		setLowList();
@@ -44,7 +45,7 @@ public class DigitalAsset implements Asset {
 	}
 
 	@Override
-	public void setAsset(String assetName) {
+	public void setAssetName(String assetName) {
 		this.assetName = assetName;
 	}
 
@@ -62,6 +63,7 @@ public class DigitalAsset implements Asset {
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - Speculate.DAYS * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
+			SaveToFile.writeAssetPriceListToFile(this, priceList);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -122,6 +124,21 @@ public class DigitalAsset implements Asset {
 	@Override
 	public String toString(){
 		return this.marketName + ": [ " + this.assetName + " ] " + this.priceList;   
+	}
+
+	@Override
+	public String getAssetName() {
+		return this.assetName;
+	}
+
+	@Override
+	public String getMarketName() {
+		return this.marketName;
+	}
+
+	@Override
+	public void setMarketName(String marketName) {
+		this.marketName = marketName;
 	}
 
 }

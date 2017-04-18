@@ -1,12 +1,13 @@
 package asset;
 
-import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import market.Market;
-import utils.PoloniexOfflineAdapter;
+import utils.FileParser;
+import utils.SaveToFile;
 
 public class PoloniexOfflineAsset implements Asset {
 	
@@ -21,8 +22,8 @@ public class PoloniexOfflineAsset implements Asset {
 	public List<PoloniexOfflineChartData> priceSubList;
 	
 	public PoloniexOfflineAsset(Market market, String assetName){
-		this.marketName = market.getMarketName();
-		this.assetName	= assetName;
+		setMarketName(market.getMarketName());
+		setAssetName(assetName);
 		setPriceList(this.assetName);
 		setCloseList();
 		setLowList();
@@ -30,20 +31,28 @@ public class PoloniexOfflineAsset implements Asset {
 	}
 
 	@Override
-	public void setAsset(String assetName) {
-		this.assetName = assetName;
+	public void setAssetName(String assetName) {
+		int i = assetName.lastIndexOf("BTC");
+		this.assetName = assetName.substring(0, i - 1) + "/BTC";
+		SaveToFile.writeToMarketLog(this.assetName);
 	}
 
 	@Override
-	public String getAsset() {
+	public String getAssetName() {
 		return this.assetName;
 	}
 
 	@Override
 	public void setPriceList(String assetName) {
+		//for offline, asset cannot have "/" in file name
+		String assetFileName = assetName.replace("/", "");
+		
 		try {
-			this.priceList = PoloniexOfflineAdapter.getPoloOfflineChartData(assetName);
-		} catch (IOException e) {
+			List<?> priceList = FileParser.parsePoloFile(Market.DIGITAL_MARKET + "/" + assetFileName + ".txt");
+			for(int z = 0; z < priceList.size(); z++){
+				this.priceList.add((PoloniexOfflineChartData) priceList.get(z));
+			}
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
@@ -101,7 +110,22 @@ public class PoloniexOfflineAsset implements Asset {
 	
 	@Override
 	public String toString(){
-		return this.marketName + ": [ $" + this.assetName + " ] " + " " + this.priceList;
+		return this.marketName + ": [ " + this.assetName + " ] " + " " + this.priceList;
+	}
+
+	@Override
+	public String getAsset() {
+		return this.assetName;
+	}
+
+	@Override
+	public String getMarketName() {
+		return this.marketName;
+	}
+
+	@Override
+	public void setMarketName(String marketName) {
+		this.marketName = marketName;
 	}
 
 }
