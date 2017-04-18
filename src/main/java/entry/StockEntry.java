@@ -259,6 +259,84 @@ public class StockEntry implements Entry {
 		
 		return null;
 		
+	}
+
+	@Override
+	public void setMaxPrice(List<?> priceSubList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setMinPrice(List<?> priceSubList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDirection(String direction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTrueRange(BigDecimal trueRange) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setStop(BigDecimal stop) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setCurrentPrice(BigDecimal currentPrice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getVolume() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isLong() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Entry copy(Entry entry, Speculate speculate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setAssetName(String assetName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getAssetName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setVolume(BigDecimal volume) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDate(String date) {
+		// TODO Auto-generated method stub
+		
 	}	
 
 }

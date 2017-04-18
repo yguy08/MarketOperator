@@ -80,6 +80,7 @@ public class PoloniexOfflineEntry implements Entry {
 
 	@Override
 	public void setEntry() {
+		
 		//filters
 		boolean isHighEqualToLow = this.maxPrice.compareTo(this.minPrice) == 0;
 		boolean isBelowVolumeFilter = this.volume.compareTo(Speculate.VOLUME_FILTER) < 0;
@@ -118,12 +119,12 @@ public class PoloniexOfflineEntry implements Entry {
 	public void setMaxPrice(List<?> priceSubList) {
 		List<BigDecimal> maxList = new ArrayList<>();
 		List<PoloniexOfflineChartData> lastXDaysList = (List<PoloniexOfflineChartData>) priceSubList;
-		for(int x = 0; x < lastXDaysList.size(); x++){
-			maxList.add(lastXDaysList.get(x).getClose());
+		
+		for(PoloniexOfflineChartData chartData : lastXDaysList){
+			maxList.add(chartData.getClose());
 		}
 		
 		this.maxPrice = Collections.max(maxList);
-		System.out.println("Max price is " + this.maxPrice);
 	}
 
 	@Override
@@ -135,12 +136,12 @@ public class PoloniexOfflineEntry implements Entry {
 	public void setMinPrice(List<?> priceSubList) {
 		List<BigDecimal> minList = new ArrayList<>();
 		List<PoloniexOfflineChartData> lastXDaysList = (List<PoloniexOfflineChartData>) priceSubList;
-		for(int x = 0; x < this.priceSubList.size(); x++){
-			minList.add(this.priceSubList.get(x).getClose());
+		
+		for(PoloniexOfflineChartData chartData : lastXDaysList){
+			minList.add(chartData.getClose());
 		}
 		
 		this.minPrice = Collections.min(minList);
-		System.out.println("Min price is " + this.maxPrice);
 	}
 
 	@Override

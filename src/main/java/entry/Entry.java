@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import asset.Asset;
 import speculate.Speculate;
 
 public interface Entry {
