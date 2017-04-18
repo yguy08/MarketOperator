@@ -63,6 +63,7 @@ public class DigitalAsset implements Asset {
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - Speculate.DAYS * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
+			SaveToFile.writeAssetPriceListToFile(this, priceList);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
