@@ -20,6 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import market.Market;
+import position.Position;
 import speculate.Speculate;
 import speculate.SpeculateFactory;
 import utils.SaveToFile;
@@ -29,7 +30,10 @@ public class Main extends Application  {
 	Vault vault;
 	
 	ObservableList<String> resultsList = FXCollections.observableArrayList();
-	ListView<String> statList;	
+	ListView<String> statList;
+	
+	ObservableList<Position> positionObservableList = FXCollections.observableArrayList();
+	ListView<Position> positionListView;
 	
 	BorderPane chooseMarketPane, speculatePane;
 	Text speculateTitle;
