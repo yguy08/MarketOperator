@@ -26,12 +26,12 @@ public class PoloniexOfflineAdapter {
 		BigDecimal quoteVolume = new BigDecimal(0.00);
 		BigDecimal weightedAverage = new BigDecimal(0.00);
 		
-		byte[] polo = FileParser.readPoloniexFile(assetName);
+		//byte[] polo = FileParser.readPoloniexFile(assetName);
 		
 		JsonFactory factory = new JsonFactory();
-		JsonParser parser = factory.createParser(polo);
+		//JsonParser parser = factory.createParser(polo);
 		
-		while(!parser.isClosed()){
+		/*while(!parser.isClosed()){
 			JsonToken jsonToken = parser.nextToken();
 			if(JsonToken.FIELD_NAME.equals(jsonToken)){
 				String fieldName = parser.getCurrentName();
@@ -57,7 +57,7 @@ public class PoloniexOfflineAdapter {
 				PoloniexOfflineChartData poloChartData = new PoloniexOfflineChartData(DateUtils.UnixTimestampToDate(date), high, low, open, close, volume, quoteVolume, weightedAverage);
 				poloChartDataList.add(poloChartData);
 			}
-		}
+		}*/   
 		
 		return poloChartDataList;
 		

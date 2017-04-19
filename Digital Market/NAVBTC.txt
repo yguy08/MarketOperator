@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-19 00:00:00 GMT, high=0.000013, low=0.00001102, open=0.00001259, close=0.00001234, volume=1.17882872, quoteVolume=98765.74634085, weightedAverage=0.00001193]
 PoloniexChartData [date=2016-04-20 00:00:00 GMT, high=0.00001234, low=0.00001119, open=0.00001224, close=0.00001226, volume=0.12580165, quoteVolume=10660.45317718, weightedAverage=0.0000118]
 PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.00001214, low=0.00001131, open=0.00001214, close=0.00001131, volume=2.25541176, quoteVolume=193279.07447301, weightedAverage=0.00001166]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.00001121, low=0.0000107, open=0.00001115, close=0.0000107, volume=0.1356925, quoteVolume=12276.21572872, weightedAverage=0.00001105]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-14 00:00:00 GMT, high=0.00007519, low=0.00007121
 PoloniexChartData [date=2017-04-15 00:00:00 GMT, high=0.00009057, low=0.00007315, open=0.00007419, close=0.00008565, volume=301.33279233, quoteVolume=3565241.9878951, weightedAverage=0.00008451]
 PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.00009002, low=0.00008237, open=0.00008436, close=0.000087, volume=107.8368601, quoteVolume=1261247.4648628, weightedAverage=0.0000855]
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.00008921, low=0.00008358, open=0.00008612, close=0.00008507, volume=89.93663771, quoteVolume=1042955.8296749, weightedAverage=0.00008623]
-PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.00008721, low=0.00008289, open=0.00008508, close=0.00008435, volume=22.04830593, quoteVolume=258843.67215244, weightedAverage=0.00008518]
+PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.00008721, low=0.00007995, open=0.00008508, close=0.00008053, volume=65.31719795, quoteVolume=789279.22761921, weightedAverage=0.00008275]
+PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.00008649, low=0.00008024, open=0.00008144, close=0.00008601, volume=28.16436844, quoteVolume=340349.79660153, weightedAverage=0.00008275]

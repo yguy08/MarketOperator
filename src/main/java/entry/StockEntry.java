@@ -44,10 +44,6 @@ public class StockEntry implements Entry {
 		this.asset	= asset;
 		this.speculator = speculator;
 		setPriceSubList();
-		setDate();
-		setCurrentPrice();
-		setMaxPrice();
-		setMinPrice();
 		setLocationAsIndex();
 		setEntry();
 		
@@ -73,7 +69,7 @@ public class StockEntry implements Entry {
 	}
 
 	@Override
-	public void setDate() {
+	public void setDate(String date) {
 		this.Date = this.priceSubList.get(this.priceSubList.size() - 1).getDate();
 	}
 
@@ -83,38 +79,13 @@ public class StockEntry implements Entry {
 	}
 
 	@Override
-	public void setCurrentPrice() {
-		this.currentPrice = this.priceSubList.get(this.priceSubList.size() - 1).getClose();		
-	}
-
-	@Override
 	public BigDecimal getCurrentPrice() {
 		return this.currentPrice;
 	}
 
 	@Override
-	public void setMaxPrice() {
-		List<BigDecimal> maxList = new ArrayList<>();
-		for(int x = 0; x < this.priceSubList.size(); x++){
-			maxList.add(this.priceSubList.get(x).getClose());
-		}
-		
-		this.maxPrice = Collections.max(maxList);
-	}
-
-	@Override
 	public BigDecimal getMaxPrice() {
 		return this.maxPrice;
-	}
-
-	@Override
-	public void setMinPrice() {
-		List<BigDecimal> minList = new ArrayList<>();
-		for(int x = 0; x < this.priceSubList.size(); x++){
-			minList.add(this.priceSubList.get(x).getClose());
-		}
-		
-		this.minPrice = Collections.min(minList);		
 	}
 
 	@Override
@@ -329,12 +300,6 @@ public class StockEntry implements Entry {
 
 	@Override
 	public void setVolume(BigDecimal volume) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setDate(String date) {
 		// TODO Auto-generated method stub
 		
 	}	

@@ -30,7 +30,7 @@ public class StockAsset implements Asset {
 	}
 
 	@Override
-	public void setAsset(String assetName) {
+	public void setAssetName(String assetName) {
 		this.assetName = assetName;
 	}
 
@@ -110,6 +110,24 @@ public class StockAsset implements Asset {
 	@Override
 	public String toString(){
 		return this.marketName + ": [ $" + this.assetName + " ] " + " " + this.priceList;
+	}
+
+	@Override
+	public String getAssetName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getMarketName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setMarketName(String marketName) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

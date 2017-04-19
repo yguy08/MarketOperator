@@ -254,4 +254,22 @@ public class StockBackTest implements BackTest {
 		return null;
 	}
 
+	@Override
+	public void dataSetUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEntryList(List<Entry> entryList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPositionList(List<Position> positionList) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

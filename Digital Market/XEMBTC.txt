@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-19 00:00:00 GMT, high=0.00000381, low=0.00000355, open=0.00000368, close=0.00000373, volume=50.20811126, quoteVolume=13677741.764771, weightedAverage=0.00000367]
 PoloniexChartData [date=2016-04-20 00:00:00 GMT, high=0.00000393, low=0.00000362, open=0.0000037, close=0.00000365, volume=85.59370036, quoteVolume=22478257.02971, weightedAverage=0.0000038]
 PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.00000384, low=0.00000346, open=0.00000365, close=0.00000348, volume=85.93032938, quoteVolume=23781543.110432, weightedAverage=0.00000361]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.00000371, low=0.00000343, open=0.00000349, close=0.00000354, volume=43.86618819, quoteVolume=12457999.249981, weightedAverage=0.00000352]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-14 00:00:00 GMT, high=0.00001891, low=0.0000178,
 PoloniexChartData [date=2017-04-15 00:00:00 GMT, high=0.00002221, low=0.00001812, open=0.0000187, close=0.000021, volume=2273.35015402, quoteVolume=112698508.71151, weightedAverage=0.00002017]
 PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.0000211, low=0.0000195, open=0.000021, close=0.00002036, volume=653.4350039, quoteVolume=32217551.281178, weightedAverage=0.00002028]
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.000022, low=0.00002007, open=0.00002036, close=0.00002188, volume=716.8387784, quoteVolume=33902605.12236, weightedAverage=0.00002114]
-PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.0000228, low=0.0000218, open=0.00002188, close=0.00002211, volume=478.25263999, quoteVolume=21384551.581476, weightedAverage=0.00002236]
+PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.0000235, low=0.00002125, open=0.00002188, close=0.00002341, volume=1116.76390124, quoteVolume=49819416.361804, weightedAverage=0.00002241]
+PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.0000349, low=0.00002326, open=0.00002348, close=0.00002819, volume=4727.72839739, quoteVolume=169686343.50345, weightedAverage=0.00002786]
