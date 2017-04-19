@@ -207,7 +207,24 @@ public class Main extends Application  {
     	SpeculateFactory speculateFactory = new SpeculateFactory();
 		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
     	speculate.getAllOpenPositions(this.vault, speculate);
+	    
+	//NEW position list
+    	//statList.setItems(this.vault.resultsList);
+    	//statList.setCellFactory((ListView<Position> l) -> new ColorCell());
     }
+	
+	/*  static class ColorCell extends ListCell<Position> {
+        @Override
+        public void updateItem(Position item, boolean empty) {
+            super.updateItem(item, empty);
+            String text = (item != null) ? "Not null" : "null";
+            if (item != null) {
+            	setText(item.getAssetName());
+            } else {
+                setText(text);
+            }
+        }
+    } */
     
     public void viewCloseClicked(ActionEvent e){
     	this.vault.resultsList.removeAll(this.vault.resultsList);
