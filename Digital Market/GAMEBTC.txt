@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-20 00:00:00 GMT, high=0.00010986, low=0.00009102, open=0.00009902, close=0.00009726, volume=20.57000154, quoteVolume=208480.21384987, weightedAverage=0.00009866]
 PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.00009978, low=0.00009197, open=0.00009645, close=0.00009197, volume=6.89349389, quoteVolume=72455.91483736, weightedAverage=0.00009514]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.00009334, low=0.00008957, open=0.00009204, close=0.00009034, volume=7.62808721, quoteVolume=83655.35120012, weightedAverage=0.00009118]
 PoloniexChartData [date=2016-04-23 00:00:00 GMT, high=0.000101, low=0.00008502, open=0.00008981, close=0.00009816, volume=32.88950956, quoteVolume=341739.84667136, weightedAverage=0.00009624]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-15 00:00:00 GMT, high=0.00050036, low=0.000419, 
 PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.0005, low=0.00044991, open=0.00047994, close=0.00047328, volume=336.85500192, quoteVolume=708773.84639517, weightedAverage=0.00047526]
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.00055574, low=0.00044884, open=0.00047329, close=0.00055574, volume=865.68209092, quoteVolume=1717212.633477, weightedAverage=0.00050412]
 PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.00074035, low=0.00051209, open=0.00055574, close=0.00064793, volume=2826.49601929, quoteVolume=4511509.4259427, weightedAverage=0.0006265]
-PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.00075055, low=0.00061305, open=0.00064793, close=0.00074374, volume=686.33906715, quoteVolume=986227.85421534, weightedAverage=0.00069592]
+PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.00075055, low=0.0006, open=0.00064793, close=0.00071004, volume=2291.87157474, quoteVolume=3383754.2385341, weightedAverage=0.00067731]
+PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.00070996, low=0.000645, open=0.00070996, close=0.00067102, volume=381.99588542, quoteVolume=566484.05540189, weightedAverage=0.00067432]

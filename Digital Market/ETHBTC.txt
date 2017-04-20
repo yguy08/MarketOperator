@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-20 00:00:00 GMT, high=0.02029, low=0.0186, open=0.01998561, close=0.01917, volume=20654.32010296, quoteVolume=1057956.0046171, weightedAverage=0.01952285]
 PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.01984, low=0.017601, open=0.01917, close=0.01811964, volume=16860.73279289, quoteVolume=898340.34300353, weightedAverage=0.01876875]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.01873, low=0.01717001, open=0.01811964, close=0.01751463, volume=15458.11838199, quoteVolume=867638.10702664, weightedAverage=0.01781632]
 PoloniexChartData [date=2016-04-23 00:00:00 GMT, high=0.01922933, low=0.0172, open=0.01749071, close=0.01839906, volume=18063.10494396, quoteVolume=988171.7467142, weightedAverage=0.01827931]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-15 00:00:00 GMT, high=0.04300003, low=0.03931001
 PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.04162094, low=0.0403402, open=0.04158539, close=0.04100496, volume=7897.7656883, quoteVolume=193111.56002771, weightedAverage=0.04089742]
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.04124999, low=0.0384, open=0.04100496, close=0.04009989, volume=11115.0784842, quoteVolume=275345.22202825, weightedAverage=0.04036779]
 PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.0419625, low=0.03965728, open=0.04009988, close=0.04136, volume=12736.82369231, quoteVolume=311599.52008712, weightedAverage=0.04087562]
-PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.04210002, low=0.04103907, open=0.0413589, close=0.04171899, volume=4012.73419112, quoteVolume=96559.16274, weightedAverage=0.04155725]
+PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.04210002, low=0.03627659, open=0.0413589, close=0.03925, volume=17071.35636817, quoteVolume=426247.37453169, weightedAverage=0.04005034]
+PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.04025898, low=0.03899999, open=0.03929999, close=0.03982083, volume=10062.24505458, quoteVolume=253190.65003696, weightedAverage=0.03974177]

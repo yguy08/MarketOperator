@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-20 00:00:00 GMT, high=0.00006325, low=0.0000538, open=0.00005526, close=0.00005803, volume=0.68224957, quoteVolume=11667.33514426, weightedAverage=0.00005847]
 PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.00005778, low=0.0000538, open=0.00005778, close=0.00005483, volume=0.15051977, quoteVolume=2747.40067833, weightedAverage=0.00005478]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.00005476, low=0.0000538, open=0.00005443, close=0.00005399, volume=0.06459894, quoteVolume=1199.26988046, weightedAverage=0.00005386]
 PoloniexChartData [date=2016-04-23 00:00:00 GMT, high=0.00005823, low=0.0000538, open=0.000054, close=0.00005823, volume=0.34690209, quoteVolume=6351.2388089, weightedAverage=0.00005461]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-15 00:00:00 GMT, high=0.00009999, low=0.00009311
 PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.000128, low=0.00009361, open=0.00009733, close=0.000115, volume=41.29580004, quoteVolume=370949.3661745, weightedAverage=0.00011132]
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.00012988, low=0.00009707, open=0.000115, close=0.00010173, volume=33.60827935, quoteVolume=309798.7515163, weightedAverage=0.00010848]
 PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.00011583, low=0.00010001, open=0.00010219, close=0.00011407, volume=26.65310851, quoteVolume=247435.88666704, weightedAverage=0.00010771]
-PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.00011584, low=0.0000422, open=0.00011504, close=0.00004541, volume=97.03103975, quoteVolume=1688812.6692437, weightedAverage=0.00005745]
+PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.00011584, low=0.000037, open=0.00011504, close=0.000048, volume=112.40356597, quoteVolume=2049219.235222, weightedAverage=0.00005485]
+PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.000048, low=0.00003957, open=0.00004745, close=0.00004274, volume=3.46557418, quoteVolume=81241.07313276, weightedAverage=0.00004265]

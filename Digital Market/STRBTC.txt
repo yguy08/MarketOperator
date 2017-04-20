@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-20 00:00:00 GMT, high=0.00000442, low=0.0000040, open=0.00000437, close=0.0000043, volume=26.27627573, quoteVolume=6231095.0047093, weightedAverage=0.00000421]
 PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.00000443, low=0.00000355, open=0.0000043, close=0.0000041, volume=51.99938553, quoteVolume=12898932.567584, weightedAverage=0.00000403]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.00000438, low=0.00000403, open=0.00000409, close=0.00000427, volume=25.2428848, quoteVolume=6012838.6320472, weightedAverage=0.00000419]
 PoloniexChartData [date=2016-04-23 00:00:00 GMT, high=0.00000428, low=0.00000419, open=0.00000426, close=0.00000427, volume=4.7742545, quoteVolume=1121952.043008, weightedAverage=0.00000425]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-15 00:00:00 GMT, high=0.0000029, low=0.00000258,
 PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.00000334, low=0.00000274, open=0.00000288, close=0.00000317, volume=1263.54045427, quoteVolume=413429224.07447, weightedAverage=0.00000305]
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.00000325, low=0.00000285, open=0.00000315, close=0.00000298, volume=1074.47454443, quoteVolume=355430235.9147, weightedAverage=0.00000302]
 PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.0000031, low=0.00000277, open=0.00000298, close=0.00000309, volume=614.64466218, quoteVolume=211195700.11325, weightedAverage=0.00000291]
-PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.0000031, low=0.00000286, open=0.00000307, close=0.00000299, volume=283.54802649, quoteVolume=94796265.907006, weightedAverage=0.00000299]
+PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.0000031, low=0.00000283, open=0.00000307, close=0.0000029, volume=607.38309736, quoteVolume=204691843.22166, weightedAverage=0.00000296]
+PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.00000293, low=0.0000028, open=0.0000029, close=0.00000288, volume=177.86776098, quoteVolume=62134642.402908, weightedAverage=0.00000286]
