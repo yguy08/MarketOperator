@@ -1,9 +1,9 @@
-package speculate;
+package speculator;
 
 import java.math.BigDecimal;
 import vault.Vault;
 
-public interface Speculate {
+public interface Speculator {
 
 	String BACK_TEST = "Back Test";
 	String LIVE = "Live";
@@ -39,13 +39,13 @@ public interface Speculate {
 	
 	BigDecimal getTotalReturnPercent();
 	
-	void getAllOpenPositions(Vault vault, Speculate speculate);
+	void getAllOpenPositions(Vault vault, Speculator speculator);
 	
-	void getNewEntries(Vault vault, Speculate speculate);
+	void getNewEntries(Vault vault, Speculator speculator);
 	
-	void getPositionsToClose(Vault vault, Speculate speculate);
+	void getPositionsToClose(Vault vault, Speculator speculator);
 
-	void runBackTest(Vault vault, Speculate speculate);
+	void runBackTest(Vault vault, Speculator speculator);
 	
 	int getEntryDays();
 	
@@ -57,5 +57,5 @@ public interface Speculate {
 	
 	BigDecimal getStop();
 	
-	Speculate copy(Speculate speculate);
+	Speculator copy(Speculator speculator);
 }

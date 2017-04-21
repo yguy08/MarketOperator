@@ -1,11 +1,11 @@
-package backtest;
+package trade;
 
 import asset.Asset;
 import asset.AssetFactory;
 import market.Market;
 import market.MarketFactory;
-import speculate.Speculate;
-import speculate.SpeculateFactory;
+import speculator.Speculator;
+import speculator.SpeculatorFactory;
 
 public class BackTestDemo {
 
@@ -20,9 +20,9 @@ public class BackTestDemo {
 		for(int i=0;i<market.getAssets().size();i++){
 		Asset asset = assetFactory.createAsset(market, market.getAssets().get(i).toString());
 		
-		SpeculateFactory speculateFactory = new SpeculateFactory();
+		SpeculatorFactory speculatorFactory = new SpeculatorFactory();
 		
-		Speculate speculate = speculateFactory.startSpeculating(market);
+		Speculator speculator = speculatorFactory.startSpeculating(market);
 		
 		}
 		

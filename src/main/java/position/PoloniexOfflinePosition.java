@@ -14,9 +14,9 @@ import java.util.List;
 import asset.Asset;
 import entry.Entry;
 import market.Market;
-import speculate.Speculate;
-import utils.DateUtils;
-import utils.StringFormatter;
+import speculator.Speculator;
+import util.DateUtils;
+import util.StringFormatter;
 import asset.PoloniexOfflineChartData;
 
 public class PoloniexOfflinePosition implements Position {
@@ -43,7 +43,7 @@ public class PoloniexOfflinePosition implements Position {
 		this.asset = asset;
 		this.entry = entry;
 		this.open = true;
-		this.isLong = this.entry.getDirection() == Speculate.LONG;
+		this.isLong = this.entry.getDirection() == Speculator.LONG;
 		this.assetName = this.entry.getAssetName();
 		this.entryPrice = this.entry.getCurrentPrice();
 		setPriceSubList();

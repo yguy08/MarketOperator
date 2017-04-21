@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import market.Market;
-import utils.FileParser;
-import utils.SaveToFile;
+import util.FileParser;
+import util.SaveToFile;
 
 public class PoloniexOfflineAsset implements Asset {
 	

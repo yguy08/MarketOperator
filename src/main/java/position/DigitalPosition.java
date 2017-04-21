@@ -15,9 +15,9 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import asset.Asset;
 import entry.Entry;
 import market.Market;
-import speculate.Speculate;
-import utils.DateUtils;
-import utils.StringFormatter;
+import speculator.Speculator;
+import util.DateUtils;
+import util.StringFormatter;
 
 public class DigitalPosition implements Position {
 	
@@ -32,7 +32,7 @@ public class DigitalPosition implements Position {
 	BigDecimal profitLossPercent = new BigDecimal(0.00);
 	BigDecimal profitLossAmount = new BigDecimal(0.00);
 	
-	Boolean open, isLong;
+	Boolean open, isLong, closed;
 	
 	String assetName;
 	
@@ -43,7 +43,7 @@ public class DigitalPosition implements Position {
 		this.asset = asset;
 		this.entry = entry;
 		this.open = true;
-		this.isLong = this.entry.getDirection() == Speculate.LONG;
+		this.isLong = this.entry.getDirection() == Speculator.LONG;
 		this.assetName = this.entry.getAssetName();
 		this.entryPrice = this.entry.getCurrentPrice();
 		setPriceSubList();

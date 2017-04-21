@@ -1,4 +1,4 @@
-package backtest;
+package trade;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,14 +13,14 @@ import entry.EntryFactory;
 import market.Market;
 import position.Position;
 import position.PositionFactory;
-import speculate.Speculate;
-import utils.DateUtils;
+import speculator.Speculator;
+import util.DateUtils;
 
 public class StockBackTest implements BackTest {
 	
 	Market market;
 	Asset asset;
-	Speculate speculator;
+	Speculator speculator;
 	
 	EntryFactory entryFactory = new EntryFactory();
 	Entry entry;
@@ -36,26 +36,26 @@ public class StockBackTest implements BackTest {
 	
 	List<String> resultsList = new ArrayList<>();
 	
-	public StockBackTest(Market market, Asset asset, Speculate speculator){
+	public StockBackTest(Market market, Asset asset, Speculator speculator){
 		this.market = market;
 		this.asset = asset;
 		this.speculator = speculator;
 	}
 	
-	public StockBackTest(Market market, Speculate speculator){
+	public StockBackTest(Market market, Speculator speculator){
 		this.market = market;
 		this.speculator = speculator;
 	}
 
 	@Override
 	public void runBackTest() {
-		for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
-			this.asset.setPriceSubList(x - Speculate.ENTRY, x + 1);
+		for(int x = Speculator.ENTRY; x < this.asset.getPriceList().size();x++){
+			this.asset.setPriceSubList(x - Speculator.ENTRY, x + 1);
 			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
 			if(entry.isEntry()){
 				setEntryList(entry);
 				for(int y = this.entry.getLocationIndex(); y < this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
-					this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
+					this.asset.setPriceSubList(y - Speculator.EXIT, y + 1);
 					this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
 					if(position.isOpen() == false){
 						setPositionList(position);
@@ -75,13 +75,13 @@ public class StockBackTest implements BackTest {
 	AssetFactory assetFactory = new AssetFactory();
 	for(int f = 0; f < this.market.getAssets().size(); f++){
 		this.asset = assetFactory.createAsset(this.market, this.market.getAssets().get(f).toString());
-		for(int x = Speculate.ENTRY; x < this.asset.getPriceList().size();x++){
-			this.asset.setPriceSubList(x - Speculate.ENTRY, x + 1);
+		for(int x = Speculator.ENTRY; x < this.asset.getPriceList().size();x++){
+			this.asset.setPriceSubList(x - Speculator.ENTRY, x + 1);
 			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
 			if(entry.isEntry()){
 				setEntryList(entry);
 				for(int y = this.entry.getLocationIndex(); y < this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
-					this.asset.setPriceSubList(y - Speculate.EXIT, y + 1);
+					this.asset.setPriceSubList(y - Speculator.EXIT, y + 1);
 					this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
 					if(position.isOpen() == false){
 						setPositionList(position);
@@ -113,7 +113,7 @@ public class StockBackTest implements BackTest {
 				entry.setUnitSize(speculator);
 				entry.setOrderTotal();
 				Date entryDate = this.getSortedEntryList().get(k).getDateTime();
-				if(entryDate.equals(date) && this.unitList.size() < Speculate.MAX_UNITS){
+				if(entryDate.equals(date) && this.unitList.size() < Speculator.MAX_UNITS){
 					this.resultsList.add(entry.toString() + this.unitList.size());
 					this.addUnit(entry);
 				}

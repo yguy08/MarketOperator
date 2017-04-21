@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.FileParser;
+import util.FileParser;
 
 public class StockMarket implements Market {
 	

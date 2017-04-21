@@ -21,9 +21,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import market.Market;
 import position.Position;
-import speculate.Speculate;
-import speculate.SpeculateFactory;
-import utils.SaveToFile;
+import speculator.Speculator;
+import speculator.SpeculatorFactory;
+import util.SaveToFile;
 
 public class Main extends Application  {
 	
@@ -206,9 +206,9 @@ public class Main extends Application  {
 	
     public void viewOpenClicked(ActionEvent e){
     	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
-    	speculate.getAllOpenPositions(this.vault, speculate);
+    	SpeculatorFactory speculatorFactory = new SpeculatorFactory();
+		Speculator speculator = speculatorFactory.startSpeculating(this.vault.market);
+    	speculator.getAllOpenPositions(this.vault, speculator);
 	    
 	//NEW position list
     	//statList.setItems(this.vault.resultsList);
@@ -230,23 +230,23 @@ public class Main extends Application  {
     
     public void viewCloseClicked(ActionEvent e){
     	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
-    	speculate.getPositionsToClose(this.vault, speculate);
+    	SpeculatorFactory speculatorFactory = new SpeculatorFactory();
+		Speculator speculator = speculatorFactory.startSpeculating(this.vault.market);
+    	speculator.getPositionsToClose(this.vault, speculator);
     }
     
     public void backTestClicked(ActionEvent e){
     	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
-    	speculate.runBackTest(this.vault, this.vault.speculate);
+    	SpeculatorFactory speculatorFactory = new SpeculatorFactory();
+		Speculator speculator = speculatorFactory.startSpeculating(this.vault.market);
+    	speculator.runBackTest(this.vault, this.vault.speculator);
     }
     
     public void newEntriesClicked(ActionEvent e){
     	this.vault.resultsList.removeAll(this.vault.resultsList);
-    	SpeculateFactory speculateFactory = new SpeculateFactory();
-		Speculate speculate = speculateFactory.startSpeculating(this.vault.market);
-    	speculate.getNewEntries(this.vault, speculate);
+    	SpeculatorFactory speculatorFactory = new SpeculatorFactory();
+		Speculator speculator = speculatorFactory.startSpeculating(this.vault.market);
+    	speculator.getNewEntries(this.vault, speculator);
     }
     
     public void clearBtnClicked(ActionEvent e){

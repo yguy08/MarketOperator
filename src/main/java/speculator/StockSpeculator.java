@@ -1,4 +1,4 @@
-package speculate;
+package speculator;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -10,15 +10,15 @@ import java.util.Date;
 import java.util.List;
 import asset.Asset;
 import asset.AssetFactory;
-import backtest.BackTest;
-import backtest.BackTestFactory;
 import entry.Entry;
 import market.Market;
 import position.Position;
-import utils.DateUtils;
+import trade.BackTest;
+import trade.BackTestFactory;
+import util.DateUtils;
 import vault.Vault;
 
-public class StockSpeculation implements Speculate {
+public class StockSpeculator implements Speculator {
 
 	BigDecimal accountEquity;
 	BigDecimal totalReturnPercent = new BigDecimal(0.00);
@@ -31,8 +31,8 @@ public class StockSpeculation implements Speculate {
 	
 	List<Entry> unitList = new ArrayList<>();
 	
-	public StockSpeculation(Market market) {
-		this.accountEquity = Speculate.STOCK_EQUITY;
+	public StockSpeculator(Market market) {
+		this.accountEquity = Speculator.STOCK_EQUITY;
 	}
 
 	@Override
@@ -47,8 +47,8 @@ public class StockSpeculation implements Speculate {
 	
 	@Override
 	public void setTotalReturnPercent() {
-		this.totalReturnPercent = this.accountEquity.subtract(Speculate.STOCK_EQUITY, MathContext.DECIMAL32)
-				.divide(Speculate.STOCK_EQUITY, MathContext.DECIMAL32)
+		this.totalReturnPercent = this.accountEquity.subtract(Speculator.STOCK_EQUITY, MathContext.DECIMAL32)
+				.divide(Speculator.STOCK_EQUITY, MathContext.DECIMAL32)
 				.setScale(2, RoundingMode.HALF_DOWN)
 				.multiply(new BigDecimal(100.00), MathContext.DECIMAL32); 
 	}
@@ -58,14 +58,14 @@ public class StockSpeculation implements Speculate {
 		return this.totalReturnPercent;
 	}
 	
-	public void getAllOpenPositions(Vault vault, Speculate speculate) {
+	public void getAllOpenPositions(Vault vault, Speculator speculator) {
 		AssetFactory assetFactory = new AssetFactory();
 		BackTestFactory backTestFactory = new BackTestFactory();
 		Asset asset;
 		BackTest backtest;
 		for(int i=0; i < vault.market.getAssets().size();i++){
 			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
-			backtest = backTestFactory.newBackTest(vault.market, asset, speculate);
+			backtest = backTestFactory.newBackTest(vault.market, asset, speculator);
 			backtest.runBackTest();
 			if(backtest.getLastPosition() != null && backtest.getLastPosition().isOpen()){
 				vault.resultsList.add(backtest.getLastEntry().toString());
@@ -75,9 +75,9 @@ public class StockSpeculation implements Speculate {
 	}
 	
 	@Override
-	public void getNewEntries(Vault vault, Speculate speculate) {
+	public void getNewEntries(Vault vault, Speculator speculator) {
 		BackTestFactory backTestFactory = new BackTestFactory(); 
-		BackTest backtest = backTestFactory.protoBackTest(vault.market, speculate);
+		BackTest backtest = backTestFactory.protoBackTest(vault.market, speculator);
 		backtest.protoBackTest();
 		Date utcMidnight = DateUtils.getCurrentDateToUTCDateMidnight();
 		for(int i = backtest.getSortedEntryList().size() - 1; i > 0; i--){
@@ -90,14 +90,14 @@ public class StockSpeculation implements Speculate {
 	}
 
 	@Override
-	public void getPositionsToClose(Vault vault, Speculate speculate) {
+	public void getPositionsToClose(Vault vault, Speculator speculator) {
 		AssetFactory assetFactory = new AssetFactory();
 		BackTestFactory backTestFactory = new BackTestFactory();
 		Asset asset; 
 		BackTest backtest;
 		for(int i=0; i < vault.market.getAssets().size();i++){
 			asset = assetFactory.createAsset(vault.market, vault.market.getAssets().get(i).toString());
-			backtest = backTestFactory.newBackTest(vault.market, asset, speculate);
+			backtest = backTestFactory.newBackTest(vault.market, asset, speculator);
 			backtest.runBackTest();
 			if(backtest.getLastPosition() != null && backtest.getLastPosition().isOpen() == false){
 				vault.resultsList.add(backtest.getLastEntry().toString());
@@ -107,9 +107,9 @@ public class StockSpeculation implements Speculate {
 	}
 	
 	@Override
-	public void runBackTest(Vault vault, Speculate speculate) {
+	public void runBackTest(Vault vault, Speculator speculator) {
 		BackTestFactory backTestFactory = new BackTestFactory(); 
-		BackTest backtest = backTestFactory.protoBackTest(vault.market, speculate);
+		BackTest backtest = backTestFactory.protoBackTest(vault.market, speculator);
 		backtest.protoBackTest();
 		for(int i = 0; i < backtest.getResultsList().size();i++){
 			vault.resultsList.add(backtest.getResultsList().get(i));
@@ -157,7 +157,7 @@ public class StockSpeculation implements Speculate {
 	}
 
 	@Override
-	public Speculate copy(Speculate speculate) {
+	public Speculator copy(Speculator speculator) {
 		// TODO Auto-generated method stub
 		return null;
 	}

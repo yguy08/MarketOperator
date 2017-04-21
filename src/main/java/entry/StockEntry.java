@@ -15,14 +15,14 @@ import java.util.Date;
 import asset.Asset;
 import asset.StockChartData;
 import market.Market;
-import speculate.Speculate;
-import utils.DateUtils;
+import speculator.Speculator;
+import util.DateUtils;
 
 public class StockEntry implements Entry {
 	
 	Market market;
 	Asset asset;
-	Speculate speculator;
+	Speculator speculator;
 	
 	List<StockChartData> priceSubList = new ArrayList<>();
 	
@@ -39,7 +39,7 @@ public class StockEntry implements Entry {
 	String direction = null;
 	Boolean isEntry = false;	
 	
-	public StockEntry(Market market, Asset asset, Speculate speculator){
+	public StockEntry(Market market, Asset asset, Speculator speculator){
 		this.market = market;
 		this.asset	= asset;
 		this.speculator = speculator;
@@ -59,10 +59,10 @@ public class StockEntry implements Entry {
 	public void setEntry() {
 		if(this.currentPrice.compareTo(this.maxPrice) == 0){
 			this.isEntry = true;
-			this.direction = Speculate.LONG;
+			this.direction = Speculator.LONG;
 		}else if(this.currentPrice.compareTo(this.minPrice) == 0){
 			this.isEntry = true;
-			this.direction = Speculate.SHORT;
+			this.direction = Speculator.SHORT;
 		}else{
 			this.isEntry = false;
 		}
@@ -122,13 +122,13 @@ public class StockEntry implements Entry {
 	@Override
 	public void setTrueRange() {
 		//consider instance where list is too small...
-		if(this.asset.getCloseList().size() < Speculate.MOVING_AVG){
+		if(this.asset.getCloseList().size() < Speculator.MOVING_AVG){
 			//skip?
 		}
 		
 		//set first TR for 0 position (H-L)
 		BigDecimal tR = ((this.asset.getHighList().get(0)).subtract(this.asset.getCloseList().get(0)).abs());
-		for(int x = 1; x < Speculate.MOVING_AVG; x++){
+		for(int x = 1; x < Speculator.MOVING_AVG; x++){
 			List<BigDecimal> trList = Arrays.asList(
 				this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
 				this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
@@ -137,18 +137,18 @@ public class StockEntry implements Entry {
 				tR = tR.add(Collections.max(trList));
 		}
 		
-		tR = tR.divide(new BigDecimal(Speculate.MOVING_AVG), MathContext.DECIMAL32);
+		tR = tR.divide(new BigDecimal(Speculator.MOVING_AVG), MathContext.DECIMAL32);
 		
 		//20 exponential moving average
-		for(int x = Speculate.MOVING_AVG; x < this.getLocationIndex();x++){
+		for(int x = Speculator.MOVING_AVG; x < this.getLocationIndex();x++){
 			List<BigDecimal> trList = Arrays.asList(
 					this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
 					this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
 					this.asset.getCloseList().get(x-1).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32));
 					
-					tR = tR.multiply(new BigDecimal(Speculate.MOVING_AVG - 1), MathContext.DECIMAL32)
+					tR = tR.multiply(new BigDecimal(Speculator.MOVING_AVG - 1), MathContext.DECIMAL32)
 					.add((Collections.max(trList)), MathContext.DECIMAL32).
-					divide(new BigDecimal(Speculate.MOVING_AVG), MathContext.DECIMAL32);
+					divide(new BigDecimal(Speculator.MOVING_AVG), MathContext.DECIMAL32);
 		}
 		
 		this.averageTrueRange = tR;
@@ -161,10 +161,10 @@ public class StockEntry implements Entry {
 
 	@Override
 	public void setStop() {
-		if(this.getDirection().equals(Speculate.LONG)){
-			this.stop = this.getCurrentPrice().subtract(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
-		}else if(this.getDirection().equals(Speculate.SHORT)){
-			this.stop = this.getCurrentPrice().add(Speculate.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
+		if(this.getDirection().equals(Speculator.LONG)){
+			this.stop = this.getCurrentPrice().subtract(Speculator.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
+		}else if(this.getDirection().equals(Speculator.SHORT)){
+			this.stop = this.getCurrentPrice().add(Speculator.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
 		}
 		
 	}
@@ -175,9 +175,9 @@ public class StockEntry implements Entry {
 	}
 	
 	@Override
-	public void setUnitSize(Speculate speculate) {
-		BigDecimal max = speculate.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = speculate.getAccountEquity().multiply(Speculate.RISK, MathContext.DECIMAL32)
+	public void setUnitSize(Speculator speculator) {
+		BigDecimal max = speculator.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal size = speculator.getAccountEquity().multiply(Speculator.RISK, MathContext.DECIMAL32)
 				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		if(size.compareTo(max) > 0){
 			this.unitSize = max;
@@ -281,7 +281,7 @@ public class StockEntry implements Entry {
 	}
 
 	@Override
-	public Entry copy(Entry entry, Speculate speculate) {
+	public Entry copy(Entry entry, Speculator speculator) {
 		// TODO Auto-generated method stub
 		return null;
 	}

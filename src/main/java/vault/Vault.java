@@ -1,28 +1,28 @@
 package vault;
 
-import backtest.BackTest;
-import backtest.BackTestFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import market.Market;
 import market.MarketFactory;
-import speculate.Speculate;
-import speculate.SpeculateFactory;
+import speculator.Speculator;
+import speculator.SpeculatorFactory;
+import trade.BackTest;
+import trade.BackTestFactory;
 
 public class Vault {
 	
 	public Market market;
-	public Speculate speculate;
+	public Speculator speculator;
 	public BackTest backtest;
 	public ObservableList<String> resultsList = FXCollections.observableArrayList();;
 	
 	public Vault(String marketName, ObservableList<String> resultsList){
 		MarketFactory marketFactory = new MarketFactory();
 		this.market = marketFactory.createMarket(marketName);
-		SpeculateFactory speculateFactory = new SpeculateFactory();
-		this.speculate = speculateFactory.startSpeculating(this.market);
+		SpeculatorFactory speculatorFactory = new SpeculatorFactory();
+		this.speculator = speculatorFactory.startSpeculating(this.market);
 		BackTestFactory backTestFactory = new BackTestFactory();
-		this.backtest = backTestFactory.protoBackTest(this.market, this.speculate);
+		this.backtest = backTestFactory.protoBackTest(this.market, this.speculator);
 		this.backtest.dataSetUp();
 		this.resultsList = resultsList;
 	}

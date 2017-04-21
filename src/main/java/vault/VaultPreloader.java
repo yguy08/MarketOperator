@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import market.Market;
+import market.MarketFactory;
 
 public class VaultPreloader extends Preloader {
     
@@ -23,6 +24,9 @@ public class VaultPreloader extends Preloader {
     Stage stage = null;
     MarketConsumer consumer = null;
     String marketName = null;
+    
+    //really only need to load a market
+    Market market;
     
     private Scene createChooseMarketScene() {
         VBox vbox = new VBox();
@@ -41,9 +45,12 @@ public class VaultPreloader extends Preloader {
         
         digitalBtn.setOnAction(new EventHandler<ActionEvent>(){
             public void handle(ActionEvent t) {
-                // Save market
-                marketName = Market.DIGITAL_MARKET;                 
-                // Hide if app is ready
+                
+            	// Save market
+            	MarketFactory mFactory = new MarketFactory();
+            	market = mFactory.createMarket(Market.DIGITAL_MARKET);
+                
+            	// Hide if app is ready
                 mayBeHide();
             }
         });
@@ -67,7 +74,7 @@ public class VaultPreloader extends Preloader {
     	iv.setImage(splashScreen);
     	StackPane stackPane = new StackPane();
     	stackPane.getChildren().add(iv);
-    	Scene sc = new Scene(stackPane, 200, 100);
+    	Scene sc = new Scene(stackPane, 800, 700);
 		return sc;
     }
     
@@ -94,6 +101,26 @@ public class VaultPreloader extends Preloader {
                 }
             });
         }
+    }
+    
+    private void setMarket() {
+        if (stage.isShowing() && market != null && consumer != null) {
+            consumer.setMarket(marketName);
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    stage.setScene(createSplashScreen());
+                    
+                }
+            });
+        }
+    }
+    
+    private void prepareMarketData(){
+        Platform.runLater(new Runnable() {
+            public void run() {
+            	
+            }
+        });
     }
     
     @Override

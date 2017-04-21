@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import speculate.Speculate;
+import speculator.Speculator;
 
 public interface Entry {
 	
@@ -48,7 +48,7 @@ public interface Entry {
 	
 	BigDecimal getStop();
 	
-	void setUnitSize(Speculate speculate);
+	void setUnitSize(Speculator speculator);
 	
 	BigDecimal getUnitSize();
 	
@@ -62,7 +62,7 @@ public interface Entry {
 	
 	boolean isLong();
 	
-	Entry copy(Entry entry, Speculate speculate);
+	Entry copy(Entry entry, Speculator speculator);
 	
 	void setAssetName(String assetName);
 	

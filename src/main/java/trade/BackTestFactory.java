@@ -1,13 +1,13 @@
-package backtest;
+package trade;
 
 import asset.Asset;
 import market.Market;
-import speculate.Speculate;
+import speculator.Speculator;
 
 public class BackTestFactory {
 	
 	//legacy in use with stock assets
-	public BackTest newBackTest(Market market, Asset asset, Speculate speculator){
+	public BackTest newBackTest(Market market, Asset asset, Speculator speculator){
 		
 		if(market == null){
 		return null;
@@ -25,7 +25,7 @@ public class BackTestFactory {
 	}
 	
 	//called for full backtest..open, close don't need to call as data is setup on load
-	public BackTest protoBackTest(Market market, Speculate speculator){
+	public BackTest protoBackTest(Market market, Speculator speculator){
 		switch(market.getMarketName()){
 		case Market.DIGITAL_MARKET:
 			return new DigitalBackTest(market, speculator);

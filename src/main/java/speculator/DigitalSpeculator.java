@@ -1,19 +1,20 @@
-package speculate;
+package speculator;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-import backtest.BackTest;
-import backtest.BackTestFactory;
+
 import entry.Entry;
 import market.Market;
 import position.Position;
-import utils.DateUtils;
+import trade.BackTest;
+import trade.BackTestFactory;
+import util.DateUtils;
 import vault.Vault;
 
-public class DigitalSpeculation implements Speculate {
+public class DigitalSpeculator implements Speculator {
 	
 	BigDecimal accountEquity;
 	BigDecimal totalReturnPercent = new BigDecimal(0.00);
@@ -26,17 +27,17 @@ public class DigitalSpeculation implements Speculate {
 	
 	List<Entry> unitList = new ArrayList<>();
 	
-	public DigitalSpeculation(Market market) {
-		this.accountEquity = Speculate.DIGITAL_EQUITY;
+	public DigitalSpeculator(Market market) {
+		this.accountEquity = Speculator.DIGITAL_EQUITY;
 	}
 	
-	public DigitalSpeculation(){
+	public DigitalSpeculator(){
 		
 	}
 	
 	@Override
-	public Speculate copy(Speculate speculate) {
-		Speculate digitalSpeculation = new DigitalSpeculation();
+	public Speculator copy(Speculator speculator) {
+		Speculator digitalSpeculation = new DigitalSpeculator();
 		return digitalSpeculation;
 	}
 
@@ -52,8 +53,8 @@ public class DigitalSpeculation implements Speculate {
 	
 	@Override
 	public void setTotalReturnPercent() {
-		this.totalReturnPercent = this.accountEquity.subtract(Speculate.DIGITAL_EQUITY, MathContext.DECIMAL32)
-				.divide(Speculate.DIGITAL_EQUITY, MathContext.DECIMAL32)
+		this.totalReturnPercent = this.accountEquity.subtract(Speculator.DIGITAL_EQUITY, MathContext.DECIMAL32)
+				.divide(Speculator.DIGITAL_EQUITY, MathContext.DECIMAL32)
 				.setScale(2, RoundingMode.HALF_DOWN)
 				.multiply(new BigDecimal(100.00), MathContext.DECIMAL32);		
 	}
@@ -63,7 +64,7 @@ public class DigitalSpeculation implements Speculate {
 		return this.totalReturnPercent;
 	}
 	
-	public void getAllOpenPositions(Vault vault, Speculate speculate) {
+	public void getAllOpenPositions(Vault vault, Speculator speculator) {
 		for(int i = 0; i < vault.backtest.getPositionList().size();i++){
 			boolean isPositionOpen = vault.backtest.getPositionList().get(i).isOpen(); 
 			if(isPositionOpen){
@@ -73,7 +74,7 @@ public class DigitalSpeculation implements Speculate {
 	}
 	
 	@Override
-	public void getNewEntries(Vault vault, Speculate speculate) {
+	public void getNewEntries(Vault vault, Speculator speculator) {
 		for(int i = 0; i < vault.backtest.getEntryList().size(); i++){
 			int days = DateUtils.getNumberOfDaysSinceDate(vault.backtest.getEntryList().get(i).getDateTime());
 			if(days <= 7){
@@ -83,7 +84,7 @@ public class DigitalSpeculation implements Speculate {
 	}
 	
 	@Override
-	public void getPositionsToClose(Vault vault, Speculate speculate) {
+	public void getPositionsToClose(Vault vault, Speculator speculator) {
 		for(int i = vault.backtest.getSortedPositionList().size() - 1; i > 0; i--){
 			int days = DateUtils.getNumberOfDaysSinceDate(vault.backtest.getSortedPositionList().get(i).getDateTime());
 			if(days <= 7){
@@ -97,9 +98,9 @@ public class DigitalSpeculation implements Speculate {
 	}
 	
 	@Override
-	public void runBackTest(Vault vault, Speculate speculate) {
+	public void runBackTest(Vault vault, Speculator speculator) {
 		BackTestFactory backTestFactory = new BackTestFactory();
-		BackTest runbacktest = backTestFactory.protoBackTest(vault.market, vault.speculate);
+		BackTest runbacktest = backTestFactory.protoBackTest(vault.market, vault.speculator);
 		runbacktest.setSortedEntryList(vault.backtest.getEntryList());
 		runbacktest.setSortedPositionList(vault.backtest.getPositionList());
 		runbacktest.protoBackTest();

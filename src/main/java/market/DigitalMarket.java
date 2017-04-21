@@ -9,7 +9,7 @@ import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.PoloniexExchange;
 
-import utils.SaveToFile;
+import util.SaveToFile;
 
 public class DigitalMarket implements Market {
 	

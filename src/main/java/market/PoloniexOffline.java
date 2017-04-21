@@ -3,7 +3,7 @@ package market;
 import java.util.ArrayList;
 import java.util.List;
 
-import speculate.Speculate;
+import speculator.Speculator;
 
 public class PoloniexOffline implements Market {
 	
@@ -11,7 +11,7 @@ public class PoloniexOffline implements Market {
 	private List<String> assets = new ArrayList<>();
 	
 	public PoloniexOffline(){
-		setMarketName(Speculate.POLONIEX_OFFLINE);
+		setMarketName(Speculator.POLONIEX_OFFLINE);
 		setAssets();
 	}
 	

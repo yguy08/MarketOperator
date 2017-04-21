@@ -2,11 +2,11 @@ package entry;
 
 import asset.Asset;
 import market.Market;
-import speculate.Speculate;
+import speculator.Speculator;
 
 public class EntryFactory {
 	
-	public Entry findEntry(Market market, Asset asset, Speculate speculator){
+	public Entry findEntry(Market market, Asset asset, Speculator speculator){
 		switch(market.getMarketName()){
 		case Market.DIGITAL_MARKET:
 			return new DigitalEntry(market, asset, speculator);

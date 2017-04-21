@@ -1,4 +1,4 @@
-package backtest;
+package trade;
 
 import java.util.Date;
 import java.util.List;

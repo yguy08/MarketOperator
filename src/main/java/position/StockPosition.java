@@ -15,8 +15,8 @@ import asset.Asset;
 import asset.StockChartData;
 import entry.Entry;
 import market.Market;
-import speculate.Speculate;
-import utils.DateUtils;
+import speculator.Speculator;
+import util.DateUtils;
 
 public class StockPosition implements Position {
 	
@@ -54,11 +54,11 @@ public class StockPosition implements Position {
 
 	@Override
 	public void setExit() {
-		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Speculate.LONG){
+		if(this.currentPrice.compareTo(this.minPrice) == 0 && this.entry.getDirection() == Speculator.LONG){
 			this.open = false;
 			setProfitLossPercent();
 			setProfitLossAmount(this.entry);
-		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Speculate.SHORT){
+		}else if(this.currentPrice.compareTo(this.maxPrice) == 0 && this.entry.getDirection() == Speculator.SHORT){
 			this.open = false;
 			setProfitLossPercent();
 			setProfitLossAmount(this.entry);
@@ -78,7 +78,7 @@ public class StockPosition implements Position {
 	public void setProfitLossPercent(){
 		BigDecimal calcPL = this.currentPrice.subtract(this.entry.getCurrentPrice())
 				.divide(this.entry.getCurrentPrice(), MathContext.DECIMAL32);
-		if(this.entry.getDirection() == Speculate.LONG){
+		if(this.entry.getDirection() == Speculator.LONG){
 			this.profitLossPercent = calcPL;
 		}else{
 			//negate for shorts since lower price would be a win, higher a loss
