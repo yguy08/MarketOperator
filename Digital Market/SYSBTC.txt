@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.0000175, low=0.00001549, open=0.00001679, close=0.00001557, volume=47.55624573, quoteVolume=2916733.4232379, weightedAverage=0.0000163]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.0000174, low=0.00001534, open=0.00001555, close=0.00001615, volume=38.99978499, quoteVolume=2395247.3535752, weightedAverage=0.00001628]
 PoloniexChartData [date=2016-04-23 00:00:00 GMT, high=0.0000168, low=0.00001571, open=0.00001605, close=0.00001639, volume=18.97045282, quoteVolume=1171300.0707026, weightedAverage=0.00001619]
 PoloniexChartData [date=2016-04-24 00:00:00 GMT, high=0.0000228, low=0.00001626, open=0.00001634, close=0.00001826, volume=438.64738643, quoteVolume=22703676.706624, weightedAverage=0.00001932]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.0000271, low=0.00002131,
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.0000286, low=0.00002348, open=0.00002389, close=0.00002593, volume=484.5902005, quoteVolume=18338626.818748, weightedAverage=0.00002642]
 PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.00002798, low=0.0000246, open=0.00002593, close=0.0000249, volume=265.15455172, quoteVolume=10322768.640623, weightedAverage=0.00002568]
 PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.0000263, low=0.00002374, open=0.00002505, close=0.0000256, volume=229.4182336, quoteVolume=9172885.4545788, weightedAverage=0.00002501]
-PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.00002821, low=0.0000256, open=0.0000256, close=0.00002637, volume=85.13598451, quoteVolume=3165662.0814571, weightedAverage=0.00002689]
+PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.00002821, low=0.00002351, open=0.0000256, close=0.00002415, volume=280.82557287, quoteVolume=10911916.467102, weightedAverage=0.00002573]
+PoloniexChartData [date=2017-04-21 00:00:00 GMT, high=0.000027, low=0.00002413, open=0.0000242, close=0.00002555, volume=82.34192665, quoteVolume=3217937.4576689, weightedAverage=0.00002558]

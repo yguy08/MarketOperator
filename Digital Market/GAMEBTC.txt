@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.00009978, low=0.00009197, open=0.00009645, close=0.00009197, volume=6.89349389, quoteVolume=72455.91483736, weightedAverage=0.00009514]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.00009334, low=0.00008957, open=0.00009204, close=0.00009034, volume=7.62808721, quoteVolume=83655.35120012, weightedAverage=0.00009118]
 PoloniexChartData [date=2016-04-23 00:00:00 GMT, high=0.000101, low=0.00008502, open=0.00008981, close=0.00009816, volume=32.88950956, quoteVolume=341739.84667136, weightedAverage=0.00009624]
 PoloniexChartData [date=2016-04-24 00:00:00 GMT, high=0.000105, low=0.00009001, open=0.00009594, close=0.00009992, volume=25.5541755, quoteVolume=256807.56896578, weightedAverage=0.0000995]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.0005, low=0.00044991, op
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.00055574, low=0.00044884, open=0.00047329, close=0.00055574, volume=865.68209092, quoteVolume=1717212.633477, weightedAverage=0.00050412]
 PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.00074035, low=0.00051209, open=0.00055574, close=0.00064793, volume=2826.49601929, quoteVolume=4511509.4259427, weightedAverage=0.0006265]
 PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.00075055, low=0.0006, open=0.00064793, close=0.00071004, volume=2291.87157474, quoteVolume=3383754.2385341, weightedAverage=0.00067731]
-PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.00070996, low=0.000645, open=0.00070996, close=0.00067102, volume=381.99588542, quoteVolume=566484.05540189, weightedAverage=0.00067432]
+PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.00072289, low=0.00059277, open=0.00070996, close=0.00062911, volume=1247.00921618, quoteVolume=1882772.0510951, weightedAverage=0.00066232]
+PoloniexChartData [date=2017-04-21 00:00:00 GMT, high=0.00064999, low=0.0005987, open=0.00062501, close=0.00063115, volume=278.79225221, quoteVolume=449598.50416817, weightedAverage=0.00062009]
