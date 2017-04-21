@@ -1,4 +1,3 @@
-PoloniexChartData [date=2016-04-21 00:00:00 GMT, high=0.00001659, low=0.0000155, open=0.00001657, close=0.0000158, volume=21.62190296, quoteVolume=1350331.7384971, weightedAverage=0.00001601]
 PoloniexChartData [date=2016-04-22 00:00:00 GMT, high=0.00001608, low=0.00001536, open=0.00001576, close=0.00001548, volume=15.23060663, quoteVolume=974864.44043623, weightedAverage=0.00001562]
 PoloniexChartData [date=2016-04-23 00:00:00 GMT, high=0.00001618, low=0.00001555, open=0.00001555, close=0.0000157, volume=7.96322089, quoteVolume=495975.77704792, weightedAverage=0.00001605]
 PoloniexChartData [date=2016-04-24 00:00:00 GMT, high=0.00001603, low=0.00001522, open=0.00001577, close=0.00001531, volume=21.39777106, quoteVolume=1378644.7468332, weightedAverage=0.00001552]
@@ -362,4 +361,5 @@ PoloniexChartData [date=2017-04-16 00:00:00 GMT, high=0.00001633, low=0.00001403
 PoloniexChartData [date=2017-04-17 00:00:00 GMT, high=0.00001515, low=0.00001347, open=0.00001462, close=0.00001429, volume=231.64050871, quoteVolume=16220298.645783, weightedAverage=0.00001428]
 PoloniexChartData [date=2017-04-18 00:00:00 GMT, high=0.00001591, low=0.00001343, open=0.00001431, close=0.00001567, volume=225.10771319, quoteVolume=15487402.80735, weightedAverage=0.00001453]
 PoloniexChartData [date=2017-04-19 00:00:00 GMT, high=0.00001799, low=0.00001478, open=0.00001568, close=0.00001727, volume=534.07041925, quoteVolume=32279302.943645, weightedAverage=0.00001654]
-PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.00001846, low=0.00001476, open=0.0000173, close=0.00001632, volume=439.90015041, quoteVolume=26677471.892639, weightedAverage=0.00001648]
+PoloniexChartData [date=2017-04-20 00:00:00 GMT, high=0.00001846, low=0.00001476, open=0.0000173, close=0.0000162, volume=461.40989713, quoteVolume=28000926.212797, weightedAverage=0.00001647]
+PoloniexChartData [date=2017-04-21 00:00:00 GMT, high=0.00001655, low=0.000015, open=0.0000162, close=0.00001554, volume=187.47244532, quoteVolume=11912925.608403, weightedAverage=0.00001573]

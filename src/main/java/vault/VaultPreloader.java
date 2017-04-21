@@ -3,11 +3,9 @@ package vault;
 import javafx.application.Platform;
 import javafx.application.Preloader;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -15,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import market.Market;
-import market.MarketFactory;
 
 public class VaultPreloader extends Preloader {
 	
@@ -30,7 +27,7 @@ public class VaultPreloader extends Preloader {
 	final Button offlineBtn = new Button("Digital Offline");
     
 	public static interface MarketConsumer {
-        public void setMarket(Market market);
+        public void setMarket(String marketName);
     }
     
     Stage stage = null;
@@ -57,13 +54,15 @@ public class VaultPreloader extends Preloader {
     private void ButtonClicked(ActionEvent e){
         if (e.getSource() == digitalBtn){
         	marketName = Market.DIGITAL_MARKET;
+            mayBeHide();
         }else if (e.getSource() == offlineBtn){
         	marketName = Market.POLONIEX_OFFLINE;
+            mayBeHide();
         }else{
         	marketName = Market.POLONIEX_OFFLINE;
+            mayBeHide();
         }
         
-        mayBeHide();
     }
     
     private Scene createSplashScreen(){
@@ -92,10 +91,10 @@ public class VaultPreloader extends Preloader {
  
     private void mayBeHide() {
         if (stage.isShowing() && marketName != null && consumer != null) {
-            Platform.runLater(new Runnable() {
+        	Platform.runLater(new Runnable() {
                 public void run() {
-                    stage.setScene(createSplashScreen());
-                    stage.centerOnScreen();
+                	stage.setScene(createSplashScreen());
+                	stage.show();
                     setMarket();
                 }
             });
@@ -103,14 +102,12 @@ public class VaultPreloader extends Preloader {
     }
     
     private void setMarket() {
-    	MarketFactory mFactory = new MarketFactory();
-    	market = mFactory.createMarket(marketName);
-    	
-        if (stage.isShowing() && market != null && consumer != null) {
-            consumer.setMarket(market);
+    	if (stage.isShowing() && marketName != null && consumer != null) {
             Platform.runLater(new Runnable() {
                 public void run() {
-                    stage.hide();
+                	stage.setScene(createSplashScreen());
+            		consumer.setMarket(marketName);
+            		stage.hide();
                 }
             });
         }
@@ -119,10 +116,8 @@ public class VaultPreloader extends Preloader {
     @Override
     public void handleStateChangeNotification(StateChangeNotification evt) {
         if (evt.getType() == StateChangeNotification.Type.BEFORE_START) {
-            
-        	consumer = (MarketConsumer) evt.getApplication();
-            
-            //hide if market selected are entered
+            consumer = (MarketConsumer) evt.getApplication();            
+            //hide if market selected is entered
             mayBeHide();
         }
     }    

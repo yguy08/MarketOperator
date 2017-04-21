@@ -9,6 +9,8 @@ import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.PoloniexExchange;
 
+import asset.Asset;
+import asset.AssetFactory;
 import util.SaveToFile;
 
 public class DigitalMarket implements Market {
@@ -17,48 +19,47 @@ public class DigitalMarket implements Market {
 	
 	public static final Exchange exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	
+	//market name
 	private String marketName = Market.DIGITAL_MARKET;
-	
-	List<CurrencyPair> assets = new ArrayList<>();
+		
+	//list of assets
+	private List<Asset> assetList = new ArrayList<>();
 	
 	public DigitalMarket(){
-		setMarketName(Market.DIGITAL_MARKET);
-		setAssets();
+		setAssetList();
 	}
 	
 	@Override
 	public String getMarketName() {
-		return this.marketName;
-	}
-	
-	@Override
-	public void setAssets() {
-		List<CurrencyPair> btcOnly = exchange.getExchangeSymbols();
-		List<String> btcOnlyList = new ArrayList<>();
-		for(CurrencyPair pairs : btcOnly){
-			if(pairs.counter.equals(Currency.BTC)){
-				this.assets.add(pairs);
-				btcOnlyList.add(pairs.toString());
-			}
-		}
-		
-		//SaveToFile.writeMarketListToFile(this, btcOnlyList);
-		
-	}
-	
-	@Override
-	public List<CurrencyPair> getAssets() {
-		return this.assets;
+		return marketName;
 	}
 	
 	@Override
 	public String toString(){
-		return this.marketName + ": " + this.assets;
+		return marketName;
 	}
 
 	@Override
 	public void setMarketName(String marketName) {
-		this.marketName = Market.DIGITAL_MARKET;		
+		this.marketName = marketName;		
+	}
+
+	@Override
+	public List<Asset> getAssetList() {
+		return this.assetList;
+	}
+
+	@Override
+	public void setAssetList() {
+		AssetFactory aFactory = new AssetFactory();
+		Asset asset = null;
+		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
+		for(CurrencyPair currencyPair : currencyPairs){
+			if(currencyPair.toString().endsWith("BTC")){
+				asset = aFactory.createAsset(this, currencyPair.toString());
+				assetList.add(asset);
+			}
+		}
 	}
 	
 

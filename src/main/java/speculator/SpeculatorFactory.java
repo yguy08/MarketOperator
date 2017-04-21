@@ -8,7 +8,7 @@ public class SpeculatorFactory {
 		Speculator speculator;
 		switch(market.getMarketName()){
 		case Market.DIGITAL_MARKET:
-			speculator = new DigitalSpeculator();
+			speculator = DigitalSpeculator.createAverageRiskSpeculator();
 			break;
 		case Market.POLONIEX_OFFLINE:
 			speculator = new DigitalSpeculator();
