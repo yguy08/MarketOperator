@@ -1,6 +1,13 @@
 package speculator;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.util.List;
+
+import entry.Entry;
+import market.Market;
+import position.Position;
 import vault.Vault;
 
 public interface Speculator {
@@ -31,14 +38,6 @@ public interface Speculator {
 	
 	boolean LONG_FILTER = true;
 	
-	void setAccountEquity(BigDecimal tradeResult);
-	
-	BigDecimal getAccountEquity();
-	
-	void setTotalReturnPercent();
-	
-	BigDecimal getTotalReturnPercent();
-	
 	void getAllOpenPositions(Vault vault, Speculator speculator);
 	
 	void getNewEntries(Vault vault, Speculator speculator);
@@ -47,15 +46,61 @@ public interface Speculator {
 
 	void runBackTest(Vault vault, Speculator speculator);
 	
-	int getEntryDays();
+	public void setAccountBalance(BigDecimal amount);
 	
-	int getExitDays();
+	public BigDecimal getAccountBalance();
 	
-	int getMaxUnits();
+	public void setStartAccountBalance(BigDecimal amount);
 	
-	BigDecimal getRisk();
+	public BigDecimal getStartAccountBalance();
 	
-	BigDecimal getStop();
+	public void setRisk(BigDecimal percent);
 	
-	Speculator copy(Speculator speculator);
+	public BigDecimal getRisk();
+	
+	public void setEntrySignalDays(int numDays);
+	
+	public int getEntrySignalDays();
+	
+	public void setSellSignalDays(int numDays);
+	
+	public int getSellSignalDays();
+	
+	public void setMaxUnits(int numUnits);
+	
+	public int getMaxUnits();
+	
+	public void setStopLength(BigDecimal multiplier);
+	
+	public BigDecimal getStopLength();
+	
+	public void setMinVolume(BigDecimal volumeLimit);
+	
+	public BigDecimal getMinVolume();
+	
+	public void setTotalReturnAmount(BigDecimal amount);
+	
+	public BigDecimal getTotalReturnAmount();
+	
+	public void setTotalReturnPercent();
+	
+	public BigDecimal getTotalReturnPercent();
+	
+	public void setTimeFrameDays(int numDays);
+	
+	public int getTimeFrameDays();
+	
+	public List<Position> getPositionList();
+	
+	public void setPositionList(List<Position> positionList);
+	
+	public List<Entry> getEntryList();
+	
+	public void setEntryList(List<Entry> entryList);
+	
+	public void setMarket(Market market);
+	
+	public Market getMarket();
+	
+	
 }

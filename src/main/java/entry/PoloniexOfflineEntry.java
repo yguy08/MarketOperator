@@ -230,8 +230,8 @@ public class PoloniexOfflineEntry implements Entry {
 	
 	@Override
 	public void setUnitSize(Speculator speculator) {
-		BigDecimal max = speculator.getAccountEquity().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = speculator.getAccountEquity().multiply(Speculator.RISK, MathContext.DECIMAL32).divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal max = speculator.getAccountBalance().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal size = speculator.getAccountBalance().multiply(Speculator.RISK, MathContext.DECIMAL32).divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		
 		this.unitSize = (size.compareTo(max) > 0) ? max : size;
 	}

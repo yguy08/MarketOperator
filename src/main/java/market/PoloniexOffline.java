@@ -3,16 +3,21 @@ package market;
 import java.util.ArrayList;
 import java.util.List;
 
+import asset.Asset;
+import asset.AssetFactory;
 import speculator.Speculator;
 
 public class PoloniexOffline implements Market {
 	
+	//market name
 	private String marketName;
-	private List<String> assets = new ArrayList<>();
+	
+	//list of assets
+	private List<Asset> assetList = new ArrayList<>();
 	
 	public PoloniexOffline(){
 		setMarketName(Speculator.POLONIEX_OFFLINE);
-		setAssets();
+		setAssetList();
 	}
 	
 	@Override
@@ -24,24 +29,26 @@ public class PoloniexOffline implements Market {
 	public String getMarketName() {
 		return this.marketName;
 	}
-
+	
 	@Override
-	public void setAssets() {
-		List<String> assetsFromMarketList;
-		assetsFromMarketList = Market.getOfflineAssets(this.marketName);
-		for(int i = 0; i < assetsFromMarketList.size(); i++){
-			this.assets.add(assetsFromMarketList.get(i));
+	public List<Asset> getAssetList() {
+		return assetList;
+	}
+	
+	@Override
+	public void setAssetList() {
+		List<String> assetsFromMarketList = Market.getOfflineAssets(getMarketName());
+		AssetFactory aFactory = new AssetFactory();
+		Asset asset;
+		for(String assetNames : assetsFromMarketList){
+			asset = aFactory.createAsset(this, assetNames);
+			assetList.add(asset);
 		}
 	}
 
 	@Override
-	public List<String> getAssets() {
-		return this.assets;
-	}
-	
-	@Override
 	public String toString(){
-		return this.marketName + ": " + this.assets;
+		return marketName;
 	}
 
 }

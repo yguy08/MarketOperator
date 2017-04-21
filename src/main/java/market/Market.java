@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import asset.Asset;
+
 public interface Market {
 	
 	public static final String DIGITAL_MARKET = "Digital Market";
@@ -15,13 +17,9 @@ public interface Market {
 	
 	void setMarketName(String marketName);
 	
-	void setAssets();
-	
-	List<?> getAssets();
-	
-	static void setOfflineAssets(String marketName){
-		
-	}
+	public List<Asset> getAssetList();
+
+	public void setAssetList();
 	
 	static List<String> getOfflineAssets(String marketName){
 		List<String> assetNames;

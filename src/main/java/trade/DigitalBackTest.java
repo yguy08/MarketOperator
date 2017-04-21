@@ -9,14 +9,13 @@ import java.util.Date;
 import java.util.List;
 
 import asset.Asset;
-import asset.AssetFactory;
 import entry.Entry;
 import entry.EntryFactory;
 import market.Market;
 import position.Position;
 import position.PositionFactory;
+import speculator.DigitalSpeculator;
 import speculator.Speculator;
-import speculator.SpeculatorFactory;
 import util.DateUtils;
 
 public class DigitalBackTest implements BackTest {
@@ -49,8 +48,7 @@ public class DigitalBackTest implements BackTest {
 	
 	public DigitalBackTest(Market market, Asset asset, Speculator speculator){
 		this.market = market;
-		this.asset = asset;
-		this.speculator = speculator;
+		//this.speculator = speculator;
 	}
 	
 	public DigitalBackTest(Market market, Speculator speculator){
@@ -83,8 +81,8 @@ public class DigitalBackTest implements BackTest {
 	@Override
 	public void protoBackTest() {
 		
-		SpeculatorFactory speculatorFactory = new SpeculatorFactory();
-		Speculator updateSpeculator = speculatorFactory.startSpeculating(market);
+		speculator = DigitalSpeculator.createAverageRiskSpeculator();
+		
 		
 		//get start date and number of days since
 		Date startDate = this.getSortedEntryList().get(0).getDateTime();
@@ -98,9 +96,9 @@ public class DigitalBackTest implements BackTest {
 			this.resultsList.add("DATE: " + DateUtils.dateToSimpleDateFormat(currentDateOfBacktest));
 			for(int k = 0; k < this.getSortedEntryList().size();k++){
 				this.entry = this.getSortedEntryList().get(k);
-				this.updatedSizeEntry = this.entry.copy(this.entry, this.speculator);
+				this.updatedSizeEntry = this.entry.copy(this.entry, speculator);
 				Date entryDate = this.entry.getDateTime();
-				boolean isUnitSpotOpen = (this.unitList.size() < Speculator.MAX_UNITS);
+				boolean isUnitSpotOpen = (this.unitList.size() < speculator.getMaxUnits());
 				boolean isEntryOnCurrentDayOfBacktest = entryDate.equals(currentDateOfBacktest);
 				
 				if(isEntryOnCurrentDayOfBacktest && isUnitSpotOpen){
@@ -122,9 +120,9 @@ public class DigitalBackTest implements BackTest {
 							updatedSizePosition = position.copy(position, updatedSizeEntry);
 							this.resultsList.add(updatedSizePosition.toString());
 							this.subtractUnit(position);
-							updateSpeculator.setAccountEquity(updatedSizePosition.getProfitLossAmount());
-							updateSpeculator.setTotalReturnPercent();
-							this.resultsList.add(updateSpeculator.toString() + this.unitList.size());
+							speculator.setAccountBalance(updatedSizePosition.getProfitLossAmount());
+							speculator.setTotalReturnPercent();
+							this.resultsList.add(speculator.toString());
 						}
 					}
 				}
@@ -227,12 +225,12 @@ public class DigitalBackTest implements BackTest {
 		StringBuilder sb = new StringBuilder();
 		sb.append("***** START BACKTEST: ");
 		sb.append(" Date: " + this.getStartDate());
-		sb.append(" Balance: " + Speculator.DIGITAL_EQUITY);
-		sb.append(" Entry: " + Speculator.ENTRY);
-		sb.append(" Exit: " + Speculator.EXIT);
-		sb.append(" Units: " + Speculator.MAX_UNITS);
-		sb.append(" Risk: " + Speculator.RISK.multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(1) + "%");
-		sb.append(" Stop: " + Speculator.STOP);
+		sb.append(" Balance: " + speculator.getAccountBalance());
+		sb.append(" Entry: " + speculator.getEntrySignalDays());
+		sb.append(" Exit: " + speculator.getSellSignalDays());
+		sb.append(" Units: " + speculator.getMaxUnits());
+		sb.append(" Risk: " + speculator.getRisk().multiply(new BigDecimal(100.00), MathContext.DECIMAL32).setScale(1) + "%");
+		sb.append(" Stop: " + speculator.getStopLength());
 		return sb.toString();
 	}
 
@@ -248,20 +246,18 @@ public class DigitalBackTest implements BackTest {
 
 	@Override
 	public void dataSetUp() {
-		AssetFactory assetFactory = new AssetFactory();
-		for(int f = 0; f < this.market.getAssets().size(); f++){
-			this.asset = assetFactory.createAsset(this.market, this.market.getAssets().get(f).toString());
-			for(int x = Speculator.ENTRY; x < this.asset.getPriceList().size();x++){
-				this.asset.setPriceSubList(x - Speculator.ENTRY, x + 1);
-				this.entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
+		for(Asset asset : market.getAssetList()){
+			for(int x = speculator.getEntrySignalDays(); x < asset.getPriceList().size();x++){
+				asset.setPriceSubList(x - speculator.getEntrySignalDays(), x + 1);
+				entry = entryFactory.findEntry(market, asset, speculator);
 				boolean isFilteredEntry = Speculator.LONG_FILTER ? (entry.isEntry() && entry.isLong()) : entry.isEntry();
 				if(isFilteredEntry){
 					setEntryList(entry);
 					System.out.println(entry.toString());
-					for(int y = this.entry.getLocationIndex(); y < this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
-						this.asset.setPriceSubList(y - Speculator.EXIT, y + 1);
-						this.position = positionFactory.createPosition(this.market, this.asset, this.entry);
-						boolean isLastPosition = (this.asset.getPriceList().size() - 1 == x);
+					for(int y = this.entry.getLocationIndex(); y < asset.getPriceList().size() || position.isOpen() == false; y++, x++){
+						asset.setPriceSubList(y - Speculator.EXIT, y + 1);
+						this.position = positionFactory.createPosition(this.market, asset, this.entry);
+						boolean isLastPosition = (asset.getPriceList().size() - 1 == x);
 						boolean isPositionRecordable = position.isOpen() == false ? true : isLastPosition;
 						if(isPositionRecordable){
 							setPositionList(position);
@@ -274,19 +270,9 @@ public class DigitalBackTest implements BackTest {
 				}
 			}
 		}
-			
-			setSortedEntryList(this.entryList);
-			setSortedPositionList(this.positionList);
-	}
-
-	@Override
-	public void setEntryList(List<Entry> entryList) {
-		this.entryList = entryList;
-	}
-
-	@Override
-	public void setPositionList(List<Position> positionList) {
-		this.positionList = positionList;
+		
+		setSortedEntryList(entryList);
+		setSortedPositionList(positionList);
 	}
 
 }
