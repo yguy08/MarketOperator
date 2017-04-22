@@ -75,7 +75,7 @@ public class DigitalSpeculator implements Speculator {
 		digitalSpeculator.setMinVolume(new BigDecimal(20.00));
 		digitalSpeculator.setTimeFrameDays(365);
 		MarketFactory mFactory = new MarketFactory();
-		Market m = mFactory.createMarket(Market.POLONIEX_OFFLINE);
+		Market m = mFactory.createMarket(Market.DIGITAL_MARKET);
 		digitalSpeculator.setMarket(m);
 		return digitalSpeculator;
 	}
@@ -85,6 +85,7 @@ public class DigitalSpeculator implements Speculator {
 		accountBalance = accountBalance.add(amount);
 	}
 	
+	@Override
 	public BigDecimal getAccountBalance(){
 		return accountBalance;
 	}

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import entry.Entry;
-import javafx.collections.ObservableList;
 import position.Position;
 
 public interface BackTest {

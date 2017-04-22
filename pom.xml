@@ -10,14 +10,19 @@
   		<version>4.2.0</version>
 	</dependency>
 		<dependency>
-  <groupId>org.knowm.xchange</groupId>
-  	<artifactId>xchange-poloniex</artifactId>
-  	<version>4.2.0</version>
+  			<groupId>org.knowm.xchange</groupId>
+  			<artifactId>xchange-poloniex</artifactId>
+  			<version>4.2.0</version>
 	</dependency>
 	<dependency>
     	<groupId>com.yahoofinance-api</groupId>
     	<artifactId>YahooFinanceAPI</artifactId>
     	<version>3.6.1</version>
 </dependency>
+	<dependency>
+		<groupId>de.codecentric.centerdevice</groupId>
+		<artifactId>javafxsvg</artifactId>
+		<version>1.2.1</version>
+	</dependency>
   </dependencies>
 </project>

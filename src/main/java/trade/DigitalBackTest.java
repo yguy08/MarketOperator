@@ -169,16 +169,13 @@ public class DigitalBackTest implements BackTest {
 	@Override
 	public void setSortedEntryList(List<Entry> entryList) {
 		Collections.sort(entryList, new Comparator<Entry>() {
-		    public int compare(Entry o1, Entry o2) {
-		    	System.out.println("Comparing: " + o1.toString() + o2.toString());
+		    @Override
+			public int compare(Entry o1, Entry o2) {
 		        return o1.getDateTime().compareTo(o2.getDateTime());
 		    }
 		});
 		
 		this.sortedEntryList = entryList;
-		for(Entry entries : this.sortedEntryList){
-			System.out.println(entries.toString());
-		}
 	}
 
 	@Override
@@ -189,8 +186,8 @@ public class DigitalBackTest implements BackTest {
 	@Override
 	public void setSortedPositionList(List<Position> positionList) {
 		Collections.sort(positionList, new Comparator<Position>() {
-		    public int compare(Position o1, Position o2) {
-		    	System.out.println(o1.getDateTime() + " " + o2.getDateTime());
+		    @Override
+			public int compare(Position o1, Position o2) {
 		        return o1.getDateTime().compareTo(o2.getDateTime());
 		    }
 		});
@@ -253,7 +250,6 @@ public class DigitalBackTest implements BackTest {
 				boolean isFilteredEntry = Speculator.LONG_FILTER ? (entry.isEntry() && entry.isLong()) : entry.isEntry();
 				if(isFilteredEntry){
 					setEntryList(entry);
-					System.out.println(entry.toString());
 					for(int y = this.entry.getLocationIndex(); y < asset.getPriceList().size() || position.isOpen() == false; y++, x++){
 						asset.setPriceSubList(y - Speculator.EXIT, y + 1);
 						this.position = positionFactory.createPosition(this.market, asset, this.entry);
@@ -261,10 +257,9 @@ public class DigitalBackTest implements BackTest {
 						boolean isPositionRecordable = position.isOpen() == false ? true : isLastPosition;
 						if(isPositionRecordable){
 							setPositionList(position);
-							System.out.println("Closed or Last Position" + this.position.toString());
 							break;
 						}else{
-							System.out.println("Still open and not last position: " + this.position.toString());
+
 						}
 					}
 				}

@@ -81,7 +81,8 @@ public class Main extends Application  {
         
 		//load data in background (for digital currencies)
 		Runnable r = new Runnable() {
-	         public void run() {
+	         @Override
+			public void run() {
 	     		vault = new Vault(marketName, resultsList);
 	     		viewOpen.setVisible(true);
 	     		viewClose.setVisible(true);

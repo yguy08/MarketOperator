@@ -4,11 +4,12 @@ import javafx.application.Platform;
 import javafx.application.Preloader;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -31,6 +32,7 @@ public class VaultPreloader extends Preloader {
     }
     
     Stage stage = null;
+    Stage load = null;
     MarketConsumer consumer = null;
     
     private Scene createChooseMarketScene() {
@@ -47,7 +49,7 @@ public class VaultPreloader extends Preloader {
         vbox.setPadding(new Insets(10,10,10,10));
         vbox.setSpacing(10);
         
-        Scene sc = new Scene(vbox, 200, 100);
+        Scene sc = new Scene(vbox);
         return sc;
     }
     
@@ -66,22 +68,31 @@ public class VaultPreloader extends Preloader {
     }
     
     private Scene createSplashScreen(){
-    	Image splashScreen = new Image("splashScreen.png");
-    	ImageView iv = new ImageView();
-    	iv.setImage(splashScreen);
-    	StackPane stackPane = new StackPane();
-    	stackPane.getChildren().add(iv);
-    	Scene sc = new Scene(stackPane, 700, 700);
-		return sc;
+    	//border pane with img center and status bottom
+    	BorderPane bPane = new BorderPane();
+    
+    	Image splashScreenImg = new Image("splashScreen.png");
+    	double imgWidth = splashScreenImg.getWidth();
+    	double imgHeight = splashScreenImg.getHeight();
+    	System.out.println(imgWidth + " " + imgHeight);
+    	ImageView imageView = new ImageView();
+    	imageView.setImage(splashScreenImg);
+    	BorderPane.setAlignment(imageView, Pos.CENTER);
+    	bPane.setCenter(imageView);
+
+    	//label
+    	
+    	Scene sc = new Scene(bPane);
+		
+    	return sc;
     }
     
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(createChooseMarketScene());
-        stage.centerOnScreen();
-        stage.show();
+        this.stage.centerOnScreen();
+        this.stage.setScene(createChooseMarketScene());
+        this.stage.show();
     }
     
     @Override
@@ -91,10 +102,14 @@ public class VaultPreloader extends Preloader {
  
     private void mayBeHide() {
         if (stage.isShowing() && marketName != null && consumer != null) {
+            stage.hide();
+            load = new Stage();
+            load.setScene(createSplashScreen());
+            load.initStyle(StageStyle.UNDECORATED);
+            load.show();
         	Platform.runLater(new Runnable() {
-                public void run() {
-                	stage.setScene(createSplashScreen());
-                	stage.show();
+                @Override
+				public void run() {
                     setMarket();
                 }
             });
@@ -102,12 +117,12 @@ public class VaultPreloader extends Preloader {
     }
     
     private void setMarket() {
-    	if (stage.isShowing() && marketName != null && consumer != null) {
+    	if (load.isShowing() && marketName != null && consumer != null) {
             Platform.runLater(new Runnable() {
-                public void run() {
-                	stage.setScene(createSplashScreen());
+                @Override
+				public void run() {
             		consumer.setMarket(marketName);
-            		stage.hide();
+            		load.hide();
                 }
             });
         }
@@ -116,7 +131,8 @@ public class VaultPreloader extends Preloader {
     @Override
     public void handleStateChangeNotification(StateChangeNotification evt) {
         if (evt.getType() == StateChangeNotification.Type.BEFORE_START) {
-            consumer = (MarketConsumer) evt.getApplication();            
+            consumer = (MarketConsumer) evt.getApplication();
+            
             //hide if market selected is entered
             mayBeHide();
         }

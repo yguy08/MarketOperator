@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.sun.javafx.application.LauncherImpl;
 
+import de.codecentric.centerdevice.javafxsvg.SvgImageLoaderFactory;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -62,7 +63,8 @@ public class SpeculatorMain extends Application implements MarketConsumer {
         // Show the application if the application stage is ready and market != null
         if (market != null && stage != null) {
             Platform.runLater(new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     stage.show();
                 }                
             });
@@ -76,12 +78,15 @@ public class SpeculatorMain extends Application implements MarketConsumer {
     
     @Override
     public void start(Stage stage) throws Exception {
+    	SvgImageLoaderFactory.install();
         this.stage = stage;
         stage.setScene(setSpeculateScene());
+        stage.setTitle("Speculator");
         mayBeShow();
     }
  
-    public void setMarket(String marketName) {
+    @Override
+	public void setMarket(String marketName) {
     	MarketFactory mFactory = new MarketFactory();
         market = mFactory.createMarket(marketName);
         System.out.println(this.market.toString());

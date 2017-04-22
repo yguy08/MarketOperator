@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import asset.Asset;
@@ -219,6 +220,7 @@ public class DigitalPosition implements Position {
 		this.currentPrice = currentPrice;
 	}
 	
+	@Override
 	public void setProfitLossPercent(Position position){
 		this.profitLossPercent = position.getProfitLossPercent();
 	}

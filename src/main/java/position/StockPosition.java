@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 
 import asset.Asset;
-import asset.StockChartData;
 import entry.Entry;
 import market.Market;
 import speculator.Speculator;
