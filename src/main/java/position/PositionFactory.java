@@ -12,12 +12,6 @@ public class PositionFactory {
 		case Market.DIGITAL_MARKET:
 			position = new DigitalPosition(market, asset, entry);
 			break;
-		case Market.POLONIEX_OFFLINE:
-			position = new PoloniexOfflinePosition(market, asset, entry);
-			break;
-		case Market.STOCK_MARKET:
-			position = new StockPosition(market, asset, entry);
-			break;
 		default:
 			position = null;
 			break;

@@ -13,9 +13,6 @@ public class SpeculatorFactory {
 		case Market.POLONIEX_OFFLINE:
 			speculator = new DigitalSpeculator();
 			break;
-		case Market.STOCK_MARKET:
-			speculator = new StockSpeculator(market);
-			break;
 		default:
 			speculator = null;
 			break;
