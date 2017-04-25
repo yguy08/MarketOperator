@@ -19,7 +19,7 @@ styleClass="root">
        </bottom>
        
     <stylesheets>
-    	<URL value="@VaultLoaderCss.css" />
+    	<URL value="@VaultLoader.css" />
   	</stylesheets>
 
 </BorderPane>

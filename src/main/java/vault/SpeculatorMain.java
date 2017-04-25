@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.sun.javafx.application.LauncherImpl;
 
-import de.codecentric.centerdevice.javafxsvg.SvgImageLoaderFactory;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -78,7 +77,6 @@ public class SpeculatorMain extends Application implements MarketConsumer {
     
     @Override
     public void start(Stage stage) throws Exception {
-    	SvgImageLoaderFactory.install();
         this.stage = stage;
         stage.setScene(setSpeculateScene());
         stage.setTitle("Speculator");
