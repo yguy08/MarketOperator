@@ -16,10 +16,10 @@ styleClass="root">
 	
 	<bottom>
 		<Text fx:id="statusLabel" text="Ticker..."/>	
-       </bottom>
+      </bottom>
        
     <stylesheets>
-    	<URL value="@VaultLoader.css" />
+    	<URL value="@VaultMain.css" />
   	</stylesheets>
 
 </BorderPane>

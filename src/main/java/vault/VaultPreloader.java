@@ -1,169 +1,64 @@
 package vault;
 
-import java.io.IOException;
-
-import javafx.application.Platform;
 import javafx.application.Preloader;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import market.Market;
 
 public class VaultPreloader extends Preloader {
 	
-	//preload a market
-	Market market = null;
-	
-	//first choose market name then splash screen displays while loading market
-	String marketName = null;
-	
-	//choose market buttons
-	final Button digitalBtn = new Button("Digital");
-	final Button offlineBtn = new Button("Digital Offline");
-    
-	public static interface MarketConsumer {
-        public void setMarket(String marketName);
-    }
-    
-    Stage stage = null;
-    Stage load = null;
-    MarketConsumer consumer = null;
-    
-    private Scene createChooseMarketScene() {
-        VBox vbox = new VBox();
+	ProgressBar bar;
+    Stage stage;
+    boolean noLoadingProgress = true;
  
-        digitalBtn.setPrefSize(200, 50);
-        digitalBtn.setOnAction(e-> ButtonClicked(e));
-        vbox.getChildren().add(digitalBtn);
-        
-        offlineBtn.setPrefSize(200, 50);
-        offlineBtn.setOnAction(e-> ButtonClicked(e));
-        vbox.getChildren().add(offlineBtn);
-        
-        vbox.setPadding(new Insets(10,10,10,10));
-        vbox.setSpacing(10);
-        
-        Scene sc = new Scene(vbox);
-        return sc;
-    }
-    
-    private void ButtonClicked(ActionEvent e){
-        if (e.getSource() == digitalBtn){
-        	marketName = Market.DIGITAL_MARKET;
-            try {
-				mayBeHide();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-        }else if (e.getSource() == offlineBtn){
-        	marketName = Market.POLONIEX_OFFLINE;
-            try {
-				mayBeHide();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-        }else{
-        	marketName = Market.POLONIEX_OFFLINE;
-            try {
-				mayBeHide();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-        }
-        
-    }
-    
-    private Scene createSplashScreen(){
-    	//border pane with img center and status bottom
-    	BorderPane bPane = new BorderPane();
-    
-    	Image splashScreenImg = new Image("splashScreen.png");
-    	double imgWidth = splashScreenImg.getWidth();
-    	double imgHeight = splashScreenImg.getHeight();
-    	System.out.println(imgWidth + " " + imgHeight);
-    	ImageView imageView = new ImageView();
-    	imageView.setImage(splashScreenImg);
-    	BorderPane.setAlignment(imageView, Pos.CENTER);
-    	bPane.setCenter(imageView);
-
-    	//label
-    	
-    	Scene sc = new Scene(bPane);
-		
-    	return sc;
-    }
-    
-    @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-        this.stage.centerOnScreen();
-        this.stage.setScene(createChooseMarketScene());
-        this.stage.show();
-    }
-    
-    @Override
-    public void handleProgressNotification(ProgressNotification pn) {
-        
+        Parent root = FXMLLoader.load(getClass().getResource("VaultLoaderFXML.fxml"));
+        Scene scene = new Scene(root, 570, 320);
+        stage.setScene(scene);
+        stage.show();
     }
  
-    private void mayBeHide() throws IOException {
-        if (stage.isShowing() && marketName != null && consumer != null) {
-            stage.hide();
-            Parent root = FXMLLoader.load(getClass().getResource("VaultLoaderFXML.fxml"));
-            load = new Stage();
-            Scene scene = new Scene(root, 570, 320);
-            load.setScene(scene);
-            load.initStyle(StageStyle.UNDECORATED);
-            load.show();
-        	Platform.runLater(new Runnable() {
-                @Override
-				public void run() {
-                    setMarket();
-                }
-            });
+    @Override
+    public void handleProgressNotification(ProgressNotification pn) {
+        //application loading progress is rescaled to be first 50%
+        //Even if there is nothing to load 0% and 100% events can be
+        // delivered
+        if (pn.getProgress() != 1.0 || !noLoadingProgress) {
+          bar.setProgress(pn.getProgress()/2);
+          if (pn.getProgress() > 0) {
+              noLoadingProgress = false;
+          }
         }
     }
-    
-    private void setMarket() {
-    	if (load.isShowing() && marketName != null && consumer != null) {
-            Platform.runLater(new Runnable() {
-                @Override
-				public void run() {
-            		consumer.setMarket(marketName);
-            		load.hide();
-                }
-            });
-        }
-    }
-    
+ 
     @Override
     public void handleStateChangeNotification(StateChangeNotification evt) {
-        if (evt.getType() == StateChangeNotification.Type.BEFORE_START) {
-            consumer = (MarketConsumer) evt.getApplication();
-            
-            //hide if market selected is entered
-            try {
-				mayBeHide();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        //ignore, hide after application signals it is ready
+    }
+ 
+    @Override
+    public void handleApplicationNotification(PreloaderNotification pn) {
+        
+    	if (pn instanceof ProgressNotification) {
+           //expect application to send us progress notifications 
+           //with progress ranging from 0 to 1.0
+           double v = ((ProgressNotification) pn).getProgress();
+           if (!noLoadingProgress) {
+               //if we were receiving loading progress notifications 
+               //then progress is already at 50%. 
+               //Rescale application progress to start from 50%               
+               v = 0.5 + v/2;
+           }
+           
+           bar.setProgress(v);  
+           
+        } else if (pn instanceof StateChangeNotification) {
+            //hide after get any state update from application
+            stage.hide();
         }
-    }    
-	
-	
+    }	
 
 }

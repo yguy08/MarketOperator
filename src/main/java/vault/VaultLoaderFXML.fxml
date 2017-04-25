@@ -16,7 +16,7 @@ styleClass="root">
 	
 	<bottom>
 		<Text fx:id="statuslabel" text="Loading..."/>	
-       </bottom>
+    </bottom>
        
     <stylesheets>
     	<URL value="@VaultLoader.css" />
