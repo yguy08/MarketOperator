@@ -1,10 +1,14 @@
 package vault;
 
+import java.io.IOException;
+
 import javafx.application.Platform;
 import javafx.application.Preloader;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -56,13 +60,28 @@ public class VaultPreloader extends Preloader {
     private void ButtonClicked(ActionEvent e){
         if (e.getSource() == digitalBtn){
         	marketName = Market.DIGITAL_MARKET;
-            mayBeHide();
+            try {
+				mayBeHide();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         }else if (e.getSource() == offlineBtn){
         	marketName = Market.POLONIEX_OFFLINE;
-            mayBeHide();
+            try {
+				mayBeHide();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         }else{
         	marketName = Market.POLONIEX_OFFLINE;
-            mayBeHide();
+            try {
+				mayBeHide();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         }
         
     }
@@ -100,11 +119,13 @@ public class VaultPreloader extends Preloader {
         
     }
  
-    private void mayBeHide() {
+    private void mayBeHide() throws IOException {
         if (stage.isShowing() && marketName != null && consumer != null) {
             stage.hide();
+            Parent root = FXMLLoader.load(getClass().getResource("VaultLoaderFXML.fxml"));
             load = new Stage();
-            load.setScene(createSplashScreen());
+            Scene scene = new Scene(root, 570, 320);
+            load.setScene(scene);
             load.initStyle(StageStyle.UNDECORATED);
             load.show();
         	Platform.runLater(new Runnable() {
@@ -134,7 +155,12 @@ public class VaultPreloader extends Preloader {
             consumer = (MarketConsumer) evt.getApplication();
             
             //hide if market selected is entered
-            mayBeHide();
+            try {
+				mayBeHide();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }    
 	
