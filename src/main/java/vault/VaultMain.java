@@ -61,9 +61,10 @@ public class VaultMain extends Application {
     	// Initiate simulated long startup sequence
         longStart();
         
-        Parent root = FXMLLoader.load(getClass().getResource("VaultMainFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/VaultMainFXML.fxml"));
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
+        stage.setTitle("Speculation 1000");
         
         // After the app is ready, show the stage
         ready.addListener(new ChangeListener<Boolean>(){

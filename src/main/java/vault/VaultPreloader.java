@@ -15,9 +15,10 @@ public class VaultPreloader extends Preloader {
  
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("VaultLoaderFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/VaultLoaderFXML.fxml"));
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
+        stage.setTitle("Speculation 1000");
         stage.show();
     }
  
