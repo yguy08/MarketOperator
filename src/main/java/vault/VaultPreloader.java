@@ -5,13 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import vault.VaultMain.MarketConsumer;
 
-public class VaultPreloader extends Preloader {
+public class VaultPreloader extends Preloader implements MarketConsumer {
 	
 	ProgressBar bar;
     Stage stage;
     boolean noLoadingProgress = true;
+    
+    //Application Icon
+    Image icon = new Image(getClass().getResourceAsStream("resources/icon-treesun-64x64.png"));
  
     public void start(Stage stage) throws Exception {
         this.stage = stage;
@@ -19,6 +24,7 @@ public class VaultPreloader extends Preloader {
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
         stage.setTitle("Speculation 1000");
+        stage.getIcons().add(icon);
         stage.show();
     }
  
@@ -42,8 +48,7 @@ public class VaultPreloader extends Preloader {
  
     @Override
     public void handleApplicationNotification(PreloaderNotification pn) {
-        
-    	if (pn instanceof ProgressNotification) {
+        if (pn instanceof ProgressNotification) {
            //expect application to send us progress notifications 
            //with progress ranging from 0 to 1.0
            double v = ((ProgressNotification) pn).getProgress();
@@ -53,13 +58,19 @@ public class VaultPreloader extends Preloader {
                //Rescale application progress to start from 50%               
                v = 0.5 + v/2;
            }
-           
            //bar.setProgress(v);  
-           
         } else if (pn instanceof StateChangeNotification) {
             //hide after get any state update from application
             stage.hide();
         }
-    }	
+    }
 
+	@Override
+	public void setStatus(String status) {
+		System.out.println(status);
+		
+	}	
+
+    
+    
 }

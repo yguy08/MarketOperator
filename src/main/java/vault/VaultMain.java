@@ -14,13 +14,29 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import market.Market;
+import market.MarketFactory;
 
 public class VaultMain extends Application {
+    
+	public static interface MarketConsumer {
+        public void setStatus(String status);
+    }
 	
 	Stage stage;
-    BooleanProperty ready = new SimpleBooleanProperty(false);
+    
+	BooleanProperty ready = new SimpleBooleanProperty(false);
+	
+	MarketFactory mFactory = new MarketFactory();
+	
+	Market market;
+	
+	MarketConsumer consumer = new VaultPreloader();
+    
+    //Application Icon
+    Image icon = new Image(getClass().getResourceAsStream("resources/icon-treesun-64x64.png"));
     
 	public static void main(String[] args) {
 	    LauncherImpl.launchApplication(VaultMain.class, VaultPreloader.class, args);
@@ -35,16 +51,18 @@ public class VaultMain extends Application {
                 int max = 10;
                 for (int i = 1; i <= max; i++) {
                     Thread.sleep(200);
-                    
                     // Send progress to preloader
                     notifyPreloader(new Preloader.ProgressNotification(((double) i)/max));
+                    consumer.setStatus("Setting Markets...");
                 }
+                
+                
                 
                 // After init is ready, the app is ready to be shown
                 // Do this before hiding the preloader stage to prevent the 
                 // app from exiting prematurely
                 ready.setValue(Boolean.TRUE);
- 
+                
                 notifyPreloader(new StateChangeNotification(
                     StateChangeNotification.Type.BEFORE_START));
                 
@@ -59,12 +77,13 @@ public class VaultMain extends Application {
     public void start(final Stage stage) throws Exception {
         
     	// Initiate simulated long startup sequence
-        longStart();
+    	longStart();
         
         Parent root = FXMLLoader.load(getClass().getResource("resources/VaultMainFXML.fxml"));
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
         stage.setTitle("Speculation 1000");
+        stage.getIcons().add(icon);
         
         // After the app is ready, show the stage
         ready.addListener(new ChangeListener<Boolean>(){
