@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane 
+fx:controller="vault.VaultMain"  xmlns:fx="http://javafx.com/fxml/1"
+styleClass="root">
+	
+	<padding>
+		<Insets top="10" right="10" bottom="5" left="10"/>
+	</padding>
+	
+	<center>
+		<ListView fx:id="mainlistview" />
+	</center>
+	
+	<right>
+		<VBox fx:id="buttonbox" spacing="10" >
+		<padding>
+			<Insets top="0" right="0" bottom="10" left="10"/>
+		</padding>
+		<Button fx:id="shownewbtn" text="New" prefWidth="100"/>
+		<Button fx:id="showopen" text="Open" prefWidth="100"/>
+		</VBox>
+	</right>
+	
+	<bottom>
+		<Text fx:id="statuslabel" text="Ticker..."/>	
+      </bottom>
+       
+    <stylesheets>
+    	<URL value="@VaultMain.css" />
+  	</stylesheets>
+
+</BorderPane>
+
+
+
