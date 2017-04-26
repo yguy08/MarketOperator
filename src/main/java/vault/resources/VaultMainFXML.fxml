@@ -14,7 +14,7 @@ fx:controller="vault.VaultMain"  xmlns:fx="http://javafx.com/fxml/1"
 styleClass="root">
 	
 	<padding>
-		<Insets top="10" right="10" bottom="5" left="10"/>
+		<Insets top="10" right="10" bottom="0" left="10"/>
 	</padding>
 	
 	<center>
@@ -23,16 +23,24 @@ styleClass="root">
 	
 	<right>
 		<VBox fx:id="buttonbox" spacing="10" >
-		<padding>
-			<Insets top="0" right="0" bottom="10" left="10"/>
-		</padding>
-		<Button fx:id="shownewbtn" text="New" prefWidth="100"/>
-		<Button fx:id="showopen" text="Open" prefWidth="100"/>
+			<padding>
+				<Insets top="0" right="0" bottom="10" left="10"/>
+			</padding>
+				<Button fx:id="shownewbtn" text="New" prefWidth="100"/>
+				<Button fx:id="showopen" text="Open" prefWidth="100"/>
+				<Button fx:id="showclose" text="Close" prefWidth="100"/>
+				<Button fx:id="backtest" text="Backtest" prefWidth="100"/>
 		</VBox>
 	</right>
 	
 	<bottom>
-		<Text fx:id="statuslabel" text="Ticker..."/>	
+		<HBox fx:id="statusbox" >
+		<padding>
+			<Insets top="5" right="0" bottom="5" left="0"/>
+		</padding>
+			<Text fx:id="statuslabel" text="Ticker..."/>
+		</HBox>
+			
       </bottom>
        
     <stylesheets>
