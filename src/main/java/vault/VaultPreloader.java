@@ -27,7 +27,7 @@ public class VaultPreloader extends Preloader {
         //Even if there is nothing to load 0% and 100% events can be
         // delivered
         if (pn.getProgress() != 1.0 || !noLoadingProgress) {
-          bar.setProgress(pn.getProgress()/2);
+          //bar.setProgress(pn.getProgress()/2);
           if (pn.getProgress() > 0) {
               noLoadingProgress = false;
           }
@@ -53,7 +53,7 @@ public class VaultPreloader extends Preloader {
                v = 0.5 + v/2;
            }
            
-           bar.setProgress(v);  
+           //bar.setProgress(v);  
            
         } else if (pn instanceof StateChangeNotification) {
             //hide after get any state update from application

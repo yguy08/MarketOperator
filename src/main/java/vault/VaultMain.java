@@ -11,6 +11,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -59,9 +61,9 @@ public class VaultMain extends Application {
     	// Initiate simulated long startup sequence
         longStart();
         
-        
-        stage.setScene(new Scene(new Label("Application started"), 
-            400, 400));
+        Parent root = FXMLLoader.load(getClass().getResource("VaultMainFXML.fxml"));
+        Scene scene = new Scene(root, 570, 320);
+        stage.setScene(scene);
         
         // After the app is ready, show the stage
         ready.addListener(new ChangeListener<Boolean>(){

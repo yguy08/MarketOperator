@@ -23,14 +23,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import market.Market;
-import market.MarketFactory;
 import position.Position;
 import speculator.Speculator;
 import speculator.SpeculatorFactory;
 import util.SaveToFile;
-import vault.VaultPreloader.MarketConsumer;
 
-public class SpeculatorMain extends Application implements MarketConsumer {
+public class SpeculatorMain extends Application {
 	
 	//choose then preload a market
 	Market market = null;
@@ -82,20 +80,11 @@ public class SpeculatorMain extends Application implements MarketConsumer {
         stage.setTitle("Speculator");
         mayBeShow();
     }
- 
-    @Override
-	public void setMarket(String marketName) {
-    	MarketFactory mFactory = new MarketFactory();
-        market = mFactory.createMarket(marketName);
-        System.out.println(this.market.toString());
-        mayBeShow();
-    }
     
     private Scene setSpeculateScene(){
-		
-    	//set title
-		
-		//border pane
+		//set title
+    	
+    	//border pane
 		speculatorMainRoot = new BorderPane();
 		
 		//list

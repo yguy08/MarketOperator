@@ -5,6 +5,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 
 <BorderPane 
 fx:controller="vault.VaultMain"  xmlns:fx="http://javafx.com/fxml/1"
@@ -13,6 +16,17 @@ styleClass="root">
 	<padding>
 		<Insets top="25" right="25" bottom="10" left="10"/>
 	</padding>
+	
+	<center>
+		<ListView fx:id="mainlistview" />
+	</center>
+	
+	<right>
+		<VBox fx:id="buttonbox" >
+		<Button fx:id="shownewbtn" text="New"/>
+		<Button fx:id="showopen" text="Open"/>
+		</VBox>
+	</right>
 	
 	<bottom>
 		<Text fx:id="statusLabel" text="Ticker..."/>	
