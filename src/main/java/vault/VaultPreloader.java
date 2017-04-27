@@ -7,13 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import vault.VaultMain.MarketConsumer;
 
-public class VaultPreloader extends Preloader implements MarketConsumer {
+public class VaultPreloader extends Preloader {
 	
-	ProgressBar bar;
+	@FXML private ProgressBar bar = new ProgressBar(0);
     
 	Stage stage;
     
@@ -24,7 +22,7 @@ public class VaultPreloader extends Preloader implements MarketConsumer {
  
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("resources/VaultLoaderFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/VaultPreloaderFXML.fxml"));
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
         stage.setTitle("Speculation 1000");
@@ -39,26 +37,29 @@ public class VaultPreloader extends Preloader implements MarketConsumer {
            //with progress ranging from 0 to 1.0
            double v = ((ProgressNotification) pn).getProgress();
            if (!noLoadingProgress) {
-               //if we were receiving loading progress notifications 
-               //then progress is already at 50%. 
                //Rescale application progress to start from 50%               
                v = 0.5 + v/2;
            }
-           //bar.setProgress(v);  
+           
+           bar.setProgress(v);
+           
         } else if (pn instanceof StateChangeNotification) {
             //hide after get any state update from application
             stage.hide();
         }
     }
-
-	@Override
-	public void setStatus(String status) {
-
-	}
 	
 	@Override
     public void handleProgressNotification(ProgressNotification pn) {
-        //handle progress
+        //application loading progress is rescaled to be first 50%
+        //Even if there is nothing to load 0% and 100% events can be
+        // delivered
+        if (pn.getProgress() != 1.0 || !noLoadingProgress) {
+          bar.setProgress(pn.getProgress()/2);
+          if (pn.getProgress() > 0) {
+              noLoadingProgress = false;
+          }
+        }
     }
  
     @Override
