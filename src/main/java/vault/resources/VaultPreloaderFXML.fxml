@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane 
+fx:controller="vault.VaultPreloader"  xmlns:fx="http://javafx.com/fxml/1"
+styleClass="root">
+	
+	<padding>
+		<Insets top="25" right="25" bottom="5" left="10"/>
+	</padding>
+	
+	<bottom>
+		
+		<ProgressBar fx:id="bar"/>	
+    </bottom>
+       
+    <stylesheets>
+    	<URL value="@VaultPreloader.css" />
+  	</stylesheets>
+
+</BorderPane>
+

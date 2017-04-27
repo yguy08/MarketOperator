@@ -10,7 +10,7 @@
 <?import javafx.scene.control.Button?>
 
 <BorderPane 
-fx:controller="vault.VaultMain"  xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="vault.VaultMainController"  xmlns:fx="http://javafx.com/fxml/1"
 styleClass="root">
 	
 	<padding>
@@ -18,27 +18,26 @@ styleClass="root">
 	</padding>
 	
 	<center>
-		<ListView fx:id="mainlistview" />
+		<ListView fx:id="mainListView" />
 	</center>
 	
 	<right>
-		<VBox fx:id="buttonbox" spacing="10" >
+		<VBox fx:id="buttonBox" spacing="10" >
 			<padding>
 				<Insets top="0" right="0" bottom="10" left="10"/>
 			</padding>
-				<Button fx:id="shownewbtn" text="New" prefWidth="100"/>
-				<Button fx:id="showopen" text="Open" prefWidth="100"/>
-				<Button fx:id="showclose" text="Close" prefWidth="100"/>
-				<Button fx:id="backtest" text="Backtest" prefWidth="100"/>
+				<Button fx:id="showNewBtn" text="New" prefWidth="100" onAction="#showNewEntries"/>
+				<Button fx:id="showOpen" text="Open" prefWidth="100" onAction="#showOpenPositions"/>
+				<Button fx:id="showClose" text="Close" prefWidth="100" onAction="#showPositionsToClose"/>
+				<Button fx:id="backTest" text="Backtest" prefWidth="100" onAction="#showBacktestResults"/>
 		</VBox>
 	</right>
 	
 	<bottom>
-		<HBox fx:id="statusbox" >
+		<HBox fx:id="settingsBox" >
 		<padding>
 			<Insets top="5" right="0" bottom="5" left="0"/>
 		</padding>
-			<Text fx:id="statuslabelmain" text="Ticker..."/>
 		</HBox>
 			
       </bottom>
