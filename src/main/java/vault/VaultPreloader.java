@@ -1,18 +1,22 @@
 package vault;
 
 import javafx.application.Preloader;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import vault.VaultMain.MarketConsumer;
 
 public class VaultPreloader extends Preloader implements MarketConsumer {
 	
 	ProgressBar bar;
-    Stage stage;
+    
+	Stage stage;
+    
     boolean noLoadingProgress = true;
     
     //Application Icon
@@ -26,24 +30,6 @@ public class VaultPreloader extends Preloader implements MarketConsumer {
         stage.setTitle("Speculation 1000");
         stage.getIcons().add(icon);
         stage.show();
-    }
- 
-    @Override
-    public void handleProgressNotification(ProgressNotification pn) {
-        //application loading progress is rescaled to be first 50%
-        //Even if there is nothing to load 0% and 100% events can be
-        // delivered
-        if (pn.getProgress() != 1.0 || !noLoadingProgress) {
-          //bar.setProgress(pn.getProgress()/2);
-          if (pn.getProgress() > 0) {
-              noLoadingProgress = false;
-          }
-        }
-    }
- 
-    @Override
-    public void handleStateChangeNotification(StateChangeNotification evt) {
-        //ignore, hide after application signals it is ready
     }
  
     @Override
@@ -67,9 +53,18 @@ public class VaultPreloader extends Preloader implements MarketConsumer {
 
 	@Override
 	public void setStatus(String status) {
-		System.out.println(status);
-		
-	}	
+
+	}
+	
+	@Override
+    public void handleProgressNotification(ProgressNotification pn) {
+        //handle progress
+    }
+ 
+    @Override
+    public void handleStateChangeNotification(StateChangeNotification evt) {
+        //ignore, hide after application signals it is ready
+    }
 
     
     

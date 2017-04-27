@@ -1,5 +1,3 @@
-PoloniexChartData [date=Mon Apr 25 20:00:00 EDT 2016, high=0.00000558, low=0.00000488, open=0.00000558, close=0.0000050, volume=3.00163556, quoteVolume=591628.92935544, weightedAverage=0.00000507]
-PoloniexChartData [date=Tue Apr 26 20:00:00 EDT 2016, high=0.00000537, low=0.0000049, open=0.00000506, close=0.00000522, volume=6.6308668, quoteVolume=1331754.98985, weightedAverage=0.00000497]
 PoloniexChartData [date=Wed Apr 27 20:00:00 EDT 2016, high=0.0000052, low=0.0000048, open=0.00000495, close=0.00000497, volume=6.00286198, quoteVolume=1208274.4899025, weightedAverage=0.00000496]
 PoloniexChartData [date=Thu Apr 28 20:00:00 EDT 2016, high=0.00000611, low=0.00000497, open=0.00000498, close=0.0000057, volume=19.12889278, quoteVolume=3397482.8411737, weightedAverage=0.00000563]
 PoloniexChartData [date=Fri Apr 29 20:00:00 EDT 2016, high=0.00000585, low=0.0000054, open=0.00000571, close=0.0000056, volume=9.483916, quoteVolume=1728960.483578, weightedAverage=0.00000548]
@@ -362,3 +360,6 @@ PoloniexChartData [date=Thu Apr 20 20:00:00 EDT 2017, high=9.0E-8, low=5.0E-8, o
 PoloniexChartData [date=Fri Apr 21 20:00:00 EDT 2017, high=9.0E-8, low=6.0E-8, open=8.0E-8, close=8.0E-8, volume=9.44348601, quoteVolume=126216532.39287, weightedAverage=7.0E-8]
 PoloniexChartData [date=Sat Apr 22 20:00:00 EDT 2017, high=8.0E-8, low=6.0E-8, open=7.0E-8, close=7.0E-8, volume=6.30246328, quoteVolume=91540475.767609, weightedAverage=6.0E-8]
 PoloniexChartData [date=Sun Apr 23 20:00:00 EDT 2017, high=8.0E-8, low=6.0E-8, open=7.0E-8, close=7.0E-8, volume=2.75593487, quoteVolume=43392402.514537, weightedAverage=6.0E-8]
+PoloniexChartData [date=Mon Apr 24 20:00:00 EDT 2017, high=8.0E-8, low=5.0E-8, open=7.0E-8, close=7.0E-8, volume=7.86452607, quoteVolume=134249269.25791, weightedAverage=5.0E-8]
+PoloniexChartData [date=Tue Apr 25 20:00:00 EDT 2017, high=7.0E-8, low=5.0E-8, open=6.0E-8, close=5.0E-8, volume=4.43365073, quoteVolume=83384011.490667, weightedAverage=5.0E-8]
+PoloniexChartData [date=Wed Apr 26 20:00:00 EDT 2017, high=6.0E-8, low=5.0E-8, open=6.0E-8, close=6.0E-8, volume=0.01849502, quoteVolume=329714.64807473, weightedAverage=5.0E-8]

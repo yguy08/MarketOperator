@@ -10,11 +10,15 @@ import org.knowm.xchange.poloniex.PoloniexExchange;
 
 import asset.Asset;
 import asset.AssetFactory;
+import vault.VaultMain.MarketConsumer;
+import vault.VaultPreloader;
 
 public class DigitalMarket implements Market {
 	
-	//consider changing to bitcoin market, then have ETH, XMR and other curriencies as markets...
+	//
+	private MarketConsumer consumer = new VaultPreloader();
 	
+	//poloniex exchange from xchange library
 	public static final Exchange exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	
 	//market name

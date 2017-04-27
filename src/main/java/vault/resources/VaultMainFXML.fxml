@@ -38,7 +38,7 @@ styleClass="root">
 		<padding>
 			<Insets top="5" right="0" bottom="5" left="0"/>
 		</padding>
-			<Text fx:id="statuslabel" text="Ticker..."/>
+			<Text fx:id="statuslabelmain" text="Ticker..."/>
 		</HBox>
 			
       </bottom>

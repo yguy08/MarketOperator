@@ -34,6 +34,7 @@ public class VaultMain extends Application {
 	Market market;
 	
 	MarketConsumer consumer = new VaultPreloader();
+	
     
     //Application Icon
     Image icon = new Image(getClass().getResourceAsStream("resources/icon-treesun-64x64.png"));
@@ -56,8 +57,6 @@ public class VaultMain extends Application {
                     consumer.setStatus("Setting Markets...");
                 }
                 
-                
-                
                 // After init is ready, the app is ready to be shown
                 // Do this before hiding the preloader stage to prevent the 
                 // app from exiting prematurely
@@ -72,11 +71,33 @@ public class VaultMain extends Application {
         
         new Thread(task).start();
     }
+    
+    /*private void setMarkets() {
+        //simulate long init in background
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+            	String marketName = Market.DIGITAL_MARKET;
+            	market = mFactory.createMarket(Market.DIGITAL_MARKET);
+                
+                // After init is ready, the app is ready to be shown
+                // Do this before hiding the preloader stage to prevent the 
+                // app from exiting prematurely
+                ready.setValue(Boolean.TRUE);
+                
+                notifyPreloader(new StateChangeNotification(
+                    StateChangeNotification.Type.BEFORE_START));
+                
+                return null;
+            }
+        };
+        
+        new Thread(task).start();
+    }*/
  
     @Override
     public void start(final Stage stage) throws Exception {
-        
-    	// Initiate simulated long startup sequence
+        // Initiate simulated long startup sequence
     	longStart();
         
         Parent root = FXMLLoader.load(getClass().getResource("resources/VaultMainFXML.fxml"));
