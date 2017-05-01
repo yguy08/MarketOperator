@@ -34,13 +34,17 @@ styleClass="root">
 	</right>
 	
 	<bottom>
-		<HBox fx:id="settingsBox" >
+		<HBox fx:id="settingsBox" spacing="10">
 		<padding>
 			<Insets top="5" right="0" bottom="5" left="0"/>
 		</padding>
+			<TextField fx:id="dayRange" promptText="Range (Days)" prefWidth="100"/>
+			<TextField fx:id="balance" promptText="Balance Size" prefWidth="100"/>
+			<TextField fx:id="risk" promptText="Risk %" prefWidth="60"/>
+			<TextField fx:id="stop" promptText="Stop" prefWidth="60"/>
+			<Button fx:id="settingsSave" text="Save" prefWidth="60" onAction="#saveSettings" />
 		</HBox>
-			
-      </bottom>
+	</bottom>
        
     <stylesheets>
     	<URL value="@VaultMain.css" />
