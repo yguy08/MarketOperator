@@ -79,8 +79,6 @@ public class DigitalEntry implements Entry {
 		this.isEntry = (isEqualToHigh || isEqualToLow) ? isFilteredIn : false;
 		if(isEntry){
 			this.direction = isEqualToHigh ? Speculator.LONG : Speculator.SHORT;
-		}else{
-			
 		}
 	}
 
