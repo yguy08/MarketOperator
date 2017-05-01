@@ -25,10 +25,6 @@ public class VaultMain extends Application {
     
 	BooleanProperty ready = new SimpleBooleanProperty(false);
 	
-	MarketFactory mFactory = new MarketFactory();
-	
-	Market market;
-	
     //Application Icon
     Image icon = new Image(getClass().getResourceAsStream("resources/icon-treesun-64x64.png"));
     
