@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import speculator.DigitalSpeculator;
+import speculator.Speculator;
 
 public class VaultMainController {
 	
@@ -26,10 +28,9 @@ public class VaultMainController {
 	
 	@FXML
 	protected void showNewEntries(ActionEvent ev){
-		//get market
-		//speculator...
-		//trade.find new entries
-		//main list view set items
+		Speculator speculator = DigitalSpeculator.createAverageRiskSpeculator();
+		
+		
 	}
 	
 	@FXML
