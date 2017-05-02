@@ -96,9 +96,5 @@ public interface Speculator {
 	
 	public void setEntryList(List<Entry> entryList);
 	
-	public void setMarket(Market market);
-	
-	public Market getMarket();
-	
 	
 }

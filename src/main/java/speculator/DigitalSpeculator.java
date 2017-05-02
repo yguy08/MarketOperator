@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entry.Entry;
-import market.Market;
-import market.MarketFactory;
 import position.Position;
 import trade.BackTest;
 import trade.BackTestFactory;
@@ -54,10 +52,7 @@ public class DigitalSpeculator implements Speculator {
 	private List<Position> positionList = new ArrayList<>();;
 	
 	//entries -> every speculator has entries either taken or not taken
-	private List<Entry> entryList = new ArrayList<>();;
-	
-	//market because every speculator trades a market
-	private Market market = null;
+	private List<Entry> entryList = new ArrayList<>();
 	
 	public DigitalSpeculator(){
 		
@@ -74,9 +69,6 @@ public class DigitalSpeculator implements Speculator {
 		digitalSpeculator.setStopLength(new BigDecimal(2.00));
 		digitalSpeculator.setMinVolume(new BigDecimal(20.00));
 		digitalSpeculator.setTimeFrameDays(365);
-		MarketFactory mFactory = new MarketFactory();
-		Market m = mFactory.createMarket(Market.DIGITAL_MARKET);
-		digitalSpeculator.setMarket(m);
 		return digitalSpeculator;
 	}
 
@@ -212,16 +204,6 @@ public class DigitalSpeculator implements Speculator {
 	@Override
 	public void setEntryList(List<Entry> entryList){
 		this.entryList = entryList;
-	}
-	
-	@Override
-	public void setMarket(Market market){
-		this.market = market;
-	}
-	
-	@Override
-	public Market getMarket(){
-		return market;
 	}
 	
 	@Override
