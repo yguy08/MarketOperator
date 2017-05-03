@@ -9,7 +9,7 @@ public interface Asset {
 	
 	String getAsset();
 	
-	void setPriceList(String assetName);
+	void setPriceList();
 	
 	List<?> getPriceList();
 	
@@ -34,5 +34,7 @@ public interface Asset {
 	String getMarketName();
 	
 	void setMarketName(String marketName);	
+	
+	void setOfflinePriceList();
 
 }

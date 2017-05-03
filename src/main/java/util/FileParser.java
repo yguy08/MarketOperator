@@ -1,14 +1,8 @@
 package util;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import market.Market;
@@ -70,7 +64,7 @@ public class FileParser {
 	
 	public static List<String> generatePoloURL() {
 		try {
-			List<String> poloList = readMarketList(Market.POLONIEX_OFFLINE);
+			List<String> poloList = readMarketList(Market.DIGITAL_OFFLINE);
 			List<String> urls = new ArrayList<>();
 			for(int i = 0; i < poloList.size();i++){
 				String url = "https://poloniex.com/public?command=returnChartData&currencyPair=BTC_"+poloList.get(i)+"&start=1389716471&end=9999999999&period=86400";

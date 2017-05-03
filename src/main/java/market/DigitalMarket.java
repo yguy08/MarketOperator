@@ -1,5 +1,10 @@
 package market;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,25 +15,32 @@ import org.knowm.xchange.poloniex.PoloniexExchange;
 
 import asset.Asset;
 import asset.AssetFactory;
-import vault.VaultMain.MarketConsumer;
-import vault.VaultPreloader;
 
 public class DigitalMarket implements Market {
-	
-	//
-	private MarketConsumer consumer = new VaultPreloader();
 	
 	//poloniex exchange from xchange library
 	public static final Exchange exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	
 	//market name
-	private String marketName = Market.DIGITAL_MARKET;
+	private String marketName;
 		
 	//list of assets
 	private List<Asset> assetList = new ArrayList<>();
 	
-	public DigitalMarket(){
-		setAssetList();
+	//static factory method to create online digital market
+	public static DigitalMarket createOnlineDigitalMarket(){
+		DigitalMarket digitalMarket = new DigitalMarket();
+		digitalMarket.setMarketName(Market.DIGITAL_MARKET);
+		digitalMarket.setAssetList();
+		return digitalMarket;
+	}
+	
+	//static factory method to create offline digital market
+	public static DigitalMarket createOfflineDigitalMarket(){
+		DigitalMarket digitalMarket = new DigitalMarket();
+		digitalMarket.setMarketName(Market.DIGITAL_OFFLINE);
+		digitalMarket.setOfflineAssetList();
+		return digitalMarket;
 	}
 	
 	@Override
@@ -62,6 +74,26 @@ public class DigitalMarket implements Market {
 				assetList.add(asset);
 			}
 		}
+	}
+	
+	@Override
+	public void setOfflineAssetList(){
+		AssetFactory aFactory = new AssetFactory();
+		Asset asset = null;
+		List<String> currencyPairs;
+		URL resourceUrl = getClass().getResource("MarketList.csv");
+		try {
+			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
+			for(String currencyPair : currencyPairs){
+				if(currencyPair.endsWith("BTC")){
+					asset = aFactory.createAsset(this, currencyPair);
+					assetList.add(asset);
+				}
+			}
+		} catch (IOException | URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 

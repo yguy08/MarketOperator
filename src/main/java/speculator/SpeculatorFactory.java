@@ -10,7 +10,7 @@ public class SpeculatorFactory {
 		case Market.DIGITAL_MARKET:
 			speculator = DigitalSpeculator.createAverageRiskSpeculator();
 			break;
-		case Market.POLONIEX_OFFLINE:
+		case Market.DIGITAL_OFFLINE:
 			speculator = new DigitalSpeculator();
 			break;
 		default:

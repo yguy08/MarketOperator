@@ -16,7 +16,6 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 import market.DigitalMarket;
 import market.Market;
 import speculator.Speculator;
-import util.SaveToFile;
 
 public class DigitalAsset implements Asset {
 	
@@ -35,13 +34,28 @@ public class DigitalAsset implements Asset {
 	
 	List<BigDecimal> closeSubList	= new ArrayList<>();
 	
-	public DigitalAsset(Market market, String assetName){
-		setMarketName(market.getMarketName());
-		setAssetName(assetName);
-		setPriceList(this.assetName);
-		setCloseList();
-		setLowList();
-		setHighList();
+	//static factory method to create online asset
+	public static DigitalAsset createOnlineDigitalAsset(Market market, String assetName){
+		DigitalAsset digitalAsset = new DigitalAsset();
+		digitalAsset.setMarketName(market.getMarketName());
+		digitalAsset.setAssetName(assetName);
+		digitalAsset.setPriceList();
+		digitalAsset.setCloseList();
+		digitalAsset.setLowList();
+		digitalAsset.setHighList();
+		return digitalAsset;
+	}
+	
+	//static factory method to create offline asset
+	public static DigitalAsset createOfflineDigitalAsset(Market market, String assetName){
+		DigitalAsset digitalAsset = new DigitalAsset();
+		digitalAsset.setMarketName(market.getMarketName());
+		digitalAsset.setAssetName(assetName);
+		//digitalAsset.setOfflinePriceList();
+		//digitalAsset.setCloseList();
+		//digitalAsset.setLowList();
+		//digitalAsset.setHighList();
+		return digitalAsset;
 	}
 
 	@Override
@@ -55,18 +69,23 @@ public class DigitalAsset implements Asset {
 	}
 
 	@Override
-	public void setPriceList(String assetName) {
+	public void setPriceList() {
 		long date = new Date().getTime() / 1000;
-		CurrencyPair currencyPair = new CurrencyPair(assetName);
+		CurrencyPair currencyPair = new CurrencyPair(this.assetName);
 		try {
 			this.priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - Speculator.DAYS * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
-			SaveToFile.writeAssetPriceListToFile(this, priceList);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void setOfflinePriceList() {
+		
+		
 	}
 
 	@Override
@@ -89,7 +108,6 @@ public class DigitalAsset implements Asset {
 		for(int i = 0; i < this.priceList.size();i++){
 			this.closeList.add(this.getPriceList().get(i).getClose());
 		}
-		
 	}
 
 	@Override

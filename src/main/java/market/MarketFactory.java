@@ -1,15 +1,19 @@
 package market;
 
 public class MarketFactory {
+	Market market = null;
 	
 	public Market createMarket(String marketName){
-		Market market;
+		
 		switch(marketName){
-		case Market.DIGITAL_MARKET:
-			market = new DigitalMarket();
-			break;
-		default:
-			market = null;
+			case Market.DIGITAL_MARKET:
+				market = DigitalMarket.createOnlineDigitalMarket();
+				break;
+			case Market.DIGITAL_OFFLINE:
+				market = DigitalMarket.createOfflineDigitalMarket();
+				break;
+			default:
+				market = null;
 		}
 		
 		return market;
