@@ -8,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import speculator.DigitalSpeculator;
-import speculator.Speculator;
 
 public class VaultMainController {
 	
@@ -19,6 +17,10 @@ public class VaultMainController {
 	@FXML private Button backTest;
 	
 	@FXML private TextField dayRange;
+	@FXML private TextField balance;
+	@FXML private TextField risk;
+	@FXML private TextField stop;
+	@FXML private TextField units;
 	
 	@FXML private VBox buttonBox;
 	
@@ -28,8 +30,6 @@ public class VaultMainController {
 	
 	@FXML
 	protected void showNewEntries(ActionEvent ev){
-		Speculator speculator = DigitalSpeculator.createAverageRiskSpeculator();
-		
 		
 	}
 	
@@ -57,7 +57,5 @@ public class VaultMainController {
 		//set initial items in list view..maybe asset names
 		mainListView.setItems(mainListItems);
 	}
-	
-	
 
 }

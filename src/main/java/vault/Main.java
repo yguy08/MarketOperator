@@ -75,7 +75,7 @@ public class Main extends Application  {
         	marketName = Market.DIGITAL_MARKET;
             chooseMarketStage.close();
         }else{
-        	marketName = Market.POLONIEX_OFFLINE;
+        	marketName = Market.DIGITAL_OFFLINE;
             chooseMarketStage.close();
         }
         

@@ -18,11 +18,12 @@ public class VaultPreloader extends Preloader {
     boolean noLoadingProgress = true;
     
     //Application Icon
-    Image icon = new Image(getClass().getResourceAsStream("resources/icon-treesun-64x64.png"));
+    Image icon = new Image(getClass().getResourceAsStream("icon-treesun-64x64.png"));
  
-    public void start(Stage stage) throws Exception {
+    @Override
+	public void start(Stage stage) throws Exception {
         this.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("resources/VaultPreloaderFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("VaultPreloaderFXML.fxml"));
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
         stage.setTitle("Speculation 1000");
