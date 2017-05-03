@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane 
+fx:controller="vault.VaultMainController"  xmlns:fx="http://javafx.com/fxml/1"
+styleClass="root">
+	
+	<padding>
+		<Insets top="10" right="10" bottom="0" left="10"/>
+	</padding>
+	
+	<center>
+		<ListView fx:id="mainListView" />
+	</center>
+	
+	<right>
+		<VBox fx:id="buttonBox" spacing="10" >
+			<padding>
+				<Insets top="0" right="0" bottom="10" left="10"/>
+			</padding>
+				<Button fx:id="showNewBtn" text="New" prefWidth="100" onAction="#showNewEntries"/>
+				<Button fx:id="showOpen" text="Open" prefWidth="100" onAction="#showOpenPositions"/>
+				<Button fx:id="showClose" text="Close" prefWidth="100" onAction="#showPositionsToClose"/>
+				<Button fx:id="backTest" text="Backtest" prefWidth="100" onAction="#showBacktestResults"/>
+		</VBox>
+	</right>
+	
+	<bottom>
+		<HBox fx:id="settingsBox" spacing="10">
+		<padding>
+			<Insets top="5" right="0" bottom="5" left="0"/>
+		</padding>
+			<TextField fx:id="dayRange" promptText="Range (Days)" prefWidth="90"/>
+			<TextField fx:id="balance" promptText="Balance Size" prefWidth="90"/>
+			<TextField fx:id="risk" promptText="Risk %" prefWidth="40"/>
+			<TextField fx:id="stop" promptText="Stop" prefWidth="40"/>
+			<TextField fx:id="units" promptText="Max Units" prefWidth="70"/>
+			<Button fx:id="settingsSave" text="Save" prefWidth="60" onAction="#saveSettings" />
+		</HBox>
+	</bottom>
+       
+    <stylesheets>
+    	<URL value="@VaultMain.css" />
+  	</stylesheets>
+
+</BorderPane>
+
+
+

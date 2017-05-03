@@ -1,0 +1,14 @@
+root { 
+    display: block;
+}
+
+.root {
+-fx-background-image: url("splashScreen.png");
+
+}
+
+#statusTextMain {
+  -fx-fill: black;
+  -fx-font-weight: bold;
+}
+
