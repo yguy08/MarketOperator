@@ -25,7 +25,7 @@ public interface Speculate {
 	int EXIT  = 10;
 	int MOVING_AVG = 20;
 	
-	int MAX_UNITS = 7;
+	int MAX_UNITS = 8;
 	
 	int DAYS = 365 * 1;
 	
