@@ -1,13 +1,18 @@
 package vault;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import asset.Asset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import market.Market;
 
 public class VaultMainController {
 	
@@ -16,11 +21,11 @@ public class VaultMainController {
 	@FXML private Button showClose;
 	@FXML private Button backTest;
 	
-	@FXML private TextField dayRange;
-	@FXML private TextField balance;
-	@FXML private TextField risk;
-	@FXML private TextField stop;
-	@FXML private TextField units;
+	@FXML private Text dayRange;
+	@FXML private Text balance;
+	@FXML private Text risk;
+	@FXML private Text stop;
+	@FXML private Text units;
 	
 	@FXML private VBox buttonBox;
 	
@@ -30,7 +35,13 @@ public class VaultMainController {
 	
 	@FXML
 	protected void showNewEntries(ActionEvent ev){
+		Market m = VaultMain.getMarket();
+		List<String> myList = new ArrayList<>();
+		for(Asset a : m.getAssetList()){
+			myList.add(a.getAssetName());
+		}
 		
+		mainListItems.addAll(myList);
 	}
 	
 	@FXML

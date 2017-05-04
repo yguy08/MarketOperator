@@ -7,7 +7,6 @@ import java.net.URLConnection;
 
 import com.sun.javafx.application.LauncherImpl;
 
-import asset.Asset;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.application.Preloader.StateChangeNotification;
@@ -21,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import market.DigitalMarket;
 import market.Market;
 import market.MarketFactory;
 
@@ -35,7 +33,7 @@ public class VaultMain extends Application {
     Image icon = new Image(getClass().getResourceAsStream("icon-treesun-64x64.png"));
     
     //market
-    Market market = null;
+    static Market market = null;
     
     //Market factory
     MarketFactory mFactory = new MarketFactory();
@@ -51,8 +49,11 @@ public class VaultMain extends Application {
             @Override
             protected Void call() throws Exception {
             	
-            	marketName = testConnection() ? Market.DIGITAL_MARKET : Market.DIGITAL_OFFLINE;
-            	
+            	String mName = testConnection() ? Market.DIGITAL_MARKET : Market.DIGITAL_OFFLINE;
+
+            	MarketFactory maFactory = new MarketFactory();
+            	Market m = mFactory.createMarket(mName);
+            	market = m;
             	ready.setValue(Boolean.TRUE);
                 
                 notifyPreloader(new StateChangeNotification(
@@ -69,7 +70,7 @@ public class VaultMain extends Application {
     public void start(final Stage stage) throws Exception {
     	
     	loadMarket();
-        
+    	        
         Parent root = FXMLLoader.load(getClass().getResource("VaultMainFXML.fxml"));
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
@@ -94,6 +95,7 @@ public class VaultMain extends Application {
     }
     
     public boolean testConnection(){
+    	//OR to save resources...if > an hour...check connection, else use offline? so it is faster...
         try {
             URL myURL = new URL("https://poloniex.com/");
             URLConnection myURLConnection = myURL.openConnection();
@@ -106,6 +108,10 @@ public class VaultMain extends Application {
         catch (IOException e) {   
         	return false;
         }
+    }
+    
+    public static Market getMarket(){
+    	return market;
     }
 
 }

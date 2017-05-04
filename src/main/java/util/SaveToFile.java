@@ -1,6 +1,7 @@
 package util;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -22,8 +23,8 @@ public class SaveToFile {
 		}
 		String content = sb.toString();
 		try {
-			Files.write(Paths.get(asset.getMarketName() + "/" + asset.getAssetName().replace("/", "") + ".txt"), 
-					content.getBytes());
+			Files.write(Paths.get("src/main/resources/market/" + asset.getAssetName().replace("/", "") + ".txt"), 
+					content.getBytes());		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,0 @@
-[POSITION] VTC/BTC Open:false Entry [Date:2017-04-09 Price: 0.00011324] Close [Date: 2017-04-13 Price: 0.00008416] P/L [%: -25.68% Amount: -0.1353] High: [0.00014478] Low: [0.00005351]
-[POSITION] HZ/BTC Open:false Entry [Date:2017-03-21 Price: 0.00000027] Close [Date: 2017-04-10 Price: 0.00000033] P/L [%: 22.22% Amount: 0.1049] High: [0.00000038] Low: [0.00000033]
-[POSITION] ETC/BTC Open:false Entry [Date:2017-03-13 Price: 0.0013277] Close [Date: 2017-04-09 Price: 0.00219016] P/L [%: 64.96% Amount: 0.6537] High: [0.00270025] Low: [0.00219016]
-[POSITION] GNT/BTC Open:false Entry [Date:2017-03-17 Price: 0.00003622] Close [Date: 2017-04-09 Price: 0.00006013] P/L [%: 66.01% Amount: 0.0017] High: [0.0000837] Low: [0.00006013]
-[POSITION] NXT/BTC Open:false Entry [Date:2017-03-14 Price: 0.00000772] Close [Date: 2017-04-09 Price: 0.00001144] P/L [%: 48.19% Amount: 0.2603] High: [0.00001581] Low: [0.00001144]
-[POSITION] RBY/BTC Open:false Entry [Date:2017-04-07 Price: 0.00060794] Close [Date: 2017-04-08 Price: 0.00036686] P/L [%: -39.66% Amount: -0.5005] High: [0.00060794] Low: [0.00020507]

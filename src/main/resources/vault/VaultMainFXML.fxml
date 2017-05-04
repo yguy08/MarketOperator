@@ -38,12 +38,12 @@ styleClass="root">
 		<padding>
 			<Insets top="5" right="0" bottom="5" left="0"/>
 		</padding>
-			<TextField fx:id="dayRange" promptText="Range (Days)" prefWidth="90"/>
-			<TextField fx:id="balance" promptText="Balance Size" prefWidth="90"/>
-			<TextField fx:id="risk" promptText="Risk %" prefWidth="40"/>
-			<TextField fx:id="stop" promptText="Stop" prefWidth="40"/>
-			<TextField fx:id="units" promptText="Max Units" prefWidth="70"/>
-			<Button fx:id="settingsSave" text="Save" prefWidth="60" onAction="#saveSettings" />
+			<Text fx:id="dayRange" Text="Range (Days)"/>
+			<Text fx:id="balance" Text="Balance Size" />
+			<Text fx:id="risk" Text="Risk %" />
+			<Text fx:id="stop" Text="Stop" />
+			<Text fx:id="units" Text="Max Units"/>
+			<Button fx:id="settingsSave" Text="Save" prefWidth="60" onAction="#saveSettings" />
 		</HBox>
 	</bottom>
        
