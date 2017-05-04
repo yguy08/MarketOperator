@@ -38,7 +38,7 @@ styleClass="root">
 		<padding>
 			<Insets top="5" right="0" bottom="5" left="0"/>
 		</padding>
-			<Text fx:id="dayRange" Text="Range (Days)"/>
+			<Text fx:id="dayRange" text="Range (Days)"/>
 			<Text fx:id="balance" Text="Balance Size" />
 			<Text fx:id="risk" Text="Risk %" />
 			<Text fx:id="stop" Text="Stop" />
