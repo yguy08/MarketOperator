@@ -60,7 +60,7 @@ public class VaultMainController {
 	}
 	
 	@FXML
-	protected void saveSettings(ActionEvent ev){
+	protected void showSettings(ActionEvent ev){
 		
 	}
 	
