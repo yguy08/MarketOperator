@@ -1,0 +1,13 @@
+root { 
+    display: block;
+}
+
+.root {
+-fx-background-image: url("settingsScreen.png");
+
+}
+
+#statusMain{
+	-fx-font-weight: bold;
+}
+
