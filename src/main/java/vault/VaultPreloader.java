@@ -17,6 +17,8 @@ public class VaultPreloader extends Preloader {
     
     boolean noLoadingProgress = true;
     
+    ScreensController myController;
+    
     //Application Icon
     Image icon = new Image(getClass().getResourceAsStream("icon-treesun-64x64.png"));
  

@@ -43,35 +43,21 @@ public class VaultMain extends Application {
 	public static void main(String[] args) {
 	    LauncherImpl.launchApplication(VaultMain.class, VaultPreloader.class, args);
 	}
-    
-    private void loadMarket() {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-            	
-            	String mName = testConnection() ? Market.DIGITAL_MARKET : Market.DIGITAL_OFFLINE;
-
-            	MarketFactory maFactory = new MarketFactory();
-            	Market m = mFactory.createMarket(mName);
-            	market = m;
-            	ready.setValue(Boolean.TRUE);
-                
-                notifyPreloader(new StateChangeNotification(
-                    StateChangeNotification.Type.BEFORE_START));
-                
-                return null;
-            }
-        };
-        
-        new Thread(task).start();
-    }
  
     @Override
     public void start(final Stage stage) throws Exception {
     	
     	loadMarket();
-    	        
-        Parent root = FXMLLoader.load(getClass().getResource("VaultMainFXML.fxml"));
+    	
+        ScreensController mainContainer = new ScreensController();
+        
+        for(ScreenEnum s : ScreenEnum.values()){
+        	mainContainer.loadScreen(s.getScreenName(),s.getFxmlPath());
+        }
+        
+        mainContainer.setScreen(ScreenEnum.MAIN.getScreenName());
+        
+        Parent root = mainContainer;
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
         stage.setTitle("Speculation 1000");
@@ -112,6 +98,28 @@ public class VaultMain extends Application {
     
     public static Market getMarket(){
     	return market;
+    }
+    
+    private void loadMarket() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+            	
+            	String mName = testConnection() ? Market.DIGITAL_MARKET : Market.DIGITAL_OFFLINE;
+
+            	MarketFactory maFactory = new MarketFactory();
+            	Market m = mFactory.createMarket(mName);
+            	market = m;
+            	ready.setValue(Boolean.TRUE);
+                
+                notifyPreloader(new StateChangeNotification(
+                    StateChangeNotification.Type.BEFORE_START));
+                
+                return null;
+            }
+        };
+        
+        new Thread(task).start();
     }
 
 }

@@ -19,7 +19,7 @@ public class VaultMainTest extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
-        Parent root = FXMLLoader.load(getClass().getResource("VaultMainFXML.fxml"));
+        Parent root = FXMLLoader.load(VaultMain.class.getResource("VaultMainFXML.fxml"));
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
         stage.setTitle("Speculation 1000");

@@ -1,20 +1,25 @@
 package vault;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import asset.Asset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import market.Market;
 
-public class VaultMainController {
+public class VaultMainController implements Initializable, ControlledScreen {
+	
+	ScreensController myController;
 	
 	@FXML private Button showNewBtn;
 	@FXML private Button showOpen;
@@ -31,7 +36,7 @@ public class VaultMainController {
 	
 	@FXML private ListView<String> mainListView;
 	
-	final ObservableList<String> mainListItems = FXCollections.observableArrayList("Welcome!");
+	final ObservableList<String> mainListItems = FXCollections.observableArrayList();
 	
 	@FXML
 	protected void showNewEntries(ActionEvent ev){
@@ -61,12 +66,22 @@ public class VaultMainController {
 	
 	@FXML
 	protected void showSettings(ActionEvent ev){
-		
+		myController.setScreen(ScreenEnum.SETTINGS.getScreenName());
 	}
 	
 	public void initialize(){
 		//set initial items in list view..maybe asset names
 		mainListView.setItems(mainListItems);
+	}
+
+    public void setScreenParent(ScreensController screenParent){
+        myController = screenParent;
+    }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
