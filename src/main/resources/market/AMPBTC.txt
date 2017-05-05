@@ -1,4 +1,3 @@
-PoloniexChartData [date=Wed May 04 20:00:00 EDT 2016, high=0.00011701, low=0.00010588, open=0.000112, close=0.00011287, volume=22.80564726, quoteVolume=203747.9604751, weightedAverage=0.00011193]
 PoloniexChartData [date=Thu May 05 20:00:00 EDT 2016, high=0.00011722, low=0.0000985, open=0.00011288, close=0.000101, volume=38.35091183, quoteVolume=368218.76193137, weightedAverage=0.00010415]
 PoloniexChartData [date=Fri May 06 20:00:00 EDT 2016, high=0.000115, low=0.00009852, open=0.000101, close=0.00010739, volume=24.24199197, quoteVolume=232362.29508385, weightedAverage=0.00010432]
 PoloniexChartData [date=Sat May 07 20:00:00 EDT 2016, high=0.000129, low=0.00010196, open=0.00010739, close=0.0001141, volume=32.00346047, quoteVolume=269468.98814588, weightedAverage=0.00011876]
@@ -362,4 +361,5 @@ PoloniexChartData [date=Sat Apr 29 20:00:00 EDT 2017, high=0.0000942, low=0.0000
 PoloniexChartData [date=Sun Apr 30 20:00:00 EDT 2017, high=0.00008989, low=0.00006788, open=0.00008563, close=0.00007696, volume=393.03575317, quoteVolume=4885061.073309, weightedAverage=0.00008045]
 PoloniexChartData [date=Mon May 01 20:00:00 EDT 2017, high=0.0000799, low=0.00006222, open=0.000077, close=0.00007213, volume=227.49448606, quoteVolume=3242465.9062824, weightedAverage=0.00007016]
 PoloniexChartData [date=Tue May 02 20:00:00 EDT 2017, high=0.00007649, low=0.00006613, open=0.00007243, close=0.00007308, volume=171.47864738, quoteVolume=2367273.1091492, weightedAverage=0.00007243]
-PoloniexChartData [date=Wed May 03 20:00:00 EDT 2017, high=0.00007309, low=0.0000724, open=0.00007308, close=0.00007304, volume=0.53568471, quoteVolume=7357.17019333, weightedAverage=0.00007281]
+PoloniexChartData [date=Wed May 03 20:00:00 EDT 2017, high=0.00007898, low=0.000069, open=0.00007308, close=0.00007802, volume=270.95417723, quoteVolume=3685155.8085245, weightedAverage=0.00007352]
+PoloniexChartData [date=Thu May 04 20:00:00 EDT 2017, high=0.00008307, low=0.00007432, open=0.00007802, close=0.0000795, volume=248.22163758, quoteVolume=3182363.7828925, weightedAverage=0.00007799]

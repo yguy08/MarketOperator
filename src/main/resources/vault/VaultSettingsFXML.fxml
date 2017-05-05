@@ -14,11 +14,17 @@ fx:controller="vault.VaultSettingsController"  xmlns:fx="http://javafx.com/fxml/
 styleClass="root">
 	
 	<padding>
-		<Insets top="10" right="10" bottom="0" left="10"/>
+		<Insets top="50" right="50" bottom="50" left="50"/>
 	</padding>
 	
 	<center>
-		<Text fx:id="dateRange" text="Date Range" />
+		<VBox fx:id="centerBox" spacing="20" >
+			<padding>
+				<Insets top="20" right="20" bottom="20" left="20"/>
+			</padding>
+				<Text fx:id="dateRange" text="Date Range" />
+				<Button fx:id="save" text="Save" onAction="#saveSettings"  />
+		</VBox>
 	</center>
 	
 	<right>
@@ -26,11 +32,10 @@ styleClass="root">
 	</right>
 	
 	<bottom>
-		<Button fx:id="save" text="Save" onAction="#saveSettings"  />
 	</bottom>
        
     <stylesheets>
-    	<URL value="@VaultMain.css" />
+    	<URL value="@VaultSettings.css" />
   	</stylesheets>
 
 </BorderPane>

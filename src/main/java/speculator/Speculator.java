@@ -5,7 +5,6 @@ import java.util.List;
 
 import entry.Entry;
 import position.Position;
-import vault.Vault;
 
 public interface Speculator {
 
@@ -33,15 +32,7 @@ public interface Speculator {
 	
 	int DAYS = 365 * 1;
 	
-	boolean LONG_FILTER = true;
-	
-	void getAllOpenPositions(Vault vault, Speculator speculator);
-	
-	void getNewEntries(Vault vault, Speculator speculator);
-	
-	void getPositionsToClose(Vault vault, Speculator speculator);
-
-	void runBackTest(Vault vault, Speculator speculator);
+	boolean LONG_FILTER = true;	
 	
 	public void setAccountBalance(BigDecimal amount);
 	

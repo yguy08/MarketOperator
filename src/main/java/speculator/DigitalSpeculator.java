@@ -11,7 +11,7 @@ import position.Position;
 import trade.BackTest;
 import trade.BackTestFactory;
 import util.DateUtils;
-import vault.Vault;
+import vault.VaultMain;
 
 public class DigitalSpeculator implements Speculator {
 	
@@ -213,48 +213,6 @@ public class DigitalSpeculator implements Speculator {
 		sb.append(" Balance: " + getAccountBalance().setScale(2, RoundingMode.HALF_DOWN));
 		sb.append(" Total Return: " + getTotalReturnPercent() + "%");
 		return sb.toString();
-	}
-	
-	@Override
-	public void getNewEntries(Vault vault, Speculator speculator) {
-		for(int i = 0; i < vault.backtest.getEntryList().size(); i++){
-			int days = DateUtils.getNumberOfDaysSinceDate(vault.backtest.getEntryList().get(i).getDateTime());
-			if(days <= 7){
-				vault.resultsList.add(vault.backtest.getEntryList().get(i).toString());
-			}
-		}
-	}
-	
-	@Override
-	public void getPositionsToClose(Vault vault, Speculator speculator) {
-		for(int i = vault.backtest.getSortedPositionList().size() - 1; i > 0; i--){
-			int days = DateUtils.getNumberOfDaysSinceDate(vault.backtest.getSortedPositionList().get(i).getDateTime());
-			if(days <= 7){
-				if(vault.backtest.getSortedPositionList().get(i).isOpen() == false){
-					vault.resultsList.add(vault.backtest.getSortedPositionList().get(i).toString());
-				}
-			}else{
-				break;
-			}
-		}
-	}
-	
-	@Override
-	public void runBackTest(Vault vault, Speculator speculator) {
-		BackTestFactory backTestFactory = new BackTestFactory();
-		BackTest runbacktest = backTestFactory.protoBackTest(vault.market, vault.speculator);
-		runbacktest.setSortedEntryList(vault.backtest.getEntryList());
-		runbacktest.setSortedPositionList(vault.backtest.getPositionList());
-		runbacktest.protoBackTest();
-		for(String results : runbacktest.getResultsList()){
-			vault.resultsList.add(results);
-		}
-	}
-
-	@Override
-	public void getAllOpenPositions(Vault vault, Speculator speculator) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

@@ -3,6 +3,7 @@ package vault;
 public enum ScreenEnum {
 	
 	MAIN ("main", "VaultMainFXML.fxml"),
+	SPLASH ("splash", "VaultPreloaderFXML.fxml"),
 	SETTINGS ("settings", "VaultSettingsFXML.fxml");
 	
 	private String screenName;
