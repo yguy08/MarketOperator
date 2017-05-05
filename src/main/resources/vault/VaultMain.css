@@ -7,28 +7,7 @@ root {
 
 }
 
-#dayRange{
-	-fx-font: 20px 'sans-serif';
-	-fx-font-weight: bold;
-}
-
-#balance{
-	-fx-font: 20px 'sans-serif';
-	-fx-font-weight: bold;
-}
-
-#risk{
-	-fx-font: 20px 'sans-serif';
-	-fx-font-weight: bold;
-}
-
-#stop{
-	-fx-font: 20px 'sans-serif';
-	-fx-font-weight: bold;
-}
-
-#units{
-	-fx-font: 20px 'sans-serif';
+#statusMain{
 	-fx-font-weight: bold;
 }
 

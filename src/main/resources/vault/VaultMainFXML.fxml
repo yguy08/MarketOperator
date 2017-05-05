@@ -30,6 +30,7 @@ styleClass="root">
 				<Button fx:id="showOpen" text="Open" prefWidth="100" onAction="#showOpenPositions"/>
 				<Button fx:id="showClose" text="Close" prefWidth="100" onAction="#showPositionsToClose"/>
 				<Button fx:id="backTest" text="Backtest" prefWidth="100" onAction="#showBacktestResults"/>
+				<Button fx:id="settings" text="Settings" prefWidth="100" onAction="#showSettings"/>
 		</VBox>
 	</right>
 	
@@ -38,12 +39,7 @@ styleClass="root">
 		<padding>
 			<Insets top="5" right="0" bottom="5" left="0"/>
 		</padding>
-			<Text fx:id="dayRange" text="Range (Days)"/>
-			<Text fx:id="balance" Text="Balance Size" />
-			<Text fx:id="risk" Text="Risk %" />
-			<Text fx:id="stop" Text="Stop" />
-			<Text fx:id="units" Text="Max Units"/>
-			<Button fx:id="settingsSave" Text="Save" prefWidth="60" onAction="#saveSettings" />
+			<Text fx:id="statusMain" text="Welcome!" />
 		</HBox>
 	</bottom>
        

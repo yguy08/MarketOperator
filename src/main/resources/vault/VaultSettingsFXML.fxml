@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane 
+fx:controller="vault.VaultSettingsController"  xmlns:fx="http://javafx.com/fxml/1"
+styleClass="root">
+	
+	<padding>
+		<Insets top="10" right="10" bottom="0" left="10"/>
+	</padding>
+	
+	<center>
+		<Text fx:id="dateRange" text="Date Range" />
+	</center>
+	
+	<right>
+	
+	</right>
+	
+	<bottom>
+		<Button fx:id="save" text="Save" onAction="#saveSettings"  />
+	</bottom>
+       
+    <stylesheets>
+    	<URL value="@VaultMain.css" />
+  	</stylesheets>
+
+</BorderPane>
+
+
+
