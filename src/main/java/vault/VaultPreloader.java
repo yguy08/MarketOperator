@@ -9,7 +9,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class VaultPreloader extends Preloader {
+public class VaultPreloader extends Preloader implements ControlledScreen {
 	
 	@FXML private ProgressBar bar = new ProgressBar(0);
     
@@ -21,6 +21,8 @@ public class VaultPreloader extends Preloader {
     
     //Application Icon
     Image icon = new Image(getClass().getResourceAsStream("icon-treesun-64x64.png"));
+
+	private ScreensController screenParent;
  
     @Override
 	public void start(Stage stage) throws Exception {
@@ -69,6 +71,12 @@ public class VaultPreloader extends Preloader {
     public void handleStateChangeNotification(StateChangeNotification evt) {
         //ignore, hide after application signals it is ready
     }
+
+	@Override
+	public void setScreenParent(ScreensController screenPage) {
+		myController = screenParent;
+		
+	}
 
     
     
