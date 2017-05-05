@@ -25,7 +25,7 @@ public class VaultPreloader extends Preloader {
     @Override
 	public void start(Stage stage) throws Exception {
         this.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("VaultPreloaderFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(ScreenEnum.SPLASH.getFxmlPath()));
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
         stage.setTitle("Speculation 1000");
