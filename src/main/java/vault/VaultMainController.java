@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import market.Market;
@@ -25,14 +26,18 @@ public class VaultMainController implements Initializable, ControlledScreen {
 	@FXML private Button showOpen;
 	@FXML private Button showClose;
 	@FXML private Button backTest;
+	@FXML private Button settings;
 	
 	@FXML private Text dayRange;
 	@FXML private Text balance;
 	@FXML private Text risk;
 	@FXML private Text stop;
 	@FXML private Text units;
+	@FXML private Text statusMain;
 	
 	@FXML private VBox buttonBox;
+	
+	@FXML private HBox settingsBox;
 	
 	@FXML private ListView<String> mainListView;
 	

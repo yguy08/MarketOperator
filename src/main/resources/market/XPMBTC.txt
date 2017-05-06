@@ -1,4 +1,3 @@
-PoloniexChartData [date=Thu May 05 20:00:00 EDT 2016, high=0.0001798, low=0.00016995, open=0.0001798, close=0.00017001, volume=4.19489682, quoteVolume=24156.25276919, weightedAverage=0.00017365]
 PoloniexChartData [date=Fri May 06 20:00:00 EDT 2016, high=0.00017489, low=0.00017002, open=0.00017002, close=0.00017004, volume=1.13568803, quoteVolume=6579.30827686, weightedAverage=0.00017261]
 PoloniexChartData [date=Sat May 07 20:00:00 EDT 2016, high=0.00017445, low=0.00017, open=0.00017007, close=0.00017, volume=0.43585435, quoteVolume=2542.07209987, weightedAverage=0.00017145]
 PoloniexChartData [date=Sun May 08 20:00:00 EDT 2016, high=0.00017299, low=0.00016152, open=0.00017, close=0.00016668, volume=1.30559873, quoteVolume=7731.17896177, weightedAverage=0.00016887]
@@ -362,4 +361,5 @@ PoloniexChartData [date=Sun Apr 30 20:00:00 EDT 2017, high=0.000235, low=0.00014
 PoloniexChartData [date=Mon May 01 20:00:00 EDT 2017, high=0.00019948, low=0.00015151, open=0.00019599, close=0.0001731, volume=47.8653055, quoteVolume=279434.280725, weightedAverage=0.00017129]
 PoloniexChartData [date=Tue May 02 20:00:00 EDT 2017, high=0.00018742, low=0.00015645, open=0.00017271, close=0.00017811, volume=36.1716139, quoteVolume=213510.49693398, weightedAverage=0.00016941]
 PoloniexChartData [date=Wed May 03 20:00:00 EDT 2017, high=0.00022499, low=0.00017, open=0.00017809, close=0.00022407, volume=72.65708395, quoteVolume=367226.30110877, weightedAverage=0.00019785]
-PoloniexChartData [date=Thu May 04 20:00:00 EDT 2017, high=0.00022899, low=0.00018812, open=0.00022186, close=0.00020556, volume=75.36377102, quoteVolume=355275.64836267, weightedAverage=0.00021212]
+PoloniexChartData [date=Thu May 04 20:00:00 EDT 2017, high=0.00022899, low=0.00018812, open=0.00022186, close=0.00020556, volume=75.37846828, quoteVolume=355347.14715245, weightedAverage=0.00021212]
+PoloniexChartData [date=Fri May 05 20:00:00 EDT 2017, high=0.00021068, low=0.000205, open=0.00020556, close=0.00021001, volume=1.13993233, quoteVolume=5501.93034902, weightedAverage=0.00020718]

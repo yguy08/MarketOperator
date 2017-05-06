@@ -1,4 +1,3 @@
-PoloniexChartData [date=Thu May 05 20:00:00 EDT 2016, high=0.00001459, low=0.00001382, open=0.00001393, close=0.000014, volume=94.87375985, quoteVolume=6677964.4857632, weightedAverage=0.0000142]
 PoloniexChartData [date=Fri May 06 20:00:00 EDT 2016, high=0.00001426, low=0.0000139, open=0.00001406, close=0.00001408, volume=32.85481499, quoteVolume=2336964.5475967, weightedAverage=0.00001405]
 PoloniexChartData [date=Sat May 07 20:00:00 EDT 2016, high=0.00001409, low=0.00001381, open=0.00001409, close=0.00001381, volume=13.57292821, quoteVolume=976204.16036392, weightedAverage=0.0000139]
 PoloniexChartData [date=Sun May 08 20:00:00 EDT 2016, high=0.00001398, low=0.00001374, open=0.00001389, close=0.00001385, volume=18.09580161, quoteVolume=1308640.3481529, weightedAverage=0.00001382]
@@ -362,4 +361,5 @@ PoloniexChartData [date=Sun Apr 30 20:00:00 EDT 2017, high=0.00004268, low=0.000
 PoloniexChartData [date=Mon May 01 20:00:00 EDT 2017, high=0.00003957, low=0.00003406, open=0.00003888, close=0.00003715, volume=17386.50314291, quoteVolume=467897408.79778, weightedAverage=0.00003715]
 PoloniexChartData [date=Tue May 02 20:00:00 EDT 2017, high=0.0000415, low=0.00003539, open=0.00003714, close=0.00004096, volume=19814.59321986, quoteVolume=513320569.14104, weightedAverage=0.0000386]
 PoloniexChartData [date=Wed May 03 20:00:00 EDT 2017, high=0.0000544, low=0.00003925, open=0.00004079, close=0.00005193, volume=71704.10700619, quoteVolume=1511586465.198, weightedAverage=0.00004743]
-PoloniexChartData [date=Thu May 04 20:00:00 EDT 2017, high=0.00006849, low=0.00005011, open=0.00005193, close=0.00005962, volume=86892.01318461, quoteVolume=1450349226.4204, weightedAverage=0.00005991]
+PoloniexChartData [date=Thu May 04 20:00:00 EDT 2017, high=0.00006849, low=0.00005011, open=0.00005193, close=0.00006045, volume=87075.97664861, quoteVolume=1453410976.4942, weightedAverage=0.00005991]
+PoloniexChartData [date=Fri May 05 20:00:00 EDT 2017, high=0.000061, low=0.000060, open=0.00006051, close=0.00006099, volume=447.15542961, quoteVolume=7394968.6790842, weightedAverage=0.00006046]
