@@ -46,12 +46,11 @@ public class VaultMainController implements Initializable, ControlledScreen {
 	@FXML
 	protected void showNewEntries(ActionEvent ev){
 		Market m = VaultMain.getMarket();
-		List<String> myList = new ArrayList<>();
 		for(Asset a : m.getAssetList()){
-			myList.add(a.getAssetName());
+			mainListItems.add(a.getAssetName());
 		}
-		
-		mainListItems.addAll(myList);
+			
+		mainListView.setItems(mainListItems);
 	}
 	
 	@FXML

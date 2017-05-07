@@ -1,4 +1,3 @@
-PoloniexChartData [date=Fri May 06 20:00:00 EDT 2016, high=0.00008654, low=0.00008162, open=0.00008461, close=0.000083, volume=4.60373356, quoteVolume=54618.40312148, weightedAverage=0.00008428]
 PoloniexChartData [date=Sat May 07 20:00:00 EDT 2016, high=0.00008619, low=0.00007545, open=0.000083, close=0.00007545, volume=4.88192317, quoteVolume=61245.19567676, weightedAverage=0.00007971]
 PoloniexChartData [date=Sun May 08 20:00:00 EDT 2016, high=0.00007855, low=0.00007002, open=0.00007545, close=0.000071, volume=9.68622446, quoteVolume=132088.50888306, weightedAverage=0.00007333]
 PoloniexChartData [date=Mon May 09 20:00:00 EDT 2016, high=0.00007999, low=0.000070, open=0.00007079, close=0.00007419, volume=7.71945468, quoteVolume=105958.48698249, weightedAverage=0.00007285]
@@ -362,4 +361,5 @@ PoloniexChartData [date=Mon May 01 20:00:00 EDT 2017, high=0.00065146, low=0.000
 PoloniexChartData [date=Tue May 02 20:00:00 EDT 2017, high=0.00064914, low=0.000575, open=0.00061128, close=0.00060399, volume=557.18306429, quoteVolume=915960.49528224, weightedAverage=0.0006083]
 PoloniexChartData [date=Wed May 03 20:00:00 EDT 2017, high=0.00063998, low=0.00059113, open=0.00060344, close=0.00063998, volume=482.83893575, quoteVolume=783663.59215955, weightedAverage=0.00061613]
 PoloniexChartData [date=Thu May 04 20:00:00 EDT 2017, high=0.00067385, low=0.00062028, open=0.00063998, close=0.0006468, volume=650.28598723, quoteVolume=997597.56048731, weightedAverage=0.00065185]
-PoloniexChartData [date=Fri May 05 20:00:00 EDT 2017, high=0.00065414, low=0.00064303, open=0.00064983, close=0.00065397, volume=11.99232798, quoteVolume=18420.66159207, weightedAverage=0.00065102]
+PoloniexChartData [date=Fri May 05 20:00:00 EDT 2017, high=0.0006647, low=0.00063372, open=0.00064983, close=0.00064767, volume=354.48185912, quoteVolume=547195.22698731, weightedAverage=0.00064781]
+PoloniexChartData [date=Sat May 06 20:00:00 EDT 2017, high=0.0007003, low=0.00063009, open=0.00064768, close=0.00067021, volume=652.45605326, quoteVolume=978731.37808299, weightedAverage=0.00066663]

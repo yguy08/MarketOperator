@@ -30,7 +30,6 @@ public class DigitalAsset implements Asset {
 	List<BigDecimal> lowList = new ArrayList<>();
 	List<BigDecimal> highList = new ArrayList<>();
 	
-	
 	private List<PoloniexChartData> priceSubList;
 	
 	List<BigDecimal> closeSubList	= new ArrayList<>();

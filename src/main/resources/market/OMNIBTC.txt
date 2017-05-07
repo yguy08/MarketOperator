@@ -1,4 +1,3 @@
-PoloniexChartData [date=Fri May 06 20:00:00 EDT 2016, high=0.00319998, low=0.00289052, open=0.00290169, close=0.00290413, volume=0.88675789, quoteVolume=286.91027215, weightedAverage=0.00309071]
 PoloniexChartData [date=Sat May 07 20:00:00 EDT 2016, high=0.00319978, low=0.00307223, open=0.00319978, close=0.0031995, volume=0.85110608, quoteVolume=266.01469455, weightedAverage=0.00319947]
 PoloniexChartData [date=Sun May 08 20:00:00 EDT 2016, high=0.00343, low=0.00307826, open=0.00307826, close=0.0032928, volume=0.23799157, quoteVolume=73.88131348, weightedAverage=0.00322126]
 PoloniexChartData [date=Mon May 09 20:00:00 EDT 2016, high=0.0033, low=0.00329, open=0.00329, close=0.0033, volume=0.72766182, quoteVolume=220.52905807, weightedAverage=0.00329961]
@@ -362,4 +361,5 @@ PoloniexChartData [date=Mon May 01 20:00:00 EDT 2017, high=0.00579987, low=0.004
 PoloniexChartData [date=Tue May 02 20:00:00 EDT 2017, high=0.0058, low=0.0045, open=0.00522559, close=0.00496844, volume=21.14832936, quoteVolume=4107.14048268, weightedAverage=0.00514916]
 PoloniexChartData [date=Wed May 03 20:00:00 EDT 2017, high=0.00544248, low=0.00465502, open=0.00496845, close=0.00527018, volume=27.6004597, quoteVolume=5447.73531593, weightedAverage=0.0050664]
 PoloniexChartData [date=Thu May 04 20:00:00 EDT 2017, high=0.006913, low=0.00501269, open=0.00533765, close=0.00572926, volume=133.65346486, quoteVolume=22478.95521819, weightedAverage=0.00594571]
-PoloniexChartData [date=Fri May 05 20:00:00 EDT 2017, high=0.00583911, low=0.00550101, open=0.00560052, close=0.00583911, volume=0.44167697, quoteVolume=77.99386005, weightedAverage=0.00566297]
+PoloniexChartData [date=Fri May 05 20:00:00 EDT 2017, high=0.00718676, low=0.00550101, open=0.00560052, close=0.0068694, volume=61.30657439, quoteVolume=9450.82859279, weightedAverage=0.00648689]
+PoloniexChartData [date=Sat May 06 20:00:00 EDT 2017, high=0.00724998, low=0.00646589, open=0.00682473, close=0.00682616, volume=41.88189504, quoteVolume=6039.21381579, weightedAverage=0.00693499]
