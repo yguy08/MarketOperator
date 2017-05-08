@@ -7,7 +7,15 @@ root {
 
 }
 
-#statusMain{
-	-fx-font-weight: bold;
+#bitcoinMarket{
+	-fx-graphic: url('bitcoin_logo.png');
+}
+
+#dollarMarket{
+	-fx-graphic: url('dollar_sign.png');
+}
+
+#ethereumMarket{
+	-fx-graphic: url('ethereum_logo.png');
 }
 

@@ -1,7 +1,6 @@
 package util;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -30,17 +29,6 @@ public class SaveToFile {
 		}
 	}
 	
-	public static void writeAssetPriceListToFile(Asset asset, String priceList){
-		
-		String content = priceList;
-		try {
-			Files.write(Paths.get(asset.getMarketName() + "/" + asset.getAssetName().replace("/", "") + ".txt"), 
-					content.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public static void writeMarketListToFile(Market market, List<String> assetList){
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < assetList.size();i++){
@@ -49,15 +37,6 @@ public class SaveToFile {
 		String content = sb.toString();
 		try {
 			Files.write(Paths.get(market.getMarketName() + "/" + "MarketList" + ".csv"), 
-					content.getBytes(), StandardOpenOption.APPEND);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void writeToMarketLog(String content){
-		try {
-			Files.write(Paths.get(Market.DIGITAL_MARKET + "/" + "LOG" + ".txt"), 
 					content.getBytes(), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			e.printStackTrace();

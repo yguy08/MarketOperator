@@ -39,7 +39,9 @@ styleClass="root">
 		<padding>
 			<Insets top="5" right="0" bottom="5" left="0"/>
 		</padding>
-			<Text fx:id="statusMain" text="Welcome!" />
+			<ToggleButton fx:id="bitcoinMarket" onAction="#toggleMarket" />
+			<ToggleButton fx:id="dollarMarket" onAction="#toggleMarket" />
+			<ToggleButton fx:id="ethereumMarket" onAction="#toggleMarket" />
 		</HBox>
 	</bottom>
        
