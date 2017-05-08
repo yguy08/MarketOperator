@@ -1,365 +1,365 @@
-PoloniexChartData [date=Sat May 07 20:00:00 EDT 2016, high=0.00239976, low=0.000703, open=0.000703, close=0.00129999, volume=7.33645633, quoteVolume=4574.66224133, weightedAverage=0.00160371]
-PoloniexChartData [date=Sun May 08 20:00:00 EDT 2016, high=0.00199997, low=0.0009, open=0.0014, close=0.00132, volume=9.88148803, quoteVolume=7927.92432535, weightedAverage=0.00124641]
-PoloniexChartData [date=Mon May 09 20:00:00 EDT 2016, high=0.00132002, low=0.00091658, open=0.00126498, close=0.0011, volume=4.27395822, quoteVolume=3748.38222377, weightedAverage=0.00114021]
-PoloniexChartData [date=Tue May 10 20:00:00 EDT 2016, high=0.00139987, low=0.00098301, open=0.00115818, close=0.00120244, volume=1.96519907, quoteVolume=1680.69045238, weightedAverage=0.00116928]
-PoloniexChartData [date=Wed May 11 20:00:00 EDT 2016, high=0.00175766, low=0.00099547, open=0.00109663, close=0.0014, volume=8.32211615, quoteVolume=5907.97789863, weightedAverage=0.00140862]
-PoloniexChartData [date=Thu May 12 20:00:00 EDT 2016, high=0.00145192, low=0.00120042, open=0.0014, close=0.00123972, volume=0.92049293, quoteVolume=716.09692639, weightedAverage=0.00128543]
-PoloniexChartData [date=Fri May 13 20:00:00 EDT 2016, high=0.00154375, low=0.00115001, open=0.00123922, close=0.00138, volume=1.05462939, quoteVolume=857.86305641, weightedAverage=0.00122936]
-PoloniexChartData [date=Sat May 14 20:00:00 EDT 2016, high=0.0023, low=0.00103, open=0.00121409, close=0.00129924, volume=15.75233793, quoteVolume=9825.51126259, weightedAverage=0.0016032]
-PoloniexChartData [date=Sun May 15 20:00:00 EDT 2016, high=0.0016801, low=0.00117556, open=0.00136498, close=0.0014248, volume=6.25790016, quoteVolume=4246.78476206, weightedAverage=0.00147356]
-PoloniexChartData [date=Mon May 16 20:00:00 EDT 2016, high=0.00145999, low=0.00115, open=0.00130846, close=0.00125255, volume=4.79628607, quoteVolume=4014.32359748, weightedAverage=0.00119479]
-PoloniexChartData [date=Tue May 17 20:00:00 EDT 2016, high=0.0014, low=0.00115002, open=0.00117163, close=0.00117501, volume=1.11425126, quoteVolume=926.96673746, weightedAverage=0.00120204]
-PoloniexChartData [date=Wed May 18 20:00:00 EDT 2016, high=0.00129964, low=0.00116001, open=0.00117342, close=0.00129964, volume=1.70076652, quoteVolume=1454.20003302, weightedAverage=0.00116955]
-PoloniexChartData [date=Thu May 19 20:00:00 EDT 2016, high=0.00122045, low=0.00118193, open=0.00118193, close=0.00122, volume=0.08548502, quoteVolume=71.1064902, weightedAverage=0.00120221]
-PoloniexChartData [date=Fri May 20 20:00:00 EDT 2016, high=0.00124998, low=0.00117517, open=0.00122, close=0.00122652, volume=0.22739529, quoteVolume=187.00437546, weightedAverage=0.00121598]
-PoloniexChartData [date=Sat May 21 20:00:00 EDT 2016, high=0.00124999, low=0.0011581, open=0.00122652, close=0.00121538, volume=0.85034389, quoteVolume=732.92663598, weightedAverage=0.0011602]
-PoloniexChartData [date=Sun May 22 20:00:00 EDT 2016, high=0.00124999, low=0.00109911, open=0.00115813, close=0.00109911, volume=0.61879993, quoteVolume=531.94261271, weightedAverage=0.00116328]
-PoloniexChartData [date=Mon May 23 20:00:00 EDT 2016, high=0.0012499, low=0.001061, open=0.00109912, close=0.001061, volume=0.60939608, quoteVolume=550.42176642, weightedAverage=0.00110714]
-PoloniexChartData [date=Tue May 24 20:00:00 EDT 2016, high=0.00108788, low=0.00070925, open=0.00103374, close=0.00086465, volume=1.11985059, quoteVolume=1315.09693283, weightedAverage=0.00085153]
-PoloniexChartData [date=Wed May 25 20:00:00 EDT 2016, high=0.00107998, low=0.0005208, open=0.00090998, close=0.00093121, volume=0.92333792, quoteVolume=1422.5846132, weightedAverage=0.00064905]
-PoloniexChartData [date=Thu May 26 20:00:00 EDT 2016, high=0.00098162, low=0.0007888, open=0.00091002, close=0.0007888, volume=0.39065998, quoteVolume=463.68186183, weightedAverage=0.00084251]
-PoloniexChartData [date=Fri May 27 20:00:00 EDT 2016, high=0.00084, low=0.00065453, open=0.00073125, close=0.00067351, volume=0.03742737, quoteVolume=55.56012264, weightedAverage=0.00067363]
-PoloniexChartData [date=Sat May 28 20:00:00 EDT 2016, high=0.00065453, low=0.00045, open=0.00065453, close=0.00054999, volume=0.55727011, quoteVolume=1087.51175498, weightedAverage=0.00051242]
-PoloniexChartData [date=Sun May 29 20:00:00 EDT 2016, high=0.0007556, low=0.0004, open=0.00053167, close=0.00063581, volume=0.50879831, quoteVolume=969.85137703, weightedAverage=0.00052461]
-PoloniexChartData [date=Mon May 30 20:00:00 EDT 2016, high=0.00075646, low=0.0006189, open=0.00068726, close=0.00069167, volume=0.09653176, quoteVolume=137.54614503, weightedAverage=0.00070181]
-PoloniexChartData [date=Tue May 31 20:00:00 EDT 2016, high=0.0007618, low=0.0006395, open=0.00070395, close=0.00067163, volume=0.0592913, quoteVolume=85.08104717, weightedAverage=0.00069688]
-PoloniexChartData [date=Wed Jun 01 20:00:00 EDT 2016, high=0.00073238, low=0.00070215, open=0.00073238, close=0.00070545, volume=0.02718998, quoteVolume=38.04023759, weightedAverage=0.00071476]
-PoloniexChartData [date=Thu Jun 02 20:00:00 EDT 2016, high=0.00072013, low=0.0006475, open=0.00069845, close=0.00072013, volume=0.08208116, quoteVolume=119.47933808, weightedAverage=0.00068699]
-PoloniexChartData [date=Fri Jun 03 20:00:00 EDT 2016, high=0.00077451, low=0.00065592, open=0.00073257, close=0.0006816, volume=0.35172512, quoteVolume=496.69559159, weightedAverage=0.00070813]
-PoloniexChartData [date=Sat Jun 04 20:00:00 EDT 2016, high=0.00065484, low=0.00062603, open=0.00065027, close=0.00062603, volume=0.05692581, quoteVolume=88.58930615, weightedAverage=0.00064258]
-PoloniexChartData [date=Sun Jun 05 20:00:00 EDT 2016, high=0.00068896, low=0.00063104, open=0.00063104, close=0.00068896, volume=0.19253566, quoteVolume=297.31993678, weightedAverage=0.00064757]
-PoloniexChartData [date=Mon Jun 06 20:00:00 EDT 2016, high=0.00068981, low=0.00063119, open=0.00068382, close=0.00068, volume=0.05173983, quoteVolume=78.67219466, weightedAverage=0.00065766]
-PoloniexChartData [date=Tue Jun 07 20:00:00 EDT 2016, high=0.00069646, low=0.0006808, open=0.0006808, close=0.00069384, volume=0.01000574, quoteVolume=14.55429322, weightedAverage=0.00068747]
-PoloniexChartData [date=Wed Jun 08 20:00:00 EDT 2016, high=0.00072, low=0.00066479, open=0.00070228, close=0.00067732, volume=0.01673601, quoteVolume=23.88744742, weightedAverage=0.00070061]
-PoloniexChartData [date=Thu Jun 09 20:00:00 EDT 2016, high=0.00077659, low=0.00067732, open=0.00067732, close=0.00070702, volume=0.17969015, quoteVolume=239.51179377, weightedAverage=0.00075023]
-PoloniexChartData [date=Fri Jun 10 20:00:00 EDT 2016, high=0.00071893, low=0.00071005, open=0.00071005, close=0.00071462, volume=0.0045358, quoteVolume=6.34815639, weightedAverage=0.0007145]
-PoloniexChartData [date=Sat Jun 11 20:00:00 EDT 2016, high=0.000749, low=0.00052366, open=0.00071462, close=0.0005342, volume=0.33563863, quoteVolume=575.15278827, weightedAverage=0.00058356]
-PoloniexChartData [date=Sun Jun 12 20:00:00 EDT 2016, high=0.00056482, low=0.00043857, open=0.00051693, close=0.00048259, volume=0.15910869, quoteVolume=318.71541999, weightedAverage=0.00049921]
-PoloniexChartData [date=Mon Jun 13 20:00:00 EDT 2016, high=0.0006, low=0.00043915, open=0.00048258, close=0.00054851, volume=0.12606349, quoteVolume=268.76726134, weightedAverage=0.00046904]
-PoloniexChartData [date=Tue Jun 14 20:00:00 EDT 2016, high=0.0005927, low=0.00048168, open=0.00052857, close=0.00053069, volume=0.0806854, quoteVolume=139.91587286, weightedAverage=0.00057667]
-PoloniexChartData [date=Wed Jun 15 20:00:00 EDT 2016, high=0.00058967, low=0.00049341, open=0.0005307, close=0.00058967, volume=0.10837087, quoteVolume=190.83157449, weightedAverage=0.00056788]
-PoloniexChartData [date=Thu Jun 16 20:00:00 EDT 2016, high=0.0005599, low=0.00051411, open=0.0005599, close=0.00051615, volume=0.00826504, quoteVolume=15.57244564, weightedAverage=0.00053074]
-PoloniexChartData [date=Fri Jun 17 20:00:00 EDT 2016, high=0.00082002, low=0.00050004, open=0.00052714, close=0.00063449, volume=0.24299745, quoteVolume=341.67488372, weightedAverage=0.00071119]
-PoloniexChartData [date=Sat Jun 18 20:00:00 EDT 2016, high=0.00068122, low=0.00060385, open=0.00062586, close=0.00068122, volume=0.07953796, quoteVolume=118.29149661, weightedAverage=0.00067238]
-PoloniexChartData [date=Sun Jun 19 20:00:00 EDT 2016, high=0.0006892, low=0.00062174, open=0.0006892, close=0.00064704, volume=0.32897399, quoteVolume=528.61859953, weightedAverage=0.00062232]
-PoloniexChartData [date=Mon Jun 20 20:00:00 EDT 2016, high=0.00067604, low=0.00062174, open=0.00064279, close=0.00062174, volume=0.19302098, quoteVolume=309.33433824, weightedAverage=0.00062398]
-PoloniexChartData [date=Tue Jun 21 20:00:00 EDT 2016, high=0.00070002, low=0.00037631, open=0.00064087, close=0.00057445, volume=0.6383811, quoteVolume=1362.43126433, weightedAverage=0.00046856]
-PoloniexChartData [date=Wed Jun 22 20:00:00 EDT 2016, high=0.0005925, low=0.00057823, open=0.00058039, close=0.00057823, volume=0.00426725, quoteVolume=7.29218955, weightedAverage=0.00058518]
-PoloniexChartData [date=Thu Jun 23 20:00:00 EDT 2016, high=0.00058683, low=0.00055731, open=0.00057998, close=0.00055731, volume=0.05518679, quoteVolume=98.29465242, weightedAverage=0.00056144]
-PoloniexChartData [date=Fri Jun 24 20:00:00 EDT 2016, high=0.0008, low=0.00050689, open=0.00058228, close=0.00077946, volume=0.38731246, quoteVolume=547.21104615, weightedAverage=0.00070779]
-PoloniexChartData [date=Sat Jun 25 20:00:00 EDT 2016, high=0.00073689, low=0.00050001, open=0.00073689, close=0.00061995, volume=0.10572596, quoteVolume=188.68572265, weightedAverage=0.00056032]
-PoloniexChartData [date=Sun Jun 26 20:00:00 EDT 2016, high=0.00064565, low=0.00060169, open=0.00061999, close=0.00060669, volume=0.02422942, quoteVolume=38.1641152, weightedAverage=0.00063487]
-PoloniexChartData [date=Mon Jun 27 20:00:00 EDT 2016, high=0.00063256, low=0.00059375, open=0.00061012, close=0.00063176, volume=0.05704239, quoteVolume=92.38408588, weightedAverage=0.00061744]
-PoloniexChartData [date=Tue Jun 28 20:00:00 EDT 2016, high=0.00068742, low=0.00061464, open=0.00061733, close=0.00064808, volume=0.27321292, quoteVolume=425.6405401, weightedAverage=0.00064188]
-PoloniexChartData [date=Wed Jun 29 20:00:00 EDT 2016, high=0.00069998, low=0.00051, open=0.00065425, close=0.00059766, volume=0.32201945, quoteVolume=524.49551124, weightedAverage=0.00061396]
-PoloniexChartData [date=Thu Jun 30 20:00:00 EDT 2016, high=0.00064399, low=0.0005, open=0.00058299, close=0.00060623, volume=0.4093213, quoteVolume=762.73835123, weightedAverage=0.00053664]
-PoloniexChartData [date=Fri Jul 01 20:00:00 EDT 2016, high=0.0006, low=0.00053857, open=0.0006, close=0.00058563, volume=0.0447727, quoteVolume=78.46004316, weightedAverage=0.00057064]
-PoloniexChartData [date=Sat Jul 02 20:00:00 EDT 2016, high=0.00058661, low=0.00056734, open=0.00058112, close=0.00057, volume=0.00574182, quoteVolume=9.91873004, weightedAverage=0.00057888]
-PoloniexChartData [date=Sun Jul 03 20:00:00 EDT 2016, high=0.00066346, low=0.00056266, open=0.00056999, close=0.00063689, volume=0.15692778, quoteVolume=249.56818209, weightedAverage=0.00062879]
-PoloniexChartData [date=Mon Jul 04 20:00:00 EDT 2016, high=0.00124993, low=0.00062691, open=0.00064082, close=0.00080638, volume=2.24481167, quoteVolume=2837.05962827, weightedAverage=0.00079124]
-PoloniexChartData [date=Tue Jul 05 20:00:00 EDT 2016, high=0.00100807, low=0.00075116, open=0.00079, close=0.00075116, volume=0.50593247, quoteVolume=616.20356956, weightedAverage=0.00082104]
-PoloniexChartData [date=Wed Jul 06 20:00:00 EDT 2016, high=0.00077026, low=0.00069542, open=0.00075191, close=0.00069542, volume=0.26363645, quoteVolume=369.84784486, weightedAverage=0.00071282]
-PoloniexChartData [date=Thu Jul 07 20:00:00 EDT 2016, high=0.000918, low=0.00071409, open=0.00071409, close=0.00080008, volume=1.14118739, quoteVolume=1304.67842865, weightedAverage=0.00087468]
-PoloniexChartData [date=Fri Jul 08 20:00:00 EDT 2016, high=0.0011, low=0.00063214, open=0.00078872, close=0.00103147, volume=1.50155118, quoteVolume=1636.51369179, weightedAverage=0.00091753]
-PoloniexChartData [date=Sat Jul 09 20:00:00 EDT 2016, high=0.0015, low=0.00072822, open=0.00093613, close=0.00118, volume=6.40665507, quoteVolume=5400.39664576, weightedAverage=0.00118633]
-PoloniexChartData [date=Sun Jul 10 20:00:00 EDT 2016, high=0.00139997, low=0.00080001, open=0.00118, close=0.00098727, volume=2.50616569, quoteVolume=2284.94443389, weightedAverage=0.00109681]
-PoloniexChartData [date=Mon Jul 11 20:00:00 EDT 2016, high=0.00124182, low=0.00090066, open=0.00097886, close=0.00100185, volume=1.46165287, quoteVolume=1372.26815119, weightedAverage=0.00106513]
-PoloniexChartData [date=Tue Jul 12 20:00:00 EDT 2016, high=0.00100048, low=0.00071, open=0.00092362, close=0.00080985, volume=2.75669277, quoteVolume=3517.07540283, weightedAverage=0.0007838]
-PoloniexChartData [date=Wed Jul 13 20:00:00 EDT 2016, high=0.00102999, low=0.00073001, open=0.00081359, close=0.00086564, volume=1.81672148, quoteVolume=2137.8496005, weightedAverage=0.00084978]
-PoloniexChartData [date=Thu Jul 14 20:00:00 EDT 2016, high=0.00093999, low=0.00082474, open=0.00082474, close=0.0008959, volume=0.645717, quoteVolume=765.85916081, weightedAverage=0.00084312]
-PoloniexChartData [date=Fri Jul 15 20:00:00 EDT 2016, high=0.00148, low=0.00089601, open=0.0009038, close=0.00096977, volume=5.61597921, quoteVolume=4718.69492602, weightedAverage=0.00119015]
-PoloniexChartData [date=Sat Jul 16 20:00:00 EDT 2016, high=0.00149, low=0.00095, open=0.00098073, close=0.00098588, volume=2.65345303, quoteVolume=2348.20025129, weightedAverage=0.00112999]
-PoloniexChartData [date=Sun Jul 17 20:00:00 EDT 2016, high=0.00125, low=0.000915, open=0.00100635, close=0.00096944, volume=2.53135799, quoteVolume=2597.34467203, weightedAverage=0.00097459]
-PoloniexChartData [date=Mon Jul 18 20:00:00 EDT 2016, high=0.00102202, low=0.00093893, open=0.00098436, close=0.00098134, volume=0.4372199, quoteVolume=449.41372337, weightedAverage=0.00097286]
-PoloniexChartData [date=Tue Jul 19 20:00:00 EDT 2016, high=0.00125154, low=0.0009101, open=0.00097001, close=0.0009874, volume=0.76697873, quoteVolume=771.90092051, weightedAverage=0.00099362]
-PoloniexChartData [date=Wed Jul 20 20:00:00 EDT 2016, high=0.00125153, low=0.00097431, open=0.00099236, close=0.0010251, volume=5.31864047, quoteVolume=5095.20772144, weightedAverage=0.00104385]
-PoloniexChartData [date=Thu Jul 21 20:00:00 EDT 2016, high=0.00125145, low=0.000975, open=0.00103734, close=0.000975, volume=2.34549893, quoteVolume=2209.40889249, weightedAverage=0.00106159]
-PoloniexChartData [date=Fri Jul 22 20:00:00 EDT 2016, high=0.00105631, low=0.00097431, open=0.00097909, close=0.00101379, volume=0.60330584, quoteVolume=609.03325748, weightedAverage=0.00099059]
-PoloniexChartData [date=Sat Jul 23 20:00:00 EDT 2016, high=0.00100605, low=0.00097431, open=0.00098523, close=0.00100605, volume=1.22327087, quoteVolume=1250.40499545, weightedAverage=0.00097829]
-PoloniexChartData [date=Sun Jul 24 20:00:00 EDT 2016, high=0.00099013, low=0.00097431, open=0.00099013, close=0.00097431, volume=0.98685435, quoteVolume=1011.32806607, weightedAverage=0.0009758]
-PoloniexChartData [date=Mon Jul 25 20:00:00 EDT 2016, high=0.00097436, low=0.00092725, open=0.00097436, close=0.00092915, volume=0.46314183, quoteVolume=479.02402434, weightedAverage=0.00096684]
-PoloniexChartData [date=Tue Jul 26 20:00:00 EDT 2016, high=0.00093844, low=0.0009, open=0.00092724, close=0.00091133, volume=0.06360495, quoteVolume=69.45937234, weightedAverage=0.00091571]
-PoloniexChartData [date=Wed Jul 27 20:00:00 EDT 2016, high=0.00091133, low=0.00085001, open=0.00090062, close=0.00091133, volume=0.48334802, quoteVolume=559.84745161, weightedAverage=0.00086335]
-PoloniexChartData [date=Thu Jul 28 20:00:00 EDT 2016, high=0.00091903, low=0.0008, open=0.00087807, close=0.00087521, volume=0.33574433, quoteVolume=389.66679668, weightedAverage=0.00086161]
-PoloniexChartData [date=Fri Jul 29 20:00:00 EDT 2016, high=0.0008979, low=0.00084611, open=0.0008702, close=0.00088443, volume=0.01327415, quoteVolume=14.9934291, weightedAverage=0.00088533]
-PoloniexChartData [date=Sat Jul 30 20:00:00 EDT 2016, high=0.00093645, low=0.00080002, open=0.00089, close=0.00087868, volume=0.09183951, quoteVolume=104.05507517, weightedAverage=0.0008826]
-PoloniexChartData [date=Sun Jul 31 20:00:00 EDT 2016, high=0.00089194, low=0.0008, open=0.00088994, close=0.0008, volume=0.0766585, quoteVolume=93.75830398, weightedAverage=0.00081761]
-PoloniexChartData [date=Mon Aug 01 20:00:00 EDT 2016, high=0.0018, low=0.00077011, open=0.00085568, close=0.00106058, volume=47.64706119, quoteVolume=39666.11828644, weightedAverage=0.0012012]
-PoloniexChartData [date=Tue Aug 02 20:00:00 EDT 2016, high=0.00360001, low=0.00085006, open=0.00110571, close=0.00204344, volume=232.0525, quoteVolume=97913.30906438, weightedAverage=0.00236997]
-PoloniexChartData [date=Wed Aug 03 20:00:00 EDT 2016, high=0.0025, low=0.00141002, open=0.0021, close=0.00157076, volume=30.46500288, quoteVolume=15532.21875016, weightedAverage=0.0019614]
-PoloniexChartData [date=Thu Aug 04 20:00:00 EDT 2016, high=0.00321, low=0.00140002, open=0.0015498, close=0.00242421, volume=41.82924332, quoteVolume=18855.39630721, weightedAverage=0.00221842]
-PoloniexChartData [date=Fri Aug 05 20:00:00 EDT 2016, high=0.00242421, low=0.001815, open=0.00242421, close=0.00201029, volume=7.62575655, quoteVolume=3661.27232075, weightedAverage=0.00208281]
-PoloniexChartData [date=Sat Aug 06 20:00:00 EDT 2016, high=0.00209899, low=0.00163988, open=0.00201109, close=0.00167168, volume=5.87540357, quoteVolume=3236.52700489, weightedAverage=0.00181534]
-PoloniexChartData [date=Sun Aug 07 20:00:00 EDT 2016, high=0.00197896, low=0.00161001, open=0.00174654, close=0.0016762, volume=3.67179989, quoteVolume=2153.16348565, weightedAverage=0.0017053]
-PoloniexChartData [date=Mon Aug 08 20:00:00 EDT 2016, high=0.00218131, low=0.0014, open=0.00165105, close=0.00173146, volume=13.33604664, quoteVolume=7859.77800277, weightedAverage=0.00169674]
-PoloniexChartData [date=Tue Aug 09 20:00:00 EDT 2016, high=0.00173147, low=0.00142, open=0.00173147, close=0.00146169, volume=4.6812551, quoteVolume=3055.45573268, weightedAverage=0.00153209]
-PoloniexChartData [date=Wed Aug 10 20:00:00 EDT 2016, high=0.00144712, low=0.00101501, open=0.00144712, close=0.00136679, volume=3.89660213, quoteVolume=3023.60811394, weightedAverage=0.00128872]
-PoloniexChartData [date=Thu Aug 11 20:00:00 EDT 2016, high=0.00136679, low=0.00124568, open=0.00136679, close=0.00134939, volume=0.77143127, quoteVolume=586.55381326, weightedAverage=0.00131519]
-PoloniexChartData [date=Fri Aug 12 20:00:00 EDT 2016, high=0.00138899, low=0.00129176, open=0.00138899, close=0.0013204, volume=0.26848894, quoteVolume=203.32919178, weightedAverage=0.00132046]
-PoloniexChartData [date=Sat Aug 13 20:00:00 EDT 2016, high=0.00146433, low=0.00132101, open=0.00136713, close=0.00143404, volume=0.87103234, quoteVolume=629.26158589, weightedAverage=0.00138421]
-PoloniexChartData [date=Sun Aug 14 20:00:00 EDT 2016, high=0.00148999, low=0.0012512, open=0.00144, close=0.00131415, volume=0.70574049, quoteVolume=539.74564785, weightedAverage=0.00130754]
-PoloniexChartData [date=Mon Aug 15 20:00:00 EDT 2016, high=0.00136717, low=0.00117001, open=0.00131415, close=0.00126266, volume=1.39848187, quoteVolume=1118.9714236, weightedAverage=0.00124979]
-PoloniexChartData [date=Tue Aug 16 20:00:00 EDT 2016, high=0.00127432, low=0.00122382, open=0.00123738, close=0.0012524, volume=0.10182291, quoteVolume=82.24201977, weightedAverage=0.00123808]
-PoloniexChartData [date=Wed Aug 17 20:00:00 EDT 2016, high=0.00138254, low=0.00122, open=0.00125721, close=0.00122, volume=0.72061986, quoteVolume=567.59886116, weightedAverage=0.00126959]
-PoloniexChartData [date=Thu Aug 18 20:00:00 EDT 2016, high=0.00144839, low=0.0012622, open=0.0012622, close=0.00140793, volume=0.38189942, quoteVolume=283.78398457, weightedAverage=0.00134573]
-PoloniexChartData [date=Fri Aug 19 20:00:00 EDT 2016, high=0.00149, low=0.00118003, open=0.00138425, close=0.00129253, volume=1.6767745, quoteVolume=1205.21566375, weightedAverage=0.00139126]
-PoloniexChartData [date=Sat Aug 20 20:00:00 EDT 2016, high=0.00142017, low=0.00126932, open=0.00129253, close=0.00129904, volume=0.50137369, quoteVolume=376.86524302, weightedAverage=0.00133037]
-PoloniexChartData [date=Sun Aug 21 20:00:00 EDT 2016, high=0.00132653, low=0.001015, open=0.00130105, close=0.00110801, volume=3.44946626, quoteVolume=3172.19896259, weightedAverage=0.0010874]
-PoloniexChartData [date=Mon Aug 22 20:00:00 EDT 2016, high=0.001381, low=0.00110213, open=0.00111725, close=0.00116875, volume=1.99157983, quoteVolume=1672.20924741, weightedAverage=0.00119098]
-PoloniexChartData [date=Tue Aug 23 20:00:00 EDT 2016, high=0.00114018, low=0.00101502, open=0.00114018, close=0.00108565, volume=0.55559847, quoteVolume=532.13830169, weightedAverage=0.00104408]
-PoloniexChartData [date=Wed Aug 24 20:00:00 EDT 2016, high=0.00111932, low=0.001035, open=0.00108635, close=0.00107874, volume=0.17215133, quoteVolume=160.29967928, weightedAverage=0.00107393]
-PoloniexChartData [date=Thu Aug 25 20:00:00 EDT 2016, high=0.00115574, low=0.00106397, open=0.00107874, close=0.00114212, volume=0.18459961, quoteVolume=165.52118096, weightedAverage=0.00111526]
-PoloniexChartData [date=Fri Aug 26 20:00:00 EDT 2016, high=0.00112546, low=0.00109186, open=0.00109186, close=0.00109717, volume=0.04014515, quoteVolume=36.20162923, weightedAverage=0.00110893]
-PoloniexChartData [date=Sat Aug 27 20:00:00 EDT 2016, high=0.00148498, low=0.00109717, open=0.00109793, close=0.00138569, volume=1.99450508, quoteVolume=1533.55873643, weightedAverage=0.00130057]
-PoloniexChartData [date=Sun Aug 28 20:00:00 EDT 2016, high=0.00148491, low=0.00125269, open=0.00142504, close=0.00128333, volume=2.05045143, quoteVolume=1490.10839529, weightedAverage=0.00137604]
-PoloniexChartData [date=Mon Aug 29 20:00:00 EDT 2016, high=0.00128331, low=0.00113, open=0.00121996, close=0.00113, volume=0.16211802, quoteVolume=138.58944917, weightedAverage=0.00116977]
-PoloniexChartData [date=Tue Aug 30 20:00:00 EDT 2016, high=0.00118516, low=0.00112, open=0.00118516, close=0.00115606, volume=0.32836632, quoteVolume=288.89141405, weightedAverage=0.00113664]
-PoloniexChartData [date=Wed Aug 31 20:00:00 EDT 2016, high=0.00125511, low=0.00112002, open=0.00115597, close=0.00115672, volume=0.15560553, quoteVolume=133.36722135, weightedAverage=0.00116674]
-PoloniexChartData [date=Thu Sep 01 20:00:00 EDT 2016, high=0.00135, low=0.0011771, open=0.0011771, close=0.00133259, volume=0.62101613, quoteVolume=480.43267846, weightedAverage=0.00129261]
-PoloniexChartData [date=Fri Sep 02 20:00:00 EDT 2016, high=0.00139528, low=0.0011773, open=0.00132467, close=0.00139528, volume=0.80905546, quoteVolume=627.36719195, weightedAverage=0.0012896]
-PoloniexChartData [date=Sat Sep 03 20:00:00 EDT 2016, high=0.00152657, low=0.0013, open=0.0013975, close=0.00143106, volume=1.87748503, quoteVolume=1304.44760226, weightedAverage=0.00143929]
-PoloniexChartData [date=Sun Sep 04 20:00:00 EDT 2016, high=0.00143105, low=0.00100001, open=0.00139083, close=0.00134688, volume=1.17088011, quoteVolume=954.30491677, weightedAverage=0.00122694]
-PoloniexChartData [date=Mon Sep 05 20:00:00 EDT 2016, high=0.00144441, low=0.00123027, open=0.00132637, close=0.00129987, volume=0.7627984, quoteVolume=545.00973407, weightedAverage=0.0013996]
-PoloniexChartData [date=Tue Sep 06 20:00:00 EDT 2016, high=0.00196161, low=0.00119431, open=0.00129213, close=0.00142415, volume=10.04261707, quoteVolume=6844.98962051, weightedAverage=0.00146714]
-PoloniexChartData [date=Wed Sep 07 20:00:00 EDT 2016, high=0.00179486, low=0.00133744, open=0.0014124, close=0.00163574, volume=5.08043399, quoteVolume=3207.86727686, weightedAverage=0.00158374]
-PoloniexChartData [date=Thu Sep 08 20:00:00 EDT 2016, high=0.00239207, low=0.00158868, open=0.0016301, close=0.00217313, volume=16.63450949, quoteVolume=8470.12303024, weightedAverage=0.0019639]
-PoloniexChartData [date=Fri Sep 09 20:00:00 EDT 2016, high=0.0038, low=0.00158968, open=0.00217668, close=0.002, volume=74.14659054, quoteVolume=29452.14176984, weightedAverage=0.00251752]
-PoloniexChartData [date=Sat Sep 10 20:00:00 EDT 2016, high=0.00275, low=0.00190009, open=0.00201156, close=0.00220737, volume=40.54489422, quoteVolume=17831.46290872, weightedAverage=0.00227378]
-PoloniexChartData [date=Sun Sep 11 20:00:00 EDT 2016, high=0.00225, low=0.0017, open=0.00220737, close=0.00183784, volume=5.5886795, quoteVolume=2811.56485956, weightedAverage=0.00198774]
-PoloniexChartData [date=Mon Sep 12 20:00:00 EDT 2016, high=0.002, low=0.0017, open=0.0017925, close=0.00184282, volume=4.33366205, quoteVolume=2352.87961166, weightedAverage=0.00184185]
-PoloniexChartData [date=Tue Sep 13 20:00:00 EDT 2016, high=0.0035, low=0.00180242, open=0.0018428, close=0.00237, volume=53.28537256, quoteVolume=19276.39500957, weightedAverage=0.00276428]
-PoloniexChartData [date=Wed Sep 14 20:00:00 EDT 2016, high=0.0034382, low=0.00225, open=0.00235, close=0.0034382, volume=14.80947005, quoteVolume=5465.15049199, weightedAverage=0.0027098]
-PoloniexChartData [date=Thu Sep 15 20:00:00 EDT 2016, high=0.0037, low=0.00255007, open=0.0034382, close=0.003, volume=17.97153501, quoteVolume=5593.57063449, weightedAverage=0.00321289]
-PoloniexChartData [date=Fri Sep 16 20:00:00 EDT 2016, high=0.003, low=0.00225003, open=0.003, close=0.00260589, volume=8.677886, quoteVolume=3552.4686524, weightedAverage=0.00244277]
-PoloniexChartData [date=Sat Sep 17 20:00:00 EDT 2016, high=0.0026, low=0.00225, open=0.0026, close=0.00242988, volume=1.74868409, quoteVolume=745.31223573, weightedAverage=0.00234624]
-PoloniexChartData [date=Sun Sep 18 20:00:00 EDT 2016, high=0.00298001, low=0.00239, open=0.00242989, close=0.00243787, volume=10.07960127, quoteVolume=3722.70988337, weightedAverage=0.00270759]
-PoloniexChartData [date=Mon Sep 19 20:00:00 EDT 2016, high=0.00253192, low=0.0021, open=0.00240396, close=0.00231218, volume=1.73365024, quoteVolume=755.91908537, weightedAverage=0.00229343]
-PoloniexChartData [date=Tue Sep 20 20:00:00 EDT 2016, high=0.00235999, low=0.002, open=0.00231218, close=0.00219, volume=1.17857975, quoteVolume=560.82581247, weightedAverage=0.0021015]
-PoloniexChartData [date=Wed Sep 21 20:00:00 EDT 2016, high=0.0022999, low=0.0021, open=0.00217682, close=0.00212108, volume=0.31600366, quoteVolume=143.395315, weightedAverage=0.00220372]
-PoloniexChartData [date=Thu Sep 22 20:00:00 EDT 2016, high=0.00242244, low=0.00217371, open=0.00230532, close=0.0022866, volume=0.67231918, quoteVolume=290.94670809, weightedAverage=0.00231079]
-PoloniexChartData [date=Fri Sep 23 20:00:00 EDT 2016, high=0.002428, low=0.00210535, open=0.00228661, close=0.002428, volume=1.17738173, quoteVolume=513.53991543, weightedAverage=0.00229267]
-PoloniexChartData [date=Sat Sep 24 20:00:00 EDT 2016, high=0.00249, low=0.00214999, open=0.00243403, close=0.0023533, volume=1.24252592, quoteVolume=542.02732401, weightedAverage=0.00229236]
-PoloniexChartData [date=Sun Sep 25 20:00:00 EDT 2016, high=0.00231637, low=0.00202125, open=0.00227116, close=0.00221411, volume=1.61778555, quoteVolume=749.07633158, weightedAverage=0.0021597]
-PoloniexChartData [date=Mon Sep 26 20:00:00 EDT 2016, high=0.00218019, low=0.00200125, open=0.00218019, close=0.00212348, volume=0.86900532, quoteVolume=416.97623692, weightedAverage=0.00208406]
-PoloniexChartData [date=Tue Sep 27 20:00:00 EDT 2016, high=0.00229999, low=0.00209951, open=0.00212348, close=0.002235, volume=3.55695587, quoteVolume=1633.72914194, weightedAverage=0.0021772]
-PoloniexChartData [date=Wed Sep 28 20:00:00 EDT 2016, high=0.00334069, low=0.00224001, open=0.00224001, close=0.00273003, volume=26.01348226, quoteVolume=8934.86099874, weightedAverage=0.00291145]
-PoloniexChartData [date=Thu Sep 29 20:00:00 EDT 2016, high=0.00355, low=0.00259033, open=0.00274044, close=0.0030797, volume=10.68921336, quoteVolume=3495.23384591, weightedAverage=0.00305822]
-PoloniexChartData [date=Fri Sep 30 20:00:00 EDT 2016, high=0.0033, low=0.00258393, open=0.00310783, close=0.003, volume=4.32120854, quoteVolume=1502.12657988, weightedAverage=0.00287672]
-PoloniexChartData [date=Sat Oct 01 20:00:00 EDT 2016, high=0.0031, low=0.0029, open=0.00303128, close=0.0030003, volume=3.28230073, quoteVolume=1108.58562862, weightedAverage=0.0029608]
-PoloniexChartData [date=Sun Oct 02 20:00:00 EDT 2016, high=0.0031, low=0.00252853, open=0.0030003, close=0.00298281, volume=7.02082523, quoteVolume=2480.93831245, weightedAverage=0.0028299]
-PoloniexChartData [date=Mon Oct 03 20:00:00 EDT 2016, high=0.0031, low=0.0029, open=0.00298281, close=0.00295951, volume=0.97315855, quoteVolume=329.75274023, weightedAverage=0.00295117]
-PoloniexChartData [date=Tue Oct 04 20:00:00 EDT 2016, high=0.00292689, low=0.00208339, open=0.00290002, close=0.00285001, volume=3.49505919, quoteVolume=1407.32589292, weightedAverage=0.00248347]
-PoloniexChartData [date=Wed Oct 05 20:00:00 EDT 2016, high=0.00278215, low=0.00250003, open=0.00278215, close=0.002667, volume=1.29974606, quoteVolume=507.787275, weightedAverage=0.00255962]
-PoloniexChartData [date=Thu Oct 06 20:00:00 EDT 2016, high=0.00270232, low=0.0025, open=0.00263473, close=0.0025, volume=0.75107817, quoteVolume=297.36944573, weightedAverage=0.00252574]
-PoloniexChartData [date=Fri Oct 07 20:00:00 EDT 2016, high=0.00261075, low=0.0024, open=0.00258421, close=0.00252394, volume=0.64109978, quoteVolume=260.26964242, weightedAverage=0.00246321]
-PoloniexChartData [date=Sat Oct 08 20:00:00 EDT 2016, high=0.00256892, low=0.00248195, open=0.00252197, close=0.00251279, volume=0.25106518, quoteVolume=98.59145877, weightedAverage=0.00254652]
-PoloniexChartData [date=Sun Oct 09 20:00:00 EDT 2016, high=0.00375, low=0.00248844, open=0.00252403, close=0.00318982, volume=22.7515034, quoteVolume=7000.914963, weightedAverage=0.00324978]
-PoloniexChartData [date=Mon Oct 10 20:00:00 EDT 2016, high=0.0032058, low=0.0028, open=0.0031771, close=0.00285216, volume=3.88643076, quoteVolume=1302.64625259, weightedAverage=0.00298348]
-PoloniexChartData [date=Tue Oct 11 20:00:00 EDT 2016, high=0.0031, low=0.00283022, open=0.00285216, close=0.00286032, volume=0.70849153, quoteVolume=241.22345129, weightedAverage=0.00293707]
-PoloniexChartData [date=Wed Oct 12 20:00:00 EDT 2016, high=0.00311754, low=0.00282835, open=0.00286184, close=0.00302211, volume=1.76525823, quoteVolume=580.73061649, weightedAverage=0.00303971]
-PoloniexChartData [date=Thu Oct 13 20:00:00 EDT 2016, high=0.00309999, low=0.0028, open=0.00305543, close=0.003, volume=2.52240191, quoteVolume=856.27841232, weightedAverage=0.00294577]
-PoloniexChartData [date=Fri Oct 14 20:00:00 EDT 2016, high=0.003, low=0.0028, open=0.00299153, close=0.0029322, volume=0.76213117, quoteVolume=265.36494278, weightedAverage=0.00287201]
-PoloniexChartData [date=Sat Oct 15 20:00:00 EDT 2016, high=0.00306706, low=0.00288756, open=0.00292004, close=0.0029768, volume=0.83908888, quoteVolume=282.98821551, weightedAverage=0.0029651]
-PoloniexChartData [date=Sun Oct 16 20:00:00 EDT 2016, high=0.0032, low=0.00274536, open=0.00294455, close=0.00290001, volume=7.05905647, quoteVolume=2341.9874852, weightedAverage=0.00301413]
-PoloniexChartData [date=Mon Oct 17 20:00:00 EDT 2016, high=0.00620104, low=0.00293842, open=0.00296911, close=0.00400097, volume=89.69071473, quoteVolume=18929.76762812, weightedAverage=0.00473807]
-PoloniexChartData [date=Tue Oct 18 20:00:00 EDT 2016, high=0.00439642, low=0.00375, open=0.00424999, close=0.0039, volume=10.93036024, quoteVolume=2742.27348814, weightedAverage=0.00398587]
-PoloniexChartData [date=Wed Oct 19 20:00:00 EDT 2016, high=0.00408999, low=0.00375, open=0.0039, close=0.00401985, volume=2.93380182, quoteVolume=749.67486515, weightedAverage=0.00391343]
-PoloniexChartData [date=Thu Oct 20 20:00:00 EDT 2016, high=0.00530807, low=0.00397133, open=0.00406076, close=0.00499571, volume=9.70906508, quoteVolume=2141.10125777, weightedAverage=0.00453461]
-PoloniexChartData [date=Fri Oct 21 20:00:00 EDT 2016, high=0.00578965, low=0.00426356, open=0.00499571, close=0.0043, volume=11.38164658, quoteVolume=2367.04993984, weightedAverage=0.00480836]
-PoloniexChartData [date=Sat Oct 22 20:00:00 EDT 2016, high=0.00498419, low=0.00400001, open=0.0043, close=0.0044173, volume=4.26404059, quoteVolume=976.75987643, weightedAverage=0.00436549]
-PoloniexChartData [date=Sun Oct 23 20:00:00 EDT 2016, high=0.00444117, low=0.0041, open=0.00437128, close=0.00419999, volume=0.54345076, quoteVolume=127.37912577, weightedAverage=0.0042664]
-PoloniexChartData [date=Mon Oct 24 20:00:00 EDT 2016, high=0.00416992, low=0.00364, open=0.00416992, close=0.00378822, volume=5.80968797, quoteVolume=1491.72921303, weightedAverage=0.00389459]
-PoloniexChartData [date=Tue Oct 25 20:00:00 EDT 2016, high=0.00379342, low=0.0033, open=0.00378518, close=0.00350425, volume=3.91866722, quoteVolume=1117.82266569, weightedAverage=0.00350562]
-PoloniexChartData [date=Wed Oct 26 20:00:00 EDT 2016, high=0.00348833, low=0.00280319, open=0.00347416, close=0.00311356, volume=4.32360866, quoteVolume=1367.69847997, weightedAverage=0.00316122]
-PoloniexChartData [date=Thu Oct 27 20:00:00 EDT 2016, high=0.00366554, low=0.00280001, open=0.00313379, close=0.00318978, volume=2.72134401, quoteVolume=897.54443608, weightedAverage=0.00303198]
-PoloniexChartData [date=Fri Oct 28 20:00:00 EDT 2016, high=0.00320034, low=0.00200003, open=0.00309771, close=0.0027, volume=5.83723001, quoteVolume=2200.64120456, weightedAverage=0.00265251]
-PoloniexChartData [date=Sat Oct 29 20:00:00 EDT 2016, high=0.00349999, low=0.00262467, open=0.00276429, close=0.0032037, volume=1.00848922, quoteVolume=339.6953639, weightedAverage=0.0029688]
-PoloniexChartData [date=Sun Oct 30 20:00:00 EDT 2016, high=0.00354156, low=0.00290443, open=0.00320369, close=0.00320171, volume=1.039224, quoteVolume=314.09530736, weightedAverage=0.00330862]
-PoloniexChartData [date=Mon Oct 31 20:00:00 EDT 2016, high=0.0034, low=0.0024347, open=0.003202, close=0.0028676, volume=1.35949937, quoteVolume=484.86653369, weightedAverage=0.00280386]
-PoloniexChartData [date=Tue Nov 01 20:00:00 EDT 2016, high=0.00286755, low=0.0025005, open=0.00286019, close=0.00283942, volume=0.16886034, quoteVolume=61.73952132, weightedAverage=0.00273504]
-PoloniexChartData [date=Wed Nov 02 20:00:00 EDT 2016, high=0.00286753, low=0.00250466, open=0.0027595, close=0.00277512, volume=0.30884626, quoteVolume=112.01681262, weightedAverage=0.00275714]
-PoloniexChartData [date=Thu Nov 03 20:00:00 EDT 2016, high=0.00357842, low=0.00258991, open=0.00281984, close=0.00277036, volume=0.84059787, quoteVolume=274.79240549, weightedAverage=0.00305902]
-PoloniexChartData [date=Fri Nov 04 20:00:00 EDT 2016, high=0.00298186, low=0.00268699, open=0.00288518, close=0.00291288, volume=0.43400903, quoteVolume=154.58706565, weightedAverage=0.00280753]
-PoloniexChartData [date=Sat Nov 05 20:00:00 EDT 2016, high=0.00294282, low=0.00270298, open=0.00290256, close=0.00270298, volume=0.19472787, quoteVolume=68.33368294, weightedAverage=0.00284966]
-PoloniexChartData [date=Sun Nov 06 19:00:00 EST 2016, high=0.00285015, low=0.002703, open=0.00280094, close=0.00276075, volume=0.07330405, quoteVolume=26.49684287, weightedAverage=0.00276652]
-PoloniexChartData [date=Mon Nov 07 19:00:00 EST 2016, high=0.00275413, low=0.00260721, open=0.00272586, close=0.00275413, volume=0.35015945, quoteVolume=131.13496392, weightedAverage=0.00267022]
-PoloniexChartData [date=Tue Nov 08 19:00:00 EST 2016, high=0.00271337, low=0.002088, open=0.00271219, close=0.00255146, volume=2.22404636, quoteVolume=980.22076176, weightedAverage=0.00226892]
-PoloniexChartData [date=Wed Nov 09 19:00:00 EST 2016, high=0.00267812, low=0.00264996, open=0.00264996, close=0.00267, volume=0.11802008, quoteVolume=44.35480311, weightedAverage=0.00266081]
-PoloniexChartData [date=Thu Nov 10 19:00:00 EST 2016, high=0.00279999, low=0.00264301, open=0.00266971, close=0.00264301, volume=0.50894164, quoteVolume=186.79428577, weightedAverage=0.00272461]
-PoloniexChartData [date=Fri Nov 11 19:00:00 EST 2016, high=0.00264594, low=0.00263678, open=0.00264594, close=0.00263678, volume=0.00666575, quoteVolume=2.52370658, weightedAverage=0.00264125]
-PoloniexChartData [date=Sat Nov 12 19:00:00 EST 2016, high=0.0028, low=0.00250001, open=0.00262853, close=0.00266354, volume=0.07340317, quoteVolume=27.06783687, weightedAverage=0.00271182]
-PoloniexChartData [date=Sun Nov 13 19:00:00 EST 2016, high=0.00284272, low=0.00255001, open=0.00264278, close=0.00255001, volume=0.32718898, quoteVolume=121.10894951, weightedAverage=0.0027016]
-PoloniexChartData [date=Mon Nov 14 19:00:00 EST 2016, high=0.00294738, low=0.0025, open=0.00266234, close=0.00294738, volume=0.54392913, quoteVolume=199.71395219, weightedAverage=0.00272354]
-PoloniexChartData [date=Tue Nov 15 19:00:00 EST 2016, high=0.00291562, low=0.002088, open=0.00280888, close=0.0022094, volume=1.64041518, quoteVolume=741.40284511, weightedAverage=0.00221258]
-PoloniexChartData [date=Wed Nov 16 19:00:00 EST 2016, high=0.00252999, low=0.002, open=0.00226156, close=0.00231894, volume=0.95424254, quoteVolume=432.24425185, weightedAverage=0.00220764]
-PoloniexChartData [date=Thu Nov 17 19:00:00 EST 2016, high=0.00250546, low=0.00210347, open=0.00231895, close=0.00236054, volume=0.57186688, quoteVolume=247.97592693, weightedAverage=0.00230613]
-PoloniexChartData [date=Fri Nov 18 19:00:00 EST 2016, high=0.00249998, low=0.00231, open=0.00236054, close=0.00249998, volume=0.11550979, quoteVolume=47.73109107, weightedAverage=0.00242001]
-PoloniexChartData [date=Sat Nov 19 19:00:00 EST 2016, high=0.00243599, low=0.00231, open=0.00242016, close=0.00232697, volume=0.04872199, quoteVolume=20.96110309, weightedAverage=0.0023244]
-PoloniexChartData [date=Sun Nov 20 19:00:00 EST 2016, high=0.00243598, low=0.00235101, open=0.00235101, close=0.00237902, volume=0.09664839, quoteVolume=40.9040626, weightedAverage=0.0023628]
-PoloniexChartData [date=Mon Nov 21 19:00:00 EST 2016, high=0.003, low=0.00231001, open=0.00237902, close=0.00248937, volume=2.75683897, quoteVolume=1021.80793805, weightedAverage=0.002698]
-PoloniexChartData [date=Tue Nov 22 19:00:00 EST 2016, high=0.00246825, low=0.00207342, open=0.00245425, close=0.0021616, volume=0.6811301, quoteVolume=299.60361091, weightedAverage=0.00227343]
-PoloniexChartData [date=Wed Nov 23 19:00:00 EST 2016, high=0.00220681, low=0.00206, open=0.00218972, close=0.00206003, volume=0.4029264, quoteVolume=192.74775843, weightedAverage=0.00209043]
-PoloniexChartData [date=Thu Nov 24 19:00:00 EST 2016, high=0.00213757, low=0.0019, open=0.0021085, close=0.00212814, volume=0.49553827, quoteVolume=247.76576977, weightedAverage=0.00200002]
-PoloniexChartData [date=Fri Nov 25 19:00:00 EST 2016, high=0.00266441, low=0.00196099, open=0.00212788, close=0.00213998, volume=0.76766624, quoteVolume=353.53396389, weightedAverage=0.0021714]
-PoloniexChartData [date=Sat Nov 26 19:00:00 EST 2016, high=0.00253336, low=0.00208893, open=0.00213998, close=0.00228929, volume=0.62812787, quoteVolume=277.09125287, weightedAverage=0.00226686]
-PoloniexChartData [date=Sun Nov 27 19:00:00 EST 2016, high=0.00249999, low=0.00200002, open=0.00230346, close=0.00205838, volume=0.44688266, quoteVolume=213.87214665, weightedAverage=0.00208948]
-PoloniexChartData [date=Mon Nov 28 19:00:00 EST 2016, high=0.0021, low=0.00192582, open=0.00205838, close=0.00201366, volume=0.47183832, quoteVolume=236.06096349, weightedAverage=0.00199879]
-PoloniexChartData [date=Tue Nov 29 19:00:00 EST 2016, high=0.00210809, low=0.0016, open=0.00201998, close=0.00180002, volume=1.42433222, quoteVolume=772.9671843, weightedAverage=0.00184268]
-PoloniexChartData [date=Wed Nov 30 19:00:00 EST 2016, high=0.0021, low=0.00162001, open=0.00180332, close=0.00179619, volume=0.73076277, quoteVolume=399.14003147, weightedAverage=0.00183084]
-PoloniexChartData [date=Thu Dec 01 19:00:00 EST 2016, high=0.0018725, low=0.00163816, open=0.0017962, close=0.00175876, volume=0.12834128, quoteVolume=73.72516684, weightedAverage=0.0017408]
-PoloniexChartData [date=Fri Dec 02 19:00:00 EST 2016, high=0.00191783, low=0.00161001, open=0.00172312, close=0.00179027, volume=0.35667117, quoteVolume=211.61622676, weightedAverage=0.00168546]
-PoloniexChartData [date=Sat Dec 03 19:00:00 EST 2016, high=0.0018113, low=0.00160334, open=0.00177715, close=0.00160335, volume=0.17183054, quoteVolume=104.89632883, weightedAverage=0.00163809]
-PoloniexChartData [date=Sun Dec 04 19:00:00 EST 2016, high=0.00174486, low=0.00162527, open=0.00167636, close=0.00174486, volume=0.14013253, quoteVolume=81.62338313, weightedAverage=0.00171681]
-PoloniexChartData [date=Mon Dec 05 19:00:00 EST 2016, high=0.00174487, low=0.00165224, open=0.00172704, close=0.00165225, volume=0.0536516, quoteVolume=32.21078331, weightedAverage=0.00166564]
-PoloniexChartData [date=Tue Dec 06 19:00:00 EST 2016, high=0.0022039, low=0.00166601, open=0.00166601, close=0.00193324, volume=1.76012854, quoteVolume=849.64490407, weightedAverage=0.0020716]
-PoloniexChartData [date=Wed Dec 07 19:00:00 EST 2016, high=0.00189048, low=0.00165224, open=0.00189048, close=0.00172783, volume=0.68849754, quoteVolume=386.94058622, weightedAverage=0.00177933]
-PoloniexChartData [date=Thu Dec 08 19:00:00 EST 2016, high=0.00197309, low=0.00170118, open=0.00175982, close=0.00193576, volume=0.43062149, quoteVolume=237.11162402, weightedAverage=0.00181611]
-PoloniexChartData [date=Fri Dec 09 19:00:00 EST 2016, high=0.00207207, low=0.00188616, open=0.00191799, close=0.00200369, volume=0.48560489, quoteVolume=242.96299702, weightedAverage=0.00199867]
-PoloniexChartData [date=Sat Dec 10 19:00:00 EST 2016, high=0.00202611, low=0.00194387, open=0.00200582, close=0.00200395, volume=0.01981256, quoteVolume=10.04759787, weightedAverage=0.00197187]
-PoloniexChartData [date=Sun Dec 11 19:00:00 EST 2016, high=0.00216518, low=0.00193585, open=0.00199765, close=0.0019609, volume=0.14848768, quoteVolume=71.72629237, weightedAverage=0.00207019]
-PoloniexChartData [date=Mon Dec 12 19:00:00 EST 2016, high=0.00199776, low=0.0017, open=0.0019558, close=0.00196562, volume=1.21534523, quoteVolume=664.66096226, weightedAverage=0.00182851]
-PoloniexChartData [date=Tue Dec 13 19:00:00 EST 2016, high=0.00197753, low=0.00175582, open=0.00197753, close=0.00185344, volume=0.81367259, quoteVolume=429.10250975, weightedAverage=0.00189621]
-PoloniexChartData [date=Wed Dec 14 19:00:00 EST 2016, high=0.0019999, low=0.00170828, open=0.00185182, close=0.00170828, volume=0.43344809, quoteVolume=236.76580718, weightedAverage=0.0018307]
-PoloniexChartData [date=Thu Dec 15 19:00:00 EST 2016, high=0.00199999, low=0.00176341, open=0.00176342, close=0.00194031, volume=0.38094455, quoteVolume=199.37545735, weightedAverage=0.00191068]
-PoloniexChartData [date=Fri Dec 16 19:00:00 EST 2016, high=0.00235686, low=0.00187686, open=0.0019403, close=0.0020895, volume=0.74206426, quoteVolume=349.04443174, weightedAverage=0.00212598]
-PoloniexChartData [date=Sat Dec 17 19:00:00 EST 2016, high=0.00206881, low=0.0018, open=0.00206881, close=0.00184649, volume=0.26254546, quoteVolume=138.07697976, weightedAverage=0.00190144]
-PoloniexChartData [date=Sun Dec 18 19:00:00 EST 2016, high=0.00247999, low=0.00184104, open=0.00184104, close=0.0022, volume=0.7770098, quoteVolume=375.36006504, weightedAverage=0.00207003]
-PoloniexChartData [date=Mon Dec 19 19:00:00 EST 2016, high=0.0022, low=0.00201, open=0.00214712, close=0.00210884, volume=0.22625644, quoteVolume=109.7091308, weightedAverage=0.00206233]
-PoloniexChartData [date=Tue Dec 20 19:00:00 EST 2016, high=0.0020807, low=0.00190005, open=0.0020807, close=0.00200288, volume=0.21974363, quoteVolume=110.04454813, weightedAverage=0.00199686]
-PoloniexChartData [date=Wed Dec 21 19:00:00 EST 2016, high=0.00197065, low=0.00172, open=0.00197065, close=0.00181267, volume=0.37161993, quoteVolume=203.8509853, weightedAverage=0.00182299]
-PoloniexChartData [date=Thu Dec 22 19:00:00 EST 2016, high=0.00181267, low=0.00105578, open=0.00181267, close=0.00152616, volume=1.50830778, quoteVolume=1112.8545897, weightedAverage=0.00135535]
-PoloniexChartData [date=Fri Dec 23 19:00:00 EST 2016, high=0.00155827, low=0.0015, open=0.00152617, close=0.0015, volume=0.10215509, quoteVolume=66.40226122, weightedAverage=0.00153842]
-PoloniexChartData [date=Sat Dec 24 19:00:00 EST 2016, high=0.00150007, low=0.0012, open=0.0015, close=0.00135344, volume=0.22943865, quoteVolume=167.9914309, weightedAverage=0.00136577]
-PoloniexChartData [date=Sun Dec 25 19:00:00 EST 2016, high=0.00137537, low=0.00134069, open=0.00135343, close=0.00137434, volume=0.07979124, quoteVolume=58.64144663, weightedAverage=0.00136066]
-PoloniexChartData [date=Mon Dec 26 19:00:00 EST 2016, high=0.00141559, low=0.001301, open=0.00137537, close=0.00135347, volume=0.15430364, quoteVolume=117.50336182, weightedAverage=0.00131318]
-PoloniexChartData [date=Tue Dec 27 19:00:00 EST 2016, high=0.00135348, low=0.00128129, open=0.00133517, close=0.00133476, volume=0.00953742, quoteVolume=7.22349587, weightedAverage=0.00132033]
-PoloniexChartData [date=Wed Dec 28 19:00:00 EST 2016, high=0.00133473, low=0.00110063, open=0.00131284, close=0.0011633, volume=0.21680519, quoteVolume=179.6244701, weightedAverage=0.00120699]
-PoloniexChartData [date=Thu Dec 29 19:00:00 EST 2016, high=0.00198361, low=0.00120298, open=0.00120298, close=0.0016069, volume=2.51139438, quoteVolume=1709.56471584, weightedAverage=0.00146902]
-PoloniexChartData [date=Fri Dec 30 19:00:00 EST 2016, high=0.00162008, low=0.00140001, open=0.00160366, close=0.00146696, volume=0.37940441, quoteVolume=253.92762626, weightedAverage=0.00149414]
-PoloniexChartData [date=Sat Dec 31 19:00:00 EST 2016, high=0.00158463, low=0.00137335, open=0.00147725, close=0.00144665, volume=0.22311229, quoteVolume=153.5835723, weightedAverage=0.0014527]
-PoloniexChartData [date=Sun Jan 01 19:00:00 EST 2017, high=0.0018, low=0.00125795, open=0.00144423, close=0.00135138, volume=0.51438399, quoteVolume=340.36624635, weightedAverage=0.00151126]
-PoloniexChartData [date=Mon Jan 02 19:00:00 EST 2017, high=0.00139643, low=0.00125798, open=0.0013733, close=0.00131124, volume=0.21110823, quoteVolume=162.43413381, weightedAverage=0.00129965]
-PoloniexChartData [date=Tue Jan 03 19:00:00 EST 2017, high=0.001348, low=0.00110003, open=0.00131125, close=0.00126513, volume=2.05696123, quoteVolume=1768.12615115, weightedAverage=0.00116335]
-PoloniexChartData [date=Wed Jan 04 19:00:00 EST 2017, high=0.00168636, low=0.00113696, open=0.00125709, close=0.00147132, volume=7.58782604, quoteVolume=5185.25703613, weightedAverage=0.00146334]
-PoloniexChartData [date=Thu Jan 05 19:00:00 EST 2017, high=0.001797, low=0.00148653, open=0.0015, close=0.00176486, volume=0.20865109, quoteVolume=125.1953507, weightedAverage=0.0016666]
-PoloniexChartData [date=Fri Jan 06 19:00:00 EST 2017, high=0.002, low=0.00158214, open=0.00176844, close=0.0017534, volume=2.25489814, quoteVolume=1198.36415808, weightedAverage=0.00188164]
-PoloniexChartData [date=Sat Jan 07 19:00:00 EST 2017, high=0.0017769, low=0.00150053, open=0.00177689, close=0.00169363, volume=0.14003541, quoteVolume=87.26994495, weightedAverage=0.00160462]
-PoloniexChartData [date=Sun Jan 08 19:00:00 EST 2017, high=0.00176875, low=0.00156735, open=0.00169363, close=0.00162091, volume=0.16957174, quoteVolume=102.46468514, weightedAverage=0.00165492]
-PoloniexChartData [date=Mon Jan 09 19:00:00 EST 2017, high=0.00176876, low=0.00158237, open=0.00166139, close=0.00162717, volume=0.04324224, quoteVolume=25.69783434, weightedAverage=0.00168271]
-PoloniexChartData [date=Tue Jan 10 19:00:00 EST 2017, high=0.00168107, low=0.00150051, open=0.00160816, close=0.00157386, volume=0.10784912, quoteVolume=69.32640295, weightedAverage=0.00155567]
-PoloniexChartData [date=Wed Jan 11 19:00:00 EST 2017, high=0.00168104, low=0.00157386, open=0.00160685, close=0.00157386, volume=0.08615772, quoteVolume=53.8122706, weightedAverage=0.00160107]
-PoloniexChartData [date=Thu Jan 12 19:00:00 EST 2017, high=0.0017601, low=0.00157388, open=0.0015916, close=0.00159014, volume=0.59786163, quoteVolume=357.17307216, weightedAverage=0.00167387]
-PoloniexChartData [date=Fri Jan 13 19:00:00 EST 2017, high=0.00229999, low=0.00159483, open=0.00162434, close=0.00186652, volume=1.86937235, quoteVolume=985.81572487, weightedAverage=0.00189626]
-PoloniexChartData [date=Sat Jan 14 19:00:00 EST 2017, high=0.00224489, low=0.00179224, open=0.00185897, close=0.00193913, volume=0.80732923, quoteVolume=405.63878985, weightedAverage=0.00199026]
-PoloniexChartData [date=Sun Jan 15 19:00:00 EST 2017, high=0.00216, low=0.00174522, open=0.00196951, close=0.00191166, volume=0.34139273, quoteVolume=176.9859213, weightedAverage=0.00192892]
-PoloniexChartData [date=Mon Jan 16 19:00:00 EST 2017, high=0.00229999, low=0.00172002, open=0.00197868, close=0.00194194, volume=2.24281425, quoteVolume=1098.5229594, weightedAverage=0.00204166]
-PoloniexChartData [date=Tue Jan 17 19:00:00 EST 2017, high=0.00199, low=0.00184329, open=0.00191492, close=0.00199, volume=0.12903793, quoteVolume=65.98738105, weightedAverage=0.00195549]
-PoloniexChartData [date=Wed Jan 18 19:00:00 EST 2017, high=0.00283002, low=0.00167306, open=0.00205744, close=0.00196154, volume=10.86204379, quoteVolume=4854.3183038, weightedAverage=0.0022376]
-PoloniexChartData [date=Thu Jan 19 19:00:00 EST 2017, high=0.00205729, low=0.00176539, open=0.00196154, close=0.00196134, volume=0.49135873, quoteVolume=255.92733253, weightedAverage=0.00191991]
-PoloniexChartData [date=Fri Jan 20 19:00:00 EST 2017, high=0.00201646, low=0.00174999, open=0.00189298, close=0.00184349, volume=0.1790227, quoteVolume=95.9591023, weightedAverage=0.00186561]
-PoloniexChartData [date=Sat Jan 21 19:00:00 EST 2017, high=0.00191, low=0.00180645, open=0.001845, close=0.00186554, volume=0.0867387, quoteVolume=47.06862699, weightedAverage=0.00184281]
-PoloniexChartData [date=Sun Jan 22 19:00:00 EST 2017, high=0.00187999, low=0.0016741, open=0.00185981, close=0.00182697, volume=0.37772977, quoteVolume=215.01181756, weightedAverage=0.00175678]
-PoloniexChartData [date=Mon Jan 23 19:00:00 EST 2017, high=0.00182094, low=0.00172651, open=0.00182007, close=0.00174645, volume=0.28448613, quoteVolume=160.54125551, weightedAverage=0.00177204]
-PoloniexChartData [date=Tue Jan 24 19:00:00 EST 2017, high=0.00183317, low=0.00161578, open=0.001749, close=0.00168012, volume=0.52411726, quoteVolume=302.77125799, weightedAverage=0.00173106]
-PoloniexChartData [date=Wed Jan 25 19:00:00 EST 2017, high=0.00178778, low=0.00167294, open=0.00167294, close=0.00173574, volume=0.33076189, quoteVolume=188.51124925, weightedAverage=0.0017546]
-PoloniexChartData [date=Thu Jan 26 19:00:00 EST 2017, high=0.00175228, low=0.0016225, open=0.00173575, close=0.00171781, volume=0.72242845, quoteVolume=427.5677561, weightedAverage=0.00168962]
-PoloniexChartData [date=Fri Jan 27 19:00:00 EST 2017, high=0.00215558, low=0.00171663, open=0.00171663, close=0.00204394, volume=0.92892478, quoteVolume=475.76394167, weightedAverage=0.00195249]
-PoloniexChartData [date=Sat Jan 28 19:00:00 EST 2017, high=0.00236036, low=0.00199503, open=0.00204705, close=0.00226273, volume=1.11608403, quoteVolume=508.05350643, weightedAverage=0.00219678]
-PoloniexChartData [date=Sun Jan 29 19:00:00 EST 2017, high=0.00409744, low=0.002, open=0.00229825, close=0.00236999, volume=47.18276929, quoteVolume=16241.54676414, weightedAverage=0.00290506]
-PoloniexChartData [date=Mon Jan 30 19:00:00 EST 2017, high=0.002353, low=0.002, open=0.00231126, close=0.0021099, volume=12.11108511, quoteVolume=5681.12312807, weightedAverage=0.00213181]
-PoloniexChartData [date=Tue Jan 31 19:00:00 EST 2017, high=0.00270348, low=0.00199429, open=0.00210992, close=0.00224278, volume=14.76206441, quoteVolume=6304.1060404, weightedAverage=0.00234165]
-PoloniexChartData [date=Wed Feb 01 19:00:00 EST 2017, high=0.00249, low=0.00219908, open=0.00222954, close=0.00229334, volume=4.04541554, quoteVolume=1782.9406169, weightedAverage=0.00226895]
-PoloniexChartData [date=Thu Feb 02 19:00:00 EST 2017, high=0.0029, low=0.00223007, open=0.00225567, close=0.00231853, volume=16.94096465, quoteVolume=6671.06637959, weightedAverage=0.00253946]
-PoloniexChartData [date=Fri Feb 03 19:00:00 EST 2017, high=0.00247174, low=0.002245, open=0.00231472, close=0.00247174, volume=3.1480919, quoteVolume=1357.49796502, weightedAverage=0.00231903]
-PoloniexChartData [date=Sat Feb 04 19:00:00 EST 2017, high=0.00375, low=0.00241044, open=0.00246347, close=0.00330404, volume=25.58716225, quoteVolume=8002.7300358, weightedAverage=0.0031973]
-PoloniexChartData [date=Sun Feb 05 19:00:00 EST 2017, high=0.0038, low=0.00312997, open=0.00323197, close=0.00351053, volume=7.29217013, quoteVolume=2137.34118907, weightedAverage=0.00341179]
-PoloniexChartData [date=Mon Feb 06 19:00:00 EST 2017, high=0.00348569, low=0.00295008, open=0.00345007, close=0.0031886, volume=4.51720563, quoteVolume=1451.77698223, weightedAverage=0.0031115]
-PoloniexChartData [date=Tue Feb 07 19:00:00 EST 2017, high=0.00333207, low=0.00268631, open=0.0031094, close=0.00319988, volume=5.51115323, quoteVolume=1875.55931769, weightedAverage=0.0029384]
-PoloniexChartData [date=Wed Feb 08 19:00:00 EST 2017, high=0.00359558, low=0.00302443, open=0.00308771, close=0.0035611, volume=3.27414517, quoteVolume=970.7734623, weightedAverage=0.00337271]
-PoloniexChartData [date=Thu Feb 09 19:00:00 EST 2017, high=0.00356109, low=0.0032, open=0.00342926, close=0.00333, volume=1.16025679, quoteVolume=346.22857609, weightedAverage=0.00335112]
-PoloniexChartData [date=Fri Feb 10 19:00:00 EST 2017, high=0.00354998, low=0.00331639, open=0.00332999, close=0.00331901, volume=0.93835656, quoteVolume=276.54769255, weightedAverage=0.0033931]
-PoloniexChartData [date=Sat Feb 11 19:00:00 EST 2017, high=0.00353998, low=0.003319, open=0.00334652, close=0.0035, volume=0.96419284, quoteVolume=277.05851363, weightedAverage=0.0034801]
-PoloniexChartData [date=Sun Feb 12 19:00:00 EST 2017, high=0.00352997, low=0.0029777, open=0.00350001, close=0.00325504, volume=1.79345586, quoteVolume=546.07953412, weightedAverage=0.00328423]
-PoloniexChartData [date=Mon Feb 13 19:00:00 EST 2017, high=0.0034, low=0.0030575, open=0.00326776, close=0.00322173, volume=1.32785441, quoteVolume=419.10738137, weightedAverage=0.00316829]
-PoloniexChartData [date=Tue Feb 14 19:00:00 EST 2017, high=0.00320421, low=0.00288001, open=0.00320421, close=0.00300502, volume=1.93581022, quoteVolume=635.09059667, weightedAverage=0.00304808]
-PoloniexChartData [date=Wed Feb 15 19:00:00 EST 2017, high=0.00315199, low=0.003005, open=0.00304965, close=0.00308573, volume=0.64624506, quoteVolume=209.91433244, weightedAverage=0.00307861]
-PoloniexChartData [date=Thu Feb 16 19:00:00 EST 2017, high=0.00352997, low=0.00306, open=0.00306, close=0.003529, volume=4.22254895, quoteVolume=1252.48438319, weightedAverage=0.00337133]
-PoloniexChartData [date=Fri Feb 17 19:00:00 EST 2017, high=0.00352923, low=0.00292183, open=0.00345361, close=0.00341076, volume=5.2304606, quoteVolume=1580.33899951, weightedAverage=0.0033097]
-PoloniexChartData [date=Sat Feb 18 19:00:00 EST 2017, high=0.00351979, low=0.00330773, open=0.00338438, close=0.00341203, volume=1.31848001, quoteVolume=389.20011264, weightedAverage=0.00338766]
-PoloniexChartData [date=Sun Feb 19 19:00:00 EST 2017, high=0.00339999, low=0.00320001, open=0.00338423, close=0.00325001, volume=0.73547014, quoteVolume=221.00349896, weightedAverage=0.00332786]
-PoloniexChartData [date=Mon Feb 20 19:00:00 EST 2017, high=0.00408999, low=0.00329869, open=0.00329869, close=0.00335001, volume=7.93056426, quoteVolume=2255.30878274, weightedAverage=0.00351639]
-PoloniexChartData [date=Tue Feb 21 19:00:00 EST 2017, high=0.00361669, low=0.00311503, open=0.00335059, close=0.0032314, volume=4.44113071, quoteVolume=1296.96482047, weightedAverage=0.00342424]
-PoloniexChartData [date=Wed Feb 22 19:00:00 EST 2017, high=0.00334956, low=0.00306, open=0.00325013, close=0.00334927, volume=1.47153012, quoteVolume=460.41817408, weightedAverage=0.00319607]
-PoloniexChartData [date=Thu Feb 23 19:00:00 EST 2017, high=0.00335468, low=0.00315, open=0.00334926, close=0.00317931, volume=0.86924435, quoteVolume=267.91838935, weightedAverage=0.00324443]
-PoloniexChartData [date=Fri Feb 24 19:00:00 EST 2017, high=0.00338494, low=0.00315, open=0.00317931, close=0.00335, volume=0.31126744, quoteVolume=96.29770357, weightedAverage=0.00323234]
-PoloniexChartData [date=Sat Feb 25 19:00:00 EST 2017, high=0.00449998, low=0.0031299, open=0.00335139, close=0.00336716, volume=11.88983792, quoteVolume=3103.70067876, weightedAverage=0.00383085]
-PoloniexChartData [date=Sun Feb 26 19:00:00 EST 2017, high=0.00349491, low=0.00315001, open=0.00337804, close=0.00317238, volume=2.06251335, quoteVolume=628.49457807, weightedAverage=0.00328167]
-PoloniexChartData [date=Mon Feb 27 19:00:00 EST 2017, high=0.00319224, low=0.0025, open=0.00317238, close=0.00314434, volume=3.43084144, quoteVolume=1208.23093603, weightedAverage=0.00283955]
-PoloniexChartData [date=Tue Feb 28 19:00:00 EST 2017, high=0.00310371, low=0.00258683, open=0.00310371, close=0.00288644, volume=0.59667289, quoteVolume=215.65416143, weightedAverage=0.0027668]
-PoloniexChartData [date=Wed Mar 01 19:00:00 EST 2017, high=0.00303295, low=0.00250001, open=0.0028457, close=0.00250001, volume=1.05222655, quoteVolume=387.54659897, weightedAverage=0.00271509]
-PoloniexChartData [date=Thu Mar 02 19:00:00 EST 2017, high=0.00258236, low=0.00216874, open=0.00258234, close=0.00229697, volume=0.75685598, quoteVolume=315.75620014, weightedAverage=0.00239696]
-PoloniexChartData [date=Fri Mar 03 19:00:00 EST 2017, high=0.00253525, low=0.00229043, open=0.00229043, close=0.00240001, volume=0.3052913, quoteVolume=123.78816795, weightedAverage=0.00246623]
-PoloniexChartData [date=Sat Mar 04 19:00:00 EST 2017, high=0.00314435, low=0.00243862, open=0.00243862, close=0.00309832, volume=3.62586712, quoteVolume=1303.0584654, weightedAverage=0.00278258]
-PoloniexChartData [date=Sun Mar 05 19:00:00 EST 2017, high=0.00370104, low=0.0030946, open=0.0031002, close=0.00326653, volume=9.12279761, quoteVolume=2793.80844071, weightedAverage=0.00326536]
-PoloniexChartData [date=Mon Mar 06 19:00:00 EST 2017, high=0.00326327, low=0.00296855, open=0.00326327, close=0.00296855, volume=2.00824167, quoteVolume=653.21026129, weightedAverage=0.00307441]
-PoloniexChartData [date=Tue Mar 07 19:00:00 EST 2017, high=0.00309085, low=0.00214003, open=0.00296558, close=0.00259334, volume=4.74495406, quoteVolume=1919.7719451, weightedAverage=0.00247162]
-PoloniexChartData [date=Wed Mar 08 19:00:00 EST 2017, high=0.002791, low=0.00235822, open=0.00259738, close=0.00268315, volume=3.68207336, quoteVolume=1426.5332107, weightedAverage=0.00258113]
-PoloniexChartData [date=Thu Mar 09 19:00:00 EST 2017, high=0.00268315, low=0.00210375, open=0.00258232, close=0.00241041, volume=1.91018751, quoteVolume=829.80331058, weightedAverage=0.00230197]
-PoloniexChartData [date=Fri Mar 10 19:00:00 EST 2017, high=0.0025999, low=0.00228301, open=0.00234823, close=0.00244642, volume=1.84298979, quoteVolume=751.08016663, weightedAverage=0.00245378]
-PoloniexChartData [date=Sat Mar 11 19:00:00 EST 2017, high=0.00260001, low=0.00241636, open=0.00251, close=0.00246425, volume=0.31273692, quoteVolume=124.14056593, weightedAverage=0.00251921]
-PoloniexChartData [date=Sun Mar 12 20:00:00 EDT 2017, high=0.00265, low=0.00205004, open=0.00243561, close=0.00244208, volume=3.54407917, quoteVolume=1490.80623221, weightedAverage=0.00237729]
-PoloniexChartData [date=Mon Mar 13 20:00:00 EDT 2017, high=0.00259696, low=0.00238937, open=0.00243742, close=0.00251333, volume=0.54553155, quoteVolume=220.08883066, weightedAverage=0.00247868]
-PoloniexChartData [date=Tue Mar 14 20:00:00 EDT 2017, high=0.00270813, low=0.00248946, open=0.00249342, close=0.00270813, volume=1.02856855, quoteVolume=388.78096735, weightedAverage=0.00264562]
-PoloniexChartData [date=Wed Mar 15 20:00:00 EDT 2017, high=0.00300755, low=0.002586, open=0.00265587, close=0.00300755, volume=2.35156701, quoteVolume=832.54014531, weightedAverage=0.00282456]
-PoloniexChartData [date=Thu Mar 16 20:00:00 EDT 2017, high=0.0032, low=0.00265897, open=0.0029918, close=0.00272042, volume=4.89340309, quoteVolume=1700.23374666, weightedAverage=0.00287807]
-PoloniexChartData [date=Fri Mar 17 20:00:00 EDT 2017, high=0.00332503, low=0.00272081, open=0.00280679, close=0.00308893, volume=3.43573141, quoteVolume=1113.6022567, weightedAverage=0.00308524]
-PoloniexChartData [date=Sat Mar 18 20:00:00 EDT 2017, high=0.00339515, low=0.0026361, open=0.00308893, close=0.00324859, volume=2.68858697, quoteVolume=886.74263398, weightedAverage=0.00303198]
-PoloniexChartData [date=Sun Mar 19 20:00:00 EDT 2017, high=0.00332268, low=0.00277626, open=0.00324813, close=0.00300001, volume=1.75006879, quoteVolume=589.27959681, weightedAverage=0.00296984]
-PoloniexChartData [date=Mon Mar 20 20:00:00 EDT 2017, high=0.0036, low=0.0027376, open=0.00300001, close=0.00291852, volume=4.20488131, quoteVolume=1314.73411584, weightedAverage=0.00319827]
-PoloniexChartData [date=Tue Mar 21 20:00:00 EDT 2017, high=0.00307646, low=0.00292465, open=0.00292466, close=0.00303044, volume=0.48058337, quoteVolume=160.66920112, weightedAverage=0.00299113]
-PoloniexChartData [date=Wed Mar 22 20:00:00 EDT 2017, high=0.00332201, low=0.00299889, open=0.00303042, close=0.00302222, volume=2.51966917, quoteVolume=798.60127228, weightedAverage=0.0031551]
-PoloniexChartData [date=Thu Mar 23 20:00:00 EDT 2017, high=0.00376699, low=0.0029989, open=0.00301919, close=0.00323266, volume=5.95894763, quoteVolume=1711.58396634, weightedAverage=0.00348153]
-PoloniexChartData [date=Fri Mar 24 20:00:00 EDT 2017, high=0.00389999, low=0.00306859, open=0.00341719, close=0.00374552, volume=22.87304167, quoteVolume=6383.28668014, weightedAverage=0.00358327]
-PoloniexChartData [date=Sat Mar 25 20:00:00 EDT 2017, high=0.00466, low=0.0034, open=0.00374615, close=0.00394592, volume=11.64822607, quoteVolume=2965.08454041, weightedAverage=0.00392846]
-PoloniexChartData [date=Sun Mar 26 20:00:00 EDT 2017, high=0.1304543, low=0.00398282, open=0.00398282, close=0.083351, volume=10340.90593018, quoteVolume=259849.3864467, weightedAverage=0.03979576]
-PoloniexChartData [date=Mon Mar 27 20:00:00 EDT 2017, high=0.0956, low=0.0363477, open=0.083351, close=0.05825, volume=11221.59821048, quoteVolume=169653.31896858, weightedAverage=0.06614428]
-PoloniexChartData [date=Tue Mar 28 20:00:00 EDT 2017, high=0.05872244, low=0.02253258, open=0.05850001, close=0.027876, volume=1366.16352984, quoteVolume=37776.3805091, weightedAverage=0.03616448]
-PoloniexChartData [date=Wed Mar 29 20:00:00 EDT 2017, high=0.07489895, low=0.025, open=0.02797699, close=0.042, volume=3465.29816604, quoteVolume=73604.41952186, weightedAverage=0.04708002]
-PoloniexChartData [date=Thu Mar 30 20:00:00 EDT 2017, high=0.049786, low=0.03400001, open=0.0421, close=0.04067574, volume=777.27968024, quoteVolume=18487.77649658, weightedAverage=0.04204289]
-PoloniexChartData [date=Fri Mar 31 20:00:00 EDT 2017, high=0.04268561, low=0.03620001, open=0.04067569, close=0.0385, volume=192.163192, quoteVolume=4893.71943655, weightedAverage=0.0392673]
-PoloniexChartData [date=Sat Apr 01 20:00:00 EDT 2017, high=0.0394, low=0.03000001, open=0.0385, close=0.03000003, volume=229.41507983, quoteVolume=6673.80028205, weightedAverage=0.03437547]
-PoloniexChartData [date=Sun Apr 02 20:00:00 EDT 2017, high=0.033456, low=0.024765, open=0.03000005, close=0.02499983, volume=138.0872163, quoteVolume=4927.26860039, weightedAverage=0.0280251]
-PoloniexChartData [date=Mon Apr 03 20:00:00 EDT 2017, high=0.02636612, low=0.02004628, open=0.02499983, close=0.02082927, volume=108.12242899, quoteVolume=4804.23681882, weightedAverage=0.02250564]
-PoloniexChartData [date=Tue Apr 04 20:00:00 EDT 2017, high=0.04999, low=0.02062097, open=0.02091961, close=0.03646001, volume=1429.96761663, quoteVolume=36693.94381574, weightedAverage=0.03897012]
-PoloniexChartData [date=Wed Apr 05 20:00:00 EDT 2017, high=0.0388, low=0.02674403, open=0.03646106, close=0.03022917, volume=289.72385502, quoteVolume=8803.08799836, weightedAverage=0.03291161]
-PoloniexChartData [date=Thu Apr 06 20:00:00 EDT 2017, high=0.03446815, low=0.0292113, open=0.03022867, close=0.03139181, volume=106.80654223, quoteVolume=3384.54676349, weightedAverage=0.03155711]
-PoloniexChartData [date=Fri Apr 07 20:00:00 EDT 2017, high=0.03560725, low=0.03000001, open=0.03128557, close=0.03380873, volume=78.99644429, quoteVolume=2428.18011557, weightedAverage=0.03253318]
-PoloniexChartData [date=Sat Apr 08 20:00:00 EDT 2017, high=0.03420218, low=0.03, open=0.03380871, close=0.03073414, volume=29.72656445, quoteVolume=928.00249962, weightedAverage=0.03203284]
-PoloniexChartData [date=Sun Apr 09 20:00:00 EDT 2017, high=0.03769599, low=0.03058001, open=0.03082805, close=0.03221369, volume=75.73319796, quoteVolume=2235.2006133, weightedAverage=0.03388205]
-PoloniexChartData [date=Mon Apr 10 20:00:00 EDT 2017, high=0.03297991, low=0.02951001, open=0.03240827, close=0.03, volume=73.43011399, quoteVolume=2376.64901168, weightedAverage=0.03089649]
-PoloniexChartData [date=Tue Apr 11 20:00:00 EDT 2017, high=0.03126, low=0.0282, open=0.03003039, close=0.03125987, volume=49.62289421, quoteVolume=1653.86348235, weightedAverage=0.03000422]
-PoloniexChartData [date=Wed Apr 12 20:00:00 EDT 2017, high=0.03509998, low=0.03, open=0.03125985, close=0.03150013, volume=100.61813077, quoteVolume=3102.66303713, weightedAverage=0.0324296]
-PoloniexChartData [date=Thu Apr 13 20:00:00 EDT 2017, high=0.03324695, low=0.0298, open=0.03150013, close=0.03100007, volume=64.76468966, quoteVolume=2079.69082498, weightedAverage=0.03114149]
-PoloniexChartData [date=Fri Apr 14 20:00:00 EDT 2017, high=0.03177, low=0.02999993, open=0.03100007, close=0.03110982, volume=30.79498119, quoteVolume=1000.29066325, weightedAverage=0.03078603]
-PoloniexChartData [date=Sat Apr 15 20:00:00 EDT 2017, high=0.03404753, low=0.03026763, open=0.03101519, close=0.0330698, volume=70.0814973, quoteVolume=2208.15868748, weightedAverage=0.03173752]
-PoloniexChartData [date=Sun Apr 16 20:00:00 EDT 2017, high=0.04049145, low=0.0315, open=0.03236355, close=0.03300009, volume=283.35836916, quoteVolume=7889.04769481, weightedAverage=0.03591794]
-PoloniexChartData [date=Mon Apr 17 20:00:00 EDT 2017, high=0.044, low=0.03149999, open=0.03300219, close=0.04228758, volume=540.90041628, quoteVolume=13948.6677057, weightedAverage=0.03877792]
-PoloniexChartData [date=Tue Apr 18 20:00:00 EDT 2017, high=0.05900002, low=0.040262, open=0.042, close=0.04513469, volume=1023.68176003, quoteVolume=20725.86088569, weightedAverage=0.04939151]
-PoloniexChartData [date=Wed Apr 19 20:00:00 EDT 2017, high=0.04749997, low=0.0352462, open=0.04513469, close=0.03965809, volume=150.36779793, quoteVolume=3702.51556184, weightedAverage=0.04061233]
-PoloniexChartData [date=Thu Apr 20 20:00:00 EDT 2017, high=0.04253472, low=0.0371, open=0.03965791, close=0.03960284, volume=85.43899209, quoteVolume=2153.54135535, weightedAverage=0.03967371]
-PoloniexChartData [date=Fri Apr 21 20:00:00 EDT 2017, high=0.0411579, low=0.03802, open=0.03960284, close=0.03918215, volume=40.72993118, quoteVolume=1031.92244914, weightedAverage=0.03946995]
-PoloniexChartData [date=Sat Apr 22 20:00:00 EDT 2017, high=0.03917935, low=0.0351, open=0.03917933, close=0.03735578, volume=80.50737634, quoteVolume=2174.68203962, weightedAverage=0.03702029]
-PoloniexChartData [date=Sun Apr 23 20:00:00 EDT 2017, high=0.03980611, low=0.0355, open=0.03735779, close=0.03746969, volume=58.66552809, quoteVolume=1568.37306767, weightedAverage=0.03740534]
-PoloniexChartData [date=Mon Apr 24 20:00:00 EDT 2017, high=0.03779907, low=0.0340903, open=0.0375019, close=0.0358501, volume=62.88910287, quoteVolume=1749.21962934, weightedAverage=0.03595266]
-PoloniexChartData [date=Tue Apr 25 20:00:00 EDT 2017, high=0.0358501, low=0.023, open=0.0358501, close=0.0295406, volume=140.31300538, quoteVolume=4563.22775064, weightedAverage=0.03074863]
-PoloniexChartData [date=Wed Apr 26 20:00:00 EDT 2017, high=0.0326768, low=0.0270078, open=0.0295738, close=0.03142754, volume=80.94571331, quoteVolume=2680.84880166, weightedAverage=0.03019406]
-PoloniexChartData [date=Thu Apr 27 20:00:00 EDT 2017, high=0.03279934, low=0.02748769, open=0.031463, close=0.03112254, volume=65.73099635, quoteVolume=2107.18675366, weightedAverage=0.03119372]
-PoloniexChartData [date=Fri Apr 28 20:00:00 EDT 2017, high=0.0376, low=0.0295506, open=0.03112255, close=0.03420392, volume=125.63083942, quoteVolume=3753.49294508, weightedAverage=0.03347038]
-PoloniexChartData [date=Sat Apr 29 20:00:00 EDT 2017, high=0.0425, low=0.033575, open=0.03421099, close=0.03759805, volume=324.54070619, quoteVolume=8370.01086911, weightedAverage=0.03877422]
-PoloniexChartData [date=Sun Apr 30 20:00:00 EDT 2017, high=0.03776699, low=0.03150001, open=0.03759805, close=0.03246401, volume=123.06731923, quoteVolume=3496.84290975, weightedAverage=0.03519383]
-PoloniexChartData [date=Mon May 01 20:00:00 EDT 2017, high=0.035, low=0.03016313, open=0.03240486, close=0.03302, volume=53.06355958, quoteVolume=1648.7019031, weightedAverage=0.03218505]
-PoloniexChartData [date=Tue May 02 20:00:00 EDT 2017, high=0.03495798, low=0.03016313, open=0.03322622, close=0.03269905, volume=45.42022165, quoteVolume=1421.11915373, weightedAverage=0.03196088]
-PoloniexChartData [date=Wed May 03 20:00:00 EDT 2017, high=0.03425, low=0.03086224, open=0.03208721, close=0.0333305, volume=57.36139208, quoteVolume=1765.57581697, weightedAverage=0.03248877]
-PoloniexChartData [date=Thu May 04 20:00:00 EDT 2017, high=0.03382648, low=0.03081399, open=0.03342679, close=0.0321416, volume=143.10798155, quoteVolume=4483.7387427, weightedAverage=0.0319171]
-PoloniexChartData [date=Fri May 05 20:00:00 EDT 2017, high=0.04004, low=0.0316982, open=0.03256675, close=0.03607, volume=230.30862302, quoteVolume=6450.02522805, weightedAverage=0.03570662]
-PoloniexChartData [date=Sat May 06 20:00:00 EDT 2017, high=0.04094, low=0.03553, open=0.036, close=0.03769663, volume=120.57370937, quoteVolume=3135.60635438, weightedAverage=0.03845307]
+Sun May 08 20:00:00 EDT 2016,0.00199997,0.0009,0.0014,0.00132,9.88148803,7927.92432535,0.00124641
+Mon May 09 20:00:00 EDT 2016,0.00132002,0.00091658,0.00126498,0.0011,4.27395822,3748.38222377,0.00114021
+Tue May 10 20:00:00 EDT 2016,0.00139987,0.00098301,0.00115818,0.00120244,1.96519907,1680.69045238,0.00116928
+Wed May 11 20:00:00 EDT 2016,0.00175766,0.00099547,0.00109663,0.0014,8.32211615,5907.97789863,0.00140862
+Thu May 12 20:00:00 EDT 2016,0.00145192,0.00120042,0.0014,0.00123972,0.92049293,716.09692639,0.00128543
+Fri May 13 20:00:00 EDT 2016,0.00154375,0.00115001,0.00123922,0.00138,1.05462939,857.86305641,0.00122936
+Sat May 14 20:00:00 EDT 2016,0.0023,0.00103,0.00121409,0.00129924,15.75233793,9825.51126259,0.0016032
+Sun May 15 20:00:00 EDT 2016,0.0016801,0.00117556,0.00136498,0.0014248,6.25790016,4246.78476206,0.00147356
+Mon May 16 20:00:00 EDT 2016,0.00145999,0.00115,0.00130846,0.00125255,4.79628607,4014.32359748,0.00119479
+Tue May 17 20:00:00 EDT 2016,0.0014,0.00115002,0.00117163,0.00117501,1.11425126,926.96673746,0.00120204
+Wed May 18 20:00:00 EDT 2016,0.00129964,0.00116001,0.00117342,0.00129964,1.70076652,1454.20003302,0.00116955
+Thu May 19 20:00:00 EDT 2016,0.00122045,0.00118193,0.00118193,0.00122,0.08548502,71.1064902,0.00120221
+Fri May 20 20:00:00 EDT 2016,0.00124998,0.00117517,0.00122,0.00122652,0.22739529,187.00437546,0.00121598
+Sat May 21 20:00:00 EDT 2016,0.00124999,0.0011581,0.00122652,0.00121538,0.85034389,732.92663598,0.0011602
+Sun May 22 20:00:00 EDT 2016,0.00124999,0.00109911,0.00115813,0.00109911,0.61879993,531.94261271,0.00116328
+Mon May 23 20:00:00 EDT 2016,0.0012499,0.001061,0.00109912,0.001061,0.60939608,550.42176642,0.00110714
+Tue May 24 20:00:00 EDT 2016,0.00108788,0.00070925,0.00103374,0.00086465,1.11985059,1315.09693283,0.00085153
+Wed May 25 20:00:00 EDT 2016,0.00107998,0.0005208,0.00090998,0.00093121,0.92333792,1422.5846132,0.00064905
+Thu May 26 20:00:00 EDT 2016,0.00098162,0.0007888,0.00091002,0.0007888,0.39065998,463.68186183,0.00084251
+Fri May 27 20:00:00 EDT 2016,0.00084,0.00065453,0.00073125,0.00067351,0.03742737,55.56012264,0.00067363
+Sat May 28 20:00:00 EDT 2016,0.00065453,0.00045,0.00065453,0.00054999,0.55727011,1087.51175498,0.00051242
+Sun May 29 20:00:00 EDT 2016,0.0007556,0.0004,0.00053167,0.00063581,0.50879831,969.85137703,0.00052461
+Mon May 30 20:00:00 EDT 2016,0.00075646,0.0006189,0.00068726,0.00069167,0.09653176,137.54614503,0.00070181
+Tue May 31 20:00:00 EDT 2016,0.0007618,0.0006395,0.00070395,0.00067163,0.0592913,85.08104717,0.00069688
+Wed Jun 01 20:00:00 EDT 2016,0.00073238,0.00070215,0.00073238,0.00070545,0.02718998,38.04023759,0.00071476
+Thu Jun 02 20:00:00 EDT 2016,0.00072013,0.0006475,0.00069845,0.00072013,0.08208116,119.47933808,0.00068699
+Fri Jun 03 20:00:00 EDT 2016,0.00077451,0.00065592,0.00073257,0.0006816,0.35172512,496.69559159,0.00070813
+Sat Jun 04 20:00:00 EDT 2016,0.00065484,0.00062603,0.00065027,0.00062603,0.05692581,88.58930615,0.00064258
+Sun Jun 05 20:00:00 EDT 2016,0.00068896,0.00063104,0.00063104,0.00068896,0.19253566,297.31993678,0.00064757
+Mon Jun 06 20:00:00 EDT 2016,0.00068981,0.00063119,0.00068382,0.00068,0.05173983,78.67219466,0.00065766
+Tue Jun 07 20:00:00 EDT 2016,0.00069646,0.0006808,0.0006808,0.00069384,0.01000574,14.55429322,0.00068747
+Wed Jun 08 20:00:00 EDT 2016,0.00072,0.00066479,0.00070228,0.00067732,0.01673601,23.88744742,0.00070061
+Thu Jun 09 20:00:00 EDT 2016,0.00077659,0.00067732,0.00067732,0.00070702,0.17969015,239.51179377,0.00075023
+Fri Jun 10 20:00:00 EDT 2016,0.00071893,0.00071005,0.00071005,0.00071462,0.0045358,6.34815639,0.0007145
+Sat Jun 11 20:00:00 EDT 2016,0.000749,0.00052366,0.00071462,0.0005342,0.33563863,575.15278827,0.00058356
+Sun Jun 12 20:00:00 EDT 2016,0.00056482,0.00043857,0.00051693,0.00048259,0.15910869,318.71541999,0.00049921
+Mon Jun 13 20:00:00 EDT 2016,0.0006,0.00043915,0.00048258,0.00054851,0.12606349,268.76726134,0.00046904
+Tue Jun 14 20:00:00 EDT 2016,0.0005927,0.00048168,0.00052857,0.00053069,0.0806854,139.91587286,0.00057667
+Wed Jun 15 20:00:00 EDT 2016,0.00058967,0.00049341,0.0005307,0.00058967,0.10837087,190.83157449,0.00056788
+Thu Jun 16 20:00:00 EDT 2016,0.0005599,0.00051411,0.0005599,0.00051615,0.00826504,15.57244564,0.00053074
+Fri Jun 17 20:00:00 EDT 2016,0.00082002,0.00050004,0.00052714,0.00063449,0.24299745,341.67488372,0.00071119
+Sat Jun 18 20:00:00 EDT 2016,0.00068122,0.00060385,0.00062586,0.00068122,0.07953796,118.29149661,0.00067238
+Sun Jun 19 20:00:00 EDT 2016,0.0006892,0.00062174,0.0006892,0.00064704,0.32897399,528.61859953,0.00062232
+Mon Jun 20 20:00:00 EDT 2016,0.00067604,0.00062174,0.00064279,0.00062174,0.19302098,309.33433824,0.00062398
+Tue Jun 21 20:00:00 EDT 2016,0.00070002,0.00037631,0.00064087,0.00057445,0.6383811,1362.43126433,0.00046856
+Wed Jun 22 20:00:00 EDT 2016,0.0005925,0.00057823,0.00058039,0.00057823,0.00426725,7.29218955,0.00058518
+Thu Jun 23 20:00:00 EDT 2016,0.00058683,0.00055731,0.00057998,0.00055731,0.05518679,98.29465242,0.00056144
+Fri Jun 24 20:00:00 EDT 2016,0.0008,0.00050689,0.00058228,0.00077946,0.38731246,547.21104615,0.00070779
+Sat Jun 25 20:00:00 EDT 2016,0.00073689,0.00050001,0.00073689,0.00061995,0.10572596,188.68572265,0.00056032
+Sun Jun 26 20:00:00 EDT 2016,0.00064565,0.00060169,0.00061999,0.00060669,0.02422942,38.1641152,0.00063487
+Mon Jun 27 20:00:00 EDT 2016,0.00063256,0.00059375,0.00061012,0.00063176,0.05704239,92.38408588,0.00061744
+Tue Jun 28 20:00:00 EDT 2016,0.00068742,0.00061464,0.00061733,0.00064808,0.27321292,425.6405401,0.00064188
+Wed Jun 29 20:00:00 EDT 2016,0.00069998,0.00051,0.00065425,0.00059766,0.32201945,524.49551124,0.00061396
+Thu Jun 30 20:00:00 EDT 2016,0.00064399,0.0005,0.00058299,0.00060623,0.4093213,762.73835123,0.00053664
+Fri Jul 01 20:00:00 EDT 2016,0.0006,0.00053857,0.0006,0.00058563,0.0447727,78.46004316,0.00057064
+Sat Jul 02 20:00:00 EDT 2016,0.00058661,0.00056734,0.00058112,0.00057,0.00574182,9.91873004,0.00057888
+Sun Jul 03 20:00:00 EDT 2016,0.00066346,0.00056266,0.00056999,0.00063689,0.15692778,249.56818209,0.00062879
+Mon Jul 04 20:00:00 EDT 2016,0.00124993,0.00062691,0.00064082,0.00080638,2.24481167,2837.05962827,0.00079124
+Tue Jul 05 20:00:00 EDT 2016,0.00100807,0.00075116,0.00079,0.00075116,0.50593247,616.20356956,0.00082104
+Wed Jul 06 20:00:00 EDT 2016,0.00077026,0.00069542,0.00075191,0.00069542,0.26363645,369.84784486,0.00071282
+Thu Jul 07 20:00:00 EDT 2016,0.000918,0.00071409,0.00071409,0.00080008,1.14118739,1304.67842865,0.00087468
+Fri Jul 08 20:00:00 EDT 2016,0.0011,0.00063214,0.00078872,0.00103147,1.50155118,1636.51369179,0.00091753
+Sat Jul 09 20:00:00 EDT 2016,0.0015,0.00072822,0.00093613,0.00118,6.40665507,5400.39664576,0.00118633
+Sun Jul 10 20:00:00 EDT 2016,0.00139997,0.00080001,0.00118,0.00098727,2.50616569,2284.94443389,0.00109681
+Mon Jul 11 20:00:00 EDT 2016,0.00124182,0.00090066,0.00097886,0.00100185,1.46165287,1372.26815119,0.00106513
+Tue Jul 12 20:00:00 EDT 2016,0.00100048,0.00071,0.00092362,0.00080985,2.75669277,3517.07540283,0.0007838
+Wed Jul 13 20:00:00 EDT 2016,0.00102999,0.00073001,0.00081359,0.00086564,1.81672148,2137.8496005,0.00084978
+Thu Jul 14 20:00:00 EDT 2016,0.00093999,0.00082474,0.00082474,0.0008959,0.645717,765.85916081,0.00084312
+Fri Jul 15 20:00:00 EDT 2016,0.00148,0.00089601,0.0009038,0.00096977,5.61597921,4718.69492602,0.00119015
+Sat Jul 16 20:00:00 EDT 2016,0.00149,0.00095,0.00098073,0.00098588,2.65345303,2348.20025129,0.00112999
+Sun Jul 17 20:00:00 EDT 2016,0.00125,0.000915,0.00100635,0.00096944,2.53135799,2597.34467203,0.00097459
+Mon Jul 18 20:00:00 EDT 2016,0.00102202,0.00093893,0.00098436,0.00098134,0.4372199,449.41372337,0.00097286
+Tue Jul 19 20:00:00 EDT 2016,0.00125154,0.0009101,0.00097001,0.0009874,0.76697873,771.90092051,0.00099362
+Wed Jul 20 20:00:00 EDT 2016,0.00125153,0.00097431,0.00099236,0.0010251,5.31864047,5095.20772144,0.00104385
+Thu Jul 21 20:00:00 EDT 2016,0.00125145,0.000975,0.00103734,0.000975,2.34549893,2209.40889249,0.00106159
+Fri Jul 22 20:00:00 EDT 2016,0.00105631,0.00097431,0.00097909,0.00101379,0.60330584,609.03325748,0.00099059
+Sat Jul 23 20:00:00 EDT 2016,0.00100605,0.00097431,0.00098523,0.00100605,1.22327087,1250.40499545,0.00097829
+Sun Jul 24 20:00:00 EDT 2016,0.00099013,0.00097431,0.00099013,0.00097431,0.98685435,1011.32806607,0.0009758
+Mon Jul 25 20:00:00 EDT 2016,0.00097436,0.00092725,0.00097436,0.00092915,0.46314183,479.02402434,0.00096684
+Tue Jul 26 20:00:00 EDT 2016,0.00093844,0.0009,0.00092724,0.00091133,0.06360495,69.45937234,0.00091571
+Wed Jul 27 20:00:00 EDT 2016,0.00091133,0.00085001,0.00090062,0.00091133,0.48334802,559.84745161,0.00086335
+Thu Jul 28 20:00:00 EDT 2016,0.00091903,0.0008,0.00087807,0.00087521,0.33574433,389.66679668,0.00086161
+Fri Jul 29 20:00:00 EDT 2016,0.0008979,0.00084611,0.0008702,0.00088443,0.01327415,14.9934291,0.00088533
+Sat Jul 30 20:00:00 EDT 2016,0.00093645,0.00080002,0.00089,0.00087868,0.09183951,104.05507517,0.0008826
+Sun Jul 31 20:00:00 EDT 2016,0.00089194,0.0008,0.00088994,0.0008,0.0766585,93.75830398,0.00081761
+Mon Aug 01 20:00:00 EDT 2016,0.0018,0.00077011,0.00085568,0.00106058,47.64706119,39666.11828644,0.0012012
+Tue Aug 02 20:00:00 EDT 2016,0.00360001,0.00085006,0.00110571,0.00204344,232.0525,97913.30906438,0.00236997
+Wed Aug 03 20:00:00 EDT 2016,0.0025,0.00141002,0.0021,0.00157076,30.46500288,15532.21875016,0.0019614
+Thu Aug 04 20:00:00 EDT 2016,0.00321,0.00140002,0.0015498,0.00242421,41.82924332,18855.39630721,0.00221842
+Fri Aug 05 20:00:00 EDT 2016,0.00242421,0.001815,0.00242421,0.00201029,7.62575655,3661.27232075,0.00208281
+Sat Aug 06 20:00:00 EDT 2016,0.00209899,0.00163988,0.00201109,0.00167168,5.87540357,3236.52700489,0.00181534
+Sun Aug 07 20:00:00 EDT 2016,0.00197896,0.00161001,0.00174654,0.0016762,3.67179989,2153.16348565,0.0017053
+Mon Aug 08 20:00:00 EDT 2016,0.00218131,0.0014,0.00165105,0.00173146,13.33604664,7859.77800277,0.00169674
+Tue Aug 09 20:00:00 EDT 2016,0.00173147,0.00142,0.00173147,0.00146169,4.6812551,3055.45573268,0.00153209
+Wed Aug 10 20:00:00 EDT 2016,0.00144712,0.00101501,0.00144712,0.00136679,3.89660213,3023.60811394,0.00128872
+Thu Aug 11 20:00:00 EDT 2016,0.00136679,0.00124568,0.00136679,0.00134939,0.77143127,586.55381326,0.00131519
+Fri Aug 12 20:00:00 EDT 2016,0.00138899,0.00129176,0.00138899,0.0013204,0.26848894,203.32919178,0.00132046
+Sat Aug 13 20:00:00 EDT 2016,0.00146433,0.00132101,0.00136713,0.00143404,0.87103234,629.26158589,0.00138421
+Sun Aug 14 20:00:00 EDT 2016,0.00148999,0.0012512,0.00144,0.00131415,0.70574049,539.74564785,0.00130754
+Mon Aug 15 20:00:00 EDT 2016,0.00136717,0.00117001,0.00131415,0.00126266,1.39848187,1118.9714236,0.00124979
+Tue Aug 16 20:00:00 EDT 2016,0.00127432,0.00122382,0.00123738,0.0012524,0.10182291,82.24201977,0.00123808
+Wed Aug 17 20:00:00 EDT 2016,0.00138254,0.00122,0.00125721,0.00122,0.72061986,567.59886116,0.00126959
+Thu Aug 18 20:00:00 EDT 2016,0.00144839,0.0012622,0.0012622,0.00140793,0.38189942,283.78398457,0.00134573
+Fri Aug 19 20:00:00 EDT 2016,0.00149,0.00118003,0.00138425,0.00129253,1.6767745,1205.21566375,0.00139126
+Sat Aug 20 20:00:00 EDT 2016,0.00142017,0.00126932,0.00129253,0.00129904,0.50137369,376.86524302,0.00133037
+Sun Aug 21 20:00:00 EDT 2016,0.00132653,0.001015,0.00130105,0.00110801,3.44946626,3172.19896259,0.0010874
+Mon Aug 22 20:00:00 EDT 2016,0.001381,0.00110213,0.00111725,0.00116875,1.99157983,1672.20924741,0.00119098
+Tue Aug 23 20:00:00 EDT 2016,0.00114018,0.00101502,0.00114018,0.00108565,0.55559847,532.13830169,0.00104408
+Wed Aug 24 20:00:00 EDT 2016,0.00111932,0.001035,0.00108635,0.00107874,0.17215133,160.29967928,0.00107393
+Thu Aug 25 20:00:00 EDT 2016,0.00115574,0.00106397,0.00107874,0.00114212,0.18459961,165.52118096,0.00111526
+Fri Aug 26 20:00:00 EDT 2016,0.00112546,0.00109186,0.00109186,0.00109717,0.04014515,36.20162923,0.00110893
+Sat Aug 27 20:00:00 EDT 2016,0.00148498,0.00109717,0.00109793,0.00138569,1.99450508,1533.55873643,0.00130057
+Sun Aug 28 20:00:00 EDT 2016,0.00148491,0.00125269,0.00142504,0.00128333,2.05045143,1490.10839529,0.00137604
+Mon Aug 29 20:00:00 EDT 2016,0.00128331,0.00113,0.00121996,0.00113,0.16211802,138.58944917,0.00116977
+Tue Aug 30 20:00:00 EDT 2016,0.00118516,0.00112,0.00118516,0.00115606,0.32836632,288.89141405,0.00113664
+Wed Aug 31 20:00:00 EDT 2016,0.00125511,0.00112002,0.00115597,0.00115672,0.15560553,133.36722135,0.00116674
+Thu Sep 01 20:00:00 EDT 2016,0.00135,0.0011771,0.0011771,0.00133259,0.62101613,480.43267846,0.00129261
+Fri Sep 02 20:00:00 EDT 2016,0.00139528,0.0011773,0.00132467,0.00139528,0.80905546,627.36719195,0.0012896
+Sat Sep 03 20:00:00 EDT 2016,0.00152657,0.0013,0.0013975,0.00143106,1.87748503,1304.44760226,0.00143929
+Sun Sep 04 20:00:00 EDT 2016,0.00143105,0.00100001,0.00139083,0.00134688,1.17088011,954.30491677,0.00122694
+Mon Sep 05 20:00:00 EDT 2016,0.00144441,0.00123027,0.00132637,0.00129987,0.7627984,545.00973407,0.0013996
+Tue Sep 06 20:00:00 EDT 2016,0.00196161,0.00119431,0.00129213,0.00142415,10.04261707,6844.98962051,0.00146714
+Wed Sep 07 20:00:00 EDT 2016,0.00179486,0.00133744,0.0014124,0.00163574,5.08043399,3207.86727686,0.00158374
+Thu Sep 08 20:00:00 EDT 2016,0.00239207,0.00158868,0.0016301,0.00217313,16.63450949,8470.12303024,0.0019639
+Fri Sep 09 20:00:00 EDT 2016,0.0038,0.00158968,0.00217668,0.002,74.14659054,29452.14176984,0.00251752
+Sat Sep 10 20:00:00 EDT 2016,0.00275,0.00190009,0.00201156,0.00220737,40.54489422,17831.46290872,0.00227378
+Sun Sep 11 20:00:00 EDT 2016,0.00225,0.0017,0.00220737,0.00183784,5.5886795,2811.56485956,0.00198774
+Mon Sep 12 20:00:00 EDT 2016,0.002,0.0017,0.0017925,0.00184282,4.33366205,2352.87961166,0.00184185
+Tue Sep 13 20:00:00 EDT 2016,0.0035,0.00180242,0.0018428,0.00237,53.28537256,19276.39500957,0.00276428
+Wed Sep 14 20:00:00 EDT 2016,0.0034382,0.00225,0.00235,0.0034382,14.80947005,5465.15049199,0.0027098
+Thu Sep 15 20:00:00 EDT 2016,0.0037,0.00255007,0.0034382,0.003,17.97153501,5593.57063449,0.00321289
+Fri Sep 16 20:00:00 EDT 2016,0.003,0.00225003,0.003,0.00260589,8.677886,3552.4686524,0.00244277
+Sat Sep 17 20:00:00 EDT 2016,0.0026,0.00225,0.0026,0.00242988,1.74868409,745.31223573,0.00234624
+Sun Sep 18 20:00:00 EDT 2016,0.00298001,0.00239,0.00242989,0.00243787,10.07960127,3722.70988337,0.00270759
+Mon Sep 19 20:00:00 EDT 2016,0.00253192,0.0021,0.00240396,0.00231218,1.73365024,755.91908537,0.00229343
+Tue Sep 20 20:00:00 EDT 2016,0.00235999,0.002,0.00231218,0.00219,1.17857975,560.82581247,0.0021015
+Wed Sep 21 20:00:00 EDT 2016,0.0022999,0.0021,0.00217682,0.00212108,0.31600366,143.395315,0.00220372
+Thu Sep 22 20:00:00 EDT 2016,0.00242244,0.00217371,0.00230532,0.0022866,0.67231918,290.94670809,0.00231079
+Fri Sep 23 20:00:00 EDT 2016,0.002428,0.00210535,0.00228661,0.002428,1.17738173,513.53991543,0.00229267
+Sat Sep 24 20:00:00 EDT 2016,0.00249,0.00214999,0.00243403,0.0023533,1.24252592,542.02732401,0.00229236
+Sun Sep 25 20:00:00 EDT 2016,0.00231637,0.00202125,0.00227116,0.00221411,1.61778555,749.07633158,0.0021597
+Mon Sep 26 20:00:00 EDT 2016,0.00218019,0.00200125,0.00218019,0.00212348,0.86900532,416.97623692,0.00208406
+Tue Sep 27 20:00:00 EDT 2016,0.00229999,0.00209951,0.00212348,0.002235,3.55695587,1633.72914194,0.0021772
+Wed Sep 28 20:00:00 EDT 2016,0.00334069,0.00224001,0.00224001,0.00273003,26.01348226,8934.86099874,0.00291145
+Thu Sep 29 20:00:00 EDT 2016,0.00355,0.00259033,0.00274044,0.0030797,10.68921336,3495.23384591,0.00305822
+Fri Sep 30 20:00:00 EDT 2016,0.0033,0.00258393,0.00310783,0.003,4.32120854,1502.12657988,0.00287672
+Sat Oct 01 20:00:00 EDT 2016,0.0031,0.0029,0.00303128,0.0030003,3.28230073,1108.58562862,0.0029608
+Sun Oct 02 20:00:00 EDT 2016,0.0031,0.00252853,0.0030003,0.00298281,7.02082523,2480.93831245,0.0028299
+Mon Oct 03 20:00:00 EDT 2016,0.0031,0.0029,0.00298281,0.00295951,0.97315855,329.75274023,0.00295117
+Tue Oct 04 20:00:00 EDT 2016,0.00292689,0.00208339,0.00290002,0.00285001,3.49505919,1407.32589292,0.00248347
+Wed Oct 05 20:00:00 EDT 2016,0.00278215,0.00250003,0.00278215,0.002667,1.29974606,507.787275,0.00255962
+Thu Oct 06 20:00:00 EDT 2016,0.00270232,0.0025,0.00263473,0.0025,0.75107817,297.36944573,0.00252574
+Fri Oct 07 20:00:00 EDT 2016,0.00261075,0.0024,0.00258421,0.00252394,0.64109978,260.26964242,0.00246321
+Sat Oct 08 20:00:00 EDT 2016,0.00256892,0.00248195,0.00252197,0.00251279,0.25106518,98.59145877,0.00254652
+Sun Oct 09 20:00:00 EDT 2016,0.00375,0.00248844,0.00252403,0.00318982,22.7515034,7000.914963,0.00324978
+Mon Oct 10 20:00:00 EDT 2016,0.0032058,0.0028,0.0031771,0.00285216,3.88643076,1302.64625259,0.00298348
+Tue Oct 11 20:00:00 EDT 2016,0.0031,0.00283022,0.00285216,0.00286032,0.70849153,241.22345129,0.00293707
+Wed Oct 12 20:00:00 EDT 2016,0.00311754,0.00282835,0.00286184,0.00302211,1.76525823,580.73061649,0.00303971
+Thu Oct 13 20:00:00 EDT 2016,0.00309999,0.0028,0.00305543,0.003,2.52240191,856.27841232,0.00294577
+Fri Oct 14 20:00:00 EDT 2016,0.003,0.0028,0.00299153,0.0029322,0.76213117,265.36494278,0.00287201
+Sat Oct 15 20:00:00 EDT 2016,0.00306706,0.00288756,0.00292004,0.0029768,0.83908888,282.98821551,0.0029651
+Sun Oct 16 20:00:00 EDT 2016,0.0032,0.00274536,0.00294455,0.00290001,7.05905647,2341.9874852,0.00301413
+Mon Oct 17 20:00:00 EDT 2016,0.00620104,0.00293842,0.00296911,0.00400097,89.69071473,18929.76762812,0.00473807
+Tue Oct 18 20:00:00 EDT 2016,0.00439642,0.00375,0.00424999,0.0039,10.93036024,2742.27348814,0.00398587
+Wed Oct 19 20:00:00 EDT 2016,0.00408999,0.00375,0.0039,0.00401985,2.93380182,749.67486515,0.00391343
+Thu Oct 20 20:00:00 EDT 2016,0.00530807,0.00397133,0.00406076,0.00499571,9.70906508,2141.10125777,0.00453461
+Fri Oct 21 20:00:00 EDT 2016,0.00578965,0.00426356,0.00499571,0.0043,11.38164658,2367.04993984,0.00480836
+Sat Oct 22 20:00:00 EDT 2016,0.00498419,0.00400001,0.0043,0.0044173,4.26404059,976.75987643,0.00436549
+Sun Oct 23 20:00:00 EDT 2016,0.00444117,0.0041,0.00437128,0.00419999,0.54345076,127.37912577,0.0042664
+Mon Oct 24 20:00:00 EDT 2016,0.00416992,0.00364,0.00416992,0.00378822,5.80968797,1491.72921303,0.00389459
+Tue Oct 25 20:00:00 EDT 2016,0.00379342,0.0033,0.00378518,0.00350425,3.91866722,1117.82266569,0.00350562
+Wed Oct 26 20:00:00 EDT 2016,0.00348833,0.00280319,0.00347416,0.00311356,4.32360866,1367.69847997,0.00316122
+Thu Oct 27 20:00:00 EDT 2016,0.00366554,0.00280001,0.00313379,0.00318978,2.72134401,897.54443608,0.00303198
+Fri Oct 28 20:00:00 EDT 2016,0.00320034,0.00200003,0.00309771,0.0027,5.83723001,2200.64120456,0.00265251
+Sat Oct 29 20:00:00 EDT 2016,0.00349999,0.00262467,0.00276429,0.0032037,1.00848922,339.6953639,0.0029688
+Sun Oct 30 20:00:00 EDT 2016,0.00354156,0.00290443,0.00320369,0.00320171,1.039224,314.09530736,0.00330862
+Mon Oct 31 20:00:00 EDT 2016,0.0034,0.0024347,0.003202,0.0028676,1.35949937,484.86653369,0.00280386
+Tue Nov 01 20:00:00 EDT 2016,0.00286755,0.0025005,0.00286019,0.00283942,0.16886034,61.73952132,0.00273504
+Wed Nov 02 20:00:00 EDT 2016,0.00286753,0.00250466,0.0027595,0.00277512,0.30884626,112.01681262,0.00275714
+Thu Nov 03 20:00:00 EDT 2016,0.00357842,0.00258991,0.00281984,0.00277036,0.84059787,274.79240549,0.00305902
+Fri Nov 04 20:00:00 EDT 2016,0.00298186,0.00268699,0.00288518,0.00291288,0.43400903,154.58706565,0.00280753
+Sat Nov 05 20:00:00 EDT 2016,0.00294282,0.00270298,0.00290256,0.00270298,0.19472787,68.33368294,0.00284966
+Sun Nov 06 19:00:00 EST 2016,0.00285015,0.002703,0.00280094,0.00276075,0.07330405,26.49684287,0.00276652
+Mon Nov 07 19:00:00 EST 2016,0.00275413,0.00260721,0.00272586,0.00275413,0.35015945,131.13496392,0.00267022
+Tue Nov 08 19:00:00 EST 2016,0.00271337,0.002088,0.00271219,0.00255146,2.22404636,980.22076176,0.00226892
+Wed Nov 09 19:00:00 EST 2016,0.00267812,0.00264996,0.00264996,0.00267,0.11802008,44.35480311,0.00266081
+Thu Nov 10 19:00:00 EST 2016,0.00279999,0.00264301,0.00266971,0.00264301,0.50894164,186.79428577,0.00272461
+Fri Nov 11 19:00:00 EST 2016,0.00264594,0.00263678,0.00264594,0.00263678,0.00666575,2.52370658,0.00264125
+Sat Nov 12 19:00:00 EST 2016,0.0028,0.00250001,0.00262853,0.00266354,0.07340317,27.06783687,0.00271182
+Sun Nov 13 19:00:00 EST 2016,0.00284272,0.00255001,0.00264278,0.00255001,0.32718898,121.10894951,0.0027016
+Mon Nov 14 19:00:00 EST 2016,0.00294738,0.0025,0.00266234,0.00294738,0.54392913,199.71395219,0.00272354
+Tue Nov 15 19:00:00 EST 2016,0.00291562,0.002088,0.00280888,0.0022094,1.64041518,741.40284511,0.00221258
+Wed Nov 16 19:00:00 EST 2016,0.00252999,0.002,0.00226156,0.00231894,0.95424254,432.24425185,0.00220764
+Thu Nov 17 19:00:00 EST 2016,0.00250546,0.00210347,0.00231895,0.00236054,0.57186688,247.97592693,0.00230613
+Fri Nov 18 19:00:00 EST 2016,0.00249998,0.00231,0.00236054,0.00249998,0.11550979,47.73109107,0.00242001
+Sat Nov 19 19:00:00 EST 2016,0.00243599,0.00231,0.00242016,0.00232697,0.04872199,20.96110309,0.0023244
+Sun Nov 20 19:00:00 EST 2016,0.00243598,0.00235101,0.00235101,0.00237902,0.09664839,40.9040626,0.0023628
+Mon Nov 21 19:00:00 EST 2016,0.003,0.00231001,0.00237902,0.00248937,2.75683897,1021.80793805,0.002698
+Tue Nov 22 19:00:00 EST 2016,0.00246825,0.00207342,0.00245425,0.0021616,0.6811301,299.60361091,0.00227343
+Wed Nov 23 19:00:00 EST 2016,0.00220681,0.00206,0.00218972,0.00206003,0.4029264,192.74775843,0.00209043
+Thu Nov 24 19:00:00 EST 2016,0.00213757,0.0019,0.0021085,0.00212814,0.49553827,247.76576977,0.00200002
+Fri Nov 25 19:00:00 EST 2016,0.00266441,0.00196099,0.00212788,0.00213998,0.76766624,353.53396389,0.0021714
+Sat Nov 26 19:00:00 EST 2016,0.00253336,0.00208893,0.00213998,0.00228929,0.62812787,277.09125287,0.00226686
+Sun Nov 27 19:00:00 EST 2016,0.00249999,0.00200002,0.00230346,0.00205838,0.44688266,213.87214665,0.00208948
+Mon Nov 28 19:00:00 EST 2016,0.0021,0.00192582,0.00205838,0.00201366,0.47183832,236.06096349,0.00199879
+Tue Nov 29 19:00:00 EST 2016,0.00210809,0.0016,0.00201998,0.00180002,1.42433222,772.9671843,0.00184268
+Wed Nov 30 19:00:00 EST 2016,0.0021,0.00162001,0.00180332,0.00179619,0.73076277,399.14003147,0.00183084
+Thu Dec 01 19:00:00 EST 2016,0.0018725,0.00163816,0.0017962,0.00175876,0.12834128,73.72516684,0.0017408
+Fri Dec 02 19:00:00 EST 2016,0.00191783,0.00161001,0.00172312,0.00179027,0.35667117,211.61622676,0.00168546
+Sat Dec 03 19:00:00 EST 2016,0.0018113,0.00160334,0.00177715,0.00160335,0.17183054,104.89632883,0.00163809
+Sun Dec 04 19:00:00 EST 2016,0.00174486,0.00162527,0.00167636,0.00174486,0.14013253,81.62338313,0.00171681
+Mon Dec 05 19:00:00 EST 2016,0.00174487,0.00165224,0.00172704,0.00165225,0.0536516,32.21078331,0.00166564
+Tue Dec 06 19:00:00 EST 2016,0.0022039,0.00166601,0.00166601,0.00193324,1.76012854,849.64490407,0.0020716
+Wed Dec 07 19:00:00 EST 2016,0.00189048,0.00165224,0.00189048,0.00172783,0.68849754,386.94058622,0.00177933
+Thu Dec 08 19:00:00 EST 2016,0.00197309,0.00170118,0.00175982,0.00193576,0.43062149,237.11162402,0.00181611
+Fri Dec 09 19:00:00 EST 2016,0.00207207,0.00188616,0.00191799,0.00200369,0.48560489,242.96299702,0.00199867
+Sat Dec 10 19:00:00 EST 2016,0.00202611,0.00194387,0.00200582,0.00200395,0.01981256,10.04759787,0.00197187
+Sun Dec 11 19:00:00 EST 2016,0.00216518,0.00193585,0.00199765,0.0019609,0.14848768,71.72629237,0.00207019
+Mon Dec 12 19:00:00 EST 2016,0.00199776,0.0017,0.0019558,0.00196562,1.21534523,664.66096226,0.00182851
+Tue Dec 13 19:00:00 EST 2016,0.00197753,0.00175582,0.00197753,0.00185344,0.81367259,429.10250975,0.00189621
+Wed Dec 14 19:00:00 EST 2016,0.0019999,0.00170828,0.00185182,0.00170828,0.43344809,236.76580718,0.0018307
+Thu Dec 15 19:00:00 EST 2016,0.00199999,0.00176341,0.00176342,0.00194031,0.38094455,199.37545735,0.00191068
+Fri Dec 16 19:00:00 EST 2016,0.00235686,0.00187686,0.0019403,0.0020895,0.74206426,349.04443174,0.00212598
+Sat Dec 17 19:00:00 EST 2016,0.00206881,0.0018,0.00206881,0.00184649,0.26254546,138.07697976,0.00190144
+Sun Dec 18 19:00:00 EST 2016,0.00247999,0.00184104,0.00184104,0.0022,0.7770098,375.36006504,0.00207003
+Mon Dec 19 19:00:00 EST 2016,0.0022,0.00201,0.00214712,0.00210884,0.22625644,109.7091308,0.00206233
+Tue Dec 20 19:00:00 EST 2016,0.0020807,0.00190005,0.0020807,0.00200288,0.21974363,110.04454813,0.00199686
+Wed Dec 21 19:00:00 EST 2016,0.00197065,0.00172,0.00197065,0.00181267,0.37161993,203.8509853,0.00182299
+Thu Dec 22 19:00:00 EST 2016,0.00181267,0.00105578,0.00181267,0.00152616,1.50830778,1112.8545897,0.00135535
+Fri Dec 23 19:00:00 EST 2016,0.00155827,0.0015,0.00152617,0.0015,0.10215509,66.40226122,0.00153842
+Sat Dec 24 19:00:00 EST 2016,0.00150007,0.0012,0.0015,0.00135344,0.22943865,167.9914309,0.00136577
+Sun Dec 25 19:00:00 EST 2016,0.00137537,0.00134069,0.00135343,0.00137434,0.07979124,58.64144663,0.00136066
+Mon Dec 26 19:00:00 EST 2016,0.00141559,0.001301,0.00137537,0.00135347,0.15430364,117.50336182,0.00131318
+Tue Dec 27 19:00:00 EST 2016,0.00135348,0.00128129,0.00133517,0.00133476,0.00953742,7.22349587,0.00132033
+Wed Dec 28 19:00:00 EST 2016,0.00133473,0.00110063,0.00131284,0.0011633,0.21680519,179.6244701,0.00120699
+Thu Dec 29 19:00:00 EST 2016,0.00198361,0.00120298,0.00120298,0.0016069,2.51139438,1709.56471584,0.00146902
+Fri Dec 30 19:00:00 EST 2016,0.00162008,0.00140001,0.00160366,0.00146696,0.37940441,253.92762626,0.00149414
+Sat Dec 31 19:00:00 EST 2016,0.00158463,0.00137335,0.00147725,0.00144665,0.22311229,153.5835723,0.0014527
+Sun Jan 01 19:00:00 EST 2017,0.0018,0.00125795,0.00144423,0.00135138,0.51438399,340.36624635,0.00151126
+Mon Jan 02 19:00:00 EST 2017,0.00139643,0.00125798,0.0013733,0.00131124,0.21110823,162.43413381,0.00129965
+Tue Jan 03 19:00:00 EST 2017,0.001348,0.00110003,0.00131125,0.00126513,2.05696123,1768.12615115,0.00116335
+Wed Jan 04 19:00:00 EST 2017,0.00168636,0.00113696,0.00125709,0.00147132,7.58782604,5185.25703613,0.00146334
+Thu Jan 05 19:00:00 EST 2017,0.001797,0.00148653,0.0015,0.00176486,0.20865109,125.1953507,0.0016666
+Fri Jan 06 19:00:00 EST 2017,0.002,0.00158214,0.00176844,0.0017534,2.25489814,1198.36415808,0.00188164
+Sat Jan 07 19:00:00 EST 2017,0.0017769,0.00150053,0.00177689,0.00169363,0.14003541,87.26994495,0.00160462
+Sun Jan 08 19:00:00 EST 2017,0.00176875,0.00156735,0.00169363,0.00162091,0.16957174,102.46468514,0.00165492
+Mon Jan 09 19:00:00 EST 2017,0.00176876,0.00158237,0.00166139,0.00162717,0.04324224,25.69783434,0.00168271
+Tue Jan 10 19:00:00 EST 2017,0.00168107,0.00150051,0.00160816,0.00157386,0.10784912,69.32640295,0.00155567
+Wed Jan 11 19:00:00 EST 2017,0.00168104,0.00157386,0.00160685,0.00157386,0.08615772,53.8122706,0.00160107
+Thu Jan 12 19:00:00 EST 2017,0.0017601,0.00157388,0.0015916,0.00159014,0.59786163,357.17307216,0.00167387
+Fri Jan 13 19:00:00 EST 2017,0.00229999,0.00159483,0.00162434,0.00186652,1.86937235,985.81572487,0.00189626
+Sat Jan 14 19:00:00 EST 2017,0.00224489,0.00179224,0.00185897,0.00193913,0.80732923,405.63878985,0.00199026
+Sun Jan 15 19:00:00 EST 2017,0.00216,0.00174522,0.00196951,0.00191166,0.34139273,176.9859213,0.00192892
+Mon Jan 16 19:00:00 EST 2017,0.00229999,0.00172002,0.00197868,0.00194194,2.24281425,1098.5229594,0.00204166
+Tue Jan 17 19:00:00 EST 2017,0.00199,0.00184329,0.00191492,0.00199,0.12903793,65.98738105,0.00195549
+Wed Jan 18 19:00:00 EST 2017,0.00283002,0.00167306,0.00205744,0.00196154,10.86204379,4854.3183038,0.0022376
+Thu Jan 19 19:00:00 EST 2017,0.00205729,0.00176539,0.00196154,0.00196134,0.49135873,255.92733253,0.00191991
+Fri Jan 20 19:00:00 EST 2017,0.00201646,0.00174999,0.00189298,0.00184349,0.1790227,95.9591023,0.00186561
+Sat Jan 21 19:00:00 EST 2017,0.00191,0.00180645,0.001845,0.00186554,0.0867387,47.06862699,0.00184281
+Sun Jan 22 19:00:00 EST 2017,0.00187999,0.0016741,0.00185981,0.00182697,0.37772977,215.01181756,0.00175678
+Mon Jan 23 19:00:00 EST 2017,0.00182094,0.00172651,0.00182007,0.00174645,0.28448613,160.54125551,0.00177204
+Tue Jan 24 19:00:00 EST 2017,0.00183317,0.00161578,0.001749,0.00168012,0.52411726,302.77125799,0.00173106
+Wed Jan 25 19:00:00 EST 2017,0.00178778,0.00167294,0.00167294,0.00173574,0.33076189,188.51124925,0.0017546
+Thu Jan 26 19:00:00 EST 2017,0.00175228,0.0016225,0.00173575,0.00171781,0.72242845,427.5677561,0.00168962
+Fri Jan 27 19:00:00 EST 2017,0.00215558,0.00171663,0.00171663,0.00204394,0.92892478,475.76394167,0.00195249
+Sat Jan 28 19:00:00 EST 2017,0.00236036,0.00199503,0.00204705,0.00226273,1.11608403,508.05350643,0.00219678
+Sun Jan 29 19:00:00 EST 2017,0.00409744,0.002,0.00229825,0.00236999,47.18276929,16241.54676414,0.00290506
+Mon Jan 30 19:00:00 EST 2017,0.002353,0.002,0.00231126,0.0021099,12.11108511,5681.12312807,0.00213181
+Tue Jan 31 19:00:00 EST 2017,0.00270348,0.00199429,0.00210992,0.00224278,14.76206441,6304.1060404,0.00234165
+Wed Feb 01 19:00:00 EST 2017,0.00249,0.00219908,0.00222954,0.00229334,4.04541554,1782.9406169,0.00226895
+Thu Feb 02 19:00:00 EST 2017,0.0029,0.00223007,0.00225567,0.00231853,16.94096465,6671.06637959,0.00253946
+Fri Feb 03 19:00:00 EST 2017,0.00247174,0.002245,0.00231472,0.00247174,3.1480919,1357.49796502,0.00231903
+Sat Feb 04 19:00:00 EST 2017,0.00375,0.00241044,0.00246347,0.00330404,25.58716225,8002.7300358,0.0031973
+Sun Feb 05 19:00:00 EST 2017,0.0038,0.00312997,0.00323197,0.00351053,7.29217013,2137.34118907,0.00341179
+Mon Feb 06 19:00:00 EST 2017,0.00348569,0.00295008,0.00345007,0.0031886,4.51720563,1451.77698223,0.0031115
+Tue Feb 07 19:00:00 EST 2017,0.00333207,0.00268631,0.0031094,0.00319988,5.51115323,1875.55931769,0.0029384
+Wed Feb 08 19:00:00 EST 2017,0.00359558,0.00302443,0.00308771,0.0035611,3.27414517,970.7734623,0.00337271
+Thu Feb 09 19:00:00 EST 2017,0.00356109,0.0032,0.00342926,0.00333,1.16025679,346.22857609,0.00335112
+Fri Feb 10 19:00:00 EST 2017,0.00354998,0.00331639,0.00332999,0.00331901,0.93835656,276.54769255,0.0033931
+Sat Feb 11 19:00:00 EST 2017,0.00353998,0.003319,0.00334652,0.0035,0.96419284,277.05851363,0.0034801
+Sun Feb 12 19:00:00 EST 2017,0.00352997,0.0029777,0.00350001,0.00325504,1.79345586,546.07953412,0.00328423
+Mon Feb 13 19:00:00 EST 2017,0.0034,0.0030575,0.00326776,0.00322173,1.32785441,419.10738137,0.00316829
+Tue Feb 14 19:00:00 EST 2017,0.00320421,0.00288001,0.00320421,0.00300502,1.93581022,635.09059667,0.00304808
+Wed Feb 15 19:00:00 EST 2017,0.00315199,0.003005,0.00304965,0.00308573,0.64624506,209.91433244,0.00307861
+Thu Feb 16 19:00:00 EST 2017,0.00352997,0.00306,0.00306,0.003529,4.22254895,1252.48438319,0.00337133
+Fri Feb 17 19:00:00 EST 2017,0.00352923,0.00292183,0.00345361,0.00341076,5.2304606,1580.33899951,0.0033097
+Sat Feb 18 19:00:00 EST 2017,0.00351979,0.00330773,0.00338438,0.00341203,1.31848001,389.20011264,0.00338766
+Sun Feb 19 19:00:00 EST 2017,0.00339999,0.00320001,0.00338423,0.00325001,0.73547014,221.00349896,0.00332786
+Mon Feb 20 19:00:00 EST 2017,0.00408999,0.00329869,0.00329869,0.00335001,7.93056426,2255.30878274,0.00351639
+Tue Feb 21 19:00:00 EST 2017,0.00361669,0.00311503,0.00335059,0.0032314,4.44113071,1296.96482047,0.00342424
+Wed Feb 22 19:00:00 EST 2017,0.00334956,0.00306,0.00325013,0.00334927,1.47153012,460.41817408,0.00319607
+Thu Feb 23 19:00:00 EST 2017,0.00335468,0.00315,0.00334926,0.00317931,0.86924435,267.91838935,0.00324443
+Fri Feb 24 19:00:00 EST 2017,0.00338494,0.00315,0.00317931,0.00335,0.31126744,96.29770357,0.00323234
+Sat Feb 25 19:00:00 EST 2017,0.00449998,0.0031299,0.00335139,0.00336716,11.88983792,3103.70067876,0.00383085
+Sun Feb 26 19:00:00 EST 2017,0.00349491,0.00315001,0.00337804,0.00317238,2.06251335,628.49457807,0.00328167
+Mon Feb 27 19:00:00 EST 2017,0.00319224,0.0025,0.00317238,0.00314434,3.43084144,1208.23093603,0.00283955
+Tue Feb 28 19:00:00 EST 2017,0.00310371,0.00258683,0.00310371,0.00288644,0.59667289,215.65416143,0.0027668
+Wed Mar 01 19:00:00 EST 2017,0.00303295,0.00250001,0.0028457,0.00250001,1.05222655,387.54659897,0.00271509
+Thu Mar 02 19:00:00 EST 2017,0.00258236,0.00216874,0.00258234,0.00229697,0.75685598,315.75620014,0.00239696
+Fri Mar 03 19:00:00 EST 2017,0.00253525,0.00229043,0.00229043,0.00240001,0.3052913,123.78816795,0.00246623
+Sat Mar 04 19:00:00 EST 2017,0.00314435,0.00243862,0.00243862,0.00309832,3.62586712,1303.0584654,0.00278258
+Sun Mar 05 19:00:00 EST 2017,0.00370104,0.0030946,0.0031002,0.00326653,9.12279761,2793.80844071,0.00326536
+Mon Mar 06 19:00:00 EST 2017,0.00326327,0.00296855,0.00326327,0.00296855,2.00824167,653.21026129,0.00307441
+Tue Mar 07 19:00:00 EST 2017,0.00309085,0.00214003,0.00296558,0.00259334,4.74495406,1919.7719451,0.00247162
+Wed Mar 08 19:00:00 EST 2017,0.002791,0.00235822,0.00259738,0.00268315,3.68207336,1426.5332107,0.00258113
+Thu Mar 09 19:00:00 EST 2017,0.00268315,0.00210375,0.00258232,0.00241041,1.91018751,829.80331058,0.00230197
+Fri Mar 10 19:00:00 EST 2017,0.0025999,0.00228301,0.00234823,0.00244642,1.84298979,751.08016663,0.00245378
+Sat Mar 11 19:00:00 EST 2017,0.00260001,0.00241636,0.00251,0.00246425,0.31273692,124.14056593,0.00251921
+Sun Mar 12 20:00:00 EDT 2017,0.00265,0.00205004,0.00243561,0.00244208,3.54407917,1490.80623221,0.00237729
+Mon Mar 13 20:00:00 EDT 2017,0.00259696,0.00238937,0.00243742,0.00251333,0.54553155,220.08883066,0.00247868
+Tue Mar 14 20:00:00 EDT 2017,0.00270813,0.00248946,0.00249342,0.00270813,1.02856855,388.78096735,0.00264562
+Wed Mar 15 20:00:00 EDT 2017,0.00300755,0.002586,0.00265587,0.00300755,2.35156701,832.54014531,0.00282456
+Thu Mar 16 20:00:00 EDT 2017,0.0032,0.00265897,0.0029918,0.00272042,4.89340309,1700.23374666,0.00287807
+Fri Mar 17 20:00:00 EDT 2017,0.00332503,0.00272081,0.00280679,0.00308893,3.43573141,1113.6022567,0.00308524
+Sat Mar 18 20:00:00 EDT 2017,0.00339515,0.0026361,0.00308893,0.00324859,2.68858697,886.74263398,0.00303198
+Sun Mar 19 20:00:00 EDT 2017,0.00332268,0.00277626,0.00324813,0.00300001,1.75006879,589.27959681,0.00296984
+Mon Mar 20 20:00:00 EDT 2017,0.0036,0.0027376,0.00300001,0.00291852,4.20488131,1314.73411584,0.00319827
+Tue Mar 21 20:00:00 EDT 2017,0.00307646,0.00292465,0.00292466,0.00303044,0.48058337,160.66920112,0.00299113
+Wed Mar 22 20:00:00 EDT 2017,0.00332201,0.00299889,0.00303042,0.00302222,2.51966917,798.60127228,0.0031551
+Thu Mar 23 20:00:00 EDT 2017,0.00376699,0.0029989,0.00301919,0.00323266,5.95894763,1711.58396634,0.00348153
+Fri Mar 24 20:00:00 EDT 2017,0.00389999,0.00306859,0.00341719,0.00374552,22.87304167,6383.28668014,0.00358327
+Sat Mar 25 20:00:00 EDT 2017,0.00466,0.0034,0.00374615,0.00394592,11.64822607,2965.08454041,0.00392846
+Sun Mar 26 20:00:00 EDT 2017,0.1304543,0.00398282,0.00398282,0.083351,10340.90593018,259849.3864467,0.03979576
+Mon Mar 27 20:00:00 EDT 2017,0.0956,0.0363477,0.083351,0.05825,11221.59821048,169653.31896858,0.06614428
+Tue Mar 28 20:00:00 EDT 2017,0.05872244,0.02253258,0.05850001,0.027876,1366.16352984,37776.3805091,0.03616448
+Wed Mar 29 20:00:00 EDT 2017,0.07489895,0.025,0.02797699,0.042,3465.29816604,73604.41952186,0.04708002
+Thu Mar 30 20:00:00 EDT 2017,0.049786,0.03400001,0.0421,0.04067574,777.27968024,18487.77649658,0.04204289
+Fri Mar 31 20:00:00 EDT 2017,0.04268561,0.03620001,0.04067569,0.0385,192.163192,4893.71943655,0.0392673
+Sat Apr 01 20:00:00 EDT 2017,0.0394,0.03000001,0.0385,0.03000003,229.41507983,6673.80028205,0.03437547
+Sun Apr 02 20:00:00 EDT 2017,0.033456,0.024765,0.03000005,0.02499983,138.0872163,4927.26860039,0.0280251
+Mon Apr 03 20:00:00 EDT 2017,0.02636612,0.02004628,0.02499983,0.02082927,108.12242899,4804.23681882,0.02250564
+Tue Apr 04 20:00:00 EDT 2017,0.04999,0.02062097,0.02091961,0.03646001,1429.96761663,36693.94381574,0.03897012
+Wed Apr 05 20:00:00 EDT 2017,0.0388,0.02674403,0.03646106,0.03022917,289.72385502,8803.08799836,0.03291161
+Thu Apr 06 20:00:00 EDT 2017,0.03446815,0.0292113,0.03022867,0.03139181,106.80654223,3384.54676349,0.03155711
+Fri Apr 07 20:00:00 EDT 2017,0.03560725,0.03000001,0.03128557,0.03380873,78.99644429,2428.18011557,0.03253318
+Sat Apr 08 20:00:00 EDT 2017,0.03420218,0.03,0.03380871,0.03073414,29.72656445,928.00249962,0.03203284
+Sun Apr 09 20:00:00 EDT 2017,0.03769599,0.03058001,0.03082805,0.03221369,75.73319796,2235.2006133,0.03388205
+Mon Apr 10 20:00:00 EDT 2017,0.03297991,0.02951001,0.03240827,0.03,73.43011399,2376.64901168,0.03089649
+Tue Apr 11 20:00:00 EDT 2017,0.03126,0.0282,0.03003039,0.03125987,49.62289421,1653.86348235,0.03000422
+Wed Apr 12 20:00:00 EDT 2017,0.03509998,0.03,0.03125985,0.03150013,100.61813077,3102.66303713,0.0324296
+Thu Apr 13 20:00:00 EDT 2017,0.03324695,0.0298,0.03150013,0.03100007,64.76468966,2079.69082498,0.03114149
+Fri Apr 14 20:00:00 EDT 2017,0.03177,0.02999993,0.03100007,0.03110982,30.79498119,1000.29066325,0.03078603
+Sat Apr 15 20:00:00 EDT 2017,0.03404753,0.03026763,0.03101519,0.0330698,70.0814973,2208.15868748,0.03173752
+Sun Apr 16 20:00:00 EDT 2017,0.04049145,0.0315,0.03236355,0.03300009,283.35836916,7889.04769481,0.03591794
+Mon Apr 17 20:00:00 EDT 2017,0.044,0.03149999,0.03300219,0.04228758,540.90041628,13948.6677057,0.03877792
+Tue Apr 18 20:00:00 EDT 2017,0.05900002,0.040262,0.042,0.04513469,1023.68176003,20725.86088569,0.04939151
+Wed Apr 19 20:00:00 EDT 2017,0.04749997,0.0352462,0.04513469,0.03965809,150.36779793,3702.51556184,0.04061233
+Thu Apr 20 20:00:00 EDT 2017,0.04253472,0.0371,0.03965791,0.03960284,85.43899209,2153.54135535,0.03967371
+Fri Apr 21 20:00:00 EDT 2017,0.0411579,0.03802,0.03960284,0.03918215,40.72993118,1031.92244914,0.03946995
+Sat Apr 22 20:00:00 EDT 2017,0.03917935,0.0351,0.03917933,0.03735578,80.50737634,2174.68203962,0.03702029
+Sun Apr 23 20:00:00 EDT 2017,0.03980611,0.0355,0.03735779,0.03746969,58.66552809,1568.37306767,0.03740534
+Mon Apr 24 20:00:00 EDT 2017,0.03779907,0.0340903,0.0375019,0.0358501,62.88910287,1749.21962934,0.03595266
+Tue Apr 25 20:00:00 EDT 2017,0.0358501,0.023,0.0358501,0.0295406,140.31300538,4563.22775064,0.03074863
+Wed Apr 26 20:00:00 EDT 2017,0.0326768,0.0270078,0.0295738,0.03142754,80.94571331,2680.84880166,0.03019406
+Thu Apr 27 20:00:00 EDT 2017,0.03279934,0.02748769,0.031463,0.03112254,65.73099635,2107.18675366,0.03119372
+Fri Apr 28 20:00:00 EDT 2017,0.0376,0.0295506,0.03112255,0.03420392,125.63083942,3753.49294508,0.03347038
+Sat Apr 29 20:00:00 EDT 2017,0.0425,0.033575,0.03421099,0.03759805,324.54070619,8370.01086911,0.03877422
+Sun Apr 30 20:00:00 EDT 2017,0.03776699,0.03150001,0.03759805,0.03246401,123.06731923,3496.84290975,0.03519383
+Mon May 01 20:00:00 EDT 2017,0.035,0.03016313,0.03240486,0.03302,53.06355958,1648.7019031,0.03218505
+Tue May 02 20:00:00 EDT 2017,0.03495798,0.03016313,0.03322622,0.03269905,45.42022165,1421.11915373,0.03196088
+Wed May 03 20:00:00 EDT 2017,0.03425,0.03086224,0.03208721,0.0333305,57.36139208,1765.57581697,0.03248877
+Thu May 04 20:00:00 EDT 2017,0.03382648,0.03081399,0.03342679,0.0321416,143.10798155,4483.7387427,0.0319171
+Fri May 05 20:00:00 EDT 2017,0.04004,0.0316982,0.03256675,0.03607,230.30862302,6450.02522805,0.03570662
+Sat May 06 20:00:00 EDT 2017,0.04094,0.0353,0.036,0.03598001,151.82802461,3983.97018388,0.03810972
+Sun May 07 20:00:00 EDT 2017,0.039,0.03300007,0.03615009,0.03450049,76.09257861,2124.07203288,0.03582391

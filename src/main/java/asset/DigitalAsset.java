@@ -15,12 +15,16 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.DigitalMarket;
 import market.Market;
+import price.PriceList;
 import speculator.Speculator;
 import util.DateUtils;
+import util.FileParser;
 import util.SaveToFile;
 
 public class DigitalAsset implements Asset {
 	
+	Date date;
+
 	public static final MarketDataService dataService 	= DigitalMarket.exchange.getMarketDataService();
 	
 	String marketName;
@@ -74,11 +78,17 @@ public class DigitalAsset implements Asset {
 		long date = new Date().getTime() / 1000;
 		CurrencyPair currencyPair = new CurrencyPair(this.assetName);
 		try {
-			this.priceList = Arrays
+			priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - Speculator.DAYS * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
-			SaveToFile.writeAssetPriceListToFile(this, priceList);
+			PriceList pl;
+			List<String> plist = new ArrayList<>();
+			for(PoloniexChartData p : priceList){
+				pl = new PriceList(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume(), p.getQuoteVolume(), p.getWeightedAverage());
+				plist.add(pl.toString());
+			}
+			SaveToFile.writeAssetPriceListToFile(this, plist);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -86,7 +96,6 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public void setOfflinePriceList() {
-		
 		
 	}
 
