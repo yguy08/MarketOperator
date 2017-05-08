@@ -16,11 +16,12 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 import market.DigitalMarket;
 import market.Market;
 import speculator.Speculator;
+import util.DateUtils;
 import util.SaveToFile;
 
 public class DigitalAsset implements Asset {
 	
-	public static final MarketDataService dataService 	= DigitalMarket.exchange.getMarketDataService();
+	//public static final MarketDataService dataService 	= DigitalMarket.exchange.getMarketDataService();
 	
 	String marketName;
 	String assetName;
