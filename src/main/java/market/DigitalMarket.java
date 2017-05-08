@@ -19,7 +19,7 @@ import asset.AssetFactory;
 public class DigitalMarket implements Market {
 	
 	//poloniex exchange from xchange library
-	public static final Exchange exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
+	//public static final Exchange exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	
 	//market name
 	private String marketName;
