@@ -3,6 +3,8 @@ package vault;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
+
 import asset.Asset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,13 +54,17 @@ public class VaultMainController implements Initializable, ControlledScreen {
 		for(Asset a : m.getAssetList()){
 			mainListItems.add(a.getAssetName());
 		}
-			
+		
 		mainListView.setItems(mainListItems);
 	}
 	
 	@FXML
 	protected void showOpenPositions(ActionEvent ev){
-
+		Market m = VaultMain.getMarket();
+		for(Asset a : m.getAssetList()){
+			String s = a.getPriceList().get(a.getPriceList().size()-1).toString();
+			mainListItems.add(s.toString());
+		}
 	}
 	
 	@FXML
