@@ -2,6 +2,11 @@ package asset;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -15,7 +20,7 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.DigitalMarket;
 import market.Market;
-import price.PriceList;
+import price.PoloniexPriceList;
 import speculator.Speculator;
 import util.DateUtils;
 import util.FileParser;
@@ -25,7 +30,7 @@ public class DigitalAsset implements Asset {
 	
 	Date date;
 
-	public static final MarketDataService dataService 	= DigitalMarket.exchange.getMarketDataService();
+	//public static final MarketDataService dataService = DigitalMarket.exchange.getMarketDataService();
 	
 	String marketName;
 	String assetName;
@@ -56,10 +61,10 @@ public class DigitalAsset implements Asset {
 		DigitalAsset digitalAsset = new DigitalAsset();
 		digitalAsset.setMarketName(market.getMarketName());
 		digitalAsset.setAssetName(assetName);
-		//digitalAsset.setOfflinePriceList();
-		//digitalAsset.setCloseList();
-		//digitalAsset.setLowList();
-		//digitalAsset.setHighList();
+		digitalAsset.setOfflinePriceList();
+		digitalAsset.setCloseList();
+		digitalAsset.setLowList();
+		digitalAsset.setHighList();
 		return digitalAsset;
 	}
 
@@ -82,10 +87,10 @@ public class DigitalAsset implements Asset {
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - Speculator.DAYS * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
-			PriceList pl;
+			PoloniexPriceList pl;
 			List<String> plist = new ArrayList<>();
 			for(PoloniexChartData p : priceList){
-				pl = new PriceList(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume(), p.getQuoteVolume(), p.getWeightedAverage());
+				pl = new PoloniexPriceList(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume(), p.getQuoteVolume(), p.getWeightedAverage());
 				plist.add(pl.toString());
 			}
 			SaveToFile.writeAssetPriceListToFile(this, plist);
@@ -96,6 +101,28 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public void setOfflinePriceList() {
+		List<String> pcd = new ArrayList<>();
+		String fileName = this.getAssetName().replace("/", "") + ".txt";
+		URL resourceUrl = getClass().getResource(fileName);
+		PoloniexChartData pl;
+		try {
+			pcd = Files.readAllLines(Paths.get(resourceUrl.toURI()));
+			for(String p : pcd){
+				String[] arr = p.split(",");
+				pl = PoloniexPriceList.createPoloOfflinePriceList(arr);
+				priceList.add(pl);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 
