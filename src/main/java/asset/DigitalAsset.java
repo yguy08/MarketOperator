@@ -30,7 +30,7 @@ public class DigitalAsset implements Asset {
 	
 	Date date;
 
-	//public static final MarketDataService dataService = DigitalMarket.exchange.getMarketDataService();
+	public static final MarketDataService dataService = DigitalMarket.exchange.getMarketDataService();
 	
 	String marketName;
 	String assetName;
