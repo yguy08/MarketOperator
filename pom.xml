@@ -10,15 +10,9 @@
   		<version>4.2.0</version>
 	</dependency>
 		<dependency>
-<<<<<<< HEAD
   			<groupId>org.knowm.xchange</groupId>
   			<artifactId>xchange-poloniex</artifactId>
   			<version>4.2.0</version>
-=======
-  <groupId>org.knowm.xchange</groupId>
-  	<artifactId>xchange-poloniex</artifactId>
-  	<version>4.2.0</version>
->>>>>>> origin
 	</dependency>
 	<dependency>
     	<groupId>com.yahoofinance-api</groupId>

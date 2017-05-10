@@ -1,7 +1,6 @@
 package speculate;
 
 import java.math.BigDecimal;
-import vault.Vault;
 
 public interface Speculate {
 
@@ -38,14 +37,6 @@ public interface Speculate {
 	void setTotalReturnPercent();
 	
 	BigDecimal getTotalReturnPercent();
-	
-	void getAllOpenPositions(Vault vault, Speculate speculate);
-	
-	void getNewEntries(Vault vault, Speculate speculate);
-	
-	void getPositionsToClose(Vault vault, Speculate speculate);
-
-	void runBackTest(Vault vault, Speculate speculate);
 	
 	int getEntryDays();
 	
