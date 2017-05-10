@@ -3,6 +3,8 @@ package asset;
 import java.math.BigDecimal;
 import java.util.List;
 
+import market.Market;
+
 public interface Asset {
 
 	void setAssetName(String assetName);
@@ -36,5 +38,7 @@ public interface Asset {
 	void setMarketName(String marketName);	
 	
 	void setOfflinePriceList();
+	
+	void setMarketDataService(Market market);
 
 }

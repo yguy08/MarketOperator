@@ -18,19 +18,16 @@ import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
-import market.DigitalMarket;
 import market.Market;
 import price.PoloniexPriceList;
 import speculator.Speculator;
-import util.DateUtils;
-import util.FileParser;
 import util.SaveToFile;
 
 public class DigitalAsset implements Asset {
 	
 	Date date;
 
-	public static final MarketDataService dataService = DigitalMarket.exchange.getMarketDataService();
+	public MarketDataService dataService;
 	
 	String marketName;
 	String assetName;
@@ -49,6 +46,7 @@ public class DigitalAsset implements Asset {
 		DigitalAsset digitalAsset = new DigitalAsset();
 		digitalAsset.setMarketName(market.getMarketName());
 		digitalAsset.setAssetName(assetName);
+		digitalAsset.setMarketDataService(market);
 		digitalAsset.setPriceList();
 		digitalAsset.setCloseList();
 		digitalAsset.setLowList();
@@ -195,6 +193,11 @@ public class DigitalAsset implements Asset {
 	@Override
 	public void setMarketName(String marketName) {
 		this.marketName = marketName;
+	}
+
+	@Override
+	public void setMarketDataService(Market market) {
+		 dataService = market.getExchange().getMarketDataService();
 	}
 
 }
