@@ -1,0 +1,733 @@
+***** START BACKTEST:  Date: 2016-05-31 Balance: 4 Entry: 25 Exit: 10 Units: 8 Risk: 1.0% Stop: 2
+DATE: 2016-05-31
+[ENTRY]  [$NEOS/BTC] Date: 2016-05-31 Price:0.00008365 Direction:Long ATR: 0.0000101 Unit Size: 3959 Total: 0.33117040 Stop: 0.00006345 Volume: 123.07568837
+DATE: 2016-06-01
+DATE: 2016-06-02
+DATE: 2016-06-03
+[ENTRY]  [$NAUT/BTC] Date: 2016-06-03 Price:0.00006106 Direction:Long ATR: 0.00000887 Unit Size: 4510 Total: 0.27538060 Stop: 0.00004332 Volume: 32.96200121
+DATE: 2016-06-04
+DATE: 2016-06-05
+[ENTRY]  [$SC/BTC] Date: 2016-06-05 Price:0.00000074 Direction:Long ATR: 0.00000008 Unit Size: 485829 Total: 0.35951350 Stop: 0.00000058 Volume: 414.10787523
+[POSITION] NEOS/BTC Open:false Entry [Date:2016-05-31 Price: 0.00008365] Close [Date: 2016-06-05 Price: 0.00005736] P/L [%: -31.43% Amount: -0.1166] High: [0.00009034] Low: [0.00002001]
+ [ACCOUNT]  Balance: 3.88 Total Return: -3.00% Units: 02
+DATE: 2016-06-06
+[POSITION] NAUT/BTC Open:false Entry [Date:2016-06-03 Price: 0.00006106] Close [Date: 2016-06-06 Price: 0.00004164] P/L [%: -31.80% Amount: -0.1180] High: [0.00006106] Low: [0.00002835]
+ [ACCOUNT]  Balance: 3.77 Total Return: -6.00% Units: 01
+DATE: 2016-06-07
+DATE: 2016-06-08
+DATE: 2016-06-09
+[ENTRY]  [$XCP/BTC] Date: 2016-06-09 Price:0.00418381 Direction:Long ATR: 0.00051471 Unit Size: 77 Total: 0.32215340 Stop: 0.00315438 Volume: 216.8080476
+[ENTRY]  [$VRC/BTC] Date: 2016-06-09 Price:0.0001011 Direction:Long ATR: 0.00001032 Unit Size: 3877 Total: 0.39196470 Stop: 0.00008047 Volume: 158.92246884
+DATE: 2016-06-10
+DATE: 2016-06-11
+[POSITION] XCP/BTC Open:false Entry [Date:2016-06-09 Price: 0.00418381] Close [Date: 2016-06-11 Price: 0.0031531] P/L [%: -24.64% Amount: -0.0914] High: [0.00418381] Low: [0.00283001]
+ [ACCOUNT]  Balance: 3.67 Total Return: -8.00% Units: 02
+DATE: 2016-06-12
+[POSITION] VRC/BTC Open:false Entry [Date:2016-06-09 Price: 0.0001011] Close [Date: 2016-06-12 Price: 0.00006879] P/L [%: -31.96% Amount: -0.1186] High: [0.0001011] Low: [0.0000562]
+ [ACCOUNT]  Balance: 3.56 Total Return: -11.00% Units: 01
+DATE: 2016-06-13
+DATE: 2016-06-14
+DATE: 2016-06-15
+[ENTRY]  [$GAME/BTC] Date: 2016-06-15 Price:0.00008088 Direction:Long ATR: 0.00001304 Unit Size: 3067 Total: 0.24805900 Stop: 0.0000548 Volume: 39.72329829
+DATE: 2016-06-16
+DATE: 2016-06-17
+[ENTRY]  [$NAUT/BTC] Date: 2016-06-17 Price:0.00007233 Direction:Long ATR: 0.00001185 Unit Size: 3376 Total: 0.24418610 Stop: 0.00004864 Volume: 63.22506989
+[ENTRY]  [$XMR/BTC] Date: 2016-06-17 Price:0.00237826 Direction:Long ATR: 0.00017206 Unit Size: 232 Total: 0.55175630 Stop: 0.00203415 Volume: 794.33707849
+DATE: 2016-06-18
+[ENTRY]  [$XEM/BTC] Date: 2016-06-18 Price:0.00000405 Direction:Long ATR: 0.00000031 Unit Size: 128849 Total: 0.52183840 Stop: 0.00000343 Volume: 185.01494888
+DATE: 2016-06-19
+DATE: 2016-06-20
+[ENTRY]  [$NXT/BTC] Date: 2016-06-20 Price:0.00001669 Direction:Long ATR: 0.00000148 Unit Size: 27099 Total: 0.45228230 Stop: 0.00001374 Volume: 334.60552934
+DATE: 2016-06-21
+[ENTRY]  [$AMP/BTC] Date: 2016-06-21 Price:0.00009746 Direction:Long ATR: 0.00001624 Unit Size: 2463 Total: 0.24004400 Stop: 0.00006498 Volume: 38.93559508
+DATE: 2016-06-22
+[ENTRY]  [$XRP/BTC] Date: 2016-06-22 Price:0.00001143 Direction:Long ATR: 0.00000124 Unit Size: 32185 Total: 0.36787460 Stop: 0.00000894 Volume: 2656.7470059
+DATE: 2016-06-23
+DATE: 2016-06-24
+DATE: 2016-06-25
+DATE: 2016-06-26
+DATE: 2016-06-27
+[POSITION] XMR/BTC Open:false Entry [Date:2016-06-17 Price: 0.00237826] Close [Date: 2016-06-27 Price: 0.0022575] P/L [%: -5.08% Amount: -0.0188] High: [0.00268582] Low: [0.0022575]
+ [ACCOUNT]  Balance: 3.54 Total Return: -12.00% Units: 07
+DATE: 2016-06-28
+[ENTRY]  [$RADS/BTC] Date: 2016-06-28 Price:0.0004875 Direction:Long ATR: 0.00007071 Unit Size: 565 Total: 0.27543750 Stop: 0.00034607 Volume: 21.62423455
+DATE: 2016-06-29
+DATE: 2016-06-30
+[POSITION] SC/BTC Open:false Entry [Date:2016-06-05 Price: 0.00000074] Close [Date: 2016-06-30 Price: 0.00000115] P/L [%: 55.41% Amount: 0.2056] High: [0.00000173] Low: [0.00000115]
+ [ACCOUNT]  Balance: 3.74 Total Return: -6.00% Units: 07
+DATE: 2016-07-01
+[ENTRY]  [$BURST/BTC] Date: 2016-07-01 Price:0.00000045 Direction:Long ATR: 0.00000005 Unit Size: 747892 Total: 0.33655140 Stop: 0.00000034 Volume: 182.73311892
+DATE: 2016-07-02
+[POSITION] XRP/BTC Open:false Entry [Date:2016-06-22 Price: 0.00001143] Close [Date: 2016-07-02 Price: 0.0000094] P/L [%: -17.76% Amount: -0.0659] High: [0.00001143] Low: [0.0000094]
+ [ACCOUNT]  Balance: 3.68 Total Return: -8.00% Units: 07
+DATE: 2016-07-03
+[POSITION] BURST/BTC Open:false Entry [Date:2016-07-01 Price: 0.00000045] Close [Date: 2016-07-03 Price: 0.00000034] P/L [%: -24.44% Amount: -0.0907] High: [0.00000045] Low: [0.00000026]
+ [ACCOUNT]  Balance: 3.59 Total Return: -10.00% Units: 06
+DATE: 2016-07-04
+DATE: 2016-07-05
+[ENTRY]  [$VTC/BTC] Date: 2016-07-05 Price:0.00007005 Direction:Long ATR: 0.00000918 Unit Size: 4357 Total: 0.30520780 Stop: 0.00005169 Volume: 55.50368465
+[ENTRY]  [$BURST/BTC] Date: 2016-07-05 Price:0.00000049 Direction:Long ATR: 0.00000007 Unit Size: 570157 Total: 0.27937690 Stop: 0.00000035 Volume: 77.16292735
+DATE: 2016-07-06
+DATE: 2016-07-07
+[POSITION] NXT/BTC Open:false Entry [Date:2016-06-20 Price: 0.00001669] Close [Date: 2016-07-07 Price: 0.00002808] P/L [%: 68.24% Amount: 0.2532] High: [0.00003939] Low: [0.00002808]
+ [ACCOUNT]  Balance: 3.84 Total Return: -4.00% Units: 07
+[POSITION] XEM/BTC Open:false Entry [Date:2016-06-18 Price: 0.00000405] Close [Date: 2016-07-07 Price: 0.00001211] P/L [%: 199.01% Amount: 0.7384] High: [0.00002002] Low: [0.00001211]
+ [ACCOUNT]  Balance: 4.58 Total Return: 14.00% Units: 06
+DATE: 2016-07-08
+[ENTRY]  [$BLK/BTC] Date: 2016-07-08 Price:0.00007299 Direction:Long ATR: 0.00000602 Unit Size: 6640 Total: 0.48465360 Stop: 0.00006094 Volume: 472.90080551
+DATE: 2016-07-09
+[ENTRY]  [$BELA/BTC] Date: 2016-07-09 Price:0.0000016 Direction:Long ATR: 0.00000029 Unit Size: 138901 Total: 0.22224160 Stop: 0.00000102 Volume: 25.05972127
+DATE: 2016-07-10
+DATE: 2016-07-11
+DATE: 2016-07-12
+[POSITION] BLK/BTC Open:false Entry [Date:2016-07-08 Price: 0.00007299] Close [Date: 2016-07-12 Price: 0.00006033] P/L [%: -17.34% Amount: -0.0644] High: [0.00007299] Low: [0.00004922]
+ [ACCOUNT]  Balance: 4.51 Total Return: 13.00% Units: 07
+DATE: 2016-07-13
+DATE: 2016-07-14
+[ENTRY]  [$BCY/BTC] Date: 2016-07-14 Price:0.00011892 Direction:Long ATR: 0.00002223 Unit Size: 1798 Total: 0.21381820 Stop: 0.00007445 Volume: 38.93501131
+[POSITION] NAUT/BTC Open:false Entry [Date:2016-06-17 Price: 0.00007233] Close [Date: 2016-07-14 Price: 0.0005979] P/L [%: 726.63% Amount: 2.6961] High: [0.00078478] Low: [0.0005979]
+ [ACCOUNT]  Balance: 7.21 Total Return: 80.00% Units: 07
+DATE: 2016-07-15
+[ENTRY]  [$BTM/BTC] Date: 2016-07-15 Price:0.00014667 Direction:Long ATR: 0.00002007 Unit Size: 1993 Total: 0.29231330 Stop: 0.00010654 Volume: 13.05906789
+[POSITION] BURST/BTC Open:false Entry [Date:2016-07-05 Price: 0.00000049] Close [Date: 2016-07-15 Price: 0.00000043] P/L [%: -12.24% Amount: -0.0454] High: [0.00000049] Low: [0.00000043]
+ [ACCOUNT]  Balance: 7.16 Total Return: 79.00% Units: 07
+DATE: 2016-07-16
+[ENTRY]  [$SYS/BTC] Date: 2016-07-16 Price:0.00001389 Direction:Long ATR: 0.00000138 Unit Size: 29027 Total: 0.40318500 Stop: 0.00001113 Volume: 105.07454932
+DATE: 2016-07-17
+DATE: 2016-07-18
+DATE: 2016-07-19
+DATE: 2016-07-20
+DATE: 2016-07-21
+DATE: 2016-07-22
+[POSITION] VTC/BTC Open:false Entry [Date:2016-07-05 Price: 0.00007005] Close [Date: 2016-07-22 Price: 0.00005714] P/L [%: -18.43% Amount: -0.0684] High: [0.00006795] Low: [0.00005714]
+ [ACCOUNT]  Balance: 7.10 Total Return: 77.00% Units: 07
+DATE: 2016-07-23
+[ENTRY]  [$MAID/BTC] Date: 2016-07-23 Price:0.00012195 Direction:Long ATR: 0.00000991 Unit Size: 4037 Total: 0.49231220 Stop: 0.00010214 Volume: 452.45148031
+DATE: 2016-07-24
+[POSITION] RADS/BTC Open:false Entry [Date:2016-06-28 Price: 0.0004875] Close [Date: 2016-07-24 Price: 0.00055725] P/L [%: 14.31% Amount: 0.0531] High: [0.00069693] Low: [0.00055725]
+ [ACCOUNT]  Balance: 7.15 Total Return: 79.00% Units: 07
+DATE: 2016-07-25
+[POSITION] BCY/BTC Open:false Entry [Date:2016-07-14 Price: 0.00011892] Close [Date: 2016-07-25 Price: 0.00012055] P/L [%: 1.37% Amount: 0.0051] High: [0.00016743] Low: [0.00012055]
+ [ACCOUNT]  Balance: 7.15 Total Return: 79.00% Units: 06
+DATE: 2016-07-26
+[POSITION] GAME/BTC Open:false Entry [Date:2016-06-15 Price: 0.00008088] Close [Date: 2016-07-26 Price: 0.00019883] P/L [%: 145.83% Amount: 0.5411] High: [0.00026198] Low: [0.00019883]
+ [ACCOUNT]  Balance: 7.69 Total Return: 92.00% Units: 05
+DATE: 2016-07-27
+[POSITION] BTM/BTC Open:false Entry [Date:2016-07-15 Price: 0.00014667] Close [Date: 2016-07-27 Price: 0.00024055] P/L [%: 64.01% Amount: 0.2375] High: [0.000389] Low: [0.00024055]
+ [ACCOUNT]  Balance: 7.93 Total Return: 98.00% Units: 04
+DATE: 2016-07-28
+DATE: 2016-07-29
+[ENTRY]  [$FCT/BTC] Date: 2016-07-29 Price:0.00266999 Direction:Long ATR: 0.00023445 Unit Size: 170 Total: 0.45389830 Stop: 0.00220109 Volume: 2177.91257359
+DATE: 2016-07-30
+DATE: 2016-07-31
+[ENTRY]  [$DCR/BTC] Date: 2016-07-31 Price:0.002912 Direction:Long ATR: 0.00308764 Unit Size: 12 Total: 0.03494400 Stop: -0.00326327 Volume: 243.49065043
+[POSITION] AMP/BTC Open:false Entry [Date:2016-06-21 Price: 0.00009746] Close [Date: 2016-07-31 Price: 0.000174] P/L [%: 78.53% Amount: 0.2914] High: [0.0002124] Low: [0.000174]
+ [ACCOUNT]  Balance: 8.22 Total Return: 106.00% Units: 05
+DATE: 2016-08-01
+[ENTRY]  [$NAV/BTC] Date: 2016-08-01 Price:0.00004323 Direction:Long ATR: 0.00000842 Unit Size: 4751 Total: 0.20538570 Stop: 0.00002639 Volume: 790.26187302
+[POSITION] SYS/BTC Open:false Entry [Date:2016-07-16 Price: 0.00001389] Close [Date: 2016-08-01 Price: 0.00001222] P/L [%: -12.02% Amount: -0.0446] High: [0.00001351] Low: [0.00001222]
+ [ACCOUNT]  Balance: 8.18 Total Return: 104.00% Units: 05
+DATE: 2016-08-02
+[ENTRY]  [$LTC/BTC] Date: 2016-08-02 Price:0.00669254 Direction:Long ATR: 0.00019377 Unit Size: 206 Total: 1.37866300 Stop: 0.006305 Volume: 776.82186421
+DATE: 2016-08-03
+[ENTRY]  [$XBC/BTC] Date: 2016-08-03 Price:0.00204344 Direction:Long ATR: 0.00023459 Unit Size: 170 Total: 0.34738480 Stop: 0.00157426 Volume: 232.0525
+DATE: 2016-08-04
+[ENTRY]  [$XRP/BTC] Date: 2016-08-04 Price:0.00001023 Direction:Long ATR: 0.00000065 Unit Size: 61638 Total: 0.63055670 Stop: 0.00000893 Volume: 183.42379822
+[POSITION] XBC/BTC Open:false Entry [Date:2016-08-03 Price: 0.00204344] Close [Date: 2016-08-04 Price: 0.00157076] P/L [%: -23.13% Amount: -0.0858] High: [0.00204344] Low: [0.0008]
+ [ACCOUNT]  Balance: 8.09 Total Return: 102.00% Units: 07
+DATE: 2016-08-05
+[ENTRY]  [$XBC/BTC] Date: 2016-08-05 Price:0.00242421 Direction:Long ATR: 0.00039684 Unit Size: 100 Total: 0.24242100 Stop: 0.00163053 Volume: 41.82924332
+[POSITION] BELA/BTC Open:false Entry [Date:2016-07-09 Price: 0.0000016] Close [Date: 2016-08-05 Price: 0.00000355] P/L [%: 121.87% Amount: 0.4522] High: [0.00000501] Low: [0.00000355]
+ [ACCOUNT]  Balance: 8.55 Total Return: 114.00% Units: 07
+DATE: 2016-08-06
+[ENTRY]  [$EMC2/BTC] Date: 2016-08-06 Price:0.00000281 Direction:Long ATR: 0.00000036 Unit Size: 112157 Total: 0.31516120 Stop: 0.0000021 Volume: 1433.82062833
+DATE: 2016-08-07
+DATE: 2016-08-08
+DATE: 2016-08-09
+DATE: 2016-08-10
+[POSITION] XBC/BTC Open:false Entry [Date:2016-08-05 Price: 0.00242421] Close [Date: 2016-08-10 Price: 0.00146169] P/L [%: -39.70% Amount: -0.1473] High: [0.00242421] Low: [0.0008]
+ [ACCOUNT]  Balance: 8.40 Total Return: 110.00% Units: 07
+[POSITION] LTC/BTC Open:false Entry [Date:2016-08-02 Price: 0.00669254] Close [Date: 2016-08-10 Price: 0.0063254] P/L [%: -5.49% Amount: -0.0204] High: [0.00669254] Low: [0.0063254]
+ [ACCOUNT]  Balance: 8.38 Total Return: 109.00% Units: 06
+[POSITION] NAV/BTC Open:false Entry [Date:2016-08-01 Price: 0.00004323] Close [Date: 2016-08-10 Price: 0.00002591] P/L [%: -40.06% Amount: -0.1487] High: [0.00004323] Low: [0.00002591]
+ [ACCOUNT]  Balance: 8.23 Total Return: 106.00% Units: 05
+DATE: 2016-08-11
+[ENTRY]  [$SYS/BTC] Date: 2016-08-11 Price:0.0000194 Direction:Long ATR: 0.00000151 Unit Size: 26413 Total: 0.51241220 Stop: 0.00001637 Volume: 617.24390804
+[POSITION] EMC2/BTC Open:false Entry [Date:2016-08-06 Price: 0.00000281] Close [Date: 2016-08-11 Price: 0.00000208] P/L [%: -25.98% Amount: -0.0964] High: [0.0000029] Low: [0.00000103]
+ [ACCOUNT]  Balance: 8.13 Total Return: 103.00% Units: 05
+DATE: 2016-08-12
+[ENTRY]  [$BCY/BTC] Date: 2016-08-12 Price:0.00017317 Direction:Long ATR: 0.00002738 Unit Size: 1460 Total: 0.25282820 Stop: 0.00011841 Volume: 23.4445273
+[ENTRY]  [$XVC/BTC] Date: 2016-08-12 Price:0.00018299 Direction:Long ATR: 0.00001611 Unit Size: 2482 Total: 0.45418120 Stop: 0.00015076 Volume: 15.33238906
+[ENTRY]  [$XEM/BTC] Date: 2016-08-12 Price:0.00001139 Direction:Long ATR: 0.0000012 Unit Size: 33317 Total: 0.37948060 Stop: 0.00000899 Volume: 808.54342994
+[POSITION] SYS/BTC Open:false Entry [Date:2016-08-11 Price: 0.0000194] Close [Date: 2016-08-12 Price: 0.00001632] P/L [%: -15.88% Amount: -0.0589] High: [0.0000194] Low: [0.0000119]
+ [ACCOUNT]  Balance: 8.07 Total Return: 102.00% Units: 07
+DATE: 2016-08-13
+[ENTRY]  [$BTS/BTC] Date: 2016-08-13 Price:0.00000862 Direction:Long ATR: 0.0000006 Unit Size: 67127 Total: 0.57863470 Stop: 0.00000743 Volume: 1591.26860796
+DATE: 2016-08-14
+DATE: 2016-08-15
+DATE: 2016-08-16
+DATE: 2016-08-17
+DATE: 2016-08-18
+DATE: 2016-08-19
+DATE: 2016-08-20
+DATE: 2016-08-21
+[POSITION] XRP/BTC Open:false Entry [Date:2016-08-04 Price: 0.00001023] Close [Date: 2016-08-21 Price: 0.00001038] P/L [%: 1.47% Amount: 0.0054] High: [0.00001075] Low: [0.00001038]
+ [ACCOUNT]  Balance: 8.08 Total Return: 102.00% Units: 07
+DATE: 2016-08-22
+[POSITION] DCR/BTC Open:false Entry [Date:2016-07-31 Price: 0.002912] Close [Date: 2016-08-22 Price: 0.00261071] P/L [%: -10.35% Amount: -0.0384] High: [0.00303486] Low: [0.00261071]
+ [ACCOUNT]  Balance: 8.04 Total Return: 101.00% Units: 06
+[POSITION] XEM/BTC Open:false Entry [Date:2016-08-12 Price: 0.00001139] Close [Date: 2016-08-22 Price: 0.00001058] P/L [%: -7.11% Amount: -0.0264] High: [0.00001198] Low: [0.00001058]
+ [ACCOUNT]  Balance: 8.01 Total Return: 100.00% Units: 05
+DATE: 2016-08-23
+[ENTRY]  [$LTC/BTC] Date: 2016-08-23 Price:0.00674961 Direction:Long ATR: 0.00018398 Unit Size: 217 Total: 1.46466500 Stop: 0.00638165 Volume: 7850.83023247
+DATE: 2016-08-24
+DATE: 2016-08-25
+DATE: 2016-08-26
+DATE: 2016-08-27
+[ENTRY]  [$NAUT/BTC] Date: 2016-08-27 Price:0.00076979 Direction:Long ATR: 0.00010222 Unit Size: 391 Total: 0.30098790 Stop: 0.00056535 Volume: 189.33299538
+DATE: 2016-08-28
+[ENTRY]  [$XCP/BTC] Date: 2016-08-28 Price:0.00599554 Direction:Long ATR: 0.00060958 Unit Size: 65 Total: 0.38971010 Stop: 0.00477638 Volume: 125.23717751
+[POSITION] BTS/BTC Open:false Entry [Date:2016-08-13 Price: 0.00000862] Close [Date: 2016-08-28 Price: 0.00000928] P/L [%: 7.66% Amount: 0.0284] High: [0.00001006] Low: [0.00000928]
+ [ACCOUNT]  Balance: 8.04 Total Return: 101.00% Units: 07
+DATE: 2016-08-29
+[ENTRY]  [$BCN/BTC] Date: 2016-08-29 Price:0.0000001 Direction:Long ATR: 0.00000001 Unit Size: 2738627 Total: 0.27386270 Stop: 0.00000007 Volume: 32.50463657
+DATE: 2016-08-30
+DATE: 2016-08-31
+DATE: 2016-09-01
+[POSITION] MAID/BTC Open:false Entry [Date:2016-07-23 Price: 0.00012195] Close [Date: 2016-09-01 Price: 0.00017186] P/L [%: 40.93% Amount: 0.1519] High: [0.00020388] Low: [0.00017186]
+ [ACCOUNT]  Balance: 8.19 Total Return: 105.00% Units: 07
+DATE: 2016-09-02
+[ENTRY]  [$VTC/BTC] Date: 2016-09-02 Price:0.00006331 Direction:Long ATR: 0.00000624 Unit Size: 6406 Total: 0.40556390 Stop: 0.00005082 Volume: 40.09970897
+DATE: 2016-09-03
+[POSITION] LTC/BTC Open:false Entry [Date:2016-08-23 Price: 0.00674961] Close [Date: 2016-09-03 Price: 0.00652494] P/L [%: -3.33% Amount: -0.0124] High: [0.0066785] Low: [0.00652494]
+ [ACCOUNT]  Balance: 8.18 Total Return: 105.00% Units: 07
+[POSITION] FCT/BTC Open:false Entry [Date:2016-07-29 Price: 0.00266999] Close [Date: 2016-09-03 Price: 0.00462011] P/L [%: 73.04% Amount: 0.2710] High: [0.00621234] Low: [0.00462011]
+ [ACCOUNT]  Balance: 8.45 Total Return: 111.00% Units: 06
+DATE: 2016-09-04
+[ENTRY]  [$SJCX/BTC] Date: 2016-09-04 Price:0.00028156 Direction:Long ATR: 0.0000178 Unit Size: 2247 Total: 0.63266530 Stop: 0.00024596 Volume: 405.64659481
+DATE: 2016-09-05
+[ENTRY]  [$BLK/BTC] Date: 2016-09-05 Price:0.00005599 Direction:Long ATR: 0.00000435 Unit Size: 9198 Total: 0.51499600 Stop: 0.00004729 Volume: 25.36228857
+[POSITION] SJCX/BTC Open:false Entry [Date:2016-09-04 Price: 0.00028156] Close [Date: 2016-09-05 Price: 0.00023368] P/L [%: -17.01% Amount: -0.0631] High: [0.00028156] Low: [0.00019793]
+ [ACCOUNT]  Balance: 8.39 Total Return: 110.00% Units: 07
+DATE: 2016-09-06
+[ENTRY]  [$VIA/BTC] Date: 2016-09-06 Price:0.00003252 Direction:Long ATR: 0.00000377 Unit Size: 10610 Total: 0.34503720 Stop: 0.00002498 Volume: 42.05274528
+DATE: 2016-09-07
+[POSITION] XCP/BTC Open:false Entry [Date:2016-08-28 Price: 0.00599554] Close [Date: 2016-09-07 Price: 0.00511078] P/L [%: -14.76% Amount: -0.0548] High: [0.00628402] Low: [0.00511078]
+ [ACCOUNT]  Balance: 8.34 Total Return: 108.00% Units: 07
+DATE: 2016-09-08
+[ENTRY]  [$PINK/BTC] Date: 2016-09-08 Price:0.00000067 Direction:Long ATR: 0.00000006 Unit Size: 645380 Total: 0.43240460 Stop: 0.00000055 Volume: 24.12133047
+[POSITION] BCN/BTC Open:false Entry [Date:2016-08-29 Price: 0.0000001] Close [Date: 2016-09-08 Price: 0.00000009] P/L [%: -10.00% Amount: -0.0371] High: [0.00000011] Low: [0.00000009]
+ [ACCOUNT]  Balance: 8.30 Total Return: 107.00% Units: 07
+DATE: 2016-09-09
+[ENTRY]  [$BELA/BTC] Date: 2016-09-09 Price:0.00000535 Direction:Long ATR: 0.00000069 Unit Size: 58150 Total: 0.31110250 Stop: 0.00000397 Volume: 18.24440631
+DATE: 2016-09-10
+[POSITION] NAUT/BTC Open:false Entry [Date:2016-08-27 Price: 0.00076979] Close [Date: 2016-09-10 Price: 0.00067708] P/L [%: -12.04% Amount: -0.0447] High: [0.00096777] Low: [0.00067708]
+ [ACCOUNT]  Balance: 8.25 Total Return: 106.00% Units: 07
+DATE: 2016-09-11
+[POSITION] PINK/BTC Open:false Entry [Date:2016-09-08 Price: 0.00000067] Close [Date: 2016-09-11 Price: 0.00000051] P/L [%: -23.88% Amount: -0.0886] High: [0.00000067] Low: [0.00000043]
+ [ACCOUNT]  Balance: 8.16 Total Return: 104.00% Units: 06
+DATE: 2016-09-12
+[ENTRY]  [$RADS/BTC] Date: 2016-09-12 Price:0.00085 Direction:Long ATR: 0.00009032 Unit Size: 442 Total: 0.37570000 Stop: 0.00066936 Volume: 46.00640323
+[ENTRY]  [$BCN/BTC] Date: 2016-09-12 Price:0.00000011 Direction:Long ATR: 0.00000002 Unit Size: 2502684 Total: 0.27529520 Stop: 0.00000008 Volume: 14.57292548
+DATE: 2016-09-13
+DATE: 2016-09-14
+DATE: 2016-09-15
+[POSITION] XVC/BTC Open:false Entry [Date:2016-08-12 Price: 0.00018299] Close [Date: 2016-09-15 Price: 0.00028827] P/L [%: 57.53% Amount: 0.2135] High: [0.00033599] Low: [0.00028827]
+ [ACCOUNT]  Balance: 8.38 Total Return: 109.00% Units: 07
+DATE: 2016-09-16
+[ENTRY]  [$OMNI/BTC] Date: 2016-09-16 Price:0.01001481 Direction:Long ATR: 0.00149749 Unit Size: 26 Total: 0.26038510 Stop: 0.00701983 Volume: 24.31526839
+DATE: 2016-09-17
+DATE: 2016-09-18
+[POSITION] BCY/BTC Open:false Entry [Date:2016-08-12 Price: 0.00017317] Close [Date: 2016-09-18 Price: 0.00037187] P/L [%: 114.74% Amount: 0.4257] High: [0.00072116] Low: [0.00037187]
+ [ACCOUNT]  Balance: 8.80 Total Return: 120.00% Units: 07
+[POSITION] VTC/BTC Open:false Entry [Date:2016-09-02 Price: 0.00006331] Close [Date: 2016-09-18 Price: 0.000064] P/L [%: 1.09% Amount: 0.0040] High: [0.00008254] Low: [0.000064]
+ [ACCOUNT]  Balance: 8.81 Total Return: 120.00% Units: 06
+DATE: 2016-09-19
+[ENTRY]  [$ETH/BTC] Date: 2016-09-19 Price:0.02172681 Direction:Long ATR: 0.00102425 Unit Size: 39 Total: 0.84734560 Stop: 0.0196783 Volume: 10760.07480463
+DATE: 2016-09-20
+DATE: 2016-09-21
+[POSITION] BCN/BTC Open:false Entry [Date:2016-09-12 Price: 0.00000011] Close [Date: 2016-09-21 Price: 0.0000001] P/L [%: -9.09% Amount: -0.0337] High: [0.00000012] Low: [0.0000001]
+ [ACCOUNT]  Balance: 8.77 Total Return: 119.00% Units: 06
+DATE: 2016-09-22
+DATE: 2016-09-23
+[POSITION] RADS/BTC Open:false Entry [Date:2016-09-12 Price: 0.00085] Close [Date: 2016-09-23 Price: 0.00068313] P/L [%: -19.63% Amount: -0.0728] High: [0.00083491] Low: [0.00068313]
+ [ACCOUNT]  Balance: 8.70 Total Return: 118.00% Units: 05
+DATE: 2016-09-24
+DATE: 2016-09-25
+[POSITION] OMNI/BTC Open:false Entry [Date:2016-09-16 Price: 0.01001481] Close [Date: 2016-09-25 Price: 0.00818999] P/L [%: -18.22% Amount: -0.0676] High: [0.01001481] Low: [0.00818999]
+ [ACCOUNT]  Balance: 8.63 Total Return: 116.00% Units: 04
+DATE: 2016-09-26
+DATE: 2016-09-27
+[ENTRY]  [$SBD/BTC] Date: 2016-09-27 Price:0.00151802 Direction:Long ATR: 0.00029851 Unit Size: 133 Total: 0.20189670 Stop: 0.00092099 Volume: 19.01916539
+[POSITION] BLK/BTC Open:false Entry [Date:2016-09-05 Price: 0.00005599] Close [Date: 2016-09-27 Price: 0.00005524] P/L [%: -1.34% Amount: -0.0050] High: [0.00005889] Low: [0.00005524]
+ [ACCOUNT]  Balance: 8.63 Total Return: 116.00% Units: 04
+DATE: 2016-09-28
+[ENTRY]  [$XRP/BTC] Date: 2016-09-28 Price:0.00001547 Direction:Long ATR: 0.0000011 Unit Size: 36446 Total: 0.56381960 Stop: 0.00001328 Volume: 7007.72391039
+DATE: 2016-09-29
+DATE: 2016-09-30
+[POSITION] BELA/BTC Open:false Entry [Date:2016-09-09 Price: 0.00000535] Close [Date: 2016-09-30 Price: 0.00000597] P/L [%: 11.59% Amount: 0.0430] High: [0.00000884] Low: [0.00000597]
+ [ACCOUNT]  Balance: 8.67 Total Return: 117.00% Units: 04
+DATE: 2016-10-01
+[POSITION] XRP/BTC Open:false Entry [Date:2016-09-28 Price: 0.00001547] Close [Date: 2016-10-01 Price: 0.00001305] P/L [%: -15.64% Amount: -0.0580] High: [0.00001547] Low: [0.00001137]
+ [ACCOUNT]  Balance: 8.61 Total Return: 115.00% Units: 03
+DATE: 2016-10-02
+[ENTRY]  [$AMP/BTC] Date: 2016-10-02 Price:0.0003209 Direction:Long ATR: 0.00002762 Unit Size: 1448 Total: 0.46466320 Stop: 0.00026566 Volume: 1243.79030575
+DATE: 2016-10-03
+DATE: 2016-10-04
+DATE: 2016-10-05
+DATE: 2016-10-06
+[POSITION] ETH/BTC Open:false Entry [Date:2016-09-19 Price: 0.02172681] Close [Date: 2016-10-06 Price: 0.0209] P/L [%: -3.81% Amount: -0.0141] High: [0.02197787] Low: [0.0209]
+ [ACCOUNT]  Balance: 8.60 Total Return: 115.00% Units: 03
+DATE: 2016-10-07
+DATE: 2016-10-08
+DATE: 2016-10-09
+[ENTRY]  [$BELA/BTC] Date: 2016-10-09 Price:0.00000917 Direction:Long ATR: 0.00000126 Unit Size: 31637 Total: 0.29011130 Stop: 0.00000664 Volume: 191.80389168
+[POSITION] VIA/BTC Open:false Entry [Date:2016-09-06 Price: 0.00003252] Close [Date: 2016-10-09 Price: 0.0000382] P/L [%: 17.47% Amount: 0.0648] High: [0.00004732] Low: [0.0000382]
+ [ACCOUNT]  Balance: 8.66 Total Return: 117.00% Units: 03
+DATE: 2016-10-10
+[ENTRY]  [$PINK/BTC] Date: 2016-10-10 Price:0.00000098 Direction:Long ATR: 0.00000009 Unit Size: 423566 Total: 0.41509470 Stop: 0.00000079 Volume: 351.24367258
+[ENTRY]  [$HUC/BTC] Date: 2016-10-10 Price:0.00003602 Direction:Long ATR: 0.00000477 Unit Size: 8378 Total: 0.30177560 Stop: 0.00002647 Volume: 210.65626535
+DATE: 2016-10-11
+[POSITION] SBD/BTC Open:false Entry [Date:2016-09-27 Price: 0.00151802] Close [Date: 2016-10-11 Price: 0.00142416] P/L [%: -6.18% Amount: -0.0229] High: [0.001546] Low: [0.00142416]
+ [ACCOUNT]  Balance: 8.64 Total Return: 116.00% Units: 04
+DATE: 2016-10-12
+[ENTRY]  [$DGB/BTC] Date: 2016-10-12 Price:0.0000006 Direction:Long ATR: 0.00000004 Unit Size: 954964 Total: 0.57297840 Stop: 0.00000052 Volume: 123.22084174
+DATE: 2016-10-13
+[ENTRY]  [$GAME/BTC] Date: 2016-10-13 Price:0.000221 Direction:Long ATR: 0.00001676 Unit Size: 2387 Total: 0.52752700 Stop: 0.00018749 Volume: 119.89923111
+[POSITION] AMP/BTC Open:false Entry [Date:2016-10-02 Price: 0.0003209] Close [Date: 2016-10-13 Price: 0.000279] P/L [%: -13.06% Amount: -0.0484] High: [0.00033128] Low: [0.000279]
+ [ACCOUNT]  Balance: 8.59 Total Return: 115.00% Units: 05
+DATE: 2016-10-14
+[ENTRY]  [$FLO/BTC] Date: 2016-10-14 Price:0.00000674 Direction:Long ATR: 0.00000083 Unit Size: 47907 Total: 0.32289320 Stop: 0.00000507 Volume: 62.83465597
+[ENTRY]  [$XVC/BTC] Date: 2016-10-14 Price:0.00030622 Direction:Long ATR: 0.00002851 Unit Size: 1403 Total: 0.42962670 Stop: 0.0002492 Volume: 53.7006847
+DATE: 2016-10-15
+[ENTRY]  [$BTCD/BTC] Date: 2016-10-15 Price:0.00438181 Direction:Long ATR: 0.00030237 Unit Size: 132 Total: 0.57839890 Stop: 0.00377707 Volume: 24.45179417
+DATE: 2016-10-16
+DATE: 2016-10-17
+DATE: 2016-10-18
+DATE: 2016-10-19
+DATE: 2016-10-20
+DATE: 2016-10-21
+[POSITION] DGB/BTC Open:false Entry [Date:2016-10-12 Price: 0.0000006] Close [Date: 2016-10-21 Price: 0.00000054] P/L [%: -10.00% Amount: -0.0371] High: [0.00000067] Low: [0.00000054]
+ [ACCOUNT]  Balance: 8.56 Total Return: 114.00% Units: 07
+DATE: 2016-10-22
+DATE: 2016-10-23
+DATE: 2016-10-24
+[ENTRY]  [$NAV/BTC] Date: 2016-10-24 Price:0.00008813 Direction:Long ATR: 0.00001027 Unit Size: 3896 Total: 0.34335450 Stop: 0.0000676 Volume: 422.73959631
+DATE: 2016-10-25
+[POSITION] FLO/BTC Open:false Entry [Date:2016-10-14 Price: 0.00000674] Close [Date: 2016-10-25 Price: 0.00000607] P/L [%: -9.94% Amount: -0.0369] High: [0.0000117] Low: [0.00000607]
+ [ACCOUNT]  Balance: 8.52 Total Return: 113.00% Units: 07
+[POSITION] HUC/BTC Open:false Entry [Date:2016-10-10 Price: 0.00003602] Close [Date: 2016-10-25 Price: 0.00003169] P/L [%: -12.02% Amount: -0.0446] High: [0.00004014] Low: [0.00003169]
+ [ACCOUNT]  Balance: 8.47 Total Return: 112.00% Units: 06
+DATE: 2016-10-26
+[POSITION] BTCD/BTC Open:false Entry [Date:2016-10-15 Price: 0.00438181] Close [Date: 2016-10-26 Price: 0.00423452] P/L [%: -3.36% Amount: -0.0125] High: [0.0047] Low: [0.00423452]
+ [ACCOUNT]  Balance: 8.46 Total Return: 112.00% Units: 05
+DATE: 2016-10-27
+[POSITION] BELA/BTC Open:false Entry [Date:2016-10-09 Price: 0.00000917] Close [Date: 2016-10-27 Price: 0.00000699] P/L [%: -23.77% Amount: -0.0882] High: [0.00000818] Low: [0.00000699]
+ [ACCOUNT]  Balance: 8.37 Total Return: 109.00% Units: 04
+[POSITION] GAME/BTC Open:false Entry [Date:2016-10-13 Price: 0.000221] Close [Date: 2016-10-27 Price: 0.000242] P/L [%: 9.50% Amount: 0.0353] High: [0.0002876] Low: [0.000242]
+ [ACCOUNT]  Balance: 8.41 Total Return: 110.00% Units: 03
+DATE: 2016-10-28
+[POSITION] PINK/BTC Open:false Entry [Date:2016-10-10 Price: 0.00000098] Close [Date: 2016-10-28 Price: 0.00000099] P/L [%: 1.02% Amount: 0.0038] High: [0.0000017] Low: [0.00000099]
+ [ACCOUNT]  Balance: 8.41 Total Return: 110.00% Units: 02
+DATE: 2016-10-29
+[POSITION] XVC/BTC Open:false Entry [Date:2016-10-14 Price: 0.00030622] Close [Date: 2016-10-29 Price: 0.00030319] P/L [%: -0.99% Amount: -0.0037] High: [0.00043014] Low: [0.00030319]
+ [ACCOUNT]  Balance: 8.41 Total Return: 110.00% Units: 01
+DATE: 2016-10-30
+DATE: 2016-10-31
+DATE: 2016-11-01
+[POSITION] NAV/BTC Open:false Entry [Date:2016-10-24 Price: 0.00008813] Close [Date: 2016-11-01 Price: 0.00006388] P/L [%: -27.52% Amount: -0.1021] High: [0.00008813] Low: [0.00006388]
+ [ACCOUNT]  Balance: 8.31 Total Return: 108.00% Units: 00
+DATE: 2016-11-02
+DATE: 2016-11-03
+DATE: 2016-11-04
+DATE: 2016-11-05
+DATE: 2016-11-06
+DATE: 2016-11-07
+DATE: 2016-11-08
+DATE: 2016-11-09
+DATE: 2016-11-10
+DATE: 2016-11-11
+[ENTRY]  [$XEM/BTC] Date: 2016-11-11 Price:0.00000673 Direction:Long ATR: 0.00000065 Unit Size: 61305 Total: 0.41258260 Stop: 0.00000543 Volume: 436.93735033
+DATE: 2016-11-12
+DATE: 2016-11-13
+[ENTRY]  [$BELA/BTC] Date: 2016-11-13 Price:0.00001159 Direction:Long ATR: 0.00000153 Unit Size: 26200 Total: 0.30365800 Stop: 0.00000854 Volume: 31.36854316
+DATE: 2016-11-14
+[ENTRY]  [$XMR/BTC] Date: 2016-11-14 Price:0.01094 Direction:Long ATR: 0.00133664 Unit Size: 29 Total: 0.31726000 Stop: 0.00826673 Volume: 7315.30862977
+DATE: 2016-11-15
+DATE: 2016-11-16
+[POSITION] XEM/BTC Open:false Entry [Date:2016-11-11 Price: 0.00000673] Close [Date: 2016-11-16 Price: 0.00000529] P/L [%: -21.40% Amount: -0.0794] High: [0.00000686] Low: [0.0000052]
+ [ACCOUNT]  Balance: 8.23 Total Return: 106.00% Units: 02
+DATE: 2016-11-17
+DATE: 2016-11-18
+DATE: 2016-11-19
+DATE: 2016-11-20
+[ENTRY]  [$SYS/BTC] Date: 2016-11-20 Price:0.00001398 Direction:Long ATR: 0.00000145 Unit Size: 27603 Total: 0.38588990 Stop: 0.00001108 Volume: 16.6568547
+[ENTRY]  [$BTCD/BTC] Date: 2016-11-20 Price:0.0044091 Direction:Long ATR: 0.00034794 Unit Size: 114 Total: 0.50263740 Stop: 0.00371321 Volume: 64.21729864
+DATE: 2016-11-21
+DATE: 2016-11-22
+DATE: 2016-11-23
+DATE: 2016-11-24
+[ENTRY]  [$BCY/BTC] Date: 2016-11-24 Price:0.000244 Direction:Long ATR: 0.00003652 Unit Size: 1095 Total: 0.26718000 Stop: 0.00017096 Volume: 20.2925463
+[POSITION] BELA/BTC Open:false Entry [Date:2016-11-13 Price: 0.00001159] Close [Date: 2016-11-24 Price: 0.0000105] P/L [%: -9.40% Amount: -0.0349] High: [0.0000162] Low: [0.0000105]
+ [ACCOUNT]  Balance: 8.19 Total Return: 105.00% Units: 04
+DATE: 2016-11-25
+[ENTRY]  [$CLAM/BTC] Date: 2016-11-25 Price:0.00102798 Direction:Long ATR: 0.00010563 Unit Size: 378 Total: 0.38857640 Stop: 0.00081672 Volume: 118.94325504
+DATE: 2016-11-26
+[ENTRY]  [$FLO/BTC] Date: 2016-11-26 Price:0.00000536 Direction:Long ATR: 0.00000085 Unit Size: 47001 Total: 0.25192540 Stop: 0.00000366 Volume: 32.03588683
+DATE: 2016-11-27
+DATE: 2016-11-28
+DATE: 2016-11-29
+[ENTRY]  [$OMNI/BTC] Date: 2016-11-29 Price:0.00606354 Direction:Long ATR: 0.00068092 Unit Size: 58 Total: 0.35168530 Stop: 0.00470171 Volume: 10.27186152
+DATE: 2016-11-30
+[POSITION] SYS/BTC Open:false Entry [Date:2016-11-20 Price: 0.00001398] Close [Date: 2016-11-30 Price: 0.00001182] P/L [%: -15.45% Amount: -0.0573] High: [0.00001398] Low: [0.00001182]
+ [ACCOUNT]  Balance: 8.14 Total Return: 103.00% Units: 06
+DATE: 2016-12-01
+DATE: 2016-12-02
+[ENTRY]  [$GAME/BTC] Date: 2016-12-02 Price:0.00027198 Direction:Long ATR: 0.00002135 Unit Size: 1873 Total: 0.50941850 Stop: 0.00022928 Volume: 117.47277531
+[POSITION] BCY/BTC Open:false Entry [Date:2016-11-24 Price: 0.000244] Close [Date: 2016-12-02 Price: 0.00016205] P/L [%: -33.59% Amount: -0.1246] High: [0.000244] Low: [0.00016205]
+ [ACCOUNT]  Balance: 8.01 Total Return: 100.00% Units: 06
+[POSITION] FLO/BTC Open:false Entry [Date:2016-11-26 Price: 0.00000536] Close [Date: 2016-12-02 Price: 0.00000401] P/L [%: -25.19% Amount: -0.0935] High: [0.00000536] Low: [0.00000401]
+ [ACCOUNT]  Balance: 7.92 Total Return: 98.00% Units: 05
+[POSITION] BTCD/BTC Open:false Entry [Date:2016-11-20 Price: 0.0044091] Close [Date: 2016-12-02 Price: 0.00401939] P/L [%: -8.84% Amount: -0.0328] High: [0.004462] Low: [0.00401939]
+ [ACCOUNT]  Balance: 7.88 Total Return: 97.00% Units: 04
+DATE: 2016-12-03
+[ENTRY]  [$STEEM/BTC] Date: 2016-12-03 Price:0.00025274 Direction:Long ATR: 0.00005206 Unit Size: 768 Total: 0.19410430 Stop: 0.00014862 Volume: 180.19756675
+DATE: 2016-12-04
+[POSITION] XMR/BTC Open:false Entry [Date:2016-11-14 Price: 0.01094] Close [Date: 2016-12-04 Price: 0.010126] P/L [%: -7.44% Amount: -0.0276] High: [0.011997] Low: [0.010126]
+ [ACCOUNT]  Balance: 7.86 Total Return: 96.00% Units: 04
+DATE: 2016-12-05
+[POSITION] OMNI/BTC Open:false Entry [Date:2016-11-29 Price: 0.00606354] Close [Date: 2016-12-05 Price: 0.00499273] P/L [%: -17.66% Amount: -0.0655] High: [0.00606354] Low: [0.00499273]
+ [ACCOUNT]  Balance: 7.79 Total Return: 95.00% Units: 03
+[POSITION] CLAM/BTC Open:false Entry [Date:2016-11-25 Price: 0.00102798] Close [Date: 2016-12-05 Price: 0.00088067] P/L [%: -14.33% Amount: -0.0532] High: [0.0010688] Low: [0.00088067]
+ [ACCOUNT]  Balance: 7.74 Total Return: 93.00% Units: 02
+DATE: 2016-12-06
+[ENTRY]  [$STR/BTC] Date: 2016-12-06 Price:0.00000358 Direction:Long ATR: 0.0000002 Unit Size: 202378 Total: 0.72451320 Stop: 0.00000318 Volume: 837.41896877
+DATE: 2016-12-07
+[ENTRY]  [$NAV/BTC] Date: 2016-12-07 Price:0.00007399 Direction:Long ATR: 0.00000704 Unit Size: 5679 Total: 0.42018920 Stop: 0.00005991 Volume: 173.76768012
+DATE: 2016-12-08
+[ENTRY]  [$BELA/BTC] Date: 2016-12-08 Price:0.00001876 Direction:Long ATR: 0.00000234 Unit Size: 17108 Total: 0.32094610 Stop: 0.00001408 Volume: 41.23695355
+[POSITION] STR/BTC Open:false Entry [Date:2016-12-06 Price: 0.00000358] Close [Date: 2016-12-08 Price: 0.00000317] P/L [%: -11.45% Amount: -0.0425] High: [0.00000362] Low: [0.00000195]
+ [ACCOUNT]  Balance: 7.70 Total Return: 92.00% Units: 04
+DATE: 2016-12-09
+[ENTRY]  [$FLDC/BTC] Date: 2016-12-09 Price:0.00000133 Direction:Long ATR: 0.00000018 Unit Size: 227343 Total: 0.30236620 Stop: 0.00000098 Volume: 138.4673521
+DATE: 2016-12-10
+DATE: 2016-12-11
+[ENTRY]  [$ARDR/BTC] Date: 2016-12-11 Price:0.00001406 Direction:Long ATR: 0.00041661 Unit Size: 96 Total: 0.00134976 Stop: -0.00081916 Volume: 37.46721047
+[ENTRY]  [$SYS/BTC] Date: 2016-12-11 Price:0.00001401 Direction:Long ATR: 0.00000146 Unit Size: 27480 Total: 0.38499480 Stop: 0.0000111 Volume: 11.29116676
+[ENTRY]  [$DOGE/BTC] Date: 2016-12-11 Price:0.0000003 Direction:Long ATR: 0.00000002 Unit Size: 2492091 Total: 0.74762730 Stop: 0.00000027 Volume: 55.71724132
+DATE: 2016-12-12
+DATE: 2016-12-13
+[POSITION] STEEM/BTC Open:false Entry [Date:2016-12-03 Price: 0.00025274] Close [Date: 2016-12-13 Price: 0.0001951] P/L [%: -22.81% Amount: -0.0846] High: [0.00031943] Low: [0.0001951]
+ [ACCOUNT]  Balance: 7.61 Total Return: 90.00% Units: 07
+[POSITION] DOGE/BTC Open:false Entry [Date:2016-12-11 Price: 0.0000003] Close [Date: 2016-12-13 Price: 0.00000027] P/L [%: -10.00% Amount: -0.0371] High: [0.0000003] Low: [0.00000027]
+ [ACCOUNT]  Balance: 7.57 Total Return: 89.00% Units: 06
+DATE: 2016-12-14
+DATE: 2016-12-15
+[ENTRY]  [$MAID/BTC] Date: 2016-12-15 Price:0.00010082 Direction:Long ATR: 0.000008 Unit Size: 4999 Total: 0.50399920 Stop: 0.00008482 Volume: 320.16098546
+[ENTRY]  [$VTC/BTC] Date: 2016-12-15 Price:0.00003807 Direction:Long ATR: 0.00000462 Unit Size: 8649 Total: 0.32926740 Stop: 0.00002882 Volume: 15.72105281
+DATE: 2016-12-16
+DATE: 2016-12-17
+[POSITION] BELA/BTC Open:false Entry [Date:2016-12-08 Price: 0.00001876] Close [Date: 2016-12-17 Price: 0.00001444] P/L [%: -23.03% Amount: -0.0854] High: [0.00001876] Low: [0.00001444]
+ [ACCOUNT]  Balance: 7.49 Total Return: 87.00% Units: 07
+[POSITION] GAME/BTC Open:false Entry [Date:2016-12-02 Price: 0.00027198] Close [Date: 2016-12-17 Price: 0.00027777] P/L [%: 2.13% Amount: 0.0079] High: [0.00032477] Low: [0.00027777]
+ [ACCOUNT]  Balance: 7.50 Total Return: 87.00% Units: 06
+[POSITION] NAV/BTC Open:false Entry [Date:2016-12-07 Price: 0.00007399] Close [Date: 2016-12-17 Price: 0.00006129] P/L [%: -17.16% Amount: -0.0637] High: [0.00007399] Low: [0.00006129]
+ [ACCOUNT]  Balance: 7.43 Total Return: 86.00% Units: 05
+DATE: 2016-12-18
+DATE: 2016-12-19
+[POSITION] ARDR/BTC Open:false Entry [Date:2016-12-11 Price: 0.00001406] Close [Date: 2016-12-19 Price: 0.00001245] P/L [%: -11.45% Amount: -0.0425] High: [0.00001406] Low: [0.00001245]
+ [ACCOUNT]  Balance: 7.39 Total Return: 85.00% Units: 04
+[POSITION] SYS/BTC Open:false Entry [Date:2016-12-11 Price: 0.00001401] Close [Date: 2016-12-19 Price: 0.00001169] P/L [%: -16.56% Amount: -0.0614] High: [0.00001711] Low: [0.00001169]
+ [ACCOUNT]  Balance: 7.33 Total Return: 83.00% Units: 03
+[POSITION] FLDC/BTC Open:false Entry [Date:2016-12-09 Price: 0.00000133] Close [Date: 2016-12-19 Price: 0.0000012] P/L [%: -9.77% Amount: -0.0363] High: [0.00000142] Low: [0.0000012]
+ [ACCOUNT]  Balance: 7.29 Total Return: 82.00% Units: 02
+DATE: 2016-12-20
+DATE: 2016-12-21
+DATE: 2016-12-22
+DATE: 2016-12-23
+DATE: 2016-12-24
+DATE: 2016-12-25
+DATE: 2016-12-26
+[ENTRY]  [$XMR/BTC] Date: 2016-12-26 Price:0.01133764 Direction:Long ATR: 0.00085573 Unit Size: 46 Total: 0.52153140 Stop: 0.00962618 Volume: 1817.88761943
+DATE: 2016-12-27
+[POSITION] MAID/BTC Open:false Entry [Date:2016-12-15 Price: 0.00010082] Close [Date: 2016-12-27 Price: 0.00010966] P/L [%: 8.77% Amount: 0.0325] High: [0.00012782] Low: [0.00010966]
+ [ACCOUNT]  Balance: 7.33 Total Return: 83.00% Units: 02
+DATE: 2016-12-28
+DATE: 2016-12-29
+DATE: 2016-12-30
+[ENTRY]  [$ETC/BTC] Date: 2016-12-30 Price:0.0016125 Direction:Long ATR: 0.00011659 Unit Size: 343 Total: 0.55308750 Stop: 0.00137932 Volume: 5345.2563813
+[ENTRY]  [$VIA/BTC] Date: 2016-12-30 Price:0.00003869 Direction:Long ATR: 0.00000458 Unit Size: 8728 Total: 0.33768630 Stop: 0.00002952 Volume: 20.10894364
+DATE: 2016-12-31
+DATE: 2017-01-01
+DATE: 2017-01-02
+DATE: 2017-01-03
+DATE: 2017-01-04
+[ENTRY]  [$DASH/BTC] Date: 2017-01-04 Price:0.0144 Direction:Long ATR: 0.00085544 Unit Size: 46 Total: 0.66240000 Stop: 0.01268912 Volume: 2274.70794557
+[ENTRY]  [$REP/BTC] Date: 2017-01-04 Price:0.00426 Direction:Long ATR: 0.00305801 Unit Size: 13 Total: 0.05538000 Stop: -0.00185602 Volume: 244.15485775
+DATE: 2017-01-05
+DATE: 2017-01-06
+[ENTRY]  [$DGB/BTC] Date: 2017-01-06 Price:0.00000037 Direction:Long ATR: 0.00000003 Unit Size: 1223167 Total: 0.45257180 Stop: 0.0000003 Volume: 81.64005673
+[ENTRY]  [$SC/BTC] Date: 2017-01-06 Price:0.00000029 Direction:Long ATR: 0.00000003 Unit Size: 1156945 Total: 0.33551400 Stop: 0.00000022 Volume: 51.46290183
+[POSITION] VTC/BTC Open:false Entry [Date:2016-12-15 Price: 0.00003807] Close [Date: 2017-01-06 Price: 0.00003288] P/L [%: -13.63% Amount: -0.0506] High: [0.00003678] Low: [0.00003288]
+ [ACCOUNT]  Balance: 7.27 Total Return: 82.00% Units: 07
+DATE: 2017-01-07
+[ENTRY]  [$DCR/BTC] Date: 2017-01-07 Price:0.0007423 Direction:Long ATR: 0.00007738 Unit Size: 516 Total: 0.38302680 Stop: 0.00058753 Volume: 45.60666996
+DATE: 2017-01-08
+DATE: 2017-01-09
+DATE: 2017-01-10
+[POSITION] DGB/BTC Open:false Entry [Date:2017-01-06 Price: 0.00000037] Close [Date: 2017-01-10 Price: 0.00000029] P/L [%: -21.62% Amount: -0.0802] High: [0.00000039] Low: [0.00000025]
+ [ACCOUNT]  Balance: 7.19 Total Return: 80.00% Units: 07
+DATE: 2017-01-11
+DATE: 2017-01-12
+DATE: 2017-01-13
+[ENTRY]  [$CLAM/BTC] Date: 2017-01-13 Price:0.00103501 Direction:Long ATR: 0.00007774 Unit Size: 514 Total: 0.53199510 Stop: 0.00087954 Volume: 19.2323963
+[POSITION] XMR/BTC Open:false Entry [Date:2016-12-26 Price: 0.01133764] Close [Date: 2017-01-13 Price: 0.013597] P/L [%: 19.93% Amount: 0.0739] High: [0.01607] Low: [0.013597]
+ [ACCOUNT]  Balance: 7.27 Total Return: 82.00% Units: 07
+DATE: 2017-01-14
+[ENTRY]  [$XRP/BTC] Date: 2017-01-14 Price:0.0000084 Direction:Long ATR: 0.00000075 Unit Size: 53131 Total: 0.44630040 Stop: 0.00000689 Volume: 971.90800037
+DATE: 2017-01-15
+[POSITION] ETC/BTC Open:false Entry [Date:2016-12-30 Price: 0.0016125] Close [Date: 2017-01-15 Price: 0.00144503] P/L [%: -10.39% Amount: -0.0385] High: [0.001655] Low: [0.00144503]
+ [ACCOUNT]  Balance: 7.23 Total Return: 81.00% Units: 07
+DATE: 2017-01-16
+[ENTRY]  [$STEEM/BTC] Date: 2017-01-16 Price:0.00021561 Direction:Long ATR: 0.00002516 Unit Size: 1590 Total: 0.34281990 Stop: 0.0001653 Volume: 522.39958639
+DATE: 2017-01-17
+DATE: 2017-01-18
+DATE: 2017-01-19
+DATE: 2017-01-20
+[POSITION] XRP/BTC Open:false Entry [Date:2017-01-14 Price: 0.0000084] Close [Date: 2017-01-20 Price: 0.00000739] P/L [%: -12.02% Amount: -0.0446] High: [0.0000084] Low: [0.00000739]
+ [ACCOUNT]  Balance: 7.19 Total Return: 80.00% Units: 07
+DATE: 2017-01-21
+DATE: 2017-01-22
+DATE: 2017-01-23
+[ENTRY]  [$FCT/BTC] Date: 2017-01-23 Price:0.00364861 Direction:Long ATR: 0.00029803 Unit Size: 134 Total: 0.48891370 Stop: 0.00305255 Volume: 1779.97207268
+DATE: 2017-01-24
+[POSITION] STEEM/BTC Open:false Entry [Date:2017-01-16 Price: 0.00021561] Close [Date: 2017-01-24 Price: 0.00016496] P/L [%: -23.49% Amount: -0.0872] High: [0.00021561] Low: [0.00016496]
+ [ACCOUNT]  Balance: 7.10 Total Return: 77.00% Units: 07
+[POSITION] SC/BTC Open:false Entry [Date:2017-01-06 Price: 0.00000029] Close [Date: 2017-01-24 Price: 0.00000037] P/L [%: 27.59% Amount: 0.1024] High: [0.00000043] Low: [0.00000037]
+ [ACCOUNT]  Balance: 7.20 Total Return: 80.00% Units: 06
+DATE: 2017-01-25
+[ENTRY]  [$BLK/BTC] Date: 2017-01-25 Price:0.00003509 Direction:Long ATR: 0.00000275 Unit Size: 14551 Total: 0.51059460 Stop: 0.00002959 Volume: 42.5407381
+[ENTRY]  [$XEM/BTC] Date: 2017-01-25 Price:0.00000506 Direction:Long ATR: 0.00000041 Unit Size: 96619 Total: 0.48889210 Stop: 0.00000423 Volume: 169.20629074
+[POSITION] CLAM/BTC Open:false Entry [Date:2017-01-13 Price: 0.00103501] Close [Date: 2017-01-25 Price: 0.00096039] P/L [%: -7.21% Amount: -0.0268] High: [0.00113] Low: [0.00096039]
+ [ACCOUNT]  Balance: 7.17 Total Return: 79.00% Units: 07
+DATE: 2017-01-26
+[ENTRY]  [$BELA/BTC] Date: 2017-01-26 Price:0.00001392 Direction:Long ATR: 0.00000129 Unit Size: 31059 Total: 0.43234130 Stop: 0.00001134 Volume: 40.6240209
+[POSITION] REP/BTC Open:false Entry [Date:2017-01-04 Price: 0.00426] Close [Date: 2017-01-26 Price: 0.00458001] P/L [%: 7.51% Amount: 0.0279] High: [0.00504008] Low: [0.00458001]
+ [ACCOUNT]  Balance: 7.20 Total Return: 80.00% Units: 07
+DATE: 2017-01-27
+[ENTRY]  [$BCN/BTC] Date: 2017-01-27 Price:0.00000006 Direction:Long ATR: 0.00000001 Unit Size: 3721159 Total: 0.22326950 Stop: 0.00000004 Volume: 10.20803509
+DATE: 2017-01-28
+DATE: 2017-01-29
+DATE: 2017-01-30
+DATE: 2017-01-31
+DATE: 2017-02-01
+DATE: 2017-02-02
+[POSITION] BCN/BTC Open:false Entry [Date:2017-01-27 Price: 0.00000006] Close [Date: 2017-02-02 Price: 0.00000005] P/L [%: -16.67% Amount: -0.0618] High: [0.00000007] Low: [0.00000005]
+ [ACCOUNT]  Balance: 7.14 Total Return: 78.00% Units: 07
+[POSITION] FCT/BTC Open:false Entry [Date:2017-01-23 Price: 0.00364861] Close [Date: 2017-02-02 Price: 0.00334627] P/L [%: -8.29% Amount: -0.0307] High: [0.00375413] Low: [0.00334627]
+ [ACCOUNT]  Balance: 7.11 Total Return: 78.00% Units: 06
+DATE: 2017-02-03
+DATE: 2017-02-04
+DATE: 2017-02-05
+DATE: 2017-02-06
+[ENTRY]  [$NXT/BTC] Date: 2017-02-06 Price:0.00000929 Direction:Long ATR: 0.00000058 Unit Size: 68966 Total: 0.64069410 Stop: 0.00000813 Volume: 648.68859128
+DATE: 2017-02-07
+[ENTRY]  [$OMNI/BTC] Date: 2017-02-07 Price:0.00331025 Direction:Long ATR: 0.00042688 Unit Size: 93 Total: 0.30785320 Stop: 0.00245649 Volume: 16.56131729
+DATE: 2017-02-08
+DATE: 2017-02-09
+DATE: 2017-02-10
+DATE: 2017-02-11
+[POSITION] VIA/BTC Open:false Entry [Date:2016-12-30 Price: 0.00003869] Close [Date: 2017-02-11 Price: 0.00004347] P/L [%: 12.35% Amount: 0.0458] High: [0.00004655] Low: [0.00004347]
+ [ACCOUNT]  Balance: 7.15 Total Return: 79.00% Units: 07
+DATE: 2017-02-12
+[POSITION] DCR/BTC Open:false Entry [Date:2017-01-07 Price: 0.0007423] Close [Date: 2017-02-12 Price: 0.00238958] P/L [%: 221.92% Amount: 0.8234] High: [0.00322081] Low: [0.00238958]
+ [ACCOUNT]  Balance: 7.98 Total Return: 99.00% Units: 06
+DATE: 2017-02-13
+[ENTRY]  [$XCP/BTC] Date: 2017-02-13 Price:0.00352393 Direction:Long ATR: 0.00042382 Unit Size: 94 Total: 0.33124940 Stop: 0.00267628 Volume: 38.50487882
+DATE: 2017-02-14
+[ENTRY]  [$ETH/BTC] Date: 2017-02-14 Price:0.01292041 Direction:Long ATR: 0.00048328 Unit Size: 82 Total: 1.05947400 Stop: 0.01195385 Volume: 14708.41018927
+[POSITION] NXT/BTC Open:false Entry [Date:2017-02-06 Price: 0.00000929] Close [Date: 2017-02-14 Price: 0.00000786] P/L [%: -15.39% Amount: -0.0571] High: [0.00000929] Low: [0.00000629]
+ [ACCOUNT]  Balance: 7.92 Total Return: 98.00% Units: 07
+DATE: 2017-02-15
+[ENTRY]  [$NEOS/BTC] Date: 2017-02-15 Price:0.00024399 Direction:Long ATR: 0.00001931 Unit Size: 2071 Total: 0.50530330 Stop: 0.00020537 Volume: 644.4276795
+DATE: 2017-02-16
+DATE: 2017-02-17
+[POSITION] BLK/BTC Open:false Entry [Date:2017-01-25 Price: 0.00003509] Close [Date: 2017-02-17 Price: 0.00003243] P/L [%: -7.58% Amount: -0.0281] High: [0.00003739] Low: [0.00003243]
+ [ACCOUNT]  Balance: 7.89 Total Return: 97.00% Units: 07
+DATE: 2017-02-18
+[POSITION] NEOS/BTC Open:false Entry [Date:2017-02-15 Price: 0.00024399] Close [Date: 2017-02-18 Price: 0.00020154] P/L [%: -17.40% Amount: -0.0646] High: [0.00025097] Low: [0.00010223]
+ [ACCOUNT]  Balance: 7.83 Total Return: 96.00% Units: 06
+DATE: 2017-02-19
+[ENTRY]  [$REP/BTC] Date: 2017-02-19 Price:0.00494357 Direction:Long ATR: 0.00057908 Unit Size: 69 Total: 0.34110630 Stop: 0.00378542 Volume: 81.01594619
+[ENTRY]  [$NEOS/BTC] Date: 2017-02-19 Price:0.0002664 Direction:Long ATR: 0.00003312 Unit Size: 1207 Total: 0.32154480 Stop: 0.00020016 Volume: 163.2538936
+[POSITION] OMNI/BTC Open:false Entry [Date:2017-02-07 Price: 0.00331025] Close [Date: 2017-02-19 Price: 0.00321486] P/L [%: -2.88% Amount: -0.0107] High: [0.00443961] Low: [0.00321486]
+ [ACCOUNT]  Balance: 7.82 Total Return: 95.00% Units: 07
+[POSITION] XEM/BTC Open:false Entry [Date:2017-01-25 Price: 0.00000506] Close [Date: 2017-02-19 Price: 0.00000601] P/L [%: 18.77% Amount: 0.0697] High: [0.00000707] Low: [0.00000601]
+ [ACCOUNT]  Balance: 7.89 Total Return: 97.00% Units: 06
+DATE: 2017-02-20
+[POSITION] ETH/BTC Open:false Entry [Date:2017-02-14 Price: 0.01292041] Close [Date: 2017-02-20 Price: 0.01130003] P/L [%: -12.54% Amount: -0.0465] High: [0.01292041] Low: [0.01126101]
+ [ACCOUNT]  Balance: 7.84 Total Return: 96.00% Units: 05
+DATE: 2017-02-21
+[POSITION] REP/BTC Open:false Entry [Date:2017-02-19 Price: 0.00494357] Close [Date: 2017-02-21 Price: 0.00415561] P/L [%: -15.94% Amount: -0.0591] High: [0.00494357] Low: [0.00415561]
+ [ACCOUNT]  Balance: 7.78 Total Return: 95.00% Units: 04
+DATE: 2017-02-22
+[POSITION] XCP/BTC Open:false Entry [Date:2017-02-13 Price: 0.00352393] Close [Date: 2017-02-22 Price: 0.00284197] P/L [%: -19.35% Amount: -0.0718] High: [0.00393067] Low: [0.00284197]
+ [ACCOUNT]  Balance: 7.71 Total Return: 93.00% Units: 03
+DATE: 2017-02-23
+[ENTRY]  [$FLO/BTC] Date: 2017-02-23 Price:0.00000501 Direction:Long ATR: 0.00000054 Unit Size: 74622 Total: 0.37385620 Stop: 0.00000394 Volume: 26.52184714
+DATE: 2017-02-24
+DATE: 2017-02-25
+[ENTRY]  [$BTM/BTC] Date: 2017-02-25 Price:0.000161 Direction:Long ATR: 0.00001871 Unit Size: 2137 Total: 0.34405700 Stop: 0.00012357 Volume: 60.022492
+DATE: 2017-02-26
+[POSITION] NEOS/BTC Open:false Entry [Date:2017-02-19 Price: 0.0002664] Close [Date: 2017-02-26 Price: 0.00020002] P/L [%: -24.92% Amount: -0.0925] High: [0.00029553] Low: [0.00020002]
+ [ACCOUNT]  Balance: 7.62 Total Return: 90.00% Units: 04
+DATE: 2017-02-27
+[ENTRY]  [$ETH/BTC] Date: 2017-02-27 Price:0.012974 Direction:Long ATR: 0.00061082 Unit Size: 65 Total: 0.84331000 Stop: 0.01175235 Volume: 8629.24514612
+DATE: 2017-02-28
+DATE: 2017-03-01
+[POSITION] BTM/BTC Open:false Entry [Date:2017-02-25 Price: 0.000161] Close [Date: 2017-03-01 Price: 0.00011597] P/L [%: -27.97% Amount: -0.1038] High: [0.00016255] Low: [0.00011015]
+ [ACCOUNT]  Balance: 7.51 Total Return: 88.00% Units: 04
+DATE: 2017-03-02
+[ENTRY]  [$PPC/BTC] Date: 2017-03-02 Price:0.00029604 Direction:Long ATR: 0.0000224 Unit Size: 1785 Total: 0.52843140 Stop: 0.00025124 Volume: 11.92177201
+DATE: 2017-03-03
+DATE: 2017-03-04
+[ENTRY]  [$XEM/BTC] Date: 2017-03-04 Price:0.00000775 Direction:Long ATR: 0.0000006 Unit Size: 66952 Total: 0.51887800 Stop: 0.00000656 Volume: 162.60281031
+DATE: 2017-03-05
+[POSITION] BELA/BTC Open:false Entry [Date:2017-01-26 Price: 0.00001392] Close [Date: 2017-03-05 Price: 0.00003019] P/L [%: 116.88% Amount: 0.4337] High: [0.00006158] Low: [0.00003019]
+ [ACCOUNT]  Balance: 7.95 Total Return: 99.00% Units: 05
+DATE: 2017-03-06
+[ENTRY]  [$NMC/BTC] Date: 2017-03-06 Price:0.00032 Direction:Long ATR: 0.0000211 Unit Size: 1895 Total: 0.60640000 Stop: 0.00027779 Volume: 39.24671981
+DATE: 2017-03-07
+[ENTRY]  [$DCR/BTC] Date: 2017-03-07 Price:0.002715 Direction:Long ATR: 0.00028761 Unit Size: 139 Total: 0.37738500 Stop: 0.00213978 Volume: 549.13483229
+[POSITION] FLO/BTC Open:false Entry [Date:2017-02-23 Price: 0.00000501] Close [Date: 2017-03-07 Price: 0.00000403] P/L [%: -19.56% Amount: -0.0726] High: [0.00000607] Low: [0.00000403]
+ [ACCOUNT]  Balance: 7.87 Total Return: 97.00% Units: 06
+DATE: 2017-03-08
+DATE: 2017-03-09
+[POSITION] NMC/BTC Open:false Entry [Date:2017-03-06 Price: 0.00032] Close [Date: 2017-03-09 Price: 0.00026657] P/L [%: -16.70% Amount: -0.0620] High: [0.00032] Low: [0.00020266]
+ [ACCOUNT]  Balance: 7.81 Total Return: 95.00% Units: 05
+DATE: 2017-03-10
+[ENTRY]  [$REP/BTC] Date: 2017-03-10 Price:0.0053362 Direction:Long ATR: 0.00044285 Unit Size: 90 Total: 0.48025800 Stop: 0.0044505 Volume: 322.75529779
+DATE: 2017-03-11
+DATE: 2017-03-12
+[ENTRY]  [$HUC/BTC] Date: 2017-03-12 Price:0.00002837 Direction:Long ATR: 0.00000397 Unit Size: 10082 Total: 0.28602630 Stop: 0.00002044 Volume: 55.69191696
+[ENTRY]  [$NMC/BTC] Date: 2017-03-12 Price:0.00032762 Direction:Long ATR: 0.00002955 Unit Size: 1353 Total: 0.44326990 Stop: 0.00026853 Volume: 50.01335348
+DATE: 2017-03-13
+DATE: 2017-03-14
+DATE: 2017-03-15
+DATE: 2017-03-16
+DATE: 2017-03-17
+DATE: 2017-03-18
+DATE: 2017-03-19
+DATE: 2017-03-20
+DATE: 2017-03-21
+DATE: 2017-03-22
+DATE: 2017-03-23
+DATE: 2017-03-24
+[POSITION] HUC/BTC Open:false Entry [Date:2017-03-12 Price: 0.00002837] Close [Date: 2017-03-24 Price: 0.000022] P/L [%: -22.45% Amount: -0.0833] High: [0.00002897] Low: [0.000022]
+ [ACCOUNT]  Balance: 7.73 Total Return: 93.00% Units: 07
+DATE: 2017-03-25
+[ENTRY]  [$XBC/BTC] Date: 2017-03-25 Price:0.00374552 Direction:Long ATR: 0.00049117 Unit Size: 81 Total: 0.30338710 Stop: 0.00276319 Volume: 22.87304167
+DATE: 2017-03-26
+[POSITION] NMC/BTC Open:false Entry [Date:2017-03-12 Price: 0.00032762] Close [Date: 2017-03-26 Price: 0.00052907] P/L [%: 61.49% Amount: 0.2281] High: [0.00069504] Low: [0.00052907]
+ [ACCOUNT]  Balance: 7.96 Total Return: 99.00% Units: 07
+DATE: 2017-03-27
+[ENTRY]  [$BCN/BTC] Date: 2017-03-27 Price:0.00000005 Direction:Long ATR: 0.00000001 Unit Size: 3553465 Total: 0.17767320 Stop: 0.00000003 Volume: 17.65944801
+[POSITION] DASH/BTC Open:false Entry [Date:2017-01-04 Price: 0.0144] Close [Date: 2017-03-27 Price: 0.0806] P/L [%: 459.72% Amount: 1.7058] High: [0.1107] Low: [0.0806]
+ [ACCOUNT]  Balance: 9.66 Total Return: 142.00% Units: 07
+[POSITION] PPC/BTC Open:false Entry [Date:2017-03-02 Price: 0.00029604] Close [Date: 2017-03-27 Price: 0.00050789] P/L [%: 71.56% Amount: 0.2655] High: [0.00060642] Low: [0.00050789]
+ [ACCOUNT]  Balance: 9.93 Total Return: 148.00% Units: 06
+DATE: 2017-03-28
+DATE: 2017-03-29
+DATE: 2017-03-30
+[ENTRY]  [$OMNI/BTC] Date: 2017-03-30 Price:0.00531001 Direction:Long ATR: 0.00112739 Unit Size: 35 Total: 0.18585040 Stop: 0.00305522 Volume: 89.29524208
+[ENTRY]  [$PPC/BTC] Date: 2017-03-30 Price:0.00063822 Direction:Long ATR: 0.00006432 Unit Size: 621 Total: 0.39633460 Stop: 0.00050957 Volume: 119.20005326
+DATE: 2017-03-31
+DATE: 2017-04-01
+DATE: 2017-04-02
+DATE: 2017-04-03
+[POSITION] ETH/BTC Open:false Entry [Date:2017-02-27 Price: 0.012974] Close [Date: 2017-04-03 Price: 0.03819766] P/L [%: 194.42% Amount: 0.7214] High: [0.0564] Low: [0.03819766]
+ [ACCOUNT]  Balance: 10.65 Total Return: 166.00% Units: 07
+DATE: 2017-04-04
+[ENTRY]  [$NXC/BTC] Date: 2017-04-04 Price:0.0000656 Direction:Long ATR: 0.00000758 Unit Size: 5277 Total: 0.34617120 Stop: 0.00005044 Volume: 349.37486223
+[POSITION] DCR/BTC Open:false Entry [Date:2017-03-07 Price: 0.002715] Close [Date: 2017-04-04 Price: 0.00885499] P/L [%: 226.15% Amount: 0.8391] High: [0.01566685] Low: [0.00885499]
+ [ACCOUNT]  Balance: 11.49 Total Return: 187.00% Units: 07
+DATE: 2017-04-05
+DATE: 2017-04-06
+DATE: 2017-04-07
+[POSITION] BCN/BTC Open:false Entry [Date:2017-03-27 Price: 0.00000005] Close [Date: 2017-04-07 Price: 0.00000011] P/L [%: 120.00% Amount: 0.4452] High: [0.00000025] Low: [0.00000011]
+ [ACCOUNT]  Balance: 11.93 Total Return: 198.00% Units: 06
+[POSITION] OMNI/BTC Open:false Entry [Date:2017-03-30 Price: 0.00531001] Close [Date: 2017-04-07 Price: 0.00434035] P/L [%: -18.26% Amount: -0.0678] High: [0.00561833] Low: [0.00434035]
+ [ACCOUNT]  Balance: 11.87 Total Return: 197.00% Units: 05
+[POSITION] REP/BTC Open:false Entry [Date:2017-03-10 Price: 0.0053362] Close [Date: 2017-04-07 Price: 0.008077] P/L [%: 51.36% Amount: 0.1906] High: [0.01168573] Low: [0.008077]
+ [ACCOUNT]  Balance: 12.06 Total Return: 201.00% Units: 04
+DATE: 2017-04-08
+DATE: 2017-04-09
+[ENTRY]  [$VTC/BTC] Date: 2017-04-09 Price:0.00011324 Direction:Long ATR: 0.00001074 Unit Size: 3723 Total: 0.42159250 Stop: 0.00009176 Volume: 766.726572
+DATE: 2017-04-10
+[ENTRY]  [$SYS/BTC] Date: 2017-04-10 Price:0.00001872 Direction:Long ATR: 0.00000217 Unit Size: 18404 Total: 0.34452290 Stop: 0.00001437 Volume: 617.61515192
+[ENTRY]  [$VRC/BTC] Date: 2017-04-10 Price:0.00006741 Direction:Long ATR: 0.00000776 Unit Size: 5156 Total: 0.34756600 Stop: 0.0000519 Volume: 562.59031264
+[ENTRY]  [$XVC/BTC] Date: 2017-04-10 Price:0.00008802 Direction:Long ATR: 0.00001279 Unit Size: 3126 Total: 0.27515050 Stop: 0.00006243 Volume: 461.08807415
+DATE: 2017-04-11
+DATE: 2017-04-12
+DATE: 2017-04-13
+[POSITION] VTC/BTC Open:false Entry [Date:2017-04-09 Price: 0.00011324] Close [Date: 2017-04-13 Price: 0.00008416] P/L [%: -25.68% Amount: -0.0953] High: [0.00014478] Low: [0.00005351]
+ [ACCOUNT]  Balance: 11.96 Total Return: 199.00% Units: 07
+DATE: 2017-04-14
+[ENTRY]  [$BCY/BTC] Date: 2017-04-14 Price:0.00026943 Direction:Long ATR: 0.00003549 Unit Size: 1126 Total: 0.30337820 Stop: 0.00019844 Volume: 78.43472799
+DATE: 2017-04-15
+DATE: 2017-04-16
+DATE: 2017-04-17
+DATE: 2017-04-18
+DATE: 2017-04-19
+[POSITION] PPC/BTC Open:false Entry [Date:2017-03-30 Price: 0.00063822] Close [Date: 2017-04-19 Price: 0.00064322] P/L [%: 0.78% Amount: 0.0029] High: [0.0007577] Low: [0.00064322]
+ [ACCOUNT]  Balance: 11.97 Total Return: 199.00% Units: 07
+DATE: 2017-04-20
+[POSITION] XVC/BTC Open:false Entry [Date:2017-04-10 Price: 0.00008802] Close [Date: 2017-04-20 Price: 0.00008084] P/L [%: -8.16% Amount: -0.0303] High: [0.00011826] Low: [0.00008084]
+ [ACCOUNT]  Balance: 11.93 Total Return: 198.00% Units: 06
+DATE: 2017-04-21
+DATE: 2017-04-22
+DATE: 2017-04-23
+[ENTRY]  [$DCR/BTC] Date: 2017-04-23 Price:0.01366437 Direction:Long ATR: 0.00180276 Unit Size: 22 Total: 0.30061610 Stop: 0.01005885 Volume: 1965.51015778
+[ENTRY]  [$ETC/BTC] Date: 2017-04-23 Price:0.00282131 Direction:Long ATR: 0.00022467 Unit Size: 178 Total: 0.50219320 Stop: 0.00237198 Volume: 3904.32111451
+[POSITION] BCY/BTC Open:false Entry [Date:2017-04-14 Price: 0.00026943] Close [Date: 2017-04-23 Price: 0.0002341] P/L [%: -13.11% Amount: -0.0487] High: [0.00031962] Low: [0.0002341]
+ [ACCOUNT]  Balance: 11.89 Total Return: 197.00% Units: 07
+DATE: 2017-04-24
+[ENTRY]  [$NAV/BTC] Date: 2017-04-24 Price:0.00011759 Direction:Long ATR: 0.00001179 Unit Size: 3393 Total: 0.39898290 Stop: 0.00009402 Volume: 111.31366411
+[POSITION] NXC/BTC Open:false Entry [Date:2017-04-04 Price: 0.0000656] Close [Date: 2017-04-24 Price: 0.00008006] P/L [%: 22.04% Amount: 0.0818] High: [0.00010848] Low: [0.00008006]
+ [ACCOUNT]  Balance: 11.97 Total Return: 199.00% Units: 07
+DATE: 2017-04-25
+[ENTRY]  [$NMC/BTC] Date: 2017-04-25 Price:0.00075289 Direction:Long ATR: 0.00009051 Unit Size: 441 Total: 0.33202450 Stop: 0.00057187 Volume: 81.18656922
+DATE: 2017-04-26
+[POSITION] XBC/BTC Open:false Entry [Date:2017-03-25 Price: 0.00374552] Close [Date: 2017-04-26 Price: 0.0295406] P/L [%: 688.69% Amount: 2.5553] High: [0.04513469] Low: [0.0295406]
+ [ACCOUNT]  Balance: 14.52 Total Return: 263.00% Units: 07
+DATE: 2017-04-27
+[ENTRY]  [$ETH/BTC] Date: 2017-04-27 Price:0.0472551 Direction:Long ATR: 0.00358154 Unit Size: 11 Total: 0.51980610 Stop: 0.04009201 Volume: 58610.05656686
+DATE: 2017-04-28
+DATE: 2017-04-29
+DATE: 2017-04-30
+DATE: 2017-05-01
+[POSITION] DCR/BTC Open:false Entry [Date:2017-04-23 Price: 0.01366437] Close [Date: 2017-05-01 Price: 0.0106358] P/L [%: -22.16% Amount: -0.0822] High: [0.01366437] Low: [0.0106358]
+ [ACCOUNT]  Balance: 14.44 Total Return: 261.00% Units: 07
+DATE: 2017-05-02
+[POSITION] VRC/BTC Open:false Entry [Date:2017-04-10 Price: 0.00006741] Close [Date: 2017-05-02 Price: 0.000062] P/L [%: -8.03% Amount: -0.0298] High: [0.00006839] Low: [0.000062]
+ [ACCOUNT]  Balance: 14.41 Total Return: 260.00% Units: 06
+DATE: 2017-05-03
+[ENTRY]  [$BTCD/BTC] Date: 2017-05-03 Price:0.00724992 Direction:Long ATR: 0.00140399 Unit Size: 28 Total: 0.20299780 Stop: 0.00444195 Volume: 64.17796033
+[ENTRY]  [$STRAT/BTC] Date: 2017-05-03 Price:0.0006043 Direction:Long ATR: 0.00006513 Unit Size: 614 Total: 0.37104020 Stop: 0.00047403 Volume: 943.01120564
+[POSITION] SYS/BTC Open:true Entry [Date:2017-04-10 Price: 0.00001872] Current [Date: 2017-05-03 Price: 0.0000372] P/L [%: 98.72% Amount: 0.3663] High: [0.00004255] Low: [0.00002546]
+ [ACCOUNT]  Balance: 14.78 Total Return: 269.00% Units: 07
+[POSITION] BTCD/BTC Open:true Entry [Date:2017-05-03 Price: 0.00724992] Current [Date: 2017-05-03 Price: 0.00724992] P/L [%: 0.00% Amount: 0.0000] High: [0.00724992] Low: [0.00573995]
+ [ACCOUNT]  Balance: 14.78 Total Return: 269.00% Units: 06
+[POSITION] NMC/BTC Open:true Entry [Date:2017-04-25 Price: 0.00075289] Current [Date: 2017-05-03 Price: 0.0008673] P/L [%: 15.20% Amount: 0.0564] High: [0.00092] Low: [0.00067899]
+ [ACCOUNT]  Balance: 14.83 Total Return: 271.00% Units: 05
+[POSITION] ETH/BTC Open:true Entry [Date:2017-04-27 Price: 0.0472551] Current [Date: 2017-05-03 Price: 0.052605] P/L [%: 11.32% Amount: 0.0420] High: [0.05823999] Low: [0.03911949]
+ [ACCOUNT]  Balance: 14.88 Total Return: 272.00% Units: 04
+[POSITION] ETC/BTC Open:true Entry [Date:2017-04-23 Price: 0.00282131] Current [Date: 2017-05-03 Price: 0.004475] P/L [%: 58.61% Amount: 0.2175] High: [0.00475853] Low: [0.00282131]
+ [ACCOUNT]  Balance: 15.09 Total Return: 277.00% Units: 03
+[POSITION] STRAT/BTC Open:true Entry [Date:2017-05-03 Price: 0.0006043] Current [Date: 2017-05-03 Price: 0.0006043] P/L [%: 0.00% Amount: 0.0000] High: [0.0006043] Low: [0.00046735]
+ [ACCOUNT]  Balance: 15.09 Total Return: 277.00% Units: 02
+[POSITION] NAV/BTC Open:true Entry [Date:2017-04-24 Price: 0.00011759] Current [Date: 2017-05-03 Price: 0.00015503] P/L [%: 31.84% Amount: 0.1181] High: [0.00019211] Low: [0.0001005]
+ [ACCOUNT]  Balance: 15.21 Total Return: 280.00% Units: 01
+[POSITION] XEM/BTC Open:true Entry [Date:2017-03-04 Price: 0.00000775] Current [Date: 2017-05-03 Price: 0.0000364] P/L [%: 369.68% Amount: 1.3717] High: [0.00003883] Low: [0.00002578]
+ [ACCOUNT]  Balance: 16.58 Total Return: 315.00% Units: 00
+ ***** END BACKTEST ***** 
