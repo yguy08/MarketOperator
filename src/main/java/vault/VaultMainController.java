@@ -3,8 +3,6 @@ package vault;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
-
 import asset.Asset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,9 +77,10 @@ public class VaultMainController implements Initializable, ControlledScreen {
 	
 	@FXML
 	protected void showSettings(ActionEvent ev){
-		myController.setScreen(ScreenEnum.SETTINGS.getScreenName());
+		myController.setScreen(ScreensEnum.SETTINGS.getScreenName());
 	}
 
+	@Override
     public void setScreenParent(ScreensController screenParent){
         myController = screenParent;
     }

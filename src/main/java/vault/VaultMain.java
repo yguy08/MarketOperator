@@ -9,6 +9,7 @@ import com.sun.javafx.application.LauncherImpl;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.application.Preloader;
 import javafx.application.Preloader.StateChangeNotification;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -39,22 +40,23 @@ public class VaultMain extends Application {
     
     String marketName;
     
+    ScreensController mainContainer = new ScreensController();
+    
 	public static void main(String[] args) {
 	    LauncherImpl.launchApplication(VaultMain.class, VaultPreloader.class, args);
 	}
  
     @Override
     public void start(final Stage stage) throws Exception {
+    	this.stage = stage;
     	
     	loadMarket();
-    	
-        ScreensController mainContainer = new ScreensController();
         
-        for(ScreenEnum s : ScreenEnum.values()){
+        for(ScreensEnum s : ScreensEnum.values()){
         	mainContainer.loadScreen(s.getScreenName(),s.getFxmlPath());
         }
         
-        mainContainer.setScreen(ScreenEnum.MAIN.getScreenName());
+        mainContainer.setScreen(ScreensEnum.MAIN.getScreenName());
         
         Parent root = mainContainer;
         Scene scene = new Scene(root, 570, 320);
@@ -84,6 +86,7 @@ public class VaultMain extends Application {
         try {
             URL myURL = new URL("https://poloniex.com/");
             URLConnection myURLConnection = myURL.openConnection();
+            notifyPreloader(new Preloader.ProgressNotification(.5));
             myURLConnection.connect();
             return true;
         } 
@@ -103,14 +106,13 @@ public class VaultMain extends Application {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-            	
-            	String mName = testConnection() ? Market.DIGITAL_MARKET : Market.DIGITAL_OFFLINE;
-
-            	MarketFactory maFactory = new MarketFactory();
-            	Market m = mFactory.createMarket(mName);
-            	market = m;
+            	// Send progress to preloader
+                notifyPreloader(new Preloader.ProgressNotification(.3));
+            	marketName = testConnection() ? Market.DIGITAL_MARKET : Market.DIGITAL_OFFLINE;
+            	notifyPreloader(new Preloader.ProgressNotification(.7));
+            	market = mFactory.createMarket(marketName);
+            	notifyPreloader(new Preloader.ProgressNotification(.9));
             	ready.setValue(Boolean.TRUE);
-                
                 notifyPreloader(new StateChangeNotification(
                     StateChangeNotification.Type.BEFORE_START));
                 

@@ -22,7 +22,7 @@ public class VaultSettingsController implements Initializable, ControlledScreen 
 	@FXML private Text risk;
 	@FXML private Text units;
 	@FXML private Text stop;
-	@FXML private Text entryFLag;
+	@FXML private Text entryFlag;
 
 	@FXML private VBox centerBox;
 	
@@ -30,9 +30,10 @@ public class VaultSettingsController implements Initializable, ControlledScreen 
 	
 	@FXML
 	protected void saveSettings(ActionEvent ev){
-		myController.setScreen(ScreenEnum.MAIN.getScreenName());
+		myController.setScreen(ScreensEnum.MAIN.getScreenName());
 	}
-
+	
+	@Override
     public void setScreenParent(ScreensController screenParent){
         myController = screenParent;
     }
