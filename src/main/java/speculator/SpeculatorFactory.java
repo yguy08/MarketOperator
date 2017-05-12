@@ -8,10 +8,10 @@ public class SpeculatorFactory {
 		Speculator speculator;
 		switch(market.getMarketName()){
 		case Market.DIGITAL_MARKET:
-			speculator = DigitalSpeculator.createAverageRiskSpeculator();
+			speculator = DigitalSpeculator.createSpeculatorFromSettings();
 			break;
 		case Market.DIGITAL_OFFLINE:
-			speculator = new DigitalSpeculator();
+			speculator = DigitalSpeculator.createSpeculatorFromSettings();
 			break;
 		default:
 			speculator = null;
