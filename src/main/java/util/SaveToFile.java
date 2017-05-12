@@ -22,7 +22,7 @@ public class SaveToFile {
 		}
 		String content = sb.toString();
 		try {
-			Files.write(Paths.get("src/main/resources/market/" + asset.getAssetName().replace("/", "") + ".txt"), 
+			Files.write(Paths.get("src/main/resources/asset/" + asset.getAssetName().replace("/", "") + ".txt"), 
 					content.getBytes());		
 		} catch (IOException e) {
 			e.printStackTrace();
