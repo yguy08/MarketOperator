@@ -46,7 +46,7 @@ public class VaultMainController implements Initializable, ControlledScreen {
 	
 	@FXML private ListView<String> mainListView;
 	
-	ObservableList<String> mainListItems = FXCollections.observableArrayList("Ola");
+	ObservableList<String> mainListItems = FXCollections.observableArrayList();
 	
 	@FXML private ToggleButton bitcoinMarket;
 	@FXML private ToggleButton dollarMarket;

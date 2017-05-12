@@ -14,7 +14,7 @@ public class VaultPreloader extends Preloader {
 	Stage stage;
     
     //Application Icon
-    Image icon = new Image(getClass().getResourceAsStream("icon-treesun-64x64.png"));
+    Image icon = new Image(getClass().getResourceAsStream("images/icon-treesun-64x64.png"));
  
     @Override
 	public void start(Stage primaryStage) throws Exception {
