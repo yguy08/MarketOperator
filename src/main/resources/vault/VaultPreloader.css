@@ -3,7 +3,7 @@ root {
 }
 
 .root {
--fx-background-image: url("splashScreen.png");
+-fx-background-image: url("images/splashScreen.png");
 
 }
 

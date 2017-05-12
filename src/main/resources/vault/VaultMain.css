@@ -3,19 +3,19 @@ root {
 }
 
 .root {
--fx-background-image: url("splashScreen.png");
+-fx-background-image: url("images/splashScreen.png");
 
 }
 
 #bitcoinMarket{
-	-fx-graphic: url('bitcoin_logo.png');
+	-fx-graphic: url('images/bitcoin_logo.png');
 }
 
 #dollarMarket{
-	-fx-graphic: url('dollar_sign.png');
+	-fx-graphic: url('images/dollar_sign.png');
 }
 
 #ethereumMarket{
-	-fx-graphic: url('ethereum_logo.png');
+	-fx-graphic: url('images/ethereum_logo.png');
 }
 
