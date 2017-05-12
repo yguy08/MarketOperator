@@ -7,7 +7,7 @@ root {
 
 }
 
-#statusMain {
+.label {
 	-fx-font-weight: bold;
 }
 

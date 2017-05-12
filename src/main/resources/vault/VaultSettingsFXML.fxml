@@ -18,23 +18,29 @@ styleClass="root">
 	</padding>
 	
 	<center>
-		<VBox fx:id="centerBox" spacing="20" >
+		<VBox fx:id="centerBox" spacing="28" alignment="CENTER_LEFT" >
 			<padding>
-				<Insets top="20" right="20" bottom="20" left="20"/>
+				<Insets top="20" right="0" bottom="20" left="120"/>
 			</padding>
-			<HBox fx:id="dateRangeBox" spacing="10">
-				<Text fx:id="dateRange" text="Date Range" />
-			</HBox>
-				<Text fx:id="balance" text="Balance" />
-				<Text fx:id="risk" text="Risk" />
-				<Text fx:id="units" text="Units" />
-				<Text fx:id="stop" text="Stop" />
-				<Text fx:id="entryFLag" text="Entry Flag" />
+				<Label text="Date Range:" />
+				<Label text="Balance:" />
+				<Label text="Risk:" />
+				<Label text="Units:" />
+				<Label text="Stop:" />
 		</VBox>
 	</center>
 	
 	<right>
-	
+		<VBox fx:id="rightBox" spacing="20" alignment="CENTER_LEFT" >
+			<padding>
+				<Insets top="20" right="150" bottom="20" left="0"/>
+			</padding>
+				<TextField fx:id="dateRangeTextField" />
+				<TextField fx:id="balanceTextField"  />
+				<TextField fx:id="riskTextField"  />
+				<TextField fx:id="unitsTextField"  />
+				<TextField fx:id="stopTextField"  />
+		</VBox>
 	</right>
 	
 	<bottom>
