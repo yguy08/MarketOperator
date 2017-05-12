@@ -30,7 +30,7 @@ public class VaultMain extends Application {
 	BooleanProperty ready = new SimpleBooleanProperty(false);
 	
     //Application Icon
-    Image icon = new Image(getClass().getResourceAsStream("icon-treesun-64x64.png"));
+    Image icon = new Image(getClass().getResourceAsStream("images/icon-treesun-64x64.png"));
     
     //market
     static Market market = null;
