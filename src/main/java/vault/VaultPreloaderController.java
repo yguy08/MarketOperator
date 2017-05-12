@@ -8,7 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 
-public class VaultPreloaderController implements Initializable {
+public class VaultPreloaderController extends VaultPreloader implements Initializable {
 	
 	@FXML private ProgressBar bar;
 	@FXML private HBox bottomBox;

@@ -19,13 +19,13 @@ public class VaultMainTest extends Application {
 
         ScreensController mainContainer = new ScreensController();
         
-        for(ScreenEnum s : ScreenEnum.values()){
+        for(ScreensEnum s : ScreensEnum.values()){
         	mainContainer.loadScreen(s.getScreenName(),s.getFxmlPath());
         }
         
         Parent root = mainContainer;
         
-        mainContainer.setScreen(ScreenEnum.MAIN.getScreenName());        
+        mainContainer.setScreen(ScreensEnum.MAIN.getScreenName());        
         Scene scene = new Scene(root, 570, 320);
         stage.setScene(scene);
         stage.setTitle("Speculation 1000");
