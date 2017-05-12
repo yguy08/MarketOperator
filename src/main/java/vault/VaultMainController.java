@@ -1,9 +1,10 @@
 package vault;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import asset.Asset;
+import entry.Entry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import market.Market;
+import speculator.DigitalSpeculator;
+import speculator.Speculator;
+import speculator.SpeculatorFactory;
+import trade.Trade;
+import trade.TradeFactory;
 
 public class VaultMainController implements Initializable, ControlledScreen {
 	
@@ -40,7 +46,7 @@ public class VaultMainController implements Initializable, ControlledScreen {
 	
 	@FXML private ListView<String> mainListView;
 	
-	final ObservableList<String> mainListItems = FXCollections.observableArrayList();
+	ObservableList<String> mainListItems = FXCollections.observableArrayList("Ola");
 	
 	@FXML private ToggleButton bitcoinMarket;
 	@FXML private ToggleButton dollarMarket;
@@ -48,21 +54,22 @@ public class VaultMainController implements Initializable, ControlledScreen {
 	
 	@FXML
 	protected void showNewEntries(ActionEvent ev){
+		mainListItems.removeAll(mainListItems);
 		Market m = VaultMain.getMarket();
-		for(Asset a : m.getAssetList()){
-			mainListItems.add(a.getAssetName());
+		SpeculatorFactory sFactory = new SpeculatorFactory();
+		Speculator s = sFactory.startSpeculating(m);
+		TradeFactory tFactory = new TradeFactory();
+		Trade trade = tFactory.startTrading();
+		trade.setNewEntries(m, s);
+		List<Entry> eList = trade.getNewEntries();
+		for(Entry e : eList){
+			mainListItems.add(e.toString());
 		}
-		
-		mainListView.setItems(mainListItems);
 	}
 	
 	@FXML
 	protected void showOpenPositions(ActionEvent ev){
 		Market m = VaultMain.getMarket();
-		for(Asset a : m.getAssetList()){
-			String s = a.getPriceList().get(a.getPriceList().size()-1).toString();
-			mainListItems.add(s.toString());
-		}
 	}
 	
 	@FXML

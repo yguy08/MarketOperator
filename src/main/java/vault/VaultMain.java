@@ -82,8 +82,7 @@ public class VaultMain extends Application {
     }
     
     public boolean testConnection(){
-    	//OR to save resources...if > an hour...check connection, else use offline? so it is faster...
-        try {
+    	try {
             URL myURL = new URL("https://poloniex.com/");
             URLConnection myURLConnection = myURL.openConnection();
             notifyPreloader(new Preloader.ProgressNotification(.5));
