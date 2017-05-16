@@ -43,6 +43,12 @@ public class DateUtils {
 		return formatter.format(utcDate);
 	}
 	
+	public static String dateToMMddFormat(Date date){
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd");
+		formatter.setLenient(false);
+		return formatter.format(localDateToUTCDate(date));
+	}
+	
 	public static Date getCurrentUTCDate(){
 		Date dt = new Date();
 		return localDateToUTCDate(dt); 

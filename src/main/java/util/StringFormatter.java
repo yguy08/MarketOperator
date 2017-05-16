@@ -15,5 +15,11 @@ public class StringFormatter {
 		String formattedBd = formatter.format(unformattedBd);
 		return formattedBd;
 	}
+	
+	public static String bigDecimalToShortString(BigDecimal unformattedBd){
+		DecimalFormat formatter = new DecimalFormat("#.##");
+		String formattedBd = formatter.format(unformattedBd);
+		return formattedBd;
+	}
 
 }
