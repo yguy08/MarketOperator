@@ -107,9 +107,7 @@ public class VaultMain extends Application {
             protected Void call() throws Exception {
             	// Send progress to preloader
                 notifyPreloader(new Preloader.ProgressNotification(.3));
-            	marketName = testConnection() ? Market.DIGITAL_MARKET : Market.DIGITAL_OFFLINE;
-            	notifyPreloader(new Preloader.ProgressNotification(.7));
-            	market = mFactory.createMarket(marketName);
+            	market = testConnection() ? MarketFactory.createOnlineBitcoinMarket() : MarketFactory.createOfflineBitcoinMarket();
             	notifyPreloader(new Preloader.ProgressNotification(.9));
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(

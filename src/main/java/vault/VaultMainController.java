@@ -13,11 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import market.Market;
-import speculator.DigitalSpeculator;
 import speculator.Speculator;
 import speculator.SpeculatorFactory;
 import trade.Trade;
@@ -26,6 +28,8 @@ import trade.TradeFactory;
 public class VaultMainController implements Initializable, ControlledScreen {
 	
 	ScreensController myController;
+	
+	@FXML private BorderPane borderPane;
 	
 	@FXML private Button showNewBtn;
 	@FXML private Button showOpen;
@@ -74,7 +78,7 @@ public class VaultMainController implements Initializable, ControlledScreen {
 	
 	@FXML
 	protected void showPositionsToClose(ActionEvent ev){
-
+		borderPane.setCenter(null);
 	}
 	
 	@FXML
@@ -85,6 +89,12 @@ public class VaultMainController implements Initializable, ControlledScreen {
 	@FXML
 	protected void showSettings(ActionEvent ev){
 		myController.setScreen(ScreensEnum.SETTINGS.getScreenName());
+	}
+	
+	public void keyListener(KeyEvent event){		
+	    if(event.getCode() == KeyCode.DELETE) {
+	    	mainListItems.removeAll(mainListItems);
+	     }
 	}
 
 	@Override
