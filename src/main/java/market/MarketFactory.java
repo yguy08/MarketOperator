@@ -1,23 +1,22 @@
 package market;
 
 public class MarketFactory {
-	Market market = null;
 	
-	public Market createMarket(String marketName){
-		
-		switch(marketName){
-			case Market.DIGITAL_MARKET:
-				market = DigitalMarket.createOnlineDigitalMarket();
-				break;
-			case Market.DIGITAL_OFFLINE:
-				market = DigitalMarket.createOfflineDigitalMarket();
-				break;
-			default:
-				market = null;
-		}
-		
-		return market;
-		
+	public static Market createOnlineBitcoinMarket(){
+		return BitcoinMarket.createOnlineBitcoinMarket();
 	}
+	
+	public static Market createOfflineBitcoinMarket(){
+		return BitcoinMarket.createOfflineBitcoinMarket();
+	}
+	
+	//create online dollar market
+	
+	//create offline dollar market
+	
+	//create online ethereum market
+	
+	//create offline ethereum market	
+	
 	
 }
