@@ -15,7 +15,6 @@ styleClass="root">
 	</padding>
 	
 	<bottom>
-		
 		<ProgressBar fx:id="bar"/>	
     </bottom>
        
