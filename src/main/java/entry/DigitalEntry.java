@@ -54,7 +54,7 @@ public class DigitalEntry implements Entry {
 		setCurrentPrice(this.priceSubList.get(this.priceSubList.size() - 1).getClose());
 		setMaxPrice(this.priceSubList);
 		setMinPrice(this.priceSubList);
-		setVolume(this.priceSubList.get(this.priceSubList.size()-1).getVolume());
+		setVolume(this.priceSubList.get(this.priceSubList.size() - 1).getVolume());
 		setLocationAsIndex();
 		setEntry();
 		
@@ -241,16 +241,15 @@ public class DigitalEntry implements Entry {
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("[ENTRY] ");
-		sb.append(" [$" + this.getAssetName() + "]");
-		sb.append(" Date: " + this.getDate());
+		sb.append("$" + this.getAssetName().replace("/BTC", ""));
+		sb.append(" " + DateUtils.dateToMMddFormat(this.getDateTime()));
 		sb.append(" Price:" + StringFormatter.bigDecimalToEightString(this.currentPrice));
-		sb.append(" Direction:" + this.direction);
+		sb.append(" [" + this.direction + "]");
 		sb.append(" ATR: " + StringFormatter.bigDecimalToEightString(this.averageTrueRange));
-		sb.append(" Unit Size: " + this.unitSize);
-		sb.append(" Total: " + this.orderTotal.setScale(8, RoundingMode.HALF_DOWN));
+		sb.append(" Units: " + this.unitSize);
+		sb.append(" Cost: " + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
 		sb.append(" Stop: " + StringFormatter.bigDecimalToEightString(this.stop));
-		sb.append(" Volume: " + StringFormatter.bigDecimalToEightString(this.getVolume()));
+		sb.append(" Volume: " + StringFormatter.bigDecimalToShortString(this.getVolume()));
 		return sb.toString();
 	}
 
