@@ -1,0 +1,13 @@
+root { 
+    display: block;
+}
+
+.root {
+	-fx-background-image: url("main-background.png");
+
+}
+
+#statusText{
+	-fx-font-weight: bold;
+}
+

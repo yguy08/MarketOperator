@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="BorderPane" prefWidth="570" prefHeight="320">
+<padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
+	
+	<center></center>
+	
+	<right>
+		<VBox fx:id="buttonBox" spacing="10" >
+				<Button fx:id="newEntriesBtn" text="New" prefWidth="100" onAction="#showNewEntries" />
+				<Button fx:id="showOpen" text="Open" prefWidth="100" />
+				<Button fx:id="showClose" text="Close" prefWidth="100" />
+				<Button fx:id="backTest" text="Backtest" prefWidth="100" />
+				<Button fx:id="settings" text="Settings" prefWidth="100" onAction="#showSettings" />
+				<Button fx:id="save" text="Save" prefWidth="100" onAction="#save" />
+		</VBox>
+	</right>
+	
+	<bottom>
+		<Text fx:id="statusText" text="Welcome!" />
+	</bottom>
+       
+    <stylesheets><URL value="@VaultMain.css"/></stylesheets>
+	
+</fx:root>
+

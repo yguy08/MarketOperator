@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="BorderPane" prefWidth="570" prefHeight="320">
+<padding><Insets top="0" right="0" bottom="2" left="2"/></padding>
+	<bottom><ProgressBar fx:id="bar"/></bottom>
+	<stylesheets><URL value="@Preloader.css"/></stylesheets>
+</fx:root>
+
