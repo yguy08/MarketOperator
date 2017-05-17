@@ -8,7 +8,6 @@ import java.util.List;
 
 import entry.Entry;
 import position.Position;
-import vault.VaultSettingsController;
 
 public class DigitalSpeculator implements Speculator {
 	
@@ -71,15 +70,15 @@ public class DigitalSpeculator implements Speculator {
 	
 	public static DigitalSpeculator createSpeculatorFromSettings(){
 		DigitalSpeculator digitalSpeculator = new DigitalSpeculator();
-		digitalSpeculator.setAccountBalance(VaultSettingsController.getBalance());
-		digitalSpeculator.setStartAccountBalance(VaultSettingsController.getBalance());
-		digitalSpeculator.setRisk(VaultSettingsController.getRisk());
+		//digitalSpeculator.setAccountBalance(VaultSettingsController.getBalance());
+		//digitalSpeculator.setStartAccountBalance(VaultSettingsController.getBalance());
+		//digitalSpeculator.setRisk(VaultSettingsController.getRisk());
 		digitalSpeculator.setEntrySignalDays(25);
 		digitalSpeculator.setSellSignalDays(10);
-		digitalSpeculator.setMaxUnits(VaultSettingsController.getUnits());
-		digitalSpeculator.setStopLength(VaultSettingsController.getStop());
+		//digitalSpeculator.setMaxUnits(VaultSettingsController.getUnits());
+		//digitalSpeculator.setStopLength(VaultSettingsController.getStop());
 		digitalSpeculator.setMinVolume(new BigDecimal(20.00));
-		digitalSpeculator.setTimeFrameDays(VaultSettingsController.getDateRange());
+		//digitalSpeculator.setTimeFrameDays(VaultSettingsController.getDateRange());
 		return digitalSpeculator;
 	}
 
