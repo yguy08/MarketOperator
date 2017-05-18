@@ -10,14 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import vault.listview.ListViewControl;
+import speculator.Settings;
+import vault.listview.AssetListViewControl;
 import vault.main.VaultMainControl;
 
 public class SettingsControl extends GridPane implements Initializable {
 	
 	VaultMainControl vaultMainControl;
 	
-	ListViewControl listViewControl;
+	AssetListViewControl listViewControl;
 	
 	@FXML private TextField dateRangeTextField;
 	
@@ -31,6 +32,10 @@ public class SettingsControl extends GridPane implements Initializable {
 	
 	@FXML private Button save;
 	
+	Settings settings;
+	
+	private int dateRange;
+	
     public SettingsControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SettingsView.fxml"));
         fxmlLoader.setRoot(this);
@@ -42,10 +47,22 @@ public class SettingsControl extends GridPane implements Initializable {
             throw new RuntimeException(exception);
         }
     }
+    
+    public Settings getSettings(){
+    	setSettings();
+    	return settings;
+    }
+    
+    private void setSettings(){
+    	dateRange = Integer.parseInt(dateRangeTextField.getText().trim());
+    	settings = new Settings();
+    	settings.setTimeFrameDays(dateRange);
+    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		listViewControl = new ListViewControl();
+		listViewControl = new AssetListViewControl();
+		setSettings();
 	}
 	
 	
