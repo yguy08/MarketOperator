@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.control.ListView?>
-
-<fx:root xmlns:fx="http://javafx.com/fxml/1" type="Pane">
-	<ListView fx:id="assetListView" prefWidth="450" prefHeight="290"></ListView>
-</fx:root>
-
