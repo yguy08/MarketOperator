@@ -87,7 +87,7 @@ public class DigitalBackTest implements BackTest {
 		//get start date and number of days since
 		Date startDate = this.getSortedEntryList().get(0).getDateTime();
 		this.setStartDate(startDate);
-		int days = DateUtils.getNumberOfDaysSinceDate(startDate);
+		int days = DateUtils.getNumDaysFromDateToToday(startDate);
 		
 		this.resultsList.add(this.getStartBackTestToString());
 		

@@ -27,7 +27,7 @@ public class DigitalTrade implements Trade {
 				asset.setPriceSubList(x - speculator.getEntrySignalDays(), x + 1);
 				entry = eFactory.findEntry(market, asset, speculator);
 				boolean isEntryInDateRange = (entry.isEntry()) 
-						? (DateUtils.getNumberOfDaysSinceDate(entry.getDateTime()) < speculator.getTimeFrameDays()) 
+						? (DateUtils.getNumDaysFromDateToToday(entry.getDateTime()) < speculator.getTimeFrameDays()) 
 								: false;
 				if(isEntryInDateRange){
 					newEntryList.add(entry);
