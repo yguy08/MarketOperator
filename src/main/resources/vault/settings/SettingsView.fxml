@@ -11,7 +11,7 @@
     
     <Label text="Date Range:" minWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="0" />
 	
-	<TextField fx:id="dateRangeTextField" minWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="1" text="365" />
+	<TextField fx:id="timeFrameDaysTextField" minWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="1" text="365" />
 	
 	<Label text="Balance:" minWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="0"  />
 	
@@ -23,11 +23,11 @@
 	
 	<Label text="Units:" minWidth="150" GridPane.rowIndex="3" GridPane.columnIndex="0" />
 	
-	<TextField fx:id="unitsTextField" minWidth="150" GridPane.rowIndex="3" GridPane.columnIndex="1"  />
+	<TextField fx:id="maxUnitsTextField" minWidth="150" GridPane.rowIndex="3" GridPane.columnIndex="1"  />
 	
 	<Label text="Stop:" minWidth="150" GridPane.rowIndex="4" GridPane.columnIndex="0" />
 	
-	<TextField fx:id="stopTextField" minWidth="150" GridPane.rowIndex="4" GridPane.columnIndex="1"   />
+	<TextField fx:id="stopLengthTextField" minWidth="150" GridPane.rowIndex="4" GridPane.columnIndex="1"   />
 	
 	<Label text="Market:" minWidth="150" GridPane.rowIndex="5" GridPane.columnIndex="0" />
 	
