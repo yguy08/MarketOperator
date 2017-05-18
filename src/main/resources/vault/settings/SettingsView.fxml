@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml/1" type="GridPane" hgap="10" vgap="10" maxWidth="400" maxHeight="200">
-<padding><Insets top="5" right="10" bottom="10" left="10"/></padding>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="GridPane" hgap="5" vgap="5" prefWidth="400" prefHeight="290">
+<padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
     
     <Label text="Date Range:" minWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="0" />
 	
-	<TextField fx:id="dateRangeTextField" minWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+	<TextField fx:id="dateRangeTextField" minWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="1" text="365" />
 	
 	<Label text="Balance:" minWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="0"  />
 	
@@ -32,7 +32,6 @@
 	<Label text="Market:" minWidth="150" GridPane.rowIndex="5" GridPane.columnIndex="0" />
 	
 	<HBox fx:id="settingsBox" spacing="5" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.columnSpan="2">
-		<padding><Insets top="5" right="0" bottom="5" left="0"/></padding>
 			<ToggleButton fx:id="bitcoinMarket" />
 			<ToggleButton fx:id="dollarMarket" />
 			<ToggleButton fx:id="ethereumMarket" />
