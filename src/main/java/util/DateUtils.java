@@ -64,7 +64,7 @@ public class DateUtils {
 		return utcDate;
 	}
 	
-	public static int getNumberOfDaysSinceDate(Date fromDate){
+	public static int getNumDaysFromDateToToday(Date fromDate){
 		Date currentDate = getCurrentUTCDate();
 		Date sinceDate = localDateToUTCDate(fromDate);
 		Long days = Math.abs((currentDate.getTime() - sinceDate.getTime())) / 86400000;
