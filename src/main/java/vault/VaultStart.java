@@ -40,6 +40,8 @@ public class VaultStart extends Application {
     
     String marketName;
     
+    VaultMainControl vaultMainControl;
+    
 	public static void main(String[] args) {
 	    LauncherImpl.launchApplication(VaultStart.class, VaultPreloaderStart.class, args);
 	}
@@ -50,8 +52,8 @@ public class VaultStart extends Application {
     	
     	loadMarket();
         
-    	VaultMainControl customControl = new VaultMainControl();
-        stage.setScene(new Scene(customControl));
+    	vaultMainControl = new VaultMainControl();
+        stage.setScene(new Scene(vaultMainControl));
         stage.setTitle("Speculation 1000");
         stage.getIcons().add(icon);
         
@@ -65,6 +67,7 @@ public class VaultStart extends Application {
                             @Override
 							public void run() {
                                 stage.show();
+                                vaultMainControl.setInitialTableView();
                             }
                         });
                     }
@@ -103,7 +106,6 @@ public class VaultStart extends Application {
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
                     StateChangeNotification.Type.BEFORE_START));
-                
                 return null;
             }
         };
