@@ -20,8 +20,8 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.Market;
 import price.PoloniexPriceList;
-import speculator.Speculator;
 import util.SaveToFile;
+import util.StringFormatter;
 
 public class DigitalAsset implements Asset {
 	
@@ -33,8 +33,11 @@ public class DigitalAsset implements Asset {
 	String assetName;
 	
 	List<PoloniexChartData> priceList = new ArrayList<>();
+	
 	List<BigDecimal> closeList	= new ArrayList<>();
+	
 	List<BigDecimal> lowList = new ArrayList<>();
+	
 	List<BigDecimal> highList = new ArrayList<>();
 	
 	private List<PoloniexChartData> priceSubList;
@@ -78,12 +81,13 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public void setPriceList() {
+		//consider updating date range to something more configurable
 		long date = new Date().getTime() / 1000;
 		CurrencyPair currencyPair = new CurrencyPair(this.assetName);
 		try {
 			priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
-					.getPoloniexChartData(currencyPair, date - Speculator.DAYS * 24 * 60 * 60,
+					.getPoloniexChartData(currencyPair, date - 365 * 10 * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
 			PoloniexPriceList pl;
 			List<String> plist = new ArrayList<>();
@@ -111,17 +115,12 @@ public class DigitalAsset implements Asset {
 				priceList.add(pl);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 	@Override
@@ -174,11 +173,6 @@ public class DigitalAsset implements Asset {
 	public List<BigDecimal> getHighList() {
 		return this.highList;
 	}
-	
-	@Override
-	public String toString(){
-		return this.marketName + ": [ " + this.assetName + " ] " + this.priceList;   
-	}
 
 	@Override
 	public String getAssetName() {
@@ -198,6 +192,11 @@ public class DigitalAsset implements Asset {
 	@Override
 	public void setMarketDataService(Market market) {
 		 dataService = market.getExchange().getMarketDataService();
+	}
+	
+	@Override
+	public String toString(){
+		return "[$" + getAssetName() + "] " + StringFormatter.bigDecimalToEightString(getPriceList().get(getPriceList().size() -1 ).getClose());   
 	}
 
 }
