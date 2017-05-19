@@ -1,7 +1,6 @@
 package vault;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -24,38 +23,27 @@ import market.MarketFactory;
 import vault.main.VaultMainControl;
 
 public class VaultStart extends Application {
-	
-	Stage stage;
     
-	BooleanProperty ready = new SimpleBooleanProperty(false);
-	
-    //Application Icon
-    Image icon = new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png"));
-    
-    //market
-    static Market market = null;
-    
-    //Market factory
-    MarketFactory mFactory = new MarketFactory();
-    
-    String marketName;
+    //load market for faster performance inside
+    Market market;
     
     VaultMainControl vaultMainControl;
+    
+    BooleanProperty ready = new SimpleBooleanProperty(false);
     
 	public static void main(String[] args) {
 	    LauncherImpl.launchApplication(VaultStart.class, VaultPreloaderStart.class, args);
 	}
  
     @Override
-    public void start(final Stage stage) throws Exception {
-    	this.stage = stage;
-    	
+    public void start(Stage stage) {
+    	//load default market (bitcoin) online or offline
     	loadMarket();
         
     	vaultMainControl = new VaultMainControl();
         stage.setScene(new Scene(vaultMainControl));
         stage.setTitle("Speculation 1000");
-        stage.getIcons().add(icon);
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png")));
         
         // After the app is ready, show the stage
         ready.addListener(new ChangeListener<Boolean>(){
@@ -67,6 +55,7 @@ public class VaultStart extends Application {
                             @Override
 							public void run() {
                                 stage.show();
+                                vaultMainControl.setMarket(market);
                                 vaultMainControl.setInitialTableView();
                             }
                         });
@@ -75,31 +64,10 @@ public class VaultStart extends Application {
         });;                
     }
     
-    public boolean testConnection(){
-    	try {
-            URL myURL = new URL("https://poloniex.com/");
-            URLConnection myURLConnection = myURL.openConnection();
-            notifyPreloader(new Preloader.ProgressNotification(.5));
-            myURLConnection.connect();
-            return true;
-        } 
-        catch (MalformedURLException e) {
-            return false;
-        } 
-        catch (IOException e) {   
-        	return false;
-        }
-    }
-    
-    public static Market getMarket(){
-    	return market;
-    }
-    
     private void loadMarket() {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-            	// Send progress to preloader
                 notifyPreloader(new Preloader.ProgressNotification(.3));
             	market = testConnection() ? MarketFactory.createOnlineBitcoinMarket() : MarketFactory.createOfflineBitcoinMarket();
             	notifyPreloader(new Preloader.ProgressNotification(.9));
@@ -111,6 +79,19 @@ public class VaultStart extends Application {
         };
         
         new Thread(task).start();
+    }
+    
+    private boolean testConnection(){
+    	try {
+            URL myURL = new URL("https://poloniex.com/");
+            URLConnection myURLConnection = myURL.openConnection();
+            notifyPreloader(new Preloader.ProgressNotification(.5));
+            myURLConnection.connect();
+            return true;
+        } 
+        catch (IOException e) {
+            return false;
+        }
     }
 
 }
