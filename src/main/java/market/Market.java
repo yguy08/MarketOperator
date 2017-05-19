@@ -1,16 +1,10 @@
 package market;
 
 import java.util.List;
-
 import org.knowm.xchange.Exchange;
-
 import asset.Asset;
 
 public interface Market {
-	
-	public static final String DIGITAL_MARKET 	= "Digital Market";
-	public static final String STOCK_MARKET   	= "Stock Market";
-	public static final String DIGITAL_OFFLINE  = "Digital Offline Market";
 		
 	String getMarketName();
 	
@@ -25,6 +19,5 @@ public interface Market {
 	void setExchange();
 	
 	Exchange getExchange();
-	
 	
 }

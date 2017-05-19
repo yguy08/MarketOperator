@@ -31,7 +31,7 @@ public class BitcoinMarket implements Market {
 	public static BitcoinMarket createOnlineBitcoinMarket(){
 		BitcoinMarket bitcoinMarket = new BitcoinMarket();
 		bitcoinMarket.setExchange();
-		bitcoinMarket.setMarketName(Market.DIGITAL_MARKET);
+		bitcoinMarket.setMarketName(MarketsEnum.BITCOIN.getMarketName());
 		bitcoinMarket.setAssetList();
 		return bitcoinMarket;
 	}
@@ -39,7 +39,7 @@ public class BitcoinMarket implements Market {
 	//static factory method to create offline digital market
 	public static BitcoinMarket createOfflineBitcoinMarket(){
 		BitcoinMarket bitcoinMarket = new BitcoinMarket();
-		bitcoinMarket.setMarketName(Market.DIGITAL_OFFLINE);
+		bitcoinMarket.setMarketName(MarketsEnum.BITCOIN_OFFLINE.getMarketName());
 		bitcoinMarket.setOfflineAssetList();
 		return bitcoinMarket;
 	}
@@ -56,12 +56,11 @@ public class BitcoinMarket implements Market {
 
 	@Override
 	public void setAssetList() {
-		AssetFactory aFactory = new AssetFactory();
 		Asset asset = null;
 		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
 		for(CurrencyPair currencyPair : currencyPairs){
 			if(currencyPair.toString().endsWith("BTC")){
-				asset = aFactory.createAsset(this, currencyPair.toString());
+				asset = AssetFactory.createOnlineBitcoinAsset(currencyPair.toString());
 				assetList.add(asset);
 			}
 		}
@@ -69,15 +68,14 @@ public class BitcoinMarket implements Market {
 	
 	@Override
 	public void setOfflineAssetList(){
-		AssetFactory aFactory = new AssetFactory();
-		Asset asset = null;
+		Asset asset;
 		List<String> currencyPairs;
 		URL resourceUrl = getClass().getResource("MarketList.csv");
 		try {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
 				if(currencyPair.endsWith("BTC")){
-					asset = aFactory.createAsset(this, currencyPair);
+					asset = AssetFactory.createOfflineBitcoinAsset(currencyPair);
 					assetList.add(asset);
 				}
 			}
