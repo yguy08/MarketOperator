@@ -8,20 +8,17 @@ import vault.preloader.PreloaderControl;
 
 public class VaultPreloaderStart extends Preloader {
     
-	Stage stage;
+	Stage stage; 
     
-    Image icon; 
-    
-    PreloaderControl customControl;
+    PreloaderControl preloaderControl;
  
     @Override
 	public void start(Stage stage) throws Exception {
         this.stage = stage;
-        customControl = new PreloaderControl();
-        this.stage.setScene(new Scene(customControl));
+        preloaderControl = new PreloaderControl();
+        this.stage.setScene(new Scene(preloaderControl));
         this.stage.setTitle("Speculation 1000");
-        icon = new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png"));
-        this.stage.getIcons().add(icon);
+        this.stage.getIcons().add(new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png")));
         this.stage.show();
     }
  
@@ -29,7 +26,7 @@ public class VaultPreloaderStart extends Preloader {
     public void handleApplicationNotification(PreloaderNotification pn) {
     	if (pn instanceof ProgressNotification) {
             System.out.println("Handle ApplicationNotification: Progress =  " + ((ProgressNotification) pn).getProgress());
-            customControl.getProgressBar().setProgress(((ProgressNotification) pn).getProgress());
+            preloaderControl.getProgressBar().setProgress(((ProgressNotification) pn).getProgress());
          } else if (pn instanceof StateChangeNotification) {
         	 System.out.println("Handle ApplicationNotification: State Change = " + ((StateChangeNotification) pn).getType());
              stage.hide();
@@ -39,7 +36,7 @@ public class VaultPreloaderStart extends Preloader {
 	@Override
     public void handleProgressNotification(ProgressNotification pn) {
         System.out.println("Handle Progress Notification: Progress = " + pn.getProgress());
-        customControl.getProgressBar().setProgress(0.25);
+        preloaderControl.getProgressBar().setProgress(0.25);
     }
  
     @Override
