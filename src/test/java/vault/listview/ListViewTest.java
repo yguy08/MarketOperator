@@ -12,7 +12,7 @@ public class ListViewTest extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		ListViewControl customControl = new ListViewControl();
+		AssetListViewControl customControl = new AssetListViewControl();
         stage.setScene(new Scene(customControl));
         stage.show();
 	}

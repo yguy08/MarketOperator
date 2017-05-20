@@ -32,14 +32,6 @@ public class BitcoinAsset implements Asset {
 	private List<PriceData> assetPriceSubList = new ArrayList<>();
 	
 	private MarketDataService dataService;
-	
-	//static factory method to create offline digital market
-	public static BitcoinAsset createOnlineBitcoinAsset(String assetName){
-		BitcoinAsset bitcoinAsset = new BitcoinAsset();
-		bitcoinAsset.setAssetName(assetName);
-		bitcoinAsset.setAssetPriceList();
-		return bitcoinAsset;
-	}
 
 	//static factory method to create offline digital market
 	public static BitcoinAsset createOfflineBitcoinAsset(String assetName){
@@ -148,6 +140,90 @@ public class BitcoinAsset implements Asset {
 	@Override
 	public String toString(){
 		return "[$" + getAssetName() + "] " + StringFormatter.bigDecimalToEightString(getClose(assetPriceList.size() - 1));   
+	}
+
+	@Override
+	public String getAsset() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCloseList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<BigDecimal> getCloseList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setLowList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<BigDecimal> getLowList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setHighList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<BigDecimal> getHighList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setOfflinePriceList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPriceList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<PoloniexChartData> getPriceList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPriceSubList(int start, int end) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<PoloniexChartData> getPriceSubList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getMarketName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setMarketName(String marketName) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

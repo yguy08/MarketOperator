@@ -1,7 +1,10 @@
 package asset;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
+
+import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import market.Market;
 
@@ -11,9 +14,9 @@ public interface Asset {
 	
 	String getAsset();
 	
-	void setPriceList();
+	void setAssetPriceList();
 	
-	List<?> getPriceList();
+	List<?> getAssetPriceList();
 	
 	void setCloseList();
 	
@@ -27,18 +30,32 @@ public interface Asset {
 	
 	List<BigDecimal> getHighList();
 	
-	void setPriceSubList(int start, int end);
+	void setAssetPriceSubList(int start, int end);
 	
-	List<?> getPriceSubList();
-	
-	String getAssetName();
-	
-	String getMarketName();
-	
-	void setMarketName(String marketName);	
-	
+	List<?> getAssetPriceSubList();
+				
 	void setOfflinePriceList();
 	
 	void setMarketDataService(Market market);
+
+	String getAssetName();
+
+	Date getDate(int index);
+
+	BigDecimal getClose(int index);
+
+	void setOfflineAssetPriceList();
+
+	void setPriceList();
+
+	List<PoloniexChartData> getPriceList();
+
+	void setPriceSubList(int start, int end);
+
+	List<PoloniexChartData> getPriceSubList();
+
+	String getMarketName();
+
+	void setMarketName(String marketName);
 
 }

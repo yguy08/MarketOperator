@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import asset.Asset;
 import speculator.Speculator;
 
 public interface Entry {
@@ -71,5 +72,9 @@ public interface Entry {
 	void setVolume(BigDecimal volume);
 	
 	void setDate(String date);
+
+	void findAllEntries(Asset asset, Speculator speculator);
+
+	List<Integer> getEntryIndex();
 
 }

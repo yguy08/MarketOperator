@@ -32,7 +32,6 @@ public class DigitalMarket implements Market {
 	public static DigitalMarket createOnlineDigitalMarket(){
 		DigitalMarket digitalMarket = new DigitalMarket();
 		digitalMarket.setExchange();
-		digitalMarket.setMarketName(Market.DIGITAL_MARKET);
 		digitalMarket.setAssetList();
 		return digitalMarket;
 	}
@@ -40,7 +39,6 @@ public class DigitalMarket implements Market {
 	//static factory method to create offline digital market
 	public static DigitalMarket createOfflineDigitalMarket(){
 		DigitalMarket digitalMarket = new DigitalMarket();
-		digitalMarket.setMarketName(Market.DIGITAL_OFFLINE);
 		digitalMarket.setOfflineAssetList();
 		return digitalMarket;
 	}

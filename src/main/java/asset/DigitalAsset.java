@@ -199,4 +199,46 @@ public class DigitalAsset implements Asset {
 		return "[$" + getAssetName() + "] " + StringFormatter.bigDecimalToEightString(getPriceList().get(getPriceList().size() -1 ).getClose());   
 	}
 
+	@Override
+	public void setAssetPriceList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<?> getAssetPriceList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setAssetPriceSubList(int start, int end) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<?> getAssetPriceSubList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Date getDate(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BigDecimal getClose(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setOfflineAssetPriceList() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

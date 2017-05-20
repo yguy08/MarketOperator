@@ -28,6 +28,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	SettingsControl settingsControl;
 	
+	Market market;
+	
 	@FXML private Button newEntriesBtn;
 	@FXML private Button settingsBtn;
 	@FXML private Button saveBtn;
@@ -48,7 +50,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showNewEntries(){
-		setCenter(entryListViewControl);
+		for(Asset a : market.getAssetList()){
+			System.out.println(a.getAssetName());
+		}
 	}
 	
 	@FXML
@@ -75,8 +79,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void setInitialTableView(){
-		Market m = VaultStart.getMarket();
-		for(Asset a : m.getAssetList()){
+		for(Asset a : market.getAssetList()){
 			assetListViewControl.getAssetObservableList().add(a);
 		}
 	}
@@ -87,6 +90,10 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		entryListViewControl = new EntryListViewControl();
 		settingsControl = new SettingsControl();
 		setCenter(assetListViewControl);
+	}
+
+	public void setMarket(Market market) {
+		this.market = market;
 	}
 
 }

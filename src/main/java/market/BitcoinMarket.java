@@ -56,11 +56,11 @@ public class BitcoinMarket implements Market {
 
 	@Override
 	public void setAssetList() {
-		Asset asset = null;
+		Asset asset;
 		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
 		for(CurrencyPair currencyPair : currencyPairs){
 			if(currencyPair.toString().endsWith("BTC")){
-				asset = AssetFactory.createOnlineBitcoinAsset(currencyPair.toString());
+				asset = AssetFactory.createAsset(this, currencyPair.toString());
 				assetList.add(asset);
 			}
 		}
@@ -75,7 +75,7 @@ public class BitcoinMarket implements Market {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
 				if(currencyPair.endsWith("BTC")){
-					asset = AssetFactory.createOfflineBitcoinAsset(currencyPair);
+					asset = AssetFactory.createAsset(this, currencyPair);
 					assetList.add(asset);
 				}
 			}

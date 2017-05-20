@@ -142,7 +142,7 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setLocationAsIndex() {
-		this.locationIndex = this.asset.getPriceList().indexOf(this.priceSubList.get(this.priceSubList.size() - 1));
+		this.locationIndex = this.asset.getAssetPriceList().indexOf(this.priceSubList.get(this.priceSubList.size() - 1));
 	}
 
 	@Override
@@ -157,7 +157,7 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setPriceSubList() {
-		this.priceSubList = (List<PoloniexChartData>) this.asset.getPriceSubList();
+		this.priceSubList = (List<PoloniexChartData>) this.asset.getAssetPriceSubList();
 	}
 	
 	//True Range of prices per share, measured in Dollars per Share..if True Range is 1.25 it means max daily variations is $1.25 per share
@@ -329,6 +329,18 @@ public class DigitalEntry implements Entry {
 		if(isFormat){
 			this.direction = direction;
 		}
+	}
+
+	@Override
+	public void findAllEntries(Asset asset, Speculator speculator) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Integer> getEntryIndex() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

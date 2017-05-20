@@ -2,6 +2,16 @@ package market;
 
 public class MarketFactory {
 	
+	public Market createMarket(String marketName) {
+		if(marketName.equals(MarketsEnum.BITCOIN.getMarketName())){
+			return createOnlineBitcoinMarket();
+		}else if(marketName.equals(MarketsEnum.BITCOIN_OFFLINE.getMarketName())){
+			return null;
+		}else{
+			return null;
+		}
+	}
+	
 	public static Market createOnlineBitcoinMarket(){
 		return BitcoinMarket.createOnlineBitcoinMarket();
 	}

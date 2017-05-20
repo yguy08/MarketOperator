@@ -1,22 +1,27 @@
 package asset;
 
-import market.Market;
+import market.*;
 
 public class AssetFactory {
-	
-	public Asset createAsset(Market market, String assetName){
-		Asset asset;
-		switch(market.getMarketName()){
-		case Market.DIGITAL_MARKET:
-			asset = DigitalAsset.createOnlineDigitalAsset(market, assetName);
-			return asset;
-		case Market.DIGITAL_OFFLINE:
-			asset = DigitalAsset.createOfflineDigitalAsset(market, assetName);
-			return asset;			
-		default:
-			asset = DigitalAsset.createOfflineDigitalAsset(market, assetName);
-			return asset;
+
+	public static Asset createAsset(Market market, String assetName) {
+		if(market.getMarketName().equals(MarketsEnum.BITCOIN.getMarketName())){
+			return DigitalAsset.createOnlineDigitalAsset(market, assetName);
+		}else if(market.getMarketName().endsWith(MarketsEnum.BITCOIN_OFFLINE.getMarketName())){
+			return DigitalAsset.createOfflineDigitalAsset(market, assetName);
+		}else{
+			return null;
 		}
 	}
+	
 
+	
+	//static factory method to create offline digital market
+	public static BitcoinAsset createOnlineBitcoinAsset(String assetName){
+		BitcoinAsset bitcoinAsset = new BitcoinAsset();
+		bitcoinAsset.setAssetName(assetName);
+		bitcoinAsset.setAssetPriceList();
+		return bitcoinAsset;
+	}
+	
 }
