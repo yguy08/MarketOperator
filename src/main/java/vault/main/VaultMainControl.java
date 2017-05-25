@@ -30,6 +30,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	Market market;
 	
+	Settings settings;
+	
 	@FXML private Button newEntriesBtn;
 	@FXML private Button settingsBtn;
 	@FXML private Button saveBtn;
@@ -65,7 +67,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	public void save(){
 		if(this.getCenter().getClass().equals(SettingsControl.class)){
 			setCenter(assetListViewControl);
-			Settings settings = settingsControl.getSettings();
+			settings = settingsControl.getSettings();
 			setStatusText(settings.toString());
 		}
 	}
