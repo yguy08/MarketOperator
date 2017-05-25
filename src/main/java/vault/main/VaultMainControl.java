@@ -79,9 +79,12 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void setInitialTableView(){
-		for(Asset a : market.getAssetList()){
-			assetListViewControl.getAssetObservableList().add(a);
+		List<Asset> assetList = new ArrayList<>();
+		for(Asset asset : market.getAssetList()){
+			assetList.add(asset);
 		}
+		
+		assetListViewControl.getAssetObservableList().addAll(assetList);
 	}
 
 	@Override
