@@ -23,7 +23,8 @@ public class AssetListViewControl extends Pane {
         fxmlLoader.setController(this);
         
         try {
-            fxmlLoader.load();            
+            fxmlLoader.load();
+	    assetListView.setItems(assetObservableList);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
