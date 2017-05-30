@@ -9,7 +9,7 @@ import java.util.List;
 import entry.Entry;
 import position.Position;
 
-public class DigitalSpeculator implements Speculator {
+public class DigitalSpeculatorOld implements Speculator {
 	
 	//account balance b/c every speculator has an account
 	private BigDecimal accountBalance = new BigDecimal(0.00);
@@ -50,23 +50,36 @@ public class DigitalSpeculator implements Speculator {
 	//entries -> every speculator has entries either taken or not taken
 	private List<Entry> entryList = new ArrayList<>();
 	
-	public static DigitalSpeculator createDefaultSpeculator() {
-		DigitalSpeculator digitalSpeculator = new DigitalSpeculator(4, 1, 5, 2, 365);
+	public DigitalSpeculatorOld(){
+		
+	}
+	
+	public static DigitalSpeculatorOld createAverageRiskSpeculator(){
+		DigitalSpeculatorOld digitalSpeculator = new DigitalSpeculatorOld();
+		digitalSpeculator.setAccountBalance(new BigDecimal(5.00));
+		digitalSpeculator.setStartAccountBalance(digitalSpeculator.getAccountBalance());
+		digitalSpeculator.setRisk(new BigDecimal(2.00));
+		digitalSpeculator.setEntrySignalDays(25);
+		digitalSpeculator.setSellSignalDays(10);
+		digitalSpeculator.setMaxUnits(6);
+		digitalSpeculator.setStopLength(new BigDecimal(2.00));
+		digitalSpeculator.setMinVolume(new BigDecimal(20.00));
+		digitalSpeculator.setTimeFrameDays(365);
 		return digitalSpeculator;
 	}
 	
-	public static Speculator createUpdatedSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays) {
-		DigitalSpeculator digitalSpeculator = new DigitalSpeculator(balance, risk, maxUnits, stopLength, timeFrameDays);
+	public static DigitalSpeculatorOld createSpeculatorFromSettings(){
+		DigitalSpeculatorOld digitalSpeculator = new DigitalSpeculatorOld();
+		//digitalSpeculator.setAccountBalance(VaultSettingsController.getBalance());
+		//digitalSpeculator.setStartAccountBalance(VaultSettingsController.getBalance());
+		//digitalSpeculator.setRisk(VaultSettingsController.getRisk());
+		digitalSpeculator.setEntrySignalDays(25);
+		digitalSpeculator.setSellSignalDays(10);
+		//digitalSpeculator.setMaxUnits(VaultSettingsController.getUnits());
+		//digitalSpeculator.setStopLength(VaultSettingsController.getStop());
+		digitalSpeculator.setMinVolume(new BigDecimal(20.00));
+		//digitalSpeculator.setTimeFrameDays(VaultSettingsController.getDateRange());
 		return digitalSpeculator;
-	}
-	
-	public DigitalSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays){
-		setAccountBalance(new BigDecimal(balance));
-		setStartAccountBalance(new BigDecimal(balance));
-		setRisk(new BigDecimal(risk));
-		setMaxUnits(maxUnits);
-		setStopLength(new BigDecimal(stopLength));
-		setTimeFrameDays(timeFrameDays);
 	}
 
 	@Override
@@ -206,9 +219,8 @@ public class DigitalSpeculator implements Speculator {
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
+		sb.append(" [ACCOUNT] ");
 		sb.append(" Balance: " + getAccountBalance().setScale(2, RoundingMode.HALF_DOWN));
-		sb.append(" Risk: " + getRisk().setScale(2, RoundingMode.HALF_DOWN));
-		sb.append(" Max Units: " + getMaxUnits());
 		sb.append(" Total Return: " + getTotalReturnPercent() + "%");
 		return sb.toString();
 	}
