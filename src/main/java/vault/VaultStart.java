@@ -37,11 +37,14 @@ public class VaultStart extends Application {
  
     @Override
     public void start(Stage stage) {
+    	notifyPreloader(new Preloader.ProgressNotification(.3));
+    	
     	//load default market (bitcoin) online or offline
     	loadMarket();
         
     	vaultMainControl = new VaultMainControl();
-        stage.setScene(new Scene(vaultMainControl));
+        
+    	stage.setScene(new Scene(vaultMainControl));
         stage.setTitle("Speculation 1000");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png")));
         
@@ -68,30 +71,18 @@ public class VaultStart extends Application {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                notifyPreloader(new Preloader.ProgressNotification(.3));
-            	market = testConnection() ? MarketFactory.createOnlineBitcoinMarket() : MarketFactory.createOfflineBitcoinMarket();
+                notifyPreloader(new Preloader.ProgressNotification(.5));
+            	market = MarketFactory.createMarket();
             	notifyPreloader(new Preloader.ProgressNotification(.9));
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
                     StateChangeNotification.Type.BEFORE_START));
+                
                 return null;
             }
         };
         
         new Thread(task).start();
-    }
-    
-    private boolean testConnection(){
-    	try {
-            URL myURL = new URL("https://poloniex.com/");
-            URLConnection myURLConnection = myURL.openConnection();
-            notifyPreloader(new Preloader.ProgressNotification(.5));
-            myURLConnection.connect();
-            return true;
-        } 
-        catch (IOException e) {
-            return false;
-        }
     }
 
 }
