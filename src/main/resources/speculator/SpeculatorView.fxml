@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="GridPane" hgap="5" vgap="5" prefWidth="400" prefHeight="290">
+<padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
+    
+    <Label text="Date Range:" minWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+	
+	<TextField fx:id="timeFrameDaysTextField" minWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+	
+	<Label text="Balance:" minWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="0"  />
+	
+	<TextField fx:id="balanceTextField" minWidth="150" GridPane.rowIndex="1" GridPane.columnIndex="1"  />
+	
+	<Label text="Risk:" minWidth="150" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+	
+	<TextField fx:id="riskTextField" minWidth="150" GridPane.rowIndex="2" GridPane.columnIndex="1"  />
+	
+	<Label text="Units:" minWidth="150" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+	
+	<TextField fx:id="maxUnitsTextField" minWidth="150" GridPane.rowIndex="3" GridPane.columnIndex="1"  />
+	
+	<Label text="Stop:" minWidth="150" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+	
+	<TextField fx:id="stopLengthTextField" minWidth="150" GridPane.rowIndex="4" GridPane.columnIndex="1"   />
+	
+	<Label text="Market:" minWidth="150" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+	
+	<HBox fx:id="settingsBox" spacing="5" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.columnSpan="2">
+	<fx:define>
+		<ToggleGroup fx:id="marketToggleGroup"/>
+	</fx:define>
+			<ToggleButton fx:id="bitcoinMarket" toggleGroup="$marketToggleGroup" />
+			<ToggleButton fx:id="dollarMarket" toggleGroup="$marketToggleGroup" />
+			<ToggleButton fx:id="ethereumMarket" toggleGroup="$marketToggleGroup" />
+	</HBox>
+	
+	<Button fx:id="saveSettings" text="Save" minWidth="150" GridPane.rowIndex="6" GridPane.columnIndex="1" GridPane.columnSpan="2" onAction="#saveSettings"></Button>
+	
+	<stylesheets><URL value="@SpeculatorView.css"/></stylesheets>
+	
+</fx:root>
+
