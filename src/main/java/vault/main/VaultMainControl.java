@@ -12,29 +12,25 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import market.Market;
-import settings.Settings;
-import vault.VaultStart;
-import vault.listview.AssetListViewControl;
-import vault.listview.EntryListViewControl;
-import vault.settings.SettingsControl;
+import speculator.Speculator;
+import speculator.SpeculatorControl;
+import vault.listview.MainListViewControl;
 
 public class VaultMainControl extends BorderPane implements Initializable {
 	
-	VaultMainControl vaultMainControl;
+	private Market market;
 	
-	AssetListViewControl assetListViewControl;
+	private Speculator speculator;
 	
-	EntryListViewControl entryListViewControl;
+	private MainListViewControl mainListViewControl;
 	
-	SettingsControl settingsControl;
+	private static VaultMainControl vaultMainControl;
 	
-	Market market;
-	
-	Settings settings;
+	private SpeculatorControl speculatorControl;
 	
 	@FXML private Button newEntriesBtn;
+	
 	@FXML private Button settingsBtn;
-	@FXML private Button saveBtn;
 	
 	@FXML private Text statusText;
     
@@ -42,13 +38,20 @@ public class VaultMainControl extends BorderPane implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VaultMainView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-        
         try {
             fxmlLoader.load();            
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
     }
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		mainListViewControl = new MainListViewControl();
+		speculatorControl = new SpeculatorControl();
+		setCenter(mainListViewControl);
+		vaultMainControl = this;
+	}
 	
 	@FXML
 	public void showNewEntries(){
@@ -59,17 +62,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showSettings(){
-		setCenter(settingsControl);
+		setCenter(speculatorControl);
 		setStatusText("Settings...");
 	}
-
-	@FXML
-	public void save(){
-		if(this.getCenter().getClass().equals(SettingsControl.class)){
-			setCenter(assetListViewControl);
-			settings = settingsControl.getSettings();
-			setStatusText(settings.toString());
-		}
+	
+	public void setSettings(){
+		setCenter(mainListViewControl);
+		speculator = speculatorControl.getSpeculator();
+		setStatusText(speculator.toString());
 	}
 	
 	public Text getStatusText(){
@@ -77,28 +77,19 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void setStatusText(String status) {
-		this.statusText.setText(status);
+		statusText.setText(status);
 	}
 	
 	public void setInitialTableView(){
-		List<Asset> assetList = new ArrayList<>();
-		for(Asset asset : market.getAssetList()){
-			assetList.add(asset);
-		}
-		
-		assetListViewControl.getAssetObservableList().addAll(assetList);
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		assetListViewControl = new AssetListViewControl();
-		entryListViewControl = new EntryListViewControl();
-		settingsControl = new SettingsControl();
-		setCenter(assetListViewControl);
+		mainListViewControl.getMainObservableList().add("Welcome!");
 	}
 
 	public void setMarket(Market market) {
 		this.market = market;
+	}
+	
+	public static VaultMainControl getVaultMainControl(){
+		return vaultMainControl;
 	}
 
 }
