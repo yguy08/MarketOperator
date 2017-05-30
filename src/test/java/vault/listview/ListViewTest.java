@@ -1,7 +1,6 @@
 package vault.listview;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class ListViewTest extends Application {
@@ -12,8 +11,6 @@ public class ListViewTest extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		AssetListViewControl customControl = new AssetListViewControl();
-        stage.setScene(new Scene(customControl));
         stage.show();
 	}
 

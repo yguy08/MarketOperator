@@ -18,7 +18,7 @@
 				<Button fx:id="showClose" text="Close" prefWidth="100" />
 				<Button fx:id="backTest" text="Backtest" prefWidth="100" />
 				<Button fx:id="settings" text="Settings" prefWidth="100" onAction="#showSettings" />
-				<Button fx:id="save" text="Save" prefWidth="100" onAction="#save" />
+				<Button fx:id="save" text="Save" prefWidth="100" />
 		</VBox>
 	</right>
 	

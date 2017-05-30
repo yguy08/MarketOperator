@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import asset.Asset;
+import backtest.BackTest;
+import backtest.BackTestFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.text.Text;
 import market.Market;
 import speculator.Speculator;
 import speculator.SpeculatorControl;
+import util.DateUtils;
 import vault.listview.MainListViewControl;
 
 public class VaultMainControl extends BorderPane implements Initializable {
@@ -55,8 +57,15 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showNewEntries(){
-		for(Asset a : market.getAssetList()){
-			System.out.println(a.getAssetName());
+		speculator = speculatorControl.getSpeculator();
+		BackTestFactory bFactory = new BackTestFactory();
+		BackTest backtest = bFactory.runBackTest(market, speculator);
+		backtest.protoBackTest();
+		for(int i = 0; i < backtest.getEntryList().size(); i++){
+			int days = DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i).getDateTime());
+			if(days <= 7){
+				mainListViewControl.getMainObservableList().add(backtest.getEntryList().get(i).toString());
+			}
 		}
 	}
 	

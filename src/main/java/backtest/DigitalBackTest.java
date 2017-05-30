@@ -1,4 +1,4 @@
-package trade;
+package backtest;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -14,7 +14,6 @@ import entry.EntryFactory;
 import market.Market;
 import position.Position;
 import position.PositionFactory;
-import speculator.DigitalSpeculator;
 import speculator.Speculator;
 import util.DateUtils;
 
@@ -48,12 +47,14 @@ public class DigitalBackTest implements BackTest {
 	
 	public DigitalBackTest(Market market, Asset asset, Speculator speculator){
 		this.market = market;
-		//this.speculator = speculator;
+		this.speculator = speculator;
+		this.asset = asset;
 	}
 	
 	public DigitalBackTest(Market market, Speculator speculator){
 		this.market = market;
 		this.speculator = speculator;
+		runBackTest();
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class DigitalBackTest implements BackTest {
 	@Override
 	public void protoBackTest() {
 		
-		speculator = DigitalSpeculator.createAverageRiskSpeculator();
+		//speculator = DigitalSpeculator.createAverageRiskSpeculator();
 		
 		
 		//get start date and number of days since

@@ -1,9 +1,5 @@
 package vault;
 
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
-
 import com.sun.javafx.application.LauncherImpl;
 
 import javafx.application.Application;

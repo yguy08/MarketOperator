@@ -8,7 +8,7 @@ public class EntryFactory {
 
 	public Entry findEntry(Market market, Asset asset, Speculator speculator) {
 		// TODO Auto-generated method stub
-		return null;
+		return new DigitalEntry(market, asset, speculator);
 	}
 	
 }

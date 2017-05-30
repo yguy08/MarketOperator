@@ -27,6 +27,10 @@ public class SpeculatorControl extends GridPane implements Initializable {
 	
 	@FXML private TextField timeFrameDaysTextField;
 	
+	@FXML private TextField entryTextField;
+	
+	@FXML private TextField exitTextField;
+	
 	@FXML private ToggleButton bitcoinMarket;
 	
 	@FXML private ToggleButton dollarMarket;
