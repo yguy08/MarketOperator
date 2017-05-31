@@ -22,8 +22,6 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	private Market market;
 	
-	private Speculator speculator;
-	
 	private MainListViewControl mainListViewControl;
 	
 	private static VaultMainControl vaultMainControl;
@@ -57,13 +55,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showNewEntries(){
-		speculator = speculatorControl.getSpeculator();
-		BackTestFactory bFactory = new BackTestFactory();
-		BackTest backtest = bFactory.runBackTest(market, speculator);
-		backtest.protoBackTest();
+		mainListViewControl.getMainObservableList().clear();
+		Speculator speculator = speculatorControl.getSpeculator();
+		BackTest backtest = BackTestFactory.runBackTest(market, speculator);
+		backtest.getEntriesAtOrAboveEntryFlag(market, speculator);
+		
 		for(int i = 0; i < backtest.getEntryList().size(); i++){
 			int days = DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i).getDateTime());
-			if(days <= 7){
+			if(days <= speculator.getTimeFrameDays()){
 				mainListViewControl.getMainObservableList().add(backtest.getEntryList().get(i).toString());
 			}
 		}
@@ -77,8 +76,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	public void setSettings(){
 		setCenter(mainListViewControl);
-		speculator = speculatorControl.getSpeculator();
-		setStatusText(speculator.toString());
+		setStatusText(speculatorControl.getSpeculator().toString());
 	}
 	
 	public Text getStatusText(){
