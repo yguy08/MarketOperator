@@ -86,5 +86,9 @@ public interface Speculator {
 	
 	public void setEntryList(List<Entry> entryList);
 	
+	public boolean isLongOnly();
+	
+	public void setLongOnly(boolean isLongOnly);
+	
 	
 }

@@ -60,26 +60,33 @@ public class SpeculatorControl extends GridPane implements Initializable {
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bitcoinMarket.setSelected(true);
+		setMarketName(); 
 		setDefaultSettings();		
 	}
     
     //set text field text to current settings
     private void setDefaultSettings(){
-    	speculator = SpeculatorFactory.createDefaultSpeculator();
+    	//create speculator with some default settings
+    	speculator = SpeculatorFactory.createSpeculator(marketName, 5, 1, 5, 2, 25, 25, 10);
+    	//populate text fields with intital speculator settings
     	balanceTextField.setText(speculator.getAccountBalance().toPlainString());
     	riskTextField.setText(speculator.getRisk().toPlainString());
     	maxUnitsTextField.setText(Integer.toString(speculator.getMaxUnits()));
     	stopLengthTextField.setText(speculator.getStopLength().toPlainString());
     	timeFrameDaysTextField.setText(Integer.toString(speculator.getTimeFrameDays()));
+    	entryTextField.setText(Integer.toString(speculator.getEntrySignalDays()));
+    	exitTextField.setText(Integer.toString(speculator.getSellSignalDays()));
     }
     
-    private void setSpeculator(){
-    	setMarketName();
+    private Speculator setSpeculator(){
     	speculator = SpeculatorFactory.createSpeculator(marketName, Integer.parseInt(balanceTextField.getText().trim()),
     			Integer.parseInt(riskTextField.getText().trim()),
     			Integer.parseInt(maxUnitsTextField.getText().trim()), 
     			Integer.parseInt(stopLengthTextField.getText().trim()), 
-    			Integer.parseInt(timeFrameDaysTextField.getText().trim()));
+    			Integer.parseInt(timeFrameDaysTextField.getText().trim()),
+    			Integer.parseInt(entryTextField.getText().trim()),
+    			Integer.parseInt(exitTextField.getText().trim()));
+    	return speculator;
     }
     
     @FXML
@@ -90,8 +97,7 @@ public class SpeculatorControl extends GridPane implements Initializable {
 	}
 
 	public Speculator getSpeculator() {
-		setSpeculator();
-		return speculator;
+		return setSpeculator();
 	}
     
     public String getMarketName() {

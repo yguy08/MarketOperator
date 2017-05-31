@@ -18,55 +18,54 @@ public class DigitalSpeculator implements Speculator {
 	private BigDecimal startAccountBalance = new BigDecimal(0.00);
 	
 	//risk
-	private BigDecimal risk = new BigDecimal(0.00);
+	private BigDecimal risk;
 	
 	//entry signal - break out # days used to calculate long or short entry
-	private int entrySignalDays = 0;
+	private int entrySignalDays;
 	
 	//sell signal - break out # days in opposite direction of entry
-	private int sellSignalDays = 0;
+	private int sellSignalDays;
 	
 	//max units
-	private int maxUnits = 0;
+	private int maxUnits;
 	
 	//stop length -> entry price - ATR * stopLength
-	private BigDecimal stopLength = new BigDecimal(0.00);
+	private BigDecimal stopLength;
 	
 	//min volume
-	private BigDecimal minVolume = new BigDecimal(0.00);;
-	
-	//total return amount because every speculator can calculate end - start balance
-	private BigDecimal totalReturnAmount = new BigDecimal(0.00);;
-	
-	//total return percent because every speculator has a total return %
-	private BigDecimal totalReturnPercent = new BigDecimal(0.00);;
+	private BigDecimal minVolume;
 	
 	//timeframe -> days been speculating. 0 for live -> 365 for a year
-	private int timeFrameDays = 0;
+	private int timeFrameDays;
+	
+	//long only filter
+	private boolean longOnly;
+	
+	//total return amount because every speculator can calculate end - start balance
+	private BigDecimal totalReturnAmount = new BigDecimal(0.00);
+	
+	//total return percent because every speculator has a total return %
+	private BigDecimal totalReturnPercent = new BigDecimal(0.00);
 	
 	//positions -> every speculator has positions either open or closed (open, closed)
-	private List<Position> positionList = new ArrayList<>();;
+	private List<Position> positionList = new ArrayList<>();
 	
 	//entries -> every speculator has entries either taken or not taken
 	private List<Entry> entryList = new ArrayList<>();
 	
-	public static DigitalSpeculator createDefaultSpeculator() {
-		DigitalSpeculator digitalSpeculator = new DigitalSpeculator(4, 1, 5, 2, 365);
-		return digitalSpeculator;
-	}
-	
-	public static Speculator createUpdatedSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays) {
-		DigitalSpeculator digitalSpeculator = new DigitalSpeculator(balance, risk, maxUnits, stopLength, timeFrameDays);
-		return digitalSpeculator;
-	}
-	
-	public DigitalSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays){
+	public DigitalSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays, int entryFlag, int sellFlag) {
 		setAccountBalance(new BigDecimal(balance));
 		setStartAccountBalance(new BigDecimal(balance));
 		setRisk(new BigDecimal(risk));
 		setMaxUnits(maxUnits);
 		setStopLength(new BigDecimal(stopLength));
 		setTimeFrameDays(timeFrameDays);
+		setEntrySignalDays(entryFlag);
+		setSellSignalDays(sellFlag);
+		
+		//not implemented from settings screen yet
+		setMinVolume(new BigDecimal(0.00));
+		setLongOnly(false);
 	}
 
 	@Override
@@ -181,6 +180,16 @@ public class DigitalSpeculator implements Speculator {
 	@Override
 	public int getTimeFrameDays(){
 		return timeFrameDays;
+	}
+	
+	@Override
+	public boolean isLongOnly() {
+		return longOnly;
+	}
+
+	@Override
+	public void setLongOnly(boolean longOnly) {
+		this.longOnly = longOnly;
 	}
 	
 	@Override
