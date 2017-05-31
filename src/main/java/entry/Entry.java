@@ -7,8 +7,6 @@ import asset.Asset;
 public interface Entry {
 	
 	Asset getAsset();
-		
-	String getDate();
 	
 	int getLocationIndex();
 	
@@ -39,7 +37,5 @@ public interface Entry {
 	BigDecimal getVolume();
 	
 	void setVolume(BigDecimal volume);
-	
-	void setDate(String date);
 
 }

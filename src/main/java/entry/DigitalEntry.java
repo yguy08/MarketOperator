@@ -22,8 +22,6 @@ public class DigitalEntry implements Entry {
 	
 	private Speculator speculator;
 	
-	private String date;
-	
 	private BigDecimal averageTrueRange;
 	
 	private BigDecimal stop;
@@ -48,7 +46,6 @@ public class DigitalEntry implements Entry {
 		
 		if(isEntryCandidate()){
 			isEntry = true;
-			setDate(getAsset().getCurrentDateStringFromSubList());
 			setVolume(getAsset().getCurrentVolumeFromSubList());
 			setTrueRange();
 			setStop();
@@ -84,15 +81,10 @@ public class DigitalEntry implements Entry {
 			return false;
 		}
 	}
-
-	@Override
-	public String getDate() {
-		return this.date;
-	}
 	
 	@Override
-	public void setDate(String date) {
-		this.date = date;
+	public int getLocationIndex() {
+		return locationIndex;
 	}
 
 	@Override
@@ -101,6 +93,7 @@ public class DigitalEntry implements Entry {
 	}
 	
 	//True Range of prices per share, measured in Dollars per Share..if True Range is 1.25 it means max daily variations is $1.25 per share
+	//Move to ASSET??
 	@Override
 	public void setTrueRange() {
 		//consider instance where list is too small...
@@ -180,7 +173,7 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public Date getDateTime() {
-		String date = getDate();
+		String date = getAsset().getDateStringFromIndex(locationIndex);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateTime;
 		try {
@@ -216,11 +209,6 @@ public class DigitalEntry implements Entry {
 	@Override
 	public Asset getAsset() {
 		return asset;
-	}
-
-	@Override
-	public int getLocationIndex() {
-		return locationIndex;
 	}
 	
 	@Override
