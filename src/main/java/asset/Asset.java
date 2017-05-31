@@ -70,5 +70,7 @@ public interface Asset {
 	List<BigDecimal> getClosePriceListFromSubList();
 	
 	BigDecimal getClosePriceFromIndex(int index);
+	
+	String getDateStringFromIndex(int index);
 
 }

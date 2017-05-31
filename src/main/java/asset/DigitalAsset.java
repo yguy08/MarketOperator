@@ -271,4 +271,9 @@ public class DigitalAsset implements Asset {
 		return priceList.get(index).getClose();
 	}
 
+	@Override
+	public String getDateStringFromIndex(int index) {
+		return DateUtils.dateToSimpleDateFormat(priceList.get(index).getDate());
+	}
+
 }
