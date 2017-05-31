@@ -57,5 +57,18 @@ public interface Asset {
 	String getMarketName();
 
 	void setMarketName(String marketName);
+	
+	//helper methods
+	BigDecimal getCurrentPriceFromSubList();
+	
+	BigDecimal getCurrentVolumeFromSubList();
+	
+	String getCurrentDateStringFromSubList();
+	
+	int getIndexOfCurrentRecordFromSubList();
+	
+	List<BigDecimal> getClosePriceListFromSubList();
+	
+	BigDecimal getClosePriceFromIndex(int index);
 
 }

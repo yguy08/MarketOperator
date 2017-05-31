@@ -20,6 +20,7 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.Market;
 import price.PoloniexPriceList;
+import util.DateUtils;
 import util.SaveToFile;
 import util.StringFormatter;
 
@@ -201,26 +202,22 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public void setAssetPriceList() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public List<?> getAssetPriceList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.priceList;
 	}
 
 	@Override
 	public void setAssetPriceSubList(int start, int end) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public List<?> getAssetPriceSubList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.priceSubList;
 	}
 
 	@Override
@@ -237,8 +234,41 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public void setOfflineAssetPriceList() {
-		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public BigDecimal getCurrentPriceFromSubList() {
+		return priceSubList.get(priceSubList.size() - 1).getClose();
+	}
+
+	@Override
+	public String getCurrentDateStringFromSubList() {
+		return DateUtils.dateToSimpleDateFormat(priceSubList.get(priceSubList.size() - 1).getDate());
+	}
+
+	@Override
+	public BigDecimal getCurrentVolumeFromSubList() {
+		return priceSubList.get(priceSubList.size() - 1).getVolume();
+	}
+	
+	@Override
+	public int getIndexOfCurrentRecordFromSubList() {
+		return priceList.indexOf(priceSubList.get(priceSubList.size()-1));
+	}
+
+	@Override
+	public List<BigDecimal> getClosePriceListFromSubList() {
+		List<BigDecimal> closePriceList = new ArrayList<>();
+		for(int i = 0; i < priceSubList.size(); i++){
+			closePriceList.add(priceSubList.get(i).getClose());
+		}
+		return closePriceList;
+	}
+
+	@Override
+	public BigDecimal getClosePriceFromIndex(int index) {
+		return priceList.get(index).getClose();
 	}
 
 }

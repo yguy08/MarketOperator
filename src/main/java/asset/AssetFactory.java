@@ -14,14 +14,4 @@ public class AssetFactory {
 		}
 	}
 	
-
-	
-	//static factory method to create offline digital market
-	public static BitcoinAsset createOnlineBitcoinAsset(String assetName){
-		BitcoinAsset bitcoinAsset = new BitcoinAsset();
-		bitcoinAsset.setAssetName(assetName);
-		bitcoinAsset.setAssetPriceList();
-		return bitcoinAsset;
-	}
-	
 }
