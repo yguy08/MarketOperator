@@ -1,0 +1,116 @@
+[ENTRY]  [$GNT/ETH] Date: Mar 30 2017 Price:0.00163 Direction:Long ATR: 0.0004361901 Unit Size: 68 Total: 0.11084000 Stop: 0.00075762
+[POSITION] GNT/ETH Open:true Entry [Date:Mar 30 2017 Price: 0.00163] Current [Date: Apr 11 2017 Price: 0.00169298] P/L [%: 3.86% Amount: 0.00] Max Price: [0.00188401] Min Price: [0.00163988]
+[ENTRY]  [$BELA/BTC] Date: Mar 26 2017 Price:0.00006325 Direction:Long ATR: 0.000007360505 Unit Size: 4075 Total: 0.25774380 Stop: 0.00004853
+[POSITION] BELA/BTC Open:true Entry [Date:Mar 26 2017 Price: 0.00006325] Current [Date: Apr 11 2017 Price: 0.0001299] P/L [%: 105.38% Amount: 0.27] Max Price: [0.0001589] Min Price: [0.00007452]
+[ENTRY]  [$XBC/BTC] Date: Mar 25 2017 Price:0.00374552 Direction:Long ATR: 0.0004911671 Unit Size: 61 Total: 0.22847670 Stop: 0.00276319
+[POSITION] XBC/BTC Open:true Entry [Date:Mar 25 2017 Price: 0.00374552] Current [Date: Apr 11 2017 Price: 0.031281] P/L [%: 735.16% Amount: 1.68] Max Price: [0.0385] Min Price: [0.02082927]
+[ENTRY]  [$XRP/BTC] Date: Mar 18 2017 Price:0.00000694 Direction:Long ATR: 4.784163E-7 Unit Size: 62706 Total: 0.43517960 Stop: 0.00000598
+[POSITION] XRP/BTC Open:true Entry [Date:Mar 18 2017 Price: 0.00000694] Current [Date: Apr 11 2017 Price: 0.00002891] P/L [%: 316.57% Amount: 1.38] Max Price: [0.00005707] Min Price: [0.00002028]
+[ENTRY]  [$GAME/BTC] Date: Mar 17 2017 Price:0.00022954 Direction:Long ATR: 0.00002117033 Unit Size: 1417 Total: 0.32525820 Stop: 0.00018720
+[POSITION] GAME/BTC Open:true Entry [Date:Mar 17 2017 Price: 0.00022954] Current [Date: Apr 11 2017 Price: 0.00047439] P/L [%: 106.67% Amount: 0.35] Max Price: [0.00047439] Min Price: [0.00028163]
+[ENTRY]  [$EMC2/BTC] Date: Mar 18 2017 Price:0.0000016 Direction:Long ATR: 1.804235E-7 Unit Size: 166275 Total: 0.26604000 Stop: 0.00000124
+[POSITION] EMC2/BTC Open:true Entry [Date:Mar 18 2017 Price: 0.0000016] Current [Date: Apr 11 2017 Price: 0.00000493] P/L [%: 208.12% Amount: 0.55] Max Price: [0.00000504] Min Price: [0.00000358]
+[ENTRY]  [$NOTE/BTC] Date: Mar 23 2017 Price:0.00000589 Direction:Long ATR: 9.19825E-7 Unit Size: 32614 Total: 0.19209650 Stop: 0.00000405
+[POSITION] NOTE/BTC Open:true Entry [Date:Mar 23 2017 Price: 0.00000589] Current [Date: Apr 11 2017 Price: 0.00000993] P/L [%: 68.59% Amount: 0.13] Max Price: [0.00001365] Min Price: [0.00000989]
+[ENTRY]  [$ZEC/XMR] Date: Mar 28 2017 Price:3.315732 Direction:Long ATR: 0.9124085 Unit Size: 0 Total: 0E-8 Stop: 1.49091500
+[POSITION] ZEC/XMR Open:true Entry [Date:Mar 28 2017 Price: 3.315732] Current [Date: Apr 11 2017 Price: 2.96183185] P/L [%: -10.67% Amount: 0.00] Max Price: [3.09056251] Min Price: [2.87573736]
+[ENTRY]  [$SYS/BTC] Date: Apr 10 2017 Price:0.00001872 Direction:Long ATR: 0.000002173406 Unit Size: 13803 Total: 0.25839220 Stop: 0.00001437
+[POSITION] SYS/BTC Open:true Entry [Date:Apr 10 2017 Price: 0.00001872] Current [Date: Apr 11 2017 Price: 0.00002072] P/L [%: 10.68% Amount: 0.03] Max Price: [0.00002072] Min Price: [0.00001416]
+[ENTRY]  [$SJCX/BTC] Date: Mar 13 2017 Price:0.00016899 Direction:Long ATR: 0.00001453308 Unit Size: 2064 Total: 0.34879540 Stop: 0.00013992
+[POSITION] SJCX/BTC Open:true Entry [Date:Mar 13 2017 Price: 0.00016899] Current [Date: Apr 11 2017 Price: 0.00019905] P/L [%: 17.79% Amount: 0.06] Max Price: [0.00021319] Min Price: [0.00019269]
+[ENTRY]  [$AMP/BTC] Date: Mar 16 2017 Price:0.00004899 Direction:Long ATR: 0.000004799806 Unit Size: 6250 Total: 0.30618750 Stop: 0.00003939
+[POSITION] AMP/BTC Open:true Entry [Date:Mar 16 2017 Price: 0.00004899] Current [Date: Apr 11 2017 Price: 0.000073] P/L [%: 49.01% Amount: 0.15] Max Price: [0.0000848] Min Price: [0.00006773]
+[ENTRY]  [$BTC/USDT] Date: Apr 10 2017 Price:1219.49999999 Direction:Long ATR: 64.3457 Unit Size: 0 Total: 0E-8 Stop: 1090.80859999
+[POSITION] BTC/USDT Open:true Entry [Date:Apr 10 2017 Price: 1219.49999999] Current [Date: Apr 11 2017 Price: 1214.98] P/L [%: -0.37% Amount: 0.00] Max Price: [1219.49999999] Min Price: [1095.87488705]
+[ENTRY]  [$LTC/BTC] Date: Mar 16 2017 Price:0.0037 Direction:Long ATR: 0.0002248098 Unit Size: 133 Total: 0.49210000 Stop: 0.00325038
+[POSITION] LTC/BTC Open:true Entry [Date:Mar 16 2017 Price: 0.0037] Current [Date: Apr 11 2017 Price: 0.00819974] P/L [%: 121.61% Amount: 0.60] Max Price: [0.01097992] Min Price: [0.00693832]
+[ENTRY]  [$GRC/BTC] Date: Mar 20 2017 Price:0.00000568 Direction:Long ATR: 7.780435E-7 Unit Size: 38558 Total: 0.21900940 Stop: 0.00000412
+[POSITION] GRC/BTC Open:true Entry [Date:Mar 20 2017 Price: 0.00000568] Current [Date: Apr 11 2017 Price: 0.00000992] P/L [%: 74.65% Amount: 0.16] Max Price: [0.00001111] Min Price: [0.00000853]
+[ENTRY]  [$NXC/BTC] Date: Apr 04 2017 Price:0.0000656 Direction:Long ATR: 0.000007579175 Unit Size: 3958 Total: 0.25964480 Stop: 0.00005044
+[POSITION] NXC/BTC Open:true Entry [Date:Apr 04 2017 Price: 0.0000656] Current [Date: Apr 11 2017 Price: 0.00007842] P/L [%: 19.54% Amount: 0.05] Max Price: [0.00008226] Min Price: [0.00005337]
+[ENTRY]  [$ETC/ETH] Date: Apr 06 2017 Price:0.06224818 Direction:Long ATR: 0.00777009 Unit Size: 3 Total: 0.18674450 Stop: 0.04670800
+[POSITION] ETC/ETH Open:true Entry [Date:Apr 06 2017 Price: 0.06224818] Current [Date: Apr 11 2017 Price: 0.05871639] P/L [%: -5.67% Amount: -0.01] Max Price: [0.06426969] Min Price: [0.05410211]
+[ENTRY]  [$QORA/XMR] Date: Mar 28 2017 Price:0.00000685 Direction:Long ATR: 8.056495E-7 Unit Size: 37237 Total: 0.25507340 Stop: 0.00000524
+[POSITION] QORA/XMR Open:true Entry [Date:Mar 28 2017 Price: 0.00000685] Current [Date: Apr 11 2017 Price: 0.00000611] P/L [%: -10.80% Amount: -0.03] Max Price: [0.00000626] Min Price: [0.00000538]
+[ENTRY]  [$STR/USDT] Date: Mar 23 2017 Price:0.00225 Direction:Long ATR: 0.0002150416 Unit Size: 139 Total: 0.31275000 Stop: 0.00181992
+[POSITION] STR/USDT Open:true Entry [Date:Mar 23 2017 Price: 0.00225] Current [Date: Apr 11 2017 Price: 0.00285345] P/L [%: 26.82% Amount: 0.08] Max Price: [0.00429141] Min Price: [0.00268081]
+[ENTRY]  [$VOX/BTC] Date: Mar 20 2017 Price:0.00000881 Direction:Long ATR: 0.000001400393 Unit Size: 21422 Total: 0.18872780 Stop: 0.00000601
+[POSITION] VOX/BTC Open:true Entry [Date:Mar 20 2017 Price: 0.00000881] Current [Date: Apr 11 2017 Price: 0.00001995] P/L [%: 126.45% Amount: 0.24] Max Price: [0.00001995] Min Price: [0.0000146]
+[ENTRY]  [$LTC/XMR] Date: Mar 30 2017 Price:0.39038212 Direction:Long ATR: 0.03454871 Unit Size: 0 Total: 0E-8 Stop: 0.32128470
+[POSITION] LTC/XMR Open:true Entry [Date:Mar 30 2017 Price: 0.39038212] Current [Date: Apr 11 2017 Price: 0.45494378] P/L [%: 16.54% Amount: 0.00] Max Price: [0.6218896] Min Price: [0.35791086]
+[ENTRY]  [$HUC/BTC] Date: Apr 04 2017 Price:0.00006197 Direction:Long ATR: 0.00000583912 Unit Size: 5137 Total: 0.31833990 Stop: 0.00005029
+[POSITION] HUC/BTC Open:true Entry [Date:Apr 04 2017 Price: 0.00006197] Current [Date: Apr 11 2017 Price: 0.00003398] P/L [%: -45.17% Amount: -0.14] Max Price: [0.00006197] Min Price: [0.00002943]
+[ENTRY]  [$RIC/BTC] Date: Mar 23 2017 Price:0.00001542 Direction:Long ATR: 0.000001688146 Unit Size: 17770 Total: 0.27401340 Stop: 0.00001204
+[POSITION] RIC/BTC Open:true Entry [Date:Mar 23 2017 Price: 0.00001542] Current [Date: Apr 11 2017 Price: 0.0000209] P/L [%: 35.54% Amount: 0.10] Max Price: [0.00002425] Min Price: [0.00001676]
+[ENTRY]  [$REP/USDT] Date: Mar 02 2017 Price:5.83299999 Direction:Long ATR: 0.3633812 Unit Size: 0 Total: 0E-8 Stop: 5.10623759
+[POSITION] REP/USDT Open:true Entry [Date:Mar 02 2017 Price: 5.83299999] Current [Date: Apr 11 2017 Price: 10.4364961] P/L [%: 78.92% Amount: 0.00] Max Price: [12.74489013] Min Price: [9.70773295]
+[ENTRY]  [$ZEC/USDT] Date: Mar 13 2017 Price:47.46535926 Direction:Long ATR: 5.508335 Unit Size: 0 Total: 0E-8 Stop: 36.44868926
+[POSITION] ZEC/USDT Open:true Entry [Date:Mar 13 2017 Price: 47.46535926] Current [Date: Apr 11 2017 Price: 64.20000001] P/L [%: 35.26% Amount: 0.00] Max Price: [66.32536429] Min Price: [58.13000095]
+[ENTRY]  [$FLDC/BTC] Date: Mar 21 2017 Price:0.00000137 Direction:Long ATR: 1.297063E-7 Unit Size: 231291 Total: 0.31686870 Stop: 0.00000111
+[POSITION] FLDC/BTC Open:true Entry [Date:Mar 21 2017 Price: 0.00000137] Current [Date: Apr 11 2017 Price: 0.00000172] P/L [%: 25.55% Amount: 0.08] Max Price: [0.00000205] Min Price: [0.00000158]
+[ENTRY]  [$ETC/USDT] Date: Mar 13 2017 Price:1.63100001 Direction:Long ATR: 0.08278925 Unit Size: 0 Total: 0E-8 Stop: 1.46542151
+[POSITION] ETC/USDT Open:true Entry [Date:Mar 13 2017 Price: 1.63100001] Current [Date: Apr 11 2017 Price: 2.59119137] P/L [%: 58.87% Amount: 0.00] Max Price: [2.79299967] Min Price: [2.56117544]
+[ENTRY]  [$NEOS/BTC] Date: Mar 22 2017 Price:0.00032995 Direction:Long ATR: 0.00003699096 Unit Size: 811 Total: 0.26758940 Stop: 0.00025597
+[POSITION] NEOS/BTC Open:true Entry [Date:Mar 22 2017 Price: 0.00032995] Current [Date: Apr 11 2017 Price: 0.00049081] P/L [%: 48.75% Amount: 0.13] Max Price: [0.000515] Min Price: [0.00043592]
+[ENTRY]  [$XMG/BTC] Date: Mar 17 2017 Price:0.00002928 Direction:Long ATR: 0.000003293138 Unit Size: 9109 Total: 0.26671150 Stop: 0.00002269
+[POSITION] XMG/BTC Open:true Entry [Date:Mar 17 2017 Price: 0.00002928] Current [Date: Apr 11 2017 Price: 0.00005233] P/L [%: 78.72% Amount: 0.21] Max Price: [0.00005361] Min Price: [0.00004173]
+[ENTRY]  [$VIA/BTC] Date: Mar 17 2017 Price:0.00004199 Direction:Long ATR: 0.000005608885 Unit Size: 5348 Total: 0.22456250 Stop: 0.00003077
+[POSITION] VIA/BTC Open:true Entry [Date:Mar 17 2017 Price: 0.00004199] Current [Date: Apr 11 2017 Price: 0.00014157] P/L [%: 237.15% Amount: 0.53] Max Price: [0.00014157] Min Price: [0.00008055]
+[ENTRY]  [$VRC/BTC] Date: Apr 10 2017 Price:0.00006741 Direction:Long ATR: 0.00000775713 Unit Size: 3867 Total: 0.26067450 Stop: 0.00005190
+[POSITION] VRC/BTC Open:true Entry [Date:Apr 10 2017 Price: 0.00006741] Current [Date: Apr 11 2017 Price: 0.00007503] P/L [%: 11.30% Amount: 0.03] Max Price: [0.00007503] Min Price: [0.00004152]
+[ENTRY]  [$XVC/BTC] Date: Apr 10 2017 Price:0.00008802 Direction:Long ATR: 0.00001279273 Unit Size: 2345 Total: 0.20640690 Stop: 0.00006243
+[POSITION] XVC/BTC Open:true Entry [Date:Apr 10 2017 Price: 0.00008802] Current [Date: Apr 11 2017 Price: 0.0001029] P/L [%: 16.91% Amount: 0.03] Max Price: [0.0001029] Min Price: [0.0000621]
+[ENTRY]  [$DASH/XMR] Date: Apr 01 2017 Price:3.30743242 Direction:Short ATR: 0.766122 Unit Size: 0 Total: 0E-8 Stop: 4.83967642
+[POSITION] DASH/XMR Open:true Entry [Date:Apr 01 2017 Price: 3.30743242] Current [Date: Apr 11 2017 Price: 2.89537048] P/L [%: 12.46% Amount: 0.00] Max Price: [3.79761982] Min Price: [2.82554108]
+[ENTRY]  [$XEM/BTC] Date: Mar 04 2017 Price:0.00000775 Direction:Long ATR: 5.974345E-7 Unit Size: 50214 Total: 0.38915850 Stop: 0.00000656
+[POSITION] XEM/BTC Open:true Entry [Date:Mar 04 2017 Price: 0.00000775] Current [Date: Apr 11 2017 Price: 0.00001733] P/L [%: 123.61% Amount: 0.48] Max Price: [0.00001774] Min Price: [0.00001405]
+[ENTRY]  [$NXT/USDT] Date: Mar 13 2017 Price:0.00863804 Direction:Long ATR: 0.000981047 Unit Size: 30 Total: 0.25914120 Stop: 0.00667595
+[POSITION] NXT/USDT Open:true Entry [Date:Mar 13 2017 Price: 0.00863804] Current [Date: Apr 11 2017 Price: 0.01448175] P/L [%: 67.65% Amount: 0.18] Max Price: [0.0175] Min Price: [0.01386426]
+[ENTRY]  [$PINK/BTC] Date: Mar 19 2017 Price:7.9E-7 Direction:Long ATR: 7.885665E-8 Unit Size: 380437 Total: 0.30054520 Stop: 6.3E-7
+[POSITION] PINK/BTC Open:true Entry [Date:Mar 19 2017 Price: 7.9E-7] Current [Date: Apr 11 2017 Price: 0.00000131] P/L [%: 65.82% Amount: 0.20] Max Price: [0.00000185] Min Price: [0.00000129]
+[ENTRY]  [$SDC/BTC] Date: Apr 08 2017 Price:0.001305 Direction:Short ATR: 0.0003567338 Unit Size: 84 Total: 0.10962000 Stop: 0.00201847
+[POSITION] SDC/BTC Open:true Entry [Date:Apr 08 2017 Price: 0.001305] Current [Date: Apr 11 2017 Price: 0.0013476] P/L [%: -3.26% Amount: 0.00] Max Price: [0.00165875] Min Price: [0.00129514]
+[ENTRY]  [$STR/BTC] Date: Mar 18 2017 Price:0.00000187 Direction:Long ATR: 1.879478E-7 Unit Size: 159618 Total: 0.29848570 Stop: 0.00000149
+[POSITION] STR/BTC Open:true Entry [Date:Mar 18 2017 Price: 0.00000187] Current [Date: Apr 11 2017 Price: 0.00000233] P/L [%: 24.60% Amount: 0.07] Max Price: [0.00000389] Min Price: [0.00000228]
+[ENTRY]  [$NSR/BTC] Date: Mar 21 2017 Price:1.7E-7 Direction:Long ATR: 2.685053E-8 Unit Size: 1117296 Total: 0.18994030 Stop: 1.2E-7
+[POSITION] NSR/BTC Open:true Entry [Date:Mar 21 2017 Price: 1.7E-7] Current [Date: Apr 11 2017 Price: 2.5E-7] P/L [%: 47.06% Amount: 0.09] Max Price: [3.0E-7] Min Price: [2.3E-7]
+[ENTRY]  [$LTC/USDT] Date: Mar 13 2017 Price:4.359 Direction:Long ATR: 0.1730778 Unit Size: 0 Total: 0E-8 Stop: 4.01284440
+[POSITION] LTC/USDT Open:true Entry [Date:Mar 13 2017 Price: 4.359] Current [Date: Apr 11 2017 Price: 9.90738409] P/L [%: 127.29% Amount: 0.00] Max Price: [12.39999998] Min Price: [7.55095]
+[ENTRY]  [$RBY/BTC] Date: Mar 25 2017 Price:0.00021999 Direction:Long ATR: 0.00001365832 Unit Size: 2196 Total: 0.48309800 Stop: 0.00019267
+[POSITION] RBY/BTC Open:true Entry [Date:Mar 25 2017 Price: 0.00021999] Current [Date: Apr 11 2017 Price: 0.00028683] P/L [%: 30.38% Amount: 0.15] Max Price: [0.00060794] Min Price: [0.00020507]
+[ENTRY]  [$DGB/BTC] Date: Mar 17 2017 Price:2.4E-7 Direction:Long ATR: 2.570150E-8 Unit Size: 1167247 Total: 0.28013930 Stop: 1.9E-7
+[POSITION] DGB/BTC Open:true Entry [Date:Mar 17 2017 Price: 2.4E-7] Current [Date: Apr 11 2017 Price: 6.1E-7] P/L [%: 154.17% Amount: 0.43] Max Price: [6.1E-7] Min Price: [3.4E-7]
+[ENTRY]  [$FCT/BTC] Date: Mar 13 2017 Price:0.00324636 Direction:Long ATR: 0.0002639592 Unit Size: 113 Total: 0.36683870 Stop: 0.00271844
+[POSITION] FCT/BTC Open:true Entry [Date:Mar 13 2017 Price: 0.00324636] Current [Date: Apr 11 2017 Price: 0.00398313] P/L [%: 22.70% Amount: 0.08] Max Price: [0.00398313] Min Price: [0.00361651]
+[ENTRY]  [$POT/BTC] Date: Mar 22 2017 Price:0.00001655 Direction:Long ATR: 0.000001554478 Unit Size: 19299 Total: 0.31939840 Stop: 0.00001344
+[POSITION] POT/BTC Open:true Entry [Date:Mar 22 2017 Price: 0.00001655] Current [Date: Apr 11 2017 Price: 0.00003066] P/L [%: 85.26% Amount: 0.27] Max Price: [0.0000315] Min Price: [0.00002052]
+[ENTRY]  [$MAID/BTC] Date: Apr 03 2017 Price:0.0001765 Direction:Long ATR: 0.00001494334 Unit Size: 2007 Total: 0.35423550 Stop: 0.00014661
+[POSITION] MAID/BTC Open:true Entry [Date:Apr 03 2017 Price: 0.0001765] Current [Date: Apr 11 2017 Price: 0.00016694] P/L [%: -5.42% Amount: -0.02] Max Price: [0.00017976] Min Price: [0.00015685]
+[ENTRY]  [$FLO/BTC] Date: Mar 19 2017 Price:0.00000627 Direction:Long ATR: 5.944975E-7 Unit Size: 50462 Total: 0.31639670 Stop: 0.00000508
+[POSITION] FLO/BTC Open:true Entry [Date:Mar 19 2017 Price: 0.00000627] Current [Date: Apr 11 2017 Price: 0.00001044] P/L [%: 66.51% Amount: 0.21] Max Price: [0.00001404] Min Price: [0.00000784]
+[ENTRY]  [$VTC/BTC] Date: Apr 09 2017 Price:0.00011324 Direction:Long ATR: 0.00001074223 Unit Size: 2792 Total: 0.31616610 Stop: 0.00009176
+[POSITION] VTC/BTC Open:true Entry [Date:Apr 09 2017 Price: 0.00011324] Current [Date: Apr 11 2017 Price: 0.00013] P/L [%: 14.80% Amount: 0.05] Max Price: [0.00014478] Min Price: [0.00005351]
+[ENTRY]  [$PPC/BTC] Date: Mar 30 2017 Price:0.00063822 Direction:Long ATR: 0.00006432345 Unit Size: 466 Total: 0.29741050 Stop: 0.00050957
+[POSITION] PPC/BTC Open:true Entry [Date:Mar 30 2017 Price: 0.00063822] Current [Date: Apr 11 2017 Price: 0.00072189] P/L [%: 13.11% Amount: 0.04] Max Price: [0.00076] Min Price: [0.0005863]
+[ENTRY]  [$XRP/USDT] Date: Mar 19 2017 Price:0.00682127 Direction:Long ATR: 0.000526121 Unit Size: 57 Total: 0.38881240 Stop: 0.00576903
+[POSITION] XRP/USDT Open:true Entry [Date:Mar 19 2017 Price: 0.00682127] Current [Date: Apr 11 2017 Price: 0.03500001] P/L [%: 413.10% Amount: 1.61] Max Price: [0.06319] Min Price: [0.0222]
+[ENTRY]  [$BLK/BTC] Date: Mar 13 2017 Price:0.00003417 Direction:Long ATR: 0.000003818500 Unit Size: 7856 Total: 0.26843950 Stop: 0.00002653
+[POSITION] BLK/BTC Open:true Entry [Date:Mar 13 2017 Price: 0.00003417] Current [Date: Apr 11 2017 Price: 0.00006147] P/L [%: 79.89% Amount: 0.21] Max Price: [0.0000702] Min Price: [0.00005363]
+[ENTRY]  [$BTS/BTC] Date: Mar 17 2017 Price:0.00000446 Direction:Long ATR: 3.237485E-7 Unit Size: 92664 Total: 0.41328140 Stop: 0.00000381
+[POSITION] BTS/BTC Open:true Entry [Date:Mar 17 2017 Price: 0.00000446] Current [Date: Apr 11 2017 Price: 0.00000703] P/L [%: 57.62% Amount: 0.24] Max Price: [0.00000989] Min Price: [0.00000631]
+[ENTRY]  [$DOGE/BTC] Date: Mar 13 2017 Price:2.0E-7 Direction:Long ATR: 1.505502E-8 Unit Size: 1992691 Total: 0.39853820 Stop: 1.7E-7
+[POSITION] DOGE/BTC Open:true Entry [Date:Mar 13 2017 Price: 2.0E-7] Current [Date: Apr 11 2017 Price: 3.2E-7] P/L [%: 60.00% Amount: 0.24] Max Price: [4.7E-7] Min Price: [3.0E-7]
+[ENTRY]  [$QBK/BTC] Date: Mar 17 2017 Price:0.00021297 Direction:Long ATR: 0.00002681744 Unit Size: 1118 Total: 0.23810050 Stop: 0.00015934
+[POSITION] QBK/BTC Open:true Entry [Date:Mar 17 2017 Price: 0.00021297] Current [Date: Apr 11 2017 Price: 0.00040264] P/L [%: 89.06% Amount: 0.21] Max Price: [0.00046496] Min Price: [0.00032611]
+[ENTRY]  [$BLK/XMR] Date: Mar 28 2017 Price:0.00283293 Direction:Long ATR: 0.000543758 Unit Size: 55 Total: 0.15581120 Stop: 0.00174541
+[POSITION] BLK/XMR Open:true Entry [Date:Mar 28 2017 Price: 0.00283293] Current [Date: Apr 11 2017 Price: 0.00339593] P/L [%: 19.87% Amount: 0.03] Max Price: [0.00396159] Min Price: [0.0030891]
+[ENTRY]  [$XPM/BTC] Date: Mar 13 2017 Price:0.00005265 Direction:Long ATR: 0.000003938702 Unit Size: 7616 Total: 0.40098240 Stop: 0.00004477
+[POSITION] XPM/BTC Open:true Entry [Date:Mar 13 2017 Price: 0.00005265] Current [Date: Apr 11 2017 Price: 0.00011555] P/L [%: 119.47% Amount: 0.48] Max Price: [0.00015526] Min Price: [0.0000777]
+[ENTRY]  [$NMC/BTC] Date: Apr 02 2017 Price:0.00075157 Direction:Long ATR: 0.0001052948 Unit Size: 284 Total: 0.21344590 Stop: 0.00054098
+[POSITION] NMC/BTC Open:true Entry [Date:Apr 02 2017 Price: 0.00075157] Current [Date: Apr 11 2017 Price: 0.00069699] P/L [%: -7.26% Amount: -0.02] Max Price: [0.00075157] Min Price: [0.00059928]
+[ENTRY]  [$STRAT/BTC] Date: Mar 13 2017 Price:0.0000829 Direction:Long ATR: 0.00003092538 Unit Size: 970 Total: 0.08041300 Stop: 0.00002105
+[POSITION] STRAT/BTC Open:true Entry [Date:Mar 13 2017 Price: 0.0000829] Current [Date: Apr 11 2017 Price: 0.00035376] P/L [%: 326.73% Amount: 0.26] Max Price: [0.00038299] Min Price: [0.00023028]
+[ENTRY]  [$CLAM/BTC] Date: Mar 18 2017 Price:0.00093763 Direction:Long ATR: 0.00007815195 Unit Size: 383 Total: 0.35911230 Stop: 0.00078133
+[POSITION] CLAM/BTC Open:true Entry [Date:Mar 18 2017 Price: 0.00093763] Current [Date: Apr 11 2017 Price: 0.00137218] P/L [%: 46.35% Amount: 0.17] Max Price: [0.00137218] Min Price: [0.00108577]
+[ENTRY]  [$QTL/BTC] Date: Mar 25 2017 Price:0.00003005 Direction:Long ATR: 0.00000315492 Unit Size: 9508 Total: 0.28571540 Stop: 0.00002374
+[POSITION] QTL/BTC Open:true Entry [Date:Mar 25 2017 Price: 0.00003005] Current [Date: Apr 11 2017 Price: 0.00004019] P/L [%: 33.74% Amount: 0.10] Max Price: [0.00004494] Min Price: [0.0000341]
