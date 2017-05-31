@@ -39,8 +39,6 @@ public class DigitalEntry implements Entry {
 	//true = long, false = short
 	private boolean isLongEntry;
 	
-	private String direction = null;
-	
 	private Boolean isEntry = false;
 	
 	public DigitalEntry(Asset asset, Speculator speculator){
