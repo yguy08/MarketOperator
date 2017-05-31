@@ -6,9 +6,8 @@ import speculator.Speculator;
 
 public class EntryFactory {
 
-	public Entry findEntry(Market market, Asset asset, Speculator speculator) {
-		// TODO Auto-generated method stub
-		return new DigitalEntry(market, asset, speculator);
+	public static Entry findEntry(Market market, Asset asset, Speculator speculator) {
+		return new DigitalEntry(asset, speculator);
 	}
 	
 }

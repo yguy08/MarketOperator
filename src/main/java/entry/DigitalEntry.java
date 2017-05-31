@@ -6,13 +6,10 @@ import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import asset.Asset;
 import market.Market;
@@ -23,141 +20,97 @@ import util.StringFormatter;
 public class DigitalEntry implements Entry {
 	
 	Market market;
+	
 	Asset asset;
+	
 	Speculator speculator;
 	
-	List<PoloniexChartData> priceSubList = new ArrayList<>();
+	private String date;
 	
-	String Date;
 	BigDecimal currentPrice;
+	
 	BigDecimal maxPrice;
+	
 	BigDecimal minPrice;
+	
 	BigDecimal averageTrueRange;
+	
 	BigDecimal stop;
+	
 	BigDecimal unitSize;
+	
 	BigDecimal orderTotal;
+	
 	BigDecimal volume;
 	
 	String assetName;
 		
-	int locationIndex;
-	String direction = null;
-	Boolean isEntry = false;
+	private int locationIndex;
 	
-	public DigitalEntry(Market market, Asset asset, Speculator speculator){
-		this.market = market;
+	//true = long, false = short
+	private boolean isLongEntry;
+	
+	String direction = null;
+	
+	private Boolean isEntry = false;
+	
+	public DigitalEntry(Asset asset, Speculator speculator){
 		this.asset	= asset;
 		this.speculator = speculator;
-		setAssetName(this.asset.getAsset());
-		setPriceSubList();
-		setDate(DateUtils.dateToSimpleDateFormat(this.priceSubList.get(this.priceSubList.size() - 1).getDate()));
-		setCurrentPrice(this.priceSubList.get(this.priceSubList.size() - 1).getClose());
-		setMaxPrice(this.priceSubList);
-		setMinPrice(this.priceSubList);
-		setVolume(this.priceSubList.get(this.priceSubList.size() - 1).getVolume());
-		setLocationAsIndex();
-		setEntry();
+		this.locationIndex = getAsset().getIndexOfCurrentRecordFromSubList(); 
 		
-		if(this.isEntry){
+		if(isEntryCandidate()){
+			isEntry = true;
+			setDate(getAsset().getCurrentDateStringFromSubList());
+			setVolume(getAsset().getCurrentVolumeFromSubList());
 			setTrueRange();
 			setStop();
-			setUnitSize(speculator);
+			setUnitSize();
 			setOrderTotal();
 		}
 	}
-
-	@Override
-	public void setEntry() {
-		//filters
-		boolean isHighEqualToLow = this.maxPrice.compareTo(this.minPrice) == 0;
-		boolean isBelowVolumeFilter = this.volume.compareTo(Speculator.VOLUME_FILTER) < 0;
-		boolean isFilteredIn = !(isHighEqualToLow || isBelowVolumeFilter);
+	
+	//before anything else..check if price makes it an entry or not
+	private boolean isEntryCandidate(){
+		BigDecimal currentPrice = getAsset().getCurrentPriceFromSubList();
+		BigDecimal maxPrice = Collections.max(getAsset().getClosePriceListFromSubList());
+		BigDecimal minPrice = Collections.min(getAsset().getClosePriceListFromSubList());
 		
-		boolean isEqualToHigh = this.currentPrice.compareTo(this.maxPrice) == 0;
-		boolean isEqualToLow = this.currentPrice.compareTo(this.minPrice) == 0;
+		//long
+		boolean isPriceAHigh = currentPrice.compareTo(maxPrice) == 0;
+		//short
+		boolean isPriceALow = currentPrice.compareTo(minPrice) == 0;
 		
-		this.isEntry = (isEqualToHigh || isEqualToLow) ? isFilteredIn : false;
-		if(isEntry){
-			this.direction = isEqualToHigh ? Speculator.LONG : Speculator.SHORT;
+		if(isPriceAHigh || isPriceALow){
+			isLongEntry = isPriceAHigh ? true : false;
+			//filters
+			if(speculator.isLongOnly() && !(isLongEntry)){
+				return false;
+			}else{
+				boolean isHighEqualToLow = maxPrice.compareTo(minPrice) == 0;
+				boolean isBelowVolumeFilter = getAsset().getCurrentVolumeFromSubList().compareTo(speculator.getMinVolume()) < 0;
+				boolean isFilteredIn = !(isHighEqualToLow || isBelowVolumeFilter);
+				return isFilteredIn;
+			}
+			
+		}else{
+			return false;
 		}
 	}
 
 	@Override
 	public String getDate() {
-		return this.Date;
+		return this.date;
 	}
 	
 	@Override
 	public void setDate(String date) {
-		this.Date = date;
-	}
-
-	@Override
-	public BigDecimal getCurrentPrice() {
-		return this.currentPrice;
-	}
-	
-	@Override
-	public void setCurrentPrice(BigDecimal currentPrice) {
-		this.currentPrice = currentPrice;
-	}
-
-	@Override
-	public void setMaxPrice(List<?> priceSubList) {
-		List<BigDecimal> maxList = new ArrayList<>();
-		List<PoloniexChartData> lastXDaysList = (List<PoloniexChartData>) priceSubList;
-		for(int x = 0; x < lastXDaysList.size(); x++){
-			maxList.add(lastXDaysList.get(x).getClose());
-		}
-		
-		this.maxPrice = Collections.max(maxList);
-	}
-
-	@Override
-	public BigDecimal getMaxPrice() {
-		return this.maxPrice;
-	}
-
-	@Override
-	public void setMinPrice(List<?> priceSubList) {
-		List<BigDecimal> minList = new ArrayList<>();
-		List<PoloniexChartData> lastXDaysList = (List<PoloniexChartData>) priceSubList;
-		System.out.println("Finding min price for: " + lastXDaysList.get(0).toString());
-		for(int x = 0; x < this.priceSubList.size(); x++){
-			minList.add(this.priceSubList.get(x).getClose());
-		}
-		
-		this.minPrice = Collections.min(minList);
-	}
-
-	@Override
-	public BigDecimal getMinPrice() {
-		return this.minPrice;
-	}
-
-	@Override
-	public String getDirection() {
-		return this.direction;
-	}
-
-	@Override
-	public void setLocationAsIndex() {
-		this.locationIndex = this.asset.getAssetPriceList().indexOf(this.priceSubList.get(this.priceSubList.size() - 1));
-	}
-
-	@Override
-	public int getLocationIndex() {
-		return this.locationIndex;
+		this.date = date;
 	}
 
 	@Override
 	public Boolean isEntry() {
-		return this.isEntry;
-	}
-
-	@Override
-	public void setPriceSubList() {
-		this.priceSubList = (List<PoloniexChartData>) this.asset.getAssetPriceSubList();
+		return isEntry;
 	}
 	
 	//True Range of prices per share, measured in Dollars per Share..if True Range is 1.25 it means max daily variations is $1.25 per share
@@ -182,7 +135,7 @@ public class DigitalEntry implements Entry {
 		tR = tR.divide(new BigDecimal(Speculator.MOVING_AVG), MathContext.DECIMAL32);
 		
 		//20 exponential moving average
-		for(int x = Speculator.MOVING_AVG; x < this.getLocationIndex();x++){
+		for(int x = Speculator.MOVING_AVG; x < locationIndex;x++){
 			List<BigDecimal> trList = Arrays.asList(
 					this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
 					this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
@@ -203,59 +156,44 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public void setStop() {
-		BigDecimal longStop = this.getCurrentPrice().subtract(Speculator.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
-		BigDecimal shortStop = this.getCurrentPrice().add(Speculator.STOP.multiply(this.getTrueRange(), MathContext.DECIMAL32));
-		boolean isLong = this.getDirection().equals(Speculator.LONG);
-		this.stop = isLong ? longStop : shortStop;
+		if(isLongEntry){
+			stop = getAsset().getCurrentPriceFromSubList().subtract(Speculator.STOP.multiply(getTrueRange(), MathContext.DECIMAL32));
+		}else{
+			stop = getAsset().getCurrentPriceFromSubList().add(Speculator.STOP.multiply(getTrueRange(), MathContext.DECIMAL32));
+		}
 	}
 
 	@Override
 	public BigDecimal getStop() {
-		return this.stop;
+		return stop;
 	}
 	
 	@Override
-	public void setUnitSize(Speculator speculator) {
-		BigDecimal max = speculator.getAccountBalance().divide(this.currentPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+	public void setUnitSize() {
+		BigDecimal max = speculator.getAccountBalance().divide(getAsset().getCurrentPriceFromSubList(), MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		BigDecimal size = speculator.getAccountBalance().multiply(Speculator.RISK, MathContext.DECIMAL32)
-				.divide(this.averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		this.unitSize = (size.compareTo(max) > 0) ? max : size;
-
+				.divide(averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		unitSize = (size.compareTo(max) > 0) ? max : size;
 	}
 	
 	@Override
 	public BigDecimal getUnitSize() {
-		return this.unitSize;
+		return unitSize;
 	}
 	
 	@Override
 	public void setOrderTotal() {
-		this.orderTotal = this.unitSize.multiply(this.currentPrice, MathContext.DECIMAL32);
+		orderTotal = unitSize.multiply(getAsset().getCurrentPriceFromSubList(), MathContext.DECIMAL32);
 	}
 	
 	@Override
 	public BigDecimal getOrderTotal() {
-		return this.orderTotal;
-	}
-	
-	@Override
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append("$" + this.getAssetName().replace("/BTC", ""));
-		sb.append(" " + DateUtils.dateToMMddFormat(this.getDateTime()));
-		sb.append(" Price:" + StringFormatter.bigDecimalToEightString(this.currentPrice));
-		sb.append(" [" + this.direction + "]");
-		sb.append(" ATR: " + StringFormatter.bigDecimalToEightString(this.averageTrueRange));
-		sb.append(" Units: " + this.unitSize);
-		sb.append(" Cost: " + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
-		sb.append(" Stop: " + StringFormatter.bigDecimalToEightString(this.stop));
-		sb.append(" Volume: " + StringFormatter.bigDecimalToShortString(this.getVolume()));
-		return sb.toString();
+		return orderTotal;
 	}
 
 	@Override
 	public Date getDateTime() {
-		String date = this.getDate();
+		String date = getDate();
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateTime;
 		try {
@@ -270,7 +208,7 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public BigDecimal getVolume() {
-		return this.volume;
+		return volume;
 	}
 	
 	@Override
@@ -280,31 +218,12 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public boolean isLong() {
-		return (this.direction == Speculator.LONG) ? true : false;
-	}
-
-	@Override
-	public Entry copy(Entry entry, Speculator speculator) {
-		Entry digitalEntry = new DigitalEntry();
-		digitalEntry.setDate(entry.getDate());
-		digitalEntry.setDirection(entry.getDirection());
-		digitalEntry.setCurrentPrice(entry.getCurrentPrice());
-		digitalEntry.setTrueRange(entry.getTrueRange());
-		digitalEntry.setStop(entry.getStop());
-		digitalEntry.setUnitSize(speculator);
-		digitalEntry.setOrderTotal();
-		digitalEntry.setAssetName(entry.getAssetName());
-		digitalEntry.setVolume(entry.getVolume());
-		return digitalEntry;
-	}
-	
-	public DigitalEntry(){
-		
+		return (direction == Speculator.LONG) ? true : false;
 	}
 
 	@Override
 	public void setTrueRange(BigDecimal trueRange) {
-		this.averageTrueRange = trueRange;
+		averageTrueRange = trueRange;
 	}
 
 	@Override
@@ -313,34 +232,32 @@ public class DigitalEntry implements Entry {
 	}
 
 	@Override
-	public void setAssetName(String assetName) {
-		this.assetName = assetName;
+	public Asset getAsset() {
+		return asset;
 	}
 
 	@Override
-	public String getAssetName() {
-		return this.assetName;
+	public int getLocationIndex() {
+		return locationIndex;
 	}
 	
 	@Override
-	public void setDirection(String direction){
-		//make sure direction is formatted correctly before assigning
-		boolean isFormat = (direction == Speculator.LONG || direction == Speculator.SHORT) ? true : false;
-		if(isFormat){
-			this.direction = direction;
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("$" + getAsset().getAssetName().replace("/BTC", ""));
+		sb.append(" " + DateUtils.dateToMMddFormat(this.getDateTime()));
+		sb.append(" Price:" + StringFormatter.bigDecimalToEightString(getAsset().getClosePriceFromIndex(locationIndex)));
+		if(isLongEntry){
+			sb.append(" ^ ");
+		}else{
+			sb.append(" v ");
 		}
-	}
-
-	@Override
-	public void findAllEntries(Asset asset, Speculator speculator) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<Integer> getEntryIndex() {
-		// TODO Auto-generated method stub
-		return null;
+		sb.append(" ATR: " + StringFormatter.bigDecimalToEightString(this.averageTrueRange));
+		sb.append(" Units: " + this.unitSize);
+		sb.append(" Cost: " + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
+		sb.append(" Stop: " + StringFormatter.bigDecimalToEightString(this.stop));
+		sb.append(" Volume: " + StringFormatter.bigDecimalToShortString(this.getVolume()));
+		return sb.toString();
 	}
 
 }

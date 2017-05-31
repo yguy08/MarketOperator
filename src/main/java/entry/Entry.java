@@ -2,38 +2,18 @@ package entry;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
-
 import asset.Asset;
 import speculator.Speculator;
 
 public interface Entry {
 	
-	void setEntry();
+	Asset getAsset();
 		
 	String getDate();
-		
-	BigDecimal getCurrentPrice();
-	
-	void setMaxPrice(List<?> priceSubList);
-	
-	BigDecimal getMaxPrice();
-	
-	void setMinPrice(List<?> priceSubList);
-	
-	BigDecimal getMinPrice();
-	
-	String getDirection();
-	
-	void setDirection(String direction);
-	
-	void setLocationAsIndex();
 	
 	int getLocationIndex();
 	
 	Boolean isEntry();
-	
-	void setPriceSubList();
 	
 	void setTrueRange();
 	
@@ -45,11 +25,9 @@ public interface Entry {
 	
 	void setStop(BigDecimal stop);
 	
-	void setCurrentPrice(BigDecimal currentPrice);
-	
 	BigDecimal getStop();
 	
-	void setUnitSize(Speculator speculator);
+	void setUnitSize();
 	
 	BigDecimal getUnitSize();
 	
@@ -63,18 +41,8 @@ public interface Entry {
 	
 	boolean isLong();
 	
-	Entry copy(Entry entry, Speculator speculator);
-	
-	void setAssetName(String assetName);
-	
-	String getAssetName();
-	
 	void setVolume(BigDecimal volume);
 	
 	void setDate(String date);
-
-	void findAllEntries(Asset asset, Speculator speculator);
-
-	List<Integer> getEntryIndex();
 
 }
