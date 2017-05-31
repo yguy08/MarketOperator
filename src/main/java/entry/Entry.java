@@ -3,7 +3,6 @@ package entry;
 import java.math.BigDecimal;
 import java.util.Date;
 import asset.Asset;
-import speculator.Speculator;
 
 public interface Entry {
 	
@@ -38,8 +37,6 @@ public interface Entry {
 	Date getDateTime();
 	
 	BigDecimal getVolume();
-	
-	boolean isLong();
 	
 	void setVolume(BigDecimal volume);
 	

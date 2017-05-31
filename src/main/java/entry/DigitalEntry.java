@@ -12,45 +12,34 @@ import java.util.Date;
 import java.util.List;
 
 import asset.Asset;
-import market.Market;
 import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
 
 public class DigitalEntry implements Entry {
 	
-	Market market;
+	private Asset asset;
 	
-	Asset asset;
-	
-	Speculator speculator;
+	private Speculator speculator;
 	
 	private String date;
 	
-	BigDecimal currentPrice;
+	private BigDecimal averageTrueRange;
 	
-	BigDecimal maxPrice;
+	private BigDecimal stop;
 	
-	BigDecimal minPrice;
+	private BigDecimal unitSize;
 	
-	BigDecimal averageTrueRange;
+	private BigDecimal orderTotal;
 	
-	BigDecimal stop;
-	
-	BigDecimal unitSize;
-	
-	BigDecimal orderTotal;
-	
-	BigDecimal volume;
-	
-	String assetName;
+	private BigDecimal volume;
 		
 	private int locationIndex;
 	
 	//true = long, false = short
 	private boolean isLongEntry;
 	
-	String direction = null;
+	private String direction = null;
 	
 	private Boolean isEntry = false;
 	
@@ -214,11 +203,6 @@ public class DigitalEntry implements Entry {
 	@Override
 	public void setVolume(BigDecimal volume) {
 		this.volume = volume;
-	}
-
-	@Override
-	public boolean isLong() {
-		return (direction == Speculator.LONG) ? true : false;
 	}
 
 	@Override
