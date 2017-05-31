@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import entry.Entry;
+import market.Market;
 import position.Position;
+import speculator.Speculator;
 
 public interface BackTest {
 	
@@ -45,4 +47,9 @@ public interface BackTest {
 	String getStartDate();
 	
 	void dataSetUp();
+	
+	/*
+	 * Get entries that are at or above entry flag param
+	 */
+	void getEntriesAtOrAboveEntryFlag(Market market, Speculator speculator);
 }

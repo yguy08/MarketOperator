@@ -20,19 +20,25 @@ import util.DateUtils;
 public class DigitalBackTest implements BackTest {
 	
 	Market market;
+	
 	Asset asset;
+	
 	Speculator speculator;
 	
-	EntryFactory entryFactory = new EntryFactory();
 	Entry entry;
+	
 	List<Entry> entryList = new ArrayList<>();
+	
 	Entry updatedSizeEntry;
 	
 	List<Entry> sortedEntryList = new ArrayList<>();
 	
 	PositionFactory positionFactory = new PositionFactory();
+	
 	Position position;
+	
 	List<Position> positionList = new ArrayList<>();
+	
 	Position updatedSizePosition;
 
 	List<Position> sortedPositionList = new ArrayList<>();
@@ -45,24 +51,36 @@ public class DigitalBackTest implements BackTest {
 	
 	String startDate;
 	
-	public DigitalBackTest(Market market, Asset asset, Speculator speculator){
-		this.market = market;
-		this.speculator = speculator;
-		this.asset = asset;
-	}
-	
 	public DigitalBackTest(Market market, Speculator speculator){
 		this.market = market;
 		this.speculator = speculator;
-		runBackTest();
 	}
-
+	
+	@Override
+	public void getEntriesAtOrAboveEntryFlag(Market market, Speculator speculator) {
+		Entry entry;
+		for(Asset asset : market.getAssetList()){
+			System.out.println("Finding entries for: " + asset.getAssetName());
+			for(int x = speculator.getEntrySignalDays();x < asset.getPriceList().size();x++){
+				asset.setPriceSubList(x - speculator.getEntrySignalDays(), x + 1);
+				entry = EntryFactory.findEntry(market, asset, speculator);
+				if(entry.isEntry()){
+					setEntryList(entry);
+					System.out.println(entry.toString());
+				}				
+			}
+			
+			setSortedEntryList(entryList);
+			setSortedPositionList(positionList);
+		}
+	}
+	
 	@Override
 	public void runBackTest() {
 		for(int x = Speculator.ENTRY; x < this.asset.getPriceList().size();x++){
 			this.asset.setPriceSubList(x - Speculator.ENTRY, x + 1);
-			entry = entryFactory.findEntry(this.market, this.asset, this.speculator);
-			if(entry.isEntry() && entry.getDirection() == Speculator.LONG){
+			entry = EntryFactory.findEntry(this.market, this.asset, this.speculator);
+			if(entry.isEntry()){
 				setEntryList(entry);
 				for(int y = this.entry.getLocationIndex(); y < this.asset.getPriceList().size() || position.isOpen() == false; y++, x++){
 					this.asset.setPriceSubList(y - Speculator.EXIT, y + 1);
@@ -97,7 +115,7 @@ public class DigitalBackTest implements BackTest {
 			this.resultsList.add("DATE: " + DateUtils.dateToSimpleDateFormat(currentDateOfBacktest));
 			for(int k = 0; k < this.getSortedEntryList().size();k++){
 				this.entry = this.getSortedEntryList().get(k);
-				this.updatedSizeEntry = this.entry.copy(this.entry, speculator);
+				//this.updatedSizeEntry = this.entry.copy(this.entry, speculator);
 				Date entryDate = this.entry.getDateTime();
 				boolean isUnitSpotOpen = (this.unitList.size() < speculator.getMaxUnits());
 				boolean isEntryOnCurrentDayOfBacktest = entryDate.equals(currentDateOfBacktest);
@@ -247,7 +265,7 @@ public class DigitalBackTest implements BackTest {
 		for(Asset asset : market.getAssetList()){
 			for(int x = speculator.getEntrySignalDays(); x < asset.getPriceList().size();x++){
 				asset.setPriceSubList(x - speculator.getEntrySignalDays(), x + 1);
-				entry = entryFactory.findEntry(market, asset, speculator);
+				entry = EntryFactory.findEntry(market, asset, speculator);
 				boolean isFilteredEntry = Speculator.LONG_FILTER ? (entry.isEntry() && entry.isLong()) : entry.isEntry();
 				if(isFilteredEntry){
 					setEntryList(entry);
