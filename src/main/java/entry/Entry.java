@@ -6,21 +6,17 @@ import asset.Asset;
 
 public interface Entry {
 	
-	Asset getAsset();
-	
 	int getLocationIndex();
+	
+	Asset getAsset();
 	
 	Boolean isEntry();
 	
 	void setTrueRange();
 	
-	void setTrueRange(BigDecimal trueRange);
-	
 	BigDecimal getTrueRange();
 	
 	void setStop();
-	
-	void setStop(BigDecimal stop);
 	
 	BigDecimal getStop();
 	
@@ -33,9 +29,5 @@ public interface Entry {
 	BigDecimal getOrderTotal();
 
 	Date getDateTime();
-	
-	BigDecimal getVolume();
-	
-	void setVolume(BigDecimal volume);
 
 }

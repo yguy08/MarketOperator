@@ -13,7 +13,6 @@ import java.util.List;
 
 import asset.Asset;
 import speculator.Speculator;
-import util.DateUtils;
 import util.StringFormatter;
 
 public class DigitalEntry implements Entry {
@@ -29,8 +28,6 @@ public class DigitalEntry implements Entry {
 	private BigDecimal unitSize;
 	
 	private BigDecimal orderTotal;
-	
-	private BigDecimal volume;
 		
 	private int locationIndex;
 	
@@ -42,11 +39,10 @@ public class DigitalEntry implements Entry {
 	public DigitalEntry(Asset asset, Speculator speculator){
 		this.asset	= asset;
 		this.speculator = speculator;
-		this.locationIndex = getAsset().getIndexOfCurrentRecordFromSubList(); 
+		this.locationIndex = getAsset().getIndexOfCurrentRecord(); 
 		
 		if(isEntryCandidate()){
 			isEntry = true;
-			setVolume(getAsset().getCurrentVolumeFromSubList());
 			setTrueRange();
 			setStop();
 			setUnitSize();
@@ -56,7 +52,7 @@ public class DigitalEntry implements Entry {
 	
 	//before anything else..check if price makes it an entry or not
 	private boolean isEntryCandidate(){
-		BigDecimal currentPrice = getAsset().getCurrentPriceFromSubList();
+		BigDecimal currentPrice = getAsset().getClosePriceFromIndex(locationIndex);
 		BigDecimal maxPrice = Collections.max(getAsset().getClosePriceListFromSubList());
 		BigDecimal minPrice = Collections.min(getAsset().getClosePriceListFromSubList());
 		
@@ -72,7 +68,7 @@ public class DigitalEntry implements Entry {
 				return false;
 			}else{
 				boolean isHighEqualToLow = maxPrice.compareTo(minPrice) == 0;
-				boolean isBelowVolumeFilter = getAsset().getCurrentVolumeFromSubList().compareTo(speculator.getMinVolume()) < 0;
+				boolean isBelowVolumeFilter = getAsset().getVolumeFromIndex(locationIndex).compareTo(speculator.getMinVolume()) < 0;
 				boolean isFilteredIn = !(isHighEqualToLow || isBelowVolumeFilter);
 				return isFilteredIn;
 			}
@@ -97,17 +93,17 @@ public class DigitalEntry implements Entry {
 	@Override
 	public void setTrueRange() {
 		//consider instance where list is too small...
-		if(this.asset.getCloseList().size() < Speculator.MOVING_AVG){
+		if(asset.getPriceList().size() < Speculator.MOVING_AVG){
 			//skip?
 		}
 		
 		//set first TR for 0 position (H-L)
-		BigDecimal tR = ((this.asset.getHighList().get(0)).subtract(this.asset.getCloseList().get(0)).abs());
+		BigDecimal tR = asset.getHighPriceFromIndex(0).subtract(asset.getClosePriceFromIndex(0)).abs();
 		for(int x = 1; x < Speculator.MOVING_AVG; x++){
 			List<BigDecimal> trList = Arrays.asList(
-				this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
-				this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
-				this.asset.getCloseList().get(x-1).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32));
+					asset.getHighPriceFromIndex(x).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32),
+					asset.getHighPriceFromIndex(x).subtract(asset.getClosePriceFromIndex(x-1).abs(), MathContext.DECIMAL32),
+					asset.getClosePriceFromIndex(x-1).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32));
 				
 				tR = tR.add(Collections.max(trList));
 		}
@@ -117,9 +113,9 @@ public class DigitalEntry implements Entry {
 		//20 exponential moving average
 		for(int x = Speculator.MOVING_AVG; x < locationIndex;x++){
 			List<BigDecimal> trList = Arrays.asList(
-					this.asset.getHighList().get(x).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32),
-					this.asset.getHighList().get(x).subtract(this.asset.getCloseList().get(x-1).abs(), MathContext.DECIMAL32),
-					this.asset.getCloseList().get(x-1).subtract(this.asset.getLowList().get(x).abs(), MathContext.DECIMAL32));
+					asset.getHighPriceFromIndex(x).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32),
+					asset.getHighPriceFromIndex(x).subtract(asset.getClosePriceFromIndex(x-1).abs(), MathContext.DECIMAL32),
+					asset.getClosePriceFromIndex(x-1).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32));
 					
 					tR = tR.multiply(new BigDecimal(Speculator.MOVING_AVG - 1), MathContext.DECIMAL32)
 					.add((Collections.max(trList)), MathContext.DECIMAL32).
@@ -131,15 +127,15 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public BigDecimal getTrueRange() {
-		return this.averageTrueRange;
+		return averageTrueRange;
 	}
 
 	@Override
 	public void setStop() {
 		if(isLongEntry){
-			stop = getAsset().getCurrentPriceFromSubList().subtract(Speculator.STOP.multiply(getTrueRange(), MathContext.DECIMAL32));
+			stop = getAsset().getClosePriceFromIndex(locationIndex).subtract(Speculator.STOP.multiply(getTrueRange(), MathContext.DECIMAL32));
 		}else{
-			stop = getAsset().getCurrentPriceFromSubList().add(Speculator.STOP.multiply(getTrueRange(), MathContext.DECIMAL32));
+			stop = getAsset().getClosePriceFromIndex(locationIndex).add(Speculator.STOP.multiply(getTrueRange(), MathContext.DECIMAL32));
 		}
 	}
 
@@ -150,7 +146,7 @@ public class DigitalEntry implements Entry {
 	
 	@Override
 	public void setUnitSize() {
-		BigDecimal max = speculator.getAccountBalance().divide(getAsset().getCurrentPriceFromSubList(), MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal max = speculator.getAccountBalance().divide(getAsset().getClosePriceFromIndex(locationIndex), MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		BigDecimal size = speculator.getAccountBalance().multiply(Speculator.RISK, MathContext.DECIMAL32)
 				.divide(averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		unitSize = (size.compareTo(max) > 0) ? max : size;
@@ -163,7 +159,7 @@ public class DigitalEntry implements Entry {
 	
 	@Override
 	public void setOrderTotal() {
-		orderTotal = unitSize.multiply(getAsset().getCurrentPriceFromSubList(), MathContext.DECIMAL32);
+		orderTotal = unitSize.multiply(getAsset().getClosePriceFromIndex(locationIndex), MathContext.DECIMAL32);
 	}
 	
 	@Override
@@ -173,37 +169,7 @@ public class DigitalEntry implements Entry {
 
 	@Override
 	public Date getDateTime() {
-		String date = getAsset().getDateStringFromIndex(locationIndex);
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateTime;
-		try {
-			dateTime = df.parse(date);
-			return DateUtils.dateToUTCMidnight(dateTime);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-
-	@Override
-	public BigDecimal getVolume() {
-		return volume;
-	}
-	
-	@Override
-	public void setVolume(BigDecimal volume) {
-		this.volume = volume;
-	}
-
-	@Override
-	public void setTrueRange(BigDecimal trueRange) {
-		averageTrueRange = trueRange;
-	}
-
-	@Override
-	public void setStop(BigDecimal stop) {
-		this.stop = stop;
+		return getAsset().getDateTimeFromIndex(locationIndex);
 	}
 
 	@Override
@@ -221,11 +187,11 @@ public class DigitalEntry implements Entry {
 			sb.append("\u25BC");
 		}
 		sb.append(" @" + StringFormatter.bigDecimalToEightString(getAsset().getClosePriceFromIndex(locationIndex)));
-		sb.append(" ATR: " + StringFormatter.bigDecimalToEightString(this.averageTrueRange));
-		sb.append(" Units: " + this.unitSize);
-		sb.append(" Cost: " + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
-		sb.append(" Stop: " + StringFormatter.bigDecimalToEightString(this.stop));
-		sb.append(" Volume: " + StringFormatter.bigDecimalToShortString(this.getVolume()));
+		sb.append(" N" + StringFormatter.bigDecimalToEightString(this.averageTrueRange));
+		sb.append(" \u0023" + this.unitSize);
+		sb.append(" \u03A3" + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
+		sb.append(" \u2702" + StringFormatter.bigDecimalToEightString(this.stop));
+		sb.append(" \uD83D\uDD0A" + StringFormatter.bigDecimalToShortString(getAsset().getVolumeFromIndex(locationIndex)));
 		return sb.toString();
 	}
 
