@@ -11,7 +11,6 @@ import backtest.BackTest;
 import backtest.BackTestFactory;
 import entry.Entry;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
@@ -41,7 +40,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML private Button settingsBtn;
 	
-	@FXML private Button save;
+	@FXML private Button clearList;
 	
 	@FXML private Text statusText;
     
@@ -62,13 +61,13 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		speculatorControl = new SpeculatorControl();
 		setCenter(mainListViewControl);
 		vaultMainControl = this;
+		setRandomStatus();
 	}
 	
 	@FXML
 	public void showNewEntries(){
-		
 		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
-		setStatusText("\u25B2" + "means go long...");
+		setRandomStatus();
 		Speculator speculator = speculatorControl.getSpeculator();
 		Task<List<Entry>> task = new Task<List<Entry>>() {
 		    @Override protected List<Entry> call() throws Exception {
@@ -77,7 +76,6 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		        return backtest.getEntryList();
 		    }
 		};
-		
 		task.run();
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
 			@Override
@@ -89,7 +87,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			            	int days = DateUtils.getNumDaysFromDateToToday(entryList.get(i).getDateTime());
 			            	if(i != 0 && days <= speculator.getTimeFrameDays()){
 			            	boolean isSameDayAsPrev = (DateUtils.getNumDaysFromDateToToday(entryList.get(i).getDateTime())) == 
-			            							(DateUtils.getNumDaysFromDateToToday(entryList.get(i-1).getDateTime()));
+			            							  (DateUtils.getNumDaysFromDateToToday(entryList.get(i-1).getDateTime()));
 			            		if(isSameDayAsPrev){
 			            			mainListViewControl.getMainObservableList().add(entryList.get(i).toString());
 			            		}else{
@@ -107,26 +105,19 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML
 	public void showSettings(){
 		setCenter(speculatorControl);
-		setStatusText("Settings...");
+		setRandomStatus();
 	}
 	
 	@FXML
-	public void save(){
+	public void clearList(){
 		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
+		setRandomStatus();
 	}
 	
 	//called from speculator control
 	public void setSpeculator(){
 		setCenter(mainListViewControl);
-		setStatusText(speculatorControl.getSpeculator().toString());
-	}
-	
-	public Text getStatusText(){
-		return statusText;
-	}
-	
-	public void setStatusText(String status) {
-		statusText.setText(status);
+		setRandomStatus();
 	}
 	
 	public void setInitialTableView(){
@@ -144,6 +135,10 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	public static VaultMainControl getVaultMainControl(){
 		return vaultMainControl;
+	}
+	
+	public void setRandomStatus(){
+		statusText.setText(StatusEnum.randomStatus());
 	}
 
 }
