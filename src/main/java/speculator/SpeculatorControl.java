@@ -93,7 +93,7 @@ public class SpeculatorControl extends GridPane implements Initializable {
 	public void saveSettings(){
     	setSpeculator();
 		VaultMainControl vmc = VaultMainControl.getVaultMainControl();
-		vmc.setSettings();
+		vmc.setSpeculator();
 	}
 
 	public Speculator getSpeculator() {
