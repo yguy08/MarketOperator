@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import backtest.BackTest;
 import backtest.BackTestFactory;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -55,18 +57,30 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showNewEntries(){
+		setStatusText("\u25B2" + "means go long...");
 		mainListViewControl.getMainObservableList().clear();
-		Speculator speculator = speculatorControl.getSpeculator();
+    	Speculator speculator = speculatorControl.getSpeculator();
 		BackTest backtest = BackTestFactory.runBackTest(market, speculator);
 		backtest.getEntriesAtOrAboveEntryFlag(market, speculator);
-		
-		for(int i = 0; i < backtest.getEntryList().size(); i++){
-			int days = DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i).getDateTime());
-			if(days <= speculator.getTimeFrameDays()){
-				mainListViewControl.getMainObservableList().add(backtest.getEntryList().get(i).toString());
-			}
-		}
-	}
+	    
+		Platform.runLater(new Runnable() {
+            public void run() {
+	            for(int i = 0; i < backtest.getEntryList().size(); i++){
+	            	int days = DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i).getDateTime());
+	            	if(i != 0 && days <= speculator.getTimeFrameDays()){
+	            	boolean isSameDayAsPrev = (DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i).getDateTime())) == 
+	            							(DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i-1).getDateTime()));
+	            		if(isSameDayAsPrev){
+	            			mainListViewControl.getMainObservableList().add(backtest.getEntryList().get(i).toString());
+	            		}else{
+	            			mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(backtest.getEntryList().get(i).getDateTime()));
+	            			mainListViewControl.getMainObservableList().add(backtest.getEntryList().get(i).toString());
+	            		}
+	            	}
+	            }
+            }
+        });
+     }
 	
 	@FXML
 	public void showSettings(){

@@ -215,13 +215,12 @@ public class DigitalEntry implements Entry {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("$" + getAsset().getAssetName().replace("/BTC", ""));
-		sb.append(" " + DateUtils.dateToMMddFormat(this.getDateTime()));
-		sb.append(" Price:" + StringFormatter.bigDecimalToEightString(getAsset().getClosePriceFromIndex(locationIndex)));
 		if(isLongEntry){
-			sb.append(" ^ ");
+			sb.append("\u25B2");
 		}else{
-			sb.append(" v ");
+			sb.append("\u25BC");
 		}
+		sb.append(" @" + StringFormatter.bigDecimalToEightString(getAsset().getClosePriceFromIndex(locationIndex)));
 		sb.append(" ATR: " + StringFormatter.bigDecimalToEightString(this.averageTrueRange));
 		sb.append(" Units: " + this.unitSize);
 		sb.append(" Cost: " + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
