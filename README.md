@@ -1,5 +1,5 @@
 # Speculation 1000
 
-# Todo
-JUnit
+# TODO
+- v0.2
 
