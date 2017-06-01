@@ -2,12 +2,19 @@ package vault.main;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import asset.Asset;
 import backtest.BackTest;
 import backtest.BackTestFactory;
+import entry.Entry;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,6 +41,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML private Button settingsBtn;
 	
+	@FXML private Button save;
+	
 	@FXML private Text statusText;
     
 	public VaultMainControl() {
@@ -57,29 +66,42 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showNewEntries(){
+		
+		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
 		setStatusText("\u25B2" + "means go long...");
-		mainListViewControl.getMainObservableList().clear();
-    	Speculator speculator = speculatorControl.getSpeculator();
-		BackTest backtest = BackTestFactory.runBackTest(market, speculator);
-		backtest.getEntriesAtOrAboveEntryFlag(market, speculator);
-	    
-		Platform.runLater(new Runnable() {
-            public void run() {
-	            for(int i = 0; i < backtest.getEntryList().size(); i++){
-	            	int days = DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i).getDateTime());
-	            	if(i != 0 && days <= speculator.getTimeFrameDays()){
-	            	boolean isSameDayAsPrev = (DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i).getDateTime())) == 
-	            							(DateUtils.getNumDaysFromDateToToday(backtest.getEntryList().get(i-1).getDateTime()));
-	            		if(isSameDayAsPrev){
-	            			mainListViewControl.getMainObservableList().add(backtest.getEntryList().get(i).toString());
-	            		}else{
-	            			mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(backtest.getEntryList().get(i).getDateTime()));
-	            			mainListViewControl.getMainObservableList().add(backtest.getEntryList().get(i).toString());
-	            		}
-	            	}
-	            }
-            }
-        });
+		Speculator speculator = speculatorControl.getSpeculator();
+		Task<List<Entry>> task = new Task<List<Entry>>() {
+		    @Override protected List<Entry> call() throws Exception {
+				BackTest backtest = BackTestFactory.runBackTest(market, speculator);
+				backtest.getEntriesAtOrAboveEntryFlag(market, speculator);
+		        return backtest.getEntryList();
+		    }
+		};
+		
+		task.run();
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				final List<Entry> entryList = task.getValue();
+				Platform.runLater(new Runnable() {
+		            public void run() {
+			            for(int i = 0; i < entryList.size(); i++){
+			            	int days = DateUtils.getNumDaysFromDateToToday(entryList.get(i).getDateTime());
+			            	if(i != 0 && days <= speculator.getTimeFrameDays()){
+			            	boolean isSameDayAsPrev = (DateUtils.getNumDaysFromDateToToday(entryList.get(i).getDateTime())) == 
+			            							(DateUtils.getNumDaysFromDateToToday(entryList.get(i-1).getDateTime()));
+			            		if(isSameDayAsPrev){
+			            			mainListViewControl.getMainObservableList().add(entryList.get(i).toString());
+			            		}else{
+			            			mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(entryList.get(i).getDateTime()));
+			            			mainListViewControl.getMainObservableList().add(entryList.get(i).toString());
+			            		}
+			            	}
+			            }
+		            }
+		        });
+			}
+		});
      }
 	
 	@FXML
@@ -88,7 +110,13 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		setStatusText("Settings...");
 	}
 	
-	public void setSettings(){
+	@FXML
+	public void save(){
+		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
+	}
+	
+	//called from speculator control
+	public void setSpeculator(){
 		setCenter(mainListViewControl);
 		setStatusText(speculatorControl.getSpeculator().toString());
 	}
@@ -102,7 +130,12 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void setInitialTableView(){
-		mainListViewControl.getMainObservableList().add("Welcome!");
+		List<String> assetList = new ArrayList<>();
+		for(Asset asset : market.getAssetList()){
+			assetList.add(asset.toString());
+		}
+		
+		mainListViewControl.getMainObservableList().setAll(assetList);
 	}
 
 	public void setMarket(Market market) {
