@@ -21,5 +21,15 @@ public class StringFormatter {
 		String formattedBd = formatter.format(unformattedBd);
 		return formattedBd;
 	}
+	
+	public static String prettyPrice(BigDecimal price){		
+		String uglyPrice = bigDecimalToEightString(price).replace(".", "").replaceFirst("^0+(?!$)", "");
+		StringBuilder sb = new StringBuilder();
+		for(int z = uglyPrice.length();z<8;z++){
+			sb.append("0");
+		}
+		String prettyPrice = uglyPrice + sb.toString();
+		return prettyPrice;
+	}
 
 }
