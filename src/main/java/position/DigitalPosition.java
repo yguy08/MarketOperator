@@ -44,11 +44,24 @@ public class DigitalPosition implements Position {
 		this.asset = asset;
 		this.entry = entry;
 		this.open = true;
-		this.isLong = this.entry.getDirection() == Speculator.LONG;
-		this.assetName = this.entry.getAssetName();
-		this.entryPrice = this.entry.getCurrentPrice();
+		//this.isLong = this.entry.getDirection() == Speculator.LONG;
+		//this.assetName = this.entry.getAssetName();
+		//this.entryPrice = this.entry.getCurrentPrice();
 		setPriceSubList();
-		setEntryDate(this.entry.getDate());
+		//setEntryDate(this.entry.getDate());
+		setDate();
+		setCurrentPrice();
+		setMaxPrice();
+		setMinPrice();
+		setLocationAsIndex();
+		setExit();
+	}
+	
+	public DigitalPosition(Asset asset, Entry entry){
+		this.asset = asset;
+		this.entry = entry;
+		this.open = true;
+		setPriceSubList();
 		setDate();
 		setCurrentPrice();
 		setMaxPrice();
@@ -59,22 +72,6 @@ public class DigitalPosition implements Position {
 	
 	public DigitalPosition(){
 		
-	}
-	
-	@Override
-	public Position copy(Position position, Entry entry) {
-		Position digitalPosition = new DigitalPosition();
-		digitalPosition.setAssetName(position.getAssetName());
-		digitalPosition.setOpen(position.isOpen());
-		digitalPosition.setMaxPrice(position.getMaxPrice());
-		digitalPosition.setMinPrice(position.getMinPrice());
-		digitalPosition.setDate(position.getDate());
-		digitalPosition.setEntryPrice(position.getEntryPrice());
-		digitalPosition.setEntryDate(position.getEntryDate());
-		digitalPosition.setCurrentPrice(position.getCurrentPrice());
-		digitalPosition.setProfitLossPercent(position);
-		digitalPosition.setProfitLossAmount(entry);
-		return digitalPosition;
 	}
 
 	@Override
@@ -103,29 +100,29 @@ public class DigitalPosition implements Position {
 	
 	@Override
 	public void setProfitLossPercent(){
-		BigDecimal calcPL = this.currentPrice.subtract(this.entry.getCurrentPrice())
-				.divide(this.entry.getCurrentPrice(), MathContext.DECIMAL32);
-		this.profitLossPercent = (isLong) ? calcPL : calcPL.negate();
+		BigDecimal entryPrice = entry.getAsset().getClosePriceFromIndex(entry.getLocationIndex());
+		BigDecimal calcPL = this.currentPrice.subtract(entryPrice).divide(entryPrice, MathContext.DECIMAL32);
+		profitLossPercent = (isLong) ? calcPL : calcPL.negate();
 	}
 	
 	@Override
 	public BigDecimal getProfitLossPercent() {
-		return this.profitLossPercent;
+		return profitLossPercent;
 	}
 	
 	@Override
 	public void setProfitLossAmount(Entry entry) {
-		this.profitLossAmount = entry.getOrderTotal().multiply(this.profitLossPercent, MathContext.DECIMAL32);
+		profitLossAmount = entry.getOrderTotal().multiply(profitLossPercent, MathContext.DECIMAL32);
 	}
 
 	@Override
 	public BigDecimal getProfitLossAmount() {
-		return this.profitLossAmount;
+		return profitLossAmount;
 	}
 
 	@Override
 	public void setPriceSubList() {
-		this.priceSubList = (List<PoloniexChartData>) this.asset.getPriceSubList();		
+		priceSubList = (List<PoloniexChartData>) asset.getPriceSubList();		
 	}
 
 	@Override
