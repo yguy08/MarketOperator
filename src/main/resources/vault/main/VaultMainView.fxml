@@ -18,12 +18,12 @@
 				<Button fx:id="showClose" text="Close" prefWidth="100" />
 				<Button fx:id="backTest" text="Backtest" prefWidth="100" />
 				<Button fx:id="settings" text="Settings" prefWidth="100" onAction="#showSettings" />
-				<Button fx:id="save" text="Save" prefWidth="100" />
+				<Button fx:id="clearList" text="Clear" prefWidth="100" onAction="#clearList" />
 		</VBox>
 	</right>
 	
 	<bottom>
-		<Text fx:id="statusText" text="Welcome!" />
+		<Text fx:id="statusText" />
 	</bottom>
        
     <stylesheets><URL value="@VaultMain.css"/></stylesheets>
