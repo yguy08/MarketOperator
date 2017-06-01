@@ -11,66 +11,39 @@ import market.Market;
 public interface Asset {
 
 	void setAssetName(String assetName);
-	
-	String getAsset();
-	
-	void setAssetPriceList();
-	
-	List<?> getAssetPriceList();
-	
-	void setCloseList();
-	
-	List<BigDecimal> getCloseList();
-	
-	void setLowList();
-	
-	List<BigDecimal> getLowList();
-	
-	void setHighList();
-	
-	List<BigDecimal> getHighList();
-	
-	void setAssetPriceSubList(int start, int end);
-	
-	List<?> getAssetPriceSubList();
-				
-	void setOfflinePriceList();
-	
-	void setMarketDataService(Market market);
 
 	String getAssetName();
-
-	Date getDate(int index);
-
-	BigDecimal getClose(int index);
-
-	void setOfflineAssetPriceList();
-
+	
 	void setPriceList();
+				
+	void setOfflinePriceList();	
 
 	List<PoloniexChartData> getPriceList();
+	
+	void setMarketDataService(Market market);
 
 	void setPriceSubList(int start, int end);
 
 	List<PoloniexChartData> getPriceSubList();
-
-	String getMarketName();
-
-	void setMarketName(String marketName);
 	
-	//helper methods
-	BigDecimal getCurrentPriceFromSubList();
+	//helper methods (single stat)
 	
-	BigDecimal getCurrentVolumeFromSubList();
-	
-	String getCurrentDateStringFromSubList();
-	
-	int getIndexOfCurrentRecordFromSubList();
-	
-	List<BigDecimal> getClosePriceListFromSubList();
+	int getIndexOfCurrentRecord();
 	
 	BigDecimal getClosePriceFromIndex(int index);
 	
+	BigDecimal getHighPriceFromIndex(int index);
+	
+	BigDecimal getLowPriceFromIndex(int index);
+	
 	String getDateStringFromIndex(int index);
+	
+	Date getDateTimeFromIndex(int index);
+	
+	BigDecimal getVolumeFromIndex(int index);
+	
+	//help methods (lists)	
+	List<BigDecimal> getClosePriceListFromSubList();
+	
 
 }
