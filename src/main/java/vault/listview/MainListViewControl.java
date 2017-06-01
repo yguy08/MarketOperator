@@ -1,8 +1,6 @@
 package vault.listview;
 
 import java.io.IOException;
-import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,7 +27,7 @@ public class MainListViewControl extends Pane {
         }
     }
 
-	public List<String> getMainObservableList() {
+	public ObservableList<String> getMainObservableList() {
 		return mainObservableList;
 	}
 	
