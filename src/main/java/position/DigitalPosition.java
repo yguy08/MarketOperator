@@ -16,31 +16,31 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import asset.Asset;
 import entry.Entry;
 import market.Market;
-import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
 
 public class DigitalPosition implements Position {
 	
-	Market market;
-	Asset asset;
-	Entry entry;
+	private Asset asset;
+	private Entry entry;
 	
-	String Date, entryDate;
-	BigDecimal currentPrice, maxPrice, minPrice, entryPrice;	
+	private String Date, entryDate;
+	
+	private BigDecimal currentPrice, maxPrice, minPrice, entryPrice;	
+	
 	int locationIndex;
 	
-	BigDecimal profitLossPercent = new BigDecimal(0.00);
-	BigDecimal profitLossAmount = new BigDecimal(0.00);
+	private BigDecimal profitLossPercent = new BigDecimal(0.00);
 	
-	Boolean open, isLong, closed;
+	private BigDecimal profitLossAmount = new BigDecimal(0.00);
 	
-	String assetName;
+	private Boolean open, isLong;
 	
-	List<PoloniexChartData> priceSubList = new ArrayList<>();
+	private String assetName;
+	
+	private List<PoloniexChartData> priceSubList = new ArrayList<>();
 	
 	public DigitalPosition(Market market, Asset asset, Entry entry){
-		this.market = market;
 		this.asset = asset;
 		this.entry = entry;
 		this.open = true;

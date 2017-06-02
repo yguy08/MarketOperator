@@ -53,8 +53,6 @@ public interface Position {
 
 	Entry getEntry();
 	
-	Position copy(Position position, Entry entry);
-	
 	void setCurrentPrice(BigDecimal currentPrice);
 	
 	BigDecimal getCurrentPrice();
