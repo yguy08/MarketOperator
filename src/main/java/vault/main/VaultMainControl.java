@@ -90,7 +90,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			            							  (DateUtils.getNumDaysFromDateToToday(entryList.get(i-1).getDateTime()));
 			            		if(isSameDayAsPrev){
 			            			mainListViewControl.getMainObservableList().add(entryList.get(i).toString());
-			            		}else{
+			            		}else {
 			            			mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(entryList.get(i).getDateTime()));
 			            			mainListViewControl.getMainObservableList().add(entryList.get(i).toString());
 			            		}
