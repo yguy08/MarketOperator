@@ -52,4 +52,9 @@ public interface BackTest {
 	 * Get entries that are at or above entry flag param
 	 */
 	void getEntriesAtOrAboveEntryFlag(Market market, Speculator speculator);
+	
+	/*
+	 * Get assets that are at exit flag param.
+	 */
+	void getAssetsAtExitFlag(Market market, Speculator speculator);
 }
