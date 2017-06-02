@@ -64,11 +64,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		setRandomStatus();
 	}
 	
-	@FXML
-	public void showNewEntries(){
+	/*
+	 * Show assets at or above entry flag
+	 */
+	@FXML public void showNewEntries(){
 		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
 		setRandomStatus();
 		Speculator speculator = speculatorControl.getSpeculator();
+		
 		Task<List<Entry>> task = new Task<List<Entry>>() {
 		    @Override protected List<Entry> call() throws Exception {
 				BackTest backtest = BackTestFactory.runBackTest(market, speculator);
@@ -76,7 +79,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		        return backtest.getEntryList();
 		    }
 		};
-		task.run();
+		
+		new Thread(task).start();
+		
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
 			@Override
 			public void handle(WorkerStateEvent t){
@@ -86,6 +91,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			            for(int i = 0; i < entryList.size(); i++){
 			            	int days = DateUtils.getNumDaysFromDateToToday(entryList.get(i).getDateTime());
 			            	if(i != 0 && days <= speculator.getTimeFrameDays()){
+			            		//issue with how date is calculated during est - utc 8 pm - midnight window...
 			            	boolean isSameDayAsPrev = (DateUtils.getNumDaysFromDateToToday(entryList.get(i).getDateTime())) == 
 			            							  (DateUtils.getNumDaysFromDateToToday(entryList.get(i-1).getDateTime()));
 			            		if(isSameDayAsPrev){
@@ -101,6 +107,22 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			}
 		});
      }
+	
+	@FXML public void showClose(){
+		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
+		setRandomStatus();
+		Speculator speculator = speculatorControl.getSpeculator();
+		
+		Task<List<Entry>> task = new Task<List<Entry>>() {
+		    @Override protected List<Entry> call() throws Exception {
+				BackTest backtest = BackTestFactory.runBackTest(market, speculator);
+				backtest.getEntriesAtOrAboveEntryFlag(market, speculator);
+		        return backtest.getEntryList();
+		    }
+		};
+		
+		new Thread(task).start();
+	}
 	
 	@FXML
 	public void showSettings(){
