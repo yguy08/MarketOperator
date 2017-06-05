@@ -20,6 +20,8 @@ import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
+import entry.Entry;
+import exit.Exit;
 import market.Market;
 import price.PoloniexPriceList;
 import speculator.Speculator;
@@ -180,7 +182,70 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public String toString(){
-		return "[$" + getAssetName() + "] " + StringFormatter.bigDecimalToEightString(getPriceList().get(getPriceList().size()-1).getClose());   
+		return "$" + getAssetName() + " " + StringFormatter.bigDecimalToEightString(getPriceList().get(getPriceList().size()-1).getClose());   
+	}
+
+	@Override
+	public List<Entry> getEntryList(Speculator speculator) {
+		Entry entry;
+		List<Entry> entryList = new ArrayList<>();
+		
+		int i = getPriceList().size();
+		if(i < speculator.getTimeFrameDays()*2){
+			i = speculator.getEntrySignalDays();
+		}else{
+			i = getPriceList().size() - (speculator.getTimeFrameDays()*2);
+		} 
+		
+		for(int x = i;x < getPriceList().size();x++){
+			setPriceSubList(x - speculator.getEntrySignalDays(), x + 1);
+			entry = new Entry(this, speculator);
+			int days = DateUtils.getNumDaysFromDateToToday(entry.getDateTime());
+			if(entry.isEntry() && days < speculator.getTimeFrameDays()){
+				entryList.add(entry);
+				System.out.println(entry.toString());
+			}				
+		}
+		
+		return entryList;
+	}
+
+	@Override
+	public List<Entry> getExitList(Speculator speculator) {
+		List<Entry> entryList = getEntryList(speculator);
+		List<Entry> exitList = new ArrayList<>();
+		Exit exit;
+		for(Entry e : entryList){
+			for(int i = e.getEntryIndex();i < priceList.size();i++){
+				setPriceSubList(i - speculator.getSellSignalDays(), i + 1);
+				exit = new Exit(e, speculator);
+				if(exit.isExit()){
+					exitList.add(e);
+					System.out.println(e.toString());
+					break;
+				}
+			}
+		}
+		return exitList;
+	}
+	
+	@Override
+	public List<Entry> getOpenList(Speculator speculator) {
+		List<Entry> entryList = getEntryList(speculator);
+		List<Entry> exitList = new ArrayList<>();
+		Exit exit;
+		for(Entry e : entryList){
+			for(int i = e.getEntryIndex();i < priceList.size();i++){
+				setPriceSubList(i - speculator.getSellSignalDays(), i + 1);
+				exit = new Exit(e, speculator);
+				if(exit.isOpen()){
+					exitList.add(e);
+					System.out.println(e.toString());
+					break;
+				}
+			}
+		}
+		return exitList;
 	}
 
 }
