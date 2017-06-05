@@ -3,6 +3,8 @@ package backtest;
 import java.util.Date;
 import java.util.List;
 
+import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
+
 import entry.Entry;
 import market.Market;
 import position.Position;
@@ -48,6 +50,8 @@ public interface BackTest {
 	
 	void dataSetUp();
 	
+	List<Entry> getExitList();
+	
 	/*
 	 * Get entries that are at or above entry flag param
 	 */
@@ -56,5 +60,5 @@ public interface BackTest {
 	/*
 	 * Get assets that are at exit flag param.
 	 */
-	void getAssetsAtExitFlag(Market market, Speculator speculator);
+	void getEntriesAtExitFlag(Market market, Speculator speculator);
 }

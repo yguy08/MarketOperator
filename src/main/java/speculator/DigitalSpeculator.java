@@ -211,7 +211,7 @@ public class DigitalSpeculator implements Speculator {
 	public void setEntryList(List<Entry> entryList){
 		this.entryList = entryList;
 	}
-	
+
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();

@@ -8,6 +8,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
+
 import asset.Asset;
 import entry.Entry;
 import entry.EntryFactory;
@@ -16,12 +18,11 @@ import position.Position;
 import position.PositionFactory;
 import speculator.Speculator;
 import util.DateUtils;
+import vault.main.VaultMainControl;
 
 public class DigitalBackTest implements BackTest {
 	
 	Market market;
-	
-	Asset asset;
 	
 	Speculator speculator;
 	
@@ -49,7 +50,13 @@ public class DigitalBackTest implements BackTest {
 	
 	List<String> resultsList = new ArrayList<>();
 	
+	List<Entry> exitList = new ArrayList<>();
+	
 	String startDate;
+	
+	static{
+		
+	}
 	
 	public DigitalBackTest(Market market, Speculator speculator){
 		this.market = market;
@@ -60,8 +67,19 @@ public class DigitalBackTest implements BackTest {
 	public void getEntriesAtOrAboveEntryFlag(Market market, Speculator speculator) {
 		Entry entry;
 		for(Asset asset : market.getAssetList()){
+			if(asset.getAssetName().startsWith("GNO")){
+				System.out.println("Finding entries for: " + asset.getAssetName());
+			}
 			System.out.println("Finding entries for: " + asset.getAssetName());
-			for(int x = speculator.getEntrySignalDays();x < asset.getPriceList().size();x++){
+			
+			int i = asset.getPriceList().size();
+			if(i < speculator.getTimeFrameDays()*2){
+				i = speculator.getEntrySignalDays();
+			}else{
+				i = asset.getPriceList().size() - (speculator.getTimeFrameDays()*2);
+			} 
+
+			for(int x = i;x < asset.getPriceList().size();x++){
 				asset.setPriceSubList(x - speculator.getEntrySignalDays(), x + 1);
 				entry = EntryFactory.findEntry(market, asset, speculator);
 				if(entry.isEntry()){
@@ -73,6 +91,23 @@ public class DigitalBackTest implements BackTest {
 			setSortedEntryList(entryList);
 			setSortedPositionList(positionList);
 		}
+	}
+	
+	@Override
+	public void getEntriesAtExitFlag(Market market, Speculator speculator) {
+		VaultMainControl vmc = VaultMainControl.getVaultMainControl();
+		for(Entry e : vmc.getEntryList()){			
+			for(int i = e.getLocationIndex();i < e.getAsset().getPriceList().size();i++){
+				e.getAsset().setPriceSubList(i - speculator.getSellSignalDays(), i + 1);
+				if(e.isTimeToExit()){
+					exitList.add(e);
+				}
+			}
+		}
+	}
+	
+	public List<Entry> getExitList(){
+		return exitList;
 	}
 	
 	@Override
@@ -136,7 +171,7 @@ public class DigitalBackTest implements BackTest {
 						boolean isPositionInUnitList = this.getSortedPositionList().get(t).getEntry().equals(this.unitList.get(q));
 						if(isPositionInUnitList){
 							position = this.getSortedPositionList().get(t);
-							updatedSizePosition = position.copy(position, updatedSizeEntry);
+							//updatedSizePosition = position.copy(position, updatedSizeEntry);
 							this.resultsList.add(updatedSizePosition.toString());
 							this.subtractUnit(position);
 							speculator.setAccountBalance(updatedSizePosition.getProfitLossAmount());
@@ -153,7 +188,9 @@ public class DigitalBackTest implements BackTest {
 
 	@Override
 	public void setEntryList(Entry entry) {
-		this.entryList.add(entry);
+		if(entry!=null){
+			this.entryList.add(entry);
+		}
 	}
 
 	@Override
@@ -266,7 +303,7 @@ public class DigitalBackTest implements BackTest {
 			for(int x = speculator.getEntrySignalDays(); x < asset.getPriceList().size();x++){
 				asset.setPriceSubList(x - speculator.getEntrySignalDays(), x + 1);
 				entry = EntryFactory.findEntry(market, asset, speculator);
-				boolean isFilteredEntry = Speculator.LONG_FILTER ? (entry.isEntry() && entry.isLong()) : entry.isEntry();
+				//boolean isFilteredEntry = Speculator.LONG_FILTER ? (entry.isEntry() && entry.isLong()) : entry.isEntry();
 				if(isFilteredEntry){
 					setEntryList(entry);
 					for(int y = this.entry.getLocationIndex(); y < asset.getPriceList().size() || position.isOpen() == false; y++, x++){

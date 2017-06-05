@@ -22,6 +22,7 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.Market;
 import price.PoloniexPriceList;
+import speculator.Speculator;
 import util.DateUtils;
 import util.SaveToFile;
 import util.StringFormatter;
@@ -66,7 +67,7 @@ public class DigitalAsset implements Asset {
 		try {
 			priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
-					.getPoloniexChartData(currencyPair, date - 365 * 10 * 24 * 60 * 60,
+					.getPoloniexChartData(currencyPair, date - 365 * Speculator.getPriceHistoryYears() * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
 			PoloniexPriceList pl;
 			List<String> plist = new ArrayList<>();

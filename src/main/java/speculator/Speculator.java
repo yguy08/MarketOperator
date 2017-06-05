@@ -90,5 +90,9 @@ public interface Speculator {
 	
 	public void setLongOnly(boolean isLongOnly);
 	
+	public static int getPriceHistoryYears(){
+		return 10;
+	}
+	
 	
 }

@@ -1,14 +1,22 @@
 package vault.listview;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import entry.Entry;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 
-public class MainListViewControl extends Pane {
+public class MainListViewControl extends Pane implements Initializable {
 	
 	@FXML private ListView<String> mainListView = new ListView<>();
 	
@@ -33,6 +41,11 @@ public class MainListViewControl extends Pane {
 	
 	public ListView<String> getMainListView(){
 		return mainListView;
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
 	}
 
 

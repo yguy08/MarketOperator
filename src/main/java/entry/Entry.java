@@ -29,5 +29,7 @@ public interface Entry {
 	BigDecimal getOrderTotal();
 
 	Date getDateTime();
-
+	
+	//is it time to exit?
+	boolean isTimeToExit();
 }

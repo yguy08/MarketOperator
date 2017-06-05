@@ -10,6 +10,7 @@ import java.util.List;
 
 import asset.Asset;
 import speculator.Speculator;
+import util.DateUtils;
 import util.StringFormatter;
 
 public class DigitalEntry implements Entry {
@@ -27,6 +28,8 @@ public class DigitalEntry implements Entry {
 	private BigDecimal orderTotal;
 		
 	private int locationIndex;
+	
+	private boolean isTimeToExit;
 	
 	//true = long, false = short
 	private boolean isLongEntry;
@@ -177,6 +180,7 @@ public class DigitalEntry implements Entry {
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
+		sb.append(DateUtils.dateToMMddFormat(getAsset().getDateTimeFromIndex(locationIndex)) + " ");
 		sb.append("$" + getAsset().getAssetName().replace("/BTC", ""));
 		if(isLongEntry){
 			sb.append("\u25B2");
@@ -189,7 +193,35 @@ public class DigitalEntry implements Entry {
 		sb.append(" \u03A3" + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
 		sb.append(" \u2702" + StringFormatter.bigDecimalToEightString(this.stop));
 		sb.append(" \uD83D\uDD0A" + StringFormatter.bigDecimalToShortString(getAsset().getVolumeFromIndex(locationIndex)));
+		if(isTimeToExit){
+			sb.append("Closed: ");
+		}
 		return sb.toString();
+	}
+
+	@Override
+	public boolean isTimeToExit() {
+		List<BigDecimal> clsList = getAsset().getClosePriceListFromSubList();
+		BigDecimal currentPrice = getAsset().getClosePriceListFromSubList().get(clsList.size()-1);
+		BigDecimal minPrice = Collections.min(getAsset().getClosePriceListFromSubList());
+		
+		//long
+		boolean isPriceALow = currentPrice.compareTo(minPrice) == 0;
+		
+		if(isLongEntry() && isPriceALow){
+			//filters
+			isTimeToExit = true;
+			return true;
+			
+		}else{
+			return false;
+		}
+		
+	}
+
+	private boolean isLongEntry() {
+		// TODO Auto-generated method stub
+		return isLongEntry;
 	}
 
 }

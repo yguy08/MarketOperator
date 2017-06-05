@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class DateUtilsJunit {
@@ -23,6 +24,8 @@ public class DateUtilsJunit {
 	public void testdateToMMddFormat(){
 		assertEquals(MMddFormatBaseline, dateToMMddFormat);
 	}
+	
+	Date todaysDate = DateUtils.dateToUTCMidnight(new GregorianCalendar().getTime());
 	
 
 }
