@@ -4,17 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import entry.Entry;
-import position.Position;
 
 public interface Speculator {
-
-	String BACK_TEST = "Back Test";
-	String LIVE = "Live";
-	
-	String POLONIEX_OFFLINE   = "Poloniex Offline Market";
-	
-	String LONG = "Long";
-	String SHORT = "Short";
 	
 	BigDecimal STOCK_EQUITY = new BigDecimal(10_000.00); 
 	BigDecimal DIGITAL_EQUITY = new BigDecimal(4.00000000);
@@ -77,10 +68,6 @@ public interface Speculator {
 	public void setTimeFrameDays(int numDays);
 	
 	public int getTimeFrameDays();
-	
-	public List<Position> getPositionList();
-	
-	public void setPositionList(List<Position> positionList);
 	
 	public List<Entry> getEntryList();
 	

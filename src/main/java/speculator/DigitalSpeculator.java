@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entry.Entry;
-import position.Position;
 
 public class DigitalSpeculator implements Speculator {
 	
@@ -46,9 +45,6 @@ public class DigitalSpeculator implements Speculator {
 	
 	//total return percent because every speculator has a total return %
 	private BigDecimal totalReturnPercent = new BigDecimal(0.00);
-	
-	//positions -> every speculator has positions either open or closed (open, closed)
-	private List<Position> positionList = new ArrayList<>();
 	
 	//entries -> every speculator has entries either taken or not taken
 	private List<Entry> entryList = new ArrayList<>();
@@ -190,16 +186,6 @@ public class DigitalSpeculator implements Speculator {
 	@Override
 	public void setLongOnly(boolean longOnly) {
 		this.longOnly = longOnly;
-	}
-	
-	@Override
-	public List<Position> getPositionList(){
-		return positionList;
-	}
-	
-	@Override
-	public void setPositionList(List<Position> positionList){
-		this.positionList = positionList;
 	}
 	
 	@Override

@@ -66,9 +66,11 @@ public class SpeculatorControl extends GridPane implements Initializable {
     
     //set text field text to current settings
     private void setDefaultSettings(){
+    	
     	//create speculator with some default settings
     	speculator = SpeculatorFactory.createSpeculator(marketName, 5, 1, 5, 2, 25, 25, 10);
-    	//populate text fields with intital speculator settings
+    	
+    	//populate text fields with initial speculator settings
     	balanceTextField.setText(speculator.getAccountBalance().toPlainString());
     	riskTextField.setText(speculator.getRisk().toPlainString());
     	maxUnitsTextField.setText(Integer.toString(speculator.getMaxUnits()));
