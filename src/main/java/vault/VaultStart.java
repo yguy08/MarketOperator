@@ -23,8 +23,6 @@ public class VaultStart extends Application {
     //load market for faster performance inside
     Market market;
     
-    VaultMainControl vaultMainControl;
-    
     BooleanProperty ready = new SimpleBooleanProperty(false);
     
 	public static void main(String[] args) {
@@ -38,7 +36,7 @@ public class VaultStart extends Application {
     	//load default market (bitcoin) online or offline
     	loadMarket();
         
-    	vaultMainControl = new VaultMainControl();
+    	VaultMainControl vaultMainControl = new VaultMainControl();
         
     	stage.setScene(new Scene(vaultMainControl));
         stage.setTitle("Speculation 1000");
