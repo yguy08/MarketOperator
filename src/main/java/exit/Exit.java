@@ -24,14 +24,21 @@ public class Exit {
 	
 	BigDecimal exitPrice;
 	
+	int locationIndex;
+	
 	public Exit(Entry entry, Speculator speculator){
 		this.entry = entry;
 		this.asset = entry.getAsset();
 		this.speculator = speculator;
+		this.locationIndex = asset.getIndexOfLastRecordInSubList();
 	}
 	
 	public boolean isExit(){
-		BigDecimal currentPrice = asset.getClosePriceFromIndex(entry.getAsset().getIndexOfCurrentRecord());
+		if(!(entry.isLongEntry() && speculator.isLongOnly())){
+			return false;
+		}
+		
+		BigDecimal currentPrice = asset.getClosePriceFromIndex(entry.getAsset().getIndexOfLastRecordInSubList());
 		BigDecimal maxPrice = Collections.max(asset.getClosePriceListFromSubList());
 		BigDecimal minPrice = Collections.min(asset.getClosePriceListFromSubList());
 		
@@ -40,28 +47,27 @@ public class Exit {
 			boolean isBelowStop 	= currentPrice.compareTo(entry.getStop()) < 0;
 			if(isPriceALow || isBelowStop){
 				isExit = true;
-				exitIndex = asset.getIndexOfCurrentRecord();
-				return true;
-			}else{
-				return false;
-			}
-		}else if(!(speculator.isLongOnly())){
-			boolean isPriceAHigh = currentPrice.compareTo(maxPrice) == 0;
-			boolean isAboveStop = currentPrice.compareTo(entry.getStop()) > 0;
-			if(isPriceAHigh || isAboveStop){
-				isExit = true;
-				exitIndex = asset.getIndexOfCurrentRecord();
+				exitIndex = locationIndex;
 				return true;
 			}else{
 				return false;
 			}
 		}else{
-			return false;
+			boolean isPriceAHigh = currentPrice.compareTo(maxPrice) == 0;
+			boolean isAboveStop = currentPrice.compareTo(entry.getStop()) > 0;
+			if(isPriceAHigh || isAboveStop){
+				isExit = true;
+				exitIndex = locationIndex;
+				return true;
+			}else{
+				return false;
+			}
 		}
 	}
 	
 	public boolean isOpen(){
-		if(asset.getIndexOfCurrentRecord() == asset.getPriceList().size()-1){
+		if(!(isExit) && locationIndex == asset.getIndexOfLastRecordInPriceList()){
+			exitIndex = locationIndex;
 			return true;
 		}else{
 			return false;
