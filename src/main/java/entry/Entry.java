@@ -39,7 +39,7 @@ public class Entry {
 	public Entry(Asset asset, Speculator speculator){
 		this.asset	= asset;
 		this.speculator = speculator;
-		this.locationIndex = getAsset().getIndexOfCurrentRecord(); 
+		this.locationIndex = getAsset().getIndexOfLastRecordInSubList(); 
 		
 		if(isEntryCandidate()){
 			isEntry = true;
