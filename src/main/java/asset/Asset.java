@@ -7,6 +7,7 @@ import java.util.List;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import entry.Entry;
+import exit.Exit;
 import market.Market;
 import speculator.Speculator;
 
@@ -51,7 +52,7 @@ public interface Asset {
 	List<Entry> getEntryList(Speculator speculator);
 	
 	//get list of exits 
-	List<Entry> getExitList(Speculator speculator);
+	List<Exit> getExitList(Speculator speculator);
 	
 	//get list of exits still open 
 	List<Entry> getOpenList(Speculator speculator);

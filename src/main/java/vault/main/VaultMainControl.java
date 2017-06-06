@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import asset.Asset;
 import entry.Entry;
+import exit.Exit;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -126,20 +127,20 @@ public class VaultMainControl extends BorderPane {
 		setRandomStatus();
 		Speculator speculator = speculatorControl.getSpeculator();
 		
-		Task<List<Entry>> task = new Task<List<Entry>>() {
-		    @Override protected List<Entry> call() throws Exception {
-				List<Entry> exitList = new ArrayList<>();
+		Task<List<Exit>> task = new Task<List<Exit>>() {
+		    @Override protected List<Exit> call() throws Exception {
+				List<Exit> exitList = new ArrayList<>();
 				for(Asset a : market.getAssetList()){
-					for(Entry e : a.getExitList(speculator)){
+					for(Exit e : a.getExitList(speculator)){
 						exitList.add(e);
 					}
 				}
 				
 				//sort list
-				Collections.sort(exitList, new Comparator<Entry>() {
+				Collections.sort(exitList, new Comparator<Exit>() {
 				    @Override
-					public int compare(Entry o1, Entry o2) {
-				        return o1.getDateTime().compareTo(o2.getDateTime());
+					public int compare(Exit exit1, Exit exit2) {
+				        return exit1.getExitDate().compareTo(exit2.getExitDate());
 				    }
 				});
 		        return exitList;
@@ -150,12 +151,13 @@ public class VaultMainControl extends BorderPane {
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
 			@Override
 			public void handle(WorkerStateEvent t){
-				List<Entry> exitList = task.getValue();
+				List<Exit> exitList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
 		            	setCenter(mainListViewControl);
 			            for(int i = 0; i < exitList.size(); i++){
 			            	mainListViewControl.getMainObservableList().add(exitList.get(i).toString());
+			            	//break;
 			            }
 		            }
 		        });

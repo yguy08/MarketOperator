@@ -211,17 +211,17 @@ public class DigitalAsset implements Asset {
 	}
 
 	@Override
-	public List<Entry> getExitList(Speculator speculator) {
+	public List<Exit> getExitList(Speculator speculator) {
 		List<Entry> entryList = getEntryList(speculator);
-		List<Entry> exitList = new ArrayList<>();
+		List<Exit> exitList = new ArrayList<>();
 		Exit exit;
 		for(Entry e : entryList){
 			for(int i = e.getEntryIndex();i < priceList.size();i++){
 				setPriceSubList(i - speculator.getSellSignalDays(), i + 1);
 				exit = new Exit(e, speculator);
 				if(exit.isExit()){
-					exitList.add(e);
-					System.out.println(e.toString());
+					exitList.add(exit);
+					System.out.println(exit.toString());
 					break;
 				}
 			}
@@ -229,10 +229,13 @@ public class DigitalAsset implements Asset {
 		return exitList;
 	}
 	
+	
 	@Override
 	public List<Entry> getOpenList(Speculator speculator) {
+
 		List<Entry> entryList = getEntryList(speculator);
 		List<Entry> exitList = new ArrayList<>();
+		/*
 		Exit exit;
 		for(Entry e : entryList){
 			for(int i = e.getEntryIndex();i < priceList.size();i++){
@@ -244,7 +247,7 @@ public class DigitalAsset implements Asset {
 					break;
 				}
 			}
-		}
+		}*/
 		return exitList;
 	}
 

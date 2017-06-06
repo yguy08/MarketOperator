@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import asset.Asset;
+
 public class PriceData {
 	
 	private Date date;
@@ -22,6 +24,21 @@ public class PriceData {
 		this.open = open;
 		this.close = close;
 		this.volume = volume;
+	}
+	
+	private Asset asset;
+	private int entryIndex;
+	private boolean isExit;
+	public PriceData(Asset asset, int entryIndex){
+		this.asset = asset;
+		this.entryIndex = entryIndex;
+		isExit = false;
+	}
+	
+	public boolean isExit(){
+		
+		return false;
+		
 	}
 	
 	//create poloniex chart data from txt file string
@@ -79,5 +96,7 @@ public class PriceData {
 	public void setVolume(BigDecimal volume) {
 		this.volume = volume;
 	}
+	
+	
 
 }

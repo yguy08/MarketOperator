@@ -2,10 +2,13 @@ package exit;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.Date;
 
 import asset.Asset;
 import entry.Entry;
 import speculator.Speculator;
+import util.DateUtils;
+import util.StringFormatter;
 
 public class Exit {
 	
@@ -42,7 +45,7 @@ public class Exit {
 			}else{
 				return false;
 			}
-		}else{
+		}else if(!(speculator.isLongOnly())){
 			boolean isPriceAHigh = currentPrice.compareTo(maxPrice) == 0;
 			boolean isAboveStop = currentPrice.compareTo(entry.getStop()) > 0;
 			if(isPriceAHigh || isAboveStop){
@@ -52,6 +55,8 @@ public class Exit {
 			}else{
 				return false;
 			}
+		}else{
+			return false;
 		}
 	}
 	
@@ -61,6 +66,29 @@ public class Exit {
 		}else{
 			return false;
 		}
+	}
+
+	public Date getExitDate() {
+		return entry.getAsset().getDateTimeFromIndex(exitIndex);
+	}
+	
+	public Date getEntryDate(){
+		return entry.getAsset().getDateTimeFromIndex(entry.getEntryIndex());
+	}
+	
+	public BigDecimal getExitPrice(){
+		return entry.getAsset().getClosePriceFromIndex(exitIndex);
+	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(DateUtils.dateToMMddFormat(getExitDate()));
+		sb.append(" $" + entry.getAsset().getAssetName());
+		sb.append(" @" + StringFormatter.bigDecimalToEightString(getExitPrice()));
+		sb.append(" \u2600" + DateUtils.dateToMMddFormat(entry.getDateTime()));
+		sb.append(" @" + StringFormatter.bigDecimalToEightString(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
+		return  sb.toString();
 	}
 
 }
