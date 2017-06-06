@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -30,6 +31,8 @@ public class SpeculatorControl extends GridPane implements Initializable {
 	@FXML private TextField entryTextField;
 	
 	@FXML private TextField exitTextField;
+	
+	@FXML private CheckBox longOnlyCheckBox;
 	
 	@FXML private ToggleButton bitcoinMarket;
 	
@@ -68,7 +71,8 @@ public class SpeculatorControl extends GridPane implements Initializable {
     private void setDefaultSettings(){
     	
     	//create speculator with some default settings
-    	speculator = SpeculatorFactory.createSpeculator(marketName, 5, 1, 5, 2, 25, 25, 10);
+    	//speculator = SpeculatorFactory.createSpeculator(marketName, 5, 1, 5, 2, 25, 25, 10, true);
+    	speculator = new DigitalSpeculator();
     	
     	//populate text fields with initial speculator settings
     	balanceTextField.setText(speculator.getAccountBalance().toPlainString());
@@ -78,6 +82,8 @@ public class SpeculatorControl extends GridPane implements Initializable {
     	timeFrameDaysTextField.setText(Integer.toString(speculator.getTimeFrameDays()));
     	entryTextField.setText(Integer.toString(speculator.getEntrySignalDays()));
     	exitTextField.setText(Integer.toString(speculator.getSellSignalDays()));
+    	longOnlyCheckBox.setSelected(speculator.isLongOnly());
+    	
     }
     
     private Speculator setSpeculator(){
@@ -87,7 +93,8 @@ public class SpeculatorControl extends GridPane implements Initializable {
     			Integer.parseInt(stopLengthTextField.getText().trim()), 
     			Integer.parseInt(timeFrameDaysTextField.getText().trim()),
     			Integer.parseInt(entryTextField.getText().trim()),
-    			Integer.parseInt(exitTextField.getText().trim()));
+    			Integer.parseInt(exitTextField.getText().trim()),
+    			longOnlyCheckBox.isSelected());
     	return speculator;
     }
     

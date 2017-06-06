@@ -49,7 +49,7 @@ public class DigitalSpeculator implements Speculator {
 	//entries -> every speculator has entries either taken or not taken
 	private List<Entry> entryList = new ArrayList<>();
 	
-	public DigitalSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays, int entryFlag, int sellFlag) {
+	public DigitalSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays, int entryFlag, int sellFlag, boolean longOnly) {
 		setAccountBalance(new BigDecimal(balance));
 		setStartAccountBalance(new BigDecimal(balance));
 		setRisk(new BigDecimal(risk));
@@ -58,10 +58,25 @@ public class DigitalSpeculator implements Speculator {
 		setTimeFrameDays(timeFrameDays);
 		setEntrySignalDays(entryFlag);
 		setSellSignalDays(sellFlag);
+		setLongOnly(longOnly);
 		
 		//not implemented from settings screen yet
 		setMinVolume(new BigDecimal(0.00));
-		setLongOnly(false);
+	}
+	
+	public DigitalSpeculator(){
+		setAccountBalance(new BigDecimal(4));
+		setStartAccountBalance(new BigDecimal(4));
+		setRisk(new BigDecimal(1));
+		setMaxUnits(5);
+		setStopLength(new BigDecimal(2));
+		setTimeFrameDays(25);
+		setEntrySignalDays(25);
+		setSellSignalDays(10);
+		setLongOnly(true);
+		
+		//not implemented from settings screen yet
+		setMinVolume(new BigDecimal(0.00));
 	}
 
 	@Override
