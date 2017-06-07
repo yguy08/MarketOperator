@@ -4,6 +4,6 @@
 <?import javafx.scene.control.ListView?>
 
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="Pane">
-	<ListView fx:id="entryListView" prefWidth="450" prefHeight="290" onKeyPressed="#keyListener"></ListView>
+	<ListView fx:id="exitListView" prefWidth="450" prefHeight="290" onKeyPressed="#keyListener"></ListView>
 </fx:root>
 
