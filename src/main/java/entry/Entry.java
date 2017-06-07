@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import asset.Asset;
+import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
@@ -53,6 +54,11 @@ public class Entry {
 	
 	//before anything else..check if price makes it an entry or not
 	private boolean isEntryCandidate(){
+		int days = DateUtils.getNumDaysFromDateToToday(getDateTime());
+		if(days > speculator.getTimeFrameDays()){
+			return false;
+		}
+		
 		BigDecimal currentPrice = getAsset().getClosePriceFromIndex(locationIndex);
 		BigDecimal maxPrice = Collections.max(getAsset().getClosePriceListFromSubList());
 		BigDecimal minPrice = Collections.min(getAsset().getClosePriceListFromSubList());
@@ -91,13 +97,13 @@ public class Entry {
 	//Move to ASSET??
 	public void setTrueRange() {
 		//consider instance where list is too small...
-		if(asset.getPriceList().size() < Speculator.MOVING_AVG){
+		if(asset.getPriceList().size() < Speculator.getMovingAvg()){
 			//skip?
 		}
 		
 		//set first TR for 0 position (H-L)
 		BigDecimal tR = asset.getHighPriceFromIndex(0).subtract(asset.getClosePriceFromIndex(0)).abs();
-		for(int x = 1; x < Speculator.MOVING_AVG; x++){
+		for(int x = 1; x < Speculator.getMovingAvg(); x++){
 			List<BigDecimal> trList = Arrays.asList(
 					asset.getHighPriceFromIndex(x).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32),
 					asset.getHighPriceFromIndex(x).subtract(asset.getClosePriceFromIndex(x-1).abs(), MathContext.DECIMAL32),
@@ -106,21 +112,21 @@ public class Entry {
 				tR = tR.add(Collections.max(trList));
 		}
 		
-		tR = tR.divide(new BigDecimal(Speculator.MOVING_AVG), MathContext.DECIMAL32);
+		tR = tR.divide(new BigDecimal(Speculator.getMovingAvg()), MathContext.DECIMAL32);
 		
 		//20 exponential moving average
-		for(int x = Speculator.MOVING_AVG; x < locationIndex;x++){
+		for(int x = Speculator.getMovingAvg(); x < locationIndex;x++){
 			List<BigDecimal> trList = Arrays.asList(
 					asset.getHighPriceFromIndex(x).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32),
 					asset.getHighPriceFromIndex(x).subtract(asset.getClosePriceFromIndex(x-1).abs(), MathContext.DECIMAL32),
 					asset.getClosePriceFromIndex(x-1).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32));
 					
-					tR = tR.multiply(new BigDecimal(Speculator.MOVING_AVG - 1), MathContext.DECIMAL32)
+					tR = tR.multiply(new BigDecimal(Speculator.getMovingAvg() - 1), MathContext.DECIMAL32)
 					.add((Collections.max(trList)), MathContext.DECIMAL32).
-					divide(new BigDecimal(Speculator.MOVING_AVG), MathContext.DECIMAL32);
+					divide(new BigDecimal(Speculator.getMovingAvg()), MathContext.DECIMAL32);
 		}
 		
-		this.averageTrueRange = tR;
+		averageTrueRange = tR;
 	}
 	
 	public BigDecimal getTrueRange() {
@@ -169,17 +175,12 @@ public class Entry {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append(DateUtils.dateToMMddFormat(getAsset().getDateTimeFromIndex(entryIndex)) + " ");
-		sb.append("$" + getAsset().getAssetName().replace("/BTC", ""));
-		if(isLongEntry){
-			sb.append("\u25B2");
-		}else{
-			sb.append("\u25BC");
-		}
-		sb.append(" @" + StringFormatter.bigDecimalToEightString(getAsset().getClosePriceFromIndex(locationIndex)));
-		sb.append(" N" + StringFormatter.bigDecimalToEightString(this.averageTrueRange));
-		sb.append(" \u0023" + this.unitSize);
-		sb.append(" \u03A3" + this.orderTotal.setScale(2, RoundingMode.HALF_DOWN));
-		sb.append(" \u2702" + StringFormatter.bigDecimalToEightString(this.stop));
+		sb.append(prettyName());
+		sb.append(" @" + PriceData.prettyPrice(getAsset().getClosePriceFromIndex(locationIndex)));
+		sb.append(" \uD83C\uDF00" + PriceData.prettyPrice(averageTrueRange));
+		sb.append(" \uD83D\uDCB0" + unitSize);
+		sb.append(" \u03A3" + orderTotal.setScale(2, RoundingMode.HALF_DOWN));
+		sb.append(" \u2702" + PriceData.prettyPrice(stop));
 		sb.append(" \uD83D\uDD0A" + StringFormatter.bigDecimalToShortString(getAsset().getVolumeFromIndex(locationIndex)));		
 		return sb.toString();
 	}
@@ -190,6 +191,15 @@ public class Entry {
 	
 	public boolean isLongEntry() {
 		return isLongEntry;
+	}
+	
+	private String prettyName(){
+		String arrow = (isLongEntry) ? "\u25B2" : "\u25BC";
+		return "$" + getAsset().getAssetName().replace("/BTC", "") + arrow;
+	}
+	
+	public BigDecimal getEntryPrice(){
+		return getAsset().getClosePriceFromIndex(getEntryIndex());
 	}
 
 }
