@@ -81,5 +81,9 @@ public interface Speculator {
 		return 10;
 	}
 	
+	public static int getMovingAvg(){
+		return 20;
+	}
+	
 	
 }
