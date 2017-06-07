@@ -1,12 +1,15 @@
 package price;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import asset.Asset;
+import util.StringFormatter;
 
 public class PriceData {
 	
@@ -24,21 +27,6 @@ public class PriceData {
 		this.open = open;
 		this.close = close;
 		this.volume = volume;
-	}
-	
-	private Asset asset;
-	private int entryIndex;
-	private boolean isExit;
-	public PriceData(Asset asset, int entryIndex){
-		this.asset = asset;
-		this.entryIndex = entryIndex;
-		isExit = false;
-	}
-	
-	public boolean isExit(){
-		
-		return false;
-		
 	}
 	
 	//create poloniex chart data from txt file string
@@ -97,6 +85,11 @@ public class PriceData {
 		this.volume = volume;
 	}
 	
-	
-
+	public static String prettyPrice(BigDecimal price){
+		price = price.movePointRight(8);
+		String pattern = "###,###,###";
+		DecimalFormat decimalFormat = new DecimalFormat(pattern);
+		String number = decimalFormat.format(price);
+		return number;
+	}
 }
