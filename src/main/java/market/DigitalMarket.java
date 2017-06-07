@@ -54,12 +54,11 @@ public class DigitalMarket implements Market {
 
 	@Override
 	public void setAssetList() {
-		AssetFactory aFactory = new AssetFactory();
 		Asset asset = null;
 		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
 		for(CurrencyPair currencyPair : currencyPairs){
 			if(currencyPair.toString().endsWith("BTC")){
-				asset = aFactory.createAsset(this, currencyPair.toString());
+				asset = AssetFactory.createAsset(this, currencyPair.toString());
 				assetList.add(asset);
 			}
 		}
@@ -67,7 +66,6 @@ public class DigitalMarket implements Market {
 	
 	@Override
 	public void setOfflineAssetList(){
-		AssetFactory aFactory = new AssetFactory();
 		Asset asset = null;
 		List<String> currencyPairs;
 		URL resourceUrl = getClass().getResource("MarketList.csv");
@@ -75,7 +73,7 @@ public class DigitalMarket implements Market {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
 				if(currencyPair.endsWith("BTC")){
-					asset = aFactory.createAsset(this, currencyPair);
+					asset = AssetFactory.createAsset(this, currencyPair);
 					assetList.add(asset);
 				}
 			}
@@ -87,7 +85,7 @@ public class DigitalMarket implements Market {
 	
 	@Override
 	public List<Asset> getAssetList() {
-		return this.assetList;
+		return assetList;
 	}
 
 	@Override
