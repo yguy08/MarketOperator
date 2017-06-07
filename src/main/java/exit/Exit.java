@@ -6,6 +6,7 @@ import java.util.Date;
 
 import asset.Asset;
 import entry.Entry;
+import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
@@ -78,6 +79,10 @@ public class Exit {
 		return entry.getAsset().getDateTimeFromIndex(exitIndex);
 	}
 	
+	public Date getDateTime(){
+		return entry.getAsset().getDateTimeFromIndex(locationIndex);
+	}
+	
 	public Date getEntryDate(){
 		return entry.getAsset().getDateTimeFromIndex(entry.getEntryIndex());
 	}
@@ -86,15 +91,27 @@ public class Exit {
 		return entry.getAsset().getClosePriceFromIndex(exitIndex);
 	}
 	
+	public Entry getEntry(){
+		return entry;
+	}
+	
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append(DateUtils.dateToMMddFormat(getExitDate()));
-		sb.append(" $" + entry.getAsset().getAssetName());
-		sb.append(" @" + StringFormatter.bigDecimalToEightString(getExitPrice()));
+		sb.append(prettyName());
+		sb.append(" @" + PriceData.prettyPrice(getExitPrice()));
 		sb.append(" \u2600" + DateUtils.dateToMMddFormat(entry.getDateTime()));
-		sb.append(" @" + StringFormatter.bigDecimalToEightString(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
+		sb.append(" @" + PriceData.prettyPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
 		return  sb.toString();
+	}
+	
+	private String prettyName(){
+		String entryArrow = (entry.isLongEntry()) ? "\u25B2" : "\u25BC";
+		int difEntryPrice = getExitPrice().compareTo(entry.getEntryPrice());
+		boolean isUp = entry.isLongEntry() ? difEntryPrice > 0 : difEntryPrice < 0;
+		String resultsArrow = isUp ? "\u25B2" : "\u25BC"; 
+		return " $" + entry.getAsset().getAssetName().replace("/BTC", "") + entryArrow + resultsArrow;
 	}
 
 }
