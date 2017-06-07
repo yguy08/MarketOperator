@@ -2,14 +2,11 @@ package vault.main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
 import asset.Asset;
 import entry.Entry;
 import exit.Exit;
@@ -26,15 +23,21 @@ import market.Market;
 import speculator.Speculator;
 import speculator.SpeculatorControl;
 import util.DateUtils;
+import vault.listview.EntryListViewControl;
+import vault.listview.ExitListViewControl;
 import vault.listview.MainListViewControl;
 
 public class VaultMainControl extends BorderPane {
 	
 	private Market market;
 	
+	private static VaultMainControl vaultMainControl;
+	
 	private MainListViewControl mainListViewControl;
 	
-	private static VaultMainControl vaultMainControl;
+	private EntryListViewControl entryListViewControl;
+	
+	private ExitListViewControl exitListViewControl;
 	
 	private SpeculatorControl speculatorControl;
 	
@@ -59,6 +62,8 @@ public class VaultMainControl extends BorderPane {
         
         vaultMainControl = this;
 		mainListViewControl = new MainListViewControl();
+		entryListViewControl = new EntryListViewControl();
+		exitListViewControl = new ExitListViewControl();
 		speculatorControl = new SpeculatorControl();
 		setCenter(mainListViewControl);
         
@@ -82,7 +87,7 @@ public class VaultMainControl extends BorderPane {
 		    @Override protected List<Entry> call() throws Exception {
 		    	List<Entry> entryList = new ArrayList<>();
 				for(Asset asset : assetList){
-					List<Entry> assetEntryList = asset.getEntryList(speculatorControl.getSpeculator());
+					List<Entry> assetEntryList = asset.getEntryList(speculator);
 					for(Entry e : assetEntryList){
 						entryList.add(e);
 					}
@@ -107,22 +112,13 @@ public class VaultMainControl extends BorderPane {
 				List<Entry> entryList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
-		            	setCenter(mainListViewControl);
-			            for(int i = 0; i < entryList.size(); i++){
-			            	int days = DateUtils.getNumDaysFromDateToToday(entryList.get(i).getDateTime());
-			            	if(i != 0 && days <= speculator.getTimeFrameDays()){
-			            		//issue with how date is calculated during est - utc 8 pm - midnight window...
-			            		boolean isSameDayAsPrev = (DateUtils.getNumDaysFromDateToToday(entryList.get(i).getDateTime())) == 
-			            							  (DateUtils.getNumDaysFromDateToToday(entryList.get(i-1).getDateTime()));
-			            		if(isSameDayAsPrev){
-			            			mainListViewControl.getMainObservableList().add(entryList.get(i).toString());
-			            		}else {
-			            			mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(entryList.get(i).getDateTime()));
-			            			mainListViewControl.getMainObservableList().add(entryList.get(i).toString());
-			            		}
-			            	}else if(i == 0 && days < speculator.getTimeFrameDays()){
-		            			mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(entryList.get(i).getDateTime()));
-		            			mainListViewControl.getMainObservableList().add(entryList.get(i).toString());			            		
+		            	setCenter(entryListViewControl);
+			            for(int i = 1; i < entryList.size(); i++){
+			            	//issue with how date is calculated at the end of day (8pm-midnight)		            		
+			            	if(isNewDay(entryList.get(i).getDateTime(), entryList.get(i-1).getDateTime())){
+			            		entryListViewControl.getMainObservableList().add(entryList.get(i));
+			            	}else{
+			            		entryListViewControl.getMainObservableList().add(entryList.get(i));
 			            	}
 			            }
 		            }
@@ -164,21 +160,13 @@ public class VaultMainControl extends BorderPane {
 				Platform.runLater(new Runnable() {
 		            public void run() {
 		            	setCenter(mainListViewControl);
-			            for(int i = 0; i < exitList.size(); i++){
-			            	int days = DateUtils.getNumDaysFromDateToToday(exitList.get(i).getExitDate());
-			            	if(i != 0 && days <= speculator.getTimeFrameDays()){
-			            		//issue with how date is calculated during est - utc 8 pm - midnight window...
-			            		boolean isSameDayAsPrev = (DateUtils.getNumDaysFromDateToToday(exitList.get(i).getExitDate())) == 
-			            							  (DateUtils.getNumDaysFromDateToToday(exitList.get(i-1).getExitDate()));
-			            		if(isSameDayAsPrev){
-			            			mainListViewControl.getMainObservableList().add(exitList.get(i).toString());
-			            		}else {
-			            			mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(exitList.get(i).getExitDate()));
-			            			mainListViewControl.getMainObservableList().add(exitList.get(i).toString());
-			            		}
-			            	}else if(i == 0 && days < speculator.getTimeFrameDays()){
-		            			mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(exitList.get(i).getExitDate()));
-		            			mainListViewControl.getMainObservableList().add(exitList.get(i).toString());			            		
+		            	mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(exitList.get(0).getExitDate()));
+			            for(int i = 1; i < exitList.size(); i++){
+			            	if(isNewDay(exitList.get(i).getExitDate(),exitList.get(i-1).getExitDate())){
+			            		mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(exitList.get(i).getExitDate()));
+			            		mainListViewControl.getMainObservableList().add(exitList.get(i).toString());			            		
+			            	}else{
+			            		mainListViewControl.getMainObservableList().add(exitList.get(i).toString());			            		
 			            	}
 			            }
 		            }
@@ -233,11 +221,12 @@ public class VaultMainControl extends BorderPane {
 		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
 		setRandomStatus();
 		Speculator speculator = speculatorControl.getSpeculator();
-		for(Asset a : market.getAssetList()){
-			a.getEntriesAndExits(speculator);
-		}
 		
-			 
+		for(Asset a : market.getAssetList()){
+			for(Exit e : a.getExitList(speculator)){
+				System.out.println("!" + e.getDateTime() + e.getEntry().getAsset().getAssetName() + " Entry: " + e.getEntryDate());
+			}
+		}
 	}
 	
 	@FXML
@@ -264,7 +253,6 @@ public class VaultMainControl extends BorderPane {
 		for(Asset asset : market.getAssetList()){
 			assetList.add(asset.toString());
 		}
-		
 		mainListViewControl.getMainObservableList().setAll(assetList);
 	}
 
@@ -278,6 +266,27 @@ public class VaultMainControl extends BorderPane {
 	
 	public void setRandomStatus(){
 		statusText.setText(StatusEnum.randomStatus());
+	}
+	
+	//presentation helper method..add date to list for new date..
+	private boolean isNewDay(Date currentDate, Date prevDate){
+		boolean isNewDay = currentDate.compareTo(prevDate) < 0 || currentDate.compareTo(prevDate) > 0;
+		return isNewDay;		
+	}
+	
+	public void viewOpenForEntry(Entry entry){
+		setCenter(exitListViewControl);
+		setRandomStatus();
+		Asset asset = market.getAssetList().get(market.getAssetList().indexOf(entry.getAsset()));
+		for(Exit e : asset.getOpenList(speculatorControl.getSpeculator())){
+			exitListViewControl.getMainObservableList().add(e);
+		}
+		System.out.println("Success!");
+	}
+	
+	public void returnToEntries(){
+		setCenter(entryListViewControl);
+		setRandomStatus();
 	}
 
 }
