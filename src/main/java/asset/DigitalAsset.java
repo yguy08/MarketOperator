@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.TreeMap;
-
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
@@ -25,12 +23,15 @@ import entry.Entry;
 import exit.Exit;
 import market.Market;
 import price.PoloniexPriceList;
+import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
 import util.SaveToFile;
 import util.StringFormatter;
 
 public class DigitalAsset implements Asset {
+	
+	private Market market;
 
 	private MarketDataService dataService;
 	
@@ -43,6 +44,7 @@ public class DigitalAsset implements Asset {
 	//static factory method to create online asset
 	public static DigitalAsset createOnlineDigitalAsset(Market market, String assetName){
 		DigitalAsset digitalAsset = new DigitalAsset();
+		digitalAsset.setMarket(market);
 		digitalAsset.setAssetName(assetName);
 		digitalAsset.setMarketDataService(market);
 		digitalAsset.setPriceList();
@@ -52,6 +54,7 @@ public class DigitalAsset implements Asset {
 	//static factory method to create offline asset
 	public static DigitalAsset createOfflineDigitalAsset(Market market, String assetName){
 		DigitalAsset digitalAsset = new DigitalAsset();
+		digitalAsset.setMarket(market);
 		digitalAsset.setAssetName(assetName);
 		digitalAsset.setOfflinePriceList();
 		return digitalAsset;
@@ -104,7 +107,7 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public List<PoloniexChartData> getPriceList() {
-		return this.priceList;
+		return priceList;
 	}
 	
 	@Override
@@ -114,12 +117,12 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public List<PoloniexChartData> getPriceSubList() {
-		return this.priceSubList;
+		return priceSubList;
 	}
 
 	@Override
 	public String getAssetName() {
-		return this.assetName;
+		return assetName;
 	}
 
 	@Override
@@ -177,7 +180,6 @@ public class DigitalAsset implements Asset {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 
@@ -185,53 +187,35 @@ public class DigitalAsset implements Asset {
 	public BigDecimal getVolumeFromIndex(int index) {
 		return priceList.get(index).getVolume();
 	}
-	
-	@Override
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append(DateUtils.dateToMMddFormat(getLatestDate()) + " ");
-		sb.append("$" + getAssetName());
-		sb.append(" @" + StringFormatter.bigDecimalToEightString(getLatestPrice()));
-		return sb.toString();   
-	}
 
 	@Override
 	public List<Entry> getEntryList(Speculator speculator) {
 		Entry entry;
 		List<Entry> entryList = new ArrayList<>();
-		
-		int i = getPriceList().size();
-		if(i < speculator.getTimeFrameDays()*2){
-			i = speculator.getEntrySignalDays();
-		}else{
-			i = getPriceList().size() - (speculator.getTimeFrameDays()*2);
-		} 
-		
+		int i = getStartIndex(speculator.getEntrySignalDays(), speculator.getTimeFrameDays()); 
 		for(int x = i;x < getPriceList().size();x++){
 			setPriceSubList(x - speculator.getEntrySignalDays(), x);
 			entry = new Entry(this, speculator);
-			int days = DateUtils.getNumDaysFromDateToToday(entry.getDateTime());
-			if(entry.isEntry() && days < speculator.getTimeFrameDays()){
+			if(entry.isEntry()){
 				entryList.add(entry);
-				System.out.println(entry.toString());
+				System.out.println("Adding entry: " + entry.toString());
 			}				
 		}
-		
 		return entryList;
 	}
 
 	@Override
 	public List<Exit> getExitList(Speculator speculator) {
-		List<Entry> entryList = getEntryList(speculator);
-		List<Exit> exitList = new ArrayList<>();
 		Exit exit;
-		for(Entry e : entryList){
+		List<Exit> exitList = new ArrayList<>();
+		for(Entry e : getEntryList(speculator)){
 			for(int i = e.getEntryIndex();i < priceList.size();i++){
 				setPriceSubList(i - speculator.getSellSignalDays(), i);
 				exit = new Exit(e, speculator);
-				if(exit.isExit()){
+				int days = DateUtils.getNumDaysFromDateToToday(exit.getDateTime());
+				if(exit.isExit() && days < speculator.getTimeFrameDays()){
 					exitList.add(exit);
-					System.out.println(exit.toString());
+					System.out.println("Adding exit: " + exit.toString());
 					break;
 				}
 			}
@@ -258,6 +242,9 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public List<?> getEntriesAndExits(Speculator speculator) {
+		List<Entry> entryList = getEntryList(speculator);
+		List<Exit> exitList = getExitList(speculator);
+		
 		return null;
 	}
 
@@ -269,6 +256,39 @@ public class DigitalAsset implements Asset {
 	@Override
 	public BigDecimal getLatestPrice() {
 		return priceList.get(priceList.size()-1).getClose();
+	}
+
+	@Override
+	public int getStartIndex(int signalDays, int timeFrameDays) {
+		if(getIndexOfLastRecordInPriceList() > signalDays + Speculator.getMovingAvg() + timeFrameDays){
+			return getIndexOfLastRecordInPriceList() - (Speculator.getMovingAvg() +
+					timeFrameDays);
+		}
+		boolean isShortHistory = (priceList.size() < signalDays || priceList.size() < Speculator.getMovingAvg());
+		if(isShortHistory){
+			return priceList.size();
+		}else{
+			return 0 + signalDays; 
+		}
+	}
+
+	@Override
+	public void setMarket(Market market) {
+		this.market = market;
+	}
+
+	@Override
+	public Market getMarket() {
+		return market;
+	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(DateUtils.dateToMMddFormat(getLatestDate()) + " ");
+		sb.append(" $" + getAssetName());
+		sb.append(" @" + PriceData.prettyPrice(getLatestPrice()));
+		return sb.toString();   
 	}
 
 }

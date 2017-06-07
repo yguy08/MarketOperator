@@ -17,6 +17,10 @@ public interface Asset {
 
 	String getAssetName();
 	
+	void setMarket(Market market);
+	
+	Market getMarket();
+	
 	void setPriceList();
 				
 	void setOfflinePriceList();	
@@ -49,6 +53,9 @@ public interface Asset {
 	Date getLatestDate();
 	
 	BigDecimal getLatestPrice();
+	
+	//get start index
+	int getStartIndex(int signalDays, int timeFrameDays);
 	
 	//help methods (lists)	
 	List<BigDecimal> getClosePriceListFromSubList();
