@@ -2,6 +2,7 @@ package speculator;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -12,11 +13,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import market.MarketsEnum;
+import vault.listview.ControlledList;
 import vault.main.VaultMainControl;
 
-public class SpeculatorControl extends GridPane implements Initializable {
+public class SpeculatorControl extends GridPane implements Initializable, ControlledList {
 	
 	@FXML private TextField balanceTextField;
 	
@@ -71,7 +74,6 @@ public class SpeculatorControl extends GridPane implements Initializable {
     private void setDefaultSettings(){
     	
     	//create speculator with some default settings
-    	//speculator = SpeculatorFactory.createSpeculator(marketName, 5, 1, 5, 2, 25, 25, 10, true);
     	speculator = new DigitalSpeculator();
     	
     	//populate text fields with initial speculator settings
@@ -95,14 +97,13 @@ public class SpeculatorControl extends GridPane implements Initializable {
     			Integer.parseInt(entryTextField.getText().trim()),
     			Integer.parseInt(exitTextField.getText().trim()),
     			longOnlyCheckBox.isSelected());
+    	VaultMainControl.getVaultMainControl().setSpeculator();
     	return speculator;
     }
     
     @FXML
 	public void saveSettings(){
     	setSpeculator();
-		//VaultMainControl vmc = VaultMainControl.getVaultMainControl();
-		VaultMainControl.getVaultMainControl().setSpeculator();
 	}
 
 	public Speculator getSpeculator() {
@@ -119,6 +120,27 @@ public class SpeculatorControl extends GridPane implements Initializable {
 		}else{
 			marketName = MarketsEnum.DOLLAR.getMarketName();
 		}
+	}
+
+	@Override
+	public void clearList() {
+		setDefaultSettings();
+	}
+
+	@Override
+	public void setCenter() {
+		VaultMainControl.getVaultMainControl().setCenter(this);
+	}
+
+	@Override
+	public void setList(List<?> list) {
+		//Not implemented
+	}
+
+	@Override
+	public void onKeyEnter(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

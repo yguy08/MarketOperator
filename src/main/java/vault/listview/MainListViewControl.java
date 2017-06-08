@@ -2,6 +2,7 @@ package vault.listview;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -10,9 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import vault.main.VaultMainControl;
 
-public class MainListViewControl extends Pane implements Initializable {
+public class MainListViewControl extends Pane implements Initializable, ControlledList {
 	
 	@FXML private ListView<String> mainListView = new ListView<>();
 	
@@ -42,6 +45,30 @@ public class MainListViewControl extends Pane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+	}
+
+	@Override
+	public void clearList() {
+		mainObservableList.clear();
+	}
+
+	@Override
+	public void setCenter() {
+		VaultMainControl.getVaultMainControl().setCenter(this);
+	}
+
+	@Override
+	public void setList(List<?> list) {
+		for(Object c : list){
+			mainObservableList.add((String) c);
+		}
+	}
+
+	@Override
+	public void onKeyEnter(KeyEvent e) {
+		//need to register with list view
+		VaultMainControl.getVaultMainControl().returnToEntries();
+		//clearList();
 	}
 
 

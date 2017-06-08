@@ -2,7 +2,6 @@ package vault.main;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -60,26 +59,25 @@ public class VaultMainControl extends BorderPane {
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
         vaultMainControl = this;
 		mainListViewControl = new MainListViewControl();
 		entryListViewControl = new EntryListViewControl();
 		exitListViewControl = new ExitListViewControl();
 		speculatorControl = new SpeculatorControl();
-		setCenter(mainListViewControl);
-        
-        try {
-            fxmlLoader.load();
-            setRandomStatus();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-    }
+        setRandomStatus();
+	}
 	
 	/*
 	 * Show assets at or above entry flag, select to view close?
 	 */
 	@FXML public void showNewEntries(){
-		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
+		mainListViewControl.clearList();
 		setRandomStatus();
 		Speculator speculator = speculatorControl.getSpeculator();
 		List<Asset> assetList = market.getAssetList();
@@ -176,7 +174,7 @@ public class VaultMainControl extends BorderPane {
 	}
 	
 	@FXML public void showOpen(){
-		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
+		mainListViewControl.clearList();
 		setRandomStatus();
 		Speculator speculator = speculatorControl.getSpeculator();
 		
@@ -207,10 +205,12 @@ public class VaultMainControl extends BorderPane {
 				List<Exit> openList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
-		            	setCenter(mainListViewControl);
-			            for(int i = 0; i < openList.size(); i++){
-			            	mainListViewControl.getMainObservableList().add(openList.get(i).toString());
-			            }
+		            	mainListViewControl.setCenter();
+		            	mainListViewControl.setList(openList);
+		            	//setCenter(mainListViewControl);
+			            //for(int i = 0; i < openList.size(); i++){
+			            	//mainListViewControl.getMainObservableList().add(openList.get(i).toString());
+			            //}
 		            }
 		        });
 			}
@@ -218,7 +218,7 @@ public class VaultMainControl extends BorderPane {
 	}
 	
 	@FXML public void backtest(){
-		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
+		mainListViewControl.clearList();
 		setRandomStatus();
 		Speculator speculator = speculatorControl.getSpeculator();
 		
@@ -231,13 +231,15 @@ public class VaultMainControl extends BorderPane {
 	
 	@FXML
 	public void showSettings(){
-		setCenter(speculatorControl);
+		speculatorControl.setCenter();
 		setRandomStatus();
 	}
 	
 	@FXML
 	public void clearList(){
-		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
+		entryListViewControl.clearList();
+		mainListViewControl.clearList();
+		exitListViewControl.clearList();
 		setRandomStatus();
 		setInitialTableView();
 	}
@@ -253,7 +255,8 @@ public class VaultMainControl extends BorderPane {
 		for(Asset asset : market.getAssetList()){
 			assetList.add(asset.toString());
 		}
-		mainListViewControl.getMainObservableList().setAll(assetList);
+		mainListViewControl.setList(assetList);
+		mainListViewControl.setCenter();
 	}
 
 	public void setMarket(Market market) {
@@ -275,17 +278,16 @@ public class VaultMainControl extends BorderPane {
 	}
 	
 	public void viewOpenForEntry(Entry entry){
-		setCenter(exitListViewControl);
-		setRandomStatus();
 		Asset asset = market.getAssetList().get(market.getAssetList().indexOf(entry.getAsset()));
-		for(Exit e : asset.getOpenList(speculatorControl.getSpeculator())){
-			exitListViewControl.getMainObservableList().add(e);
-		}
+		exitListViewControl.setList(asset.getOpenList(speculatorControl.getSpeculator()));
+		exitListViewControl.setCenter();
+		setRandomStatus();
 		System.out.println("Success!");
 	}
 	
 	public void returnToEntries(){
-		setCenter(entryListViewControl);
+		entryListViewControl.setCenter();
+		showNewEntries();
 		setRandomStatus();
 	}
 
