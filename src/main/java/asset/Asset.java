@@ -30,8 +30,6 @@ public interface Asset {
 	void setMarketDataService(Market market);
 
 	void setPriceSubList(int start, int end);
-
-	List<PoloniexChartData> getPriceSubList();
 	
 	//helper methods (single stat)
 	int getIndexOfLastRecordInSubList();
@@ -40,8 +38,6 @@ public interface Asset {
 	
 	BigDecimal getClosePriceFromIndex(int index);
 	
-	String getDateStringFromIndex(int index);
-	
 	Date getDateTimeFromIndex(int index);
 	
 	BigDecimal getVolumeFromIndex(int index);
@@ -49,10 +45,6 @@ public interface Asset {
 	BigDecimal getHighPriceFromIndex(int index);
 	
 	BigDecimal getLowPriceFromIndex(int index);
-	
-	Date getLatestDate();
-	
-	BigDecimal getLatestPrice();
 	
 	//get start index
 	int getStartIndex(int signalDays, int timeFrameDays);
@@ -67,10 +59,7 @@ public interface Asset {
 	List<Exit> getExitList(Speculator speculator);
 	
 	//get list of exits still open 
-	List<Exit> getOpenList(Speculator speculator);
-	
-	//get ? of entries/exits
-	List<?> getEntriesAndExits(Speculator speculator);
+	List<Exit> getEntryStatusList(Speculator speculator);
 	
 
 }

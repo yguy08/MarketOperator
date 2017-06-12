@@ -27,7 +27,6 @@ import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
 import util.SaveToFile;
-import util.StringFormatter;
 
 public class DigitalAsset implements Asset {
 	
@@ -112,12 +111,7 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public void setPriceSubList(int start, int end) {
-		priceSubList = priceList.subList(start, end+1);
-	}
-	
-	@Override
-	public List<PoloniexChartData> getPriceSubList() {
-		return priceSubList;
+		priceSubList = priceList.subList(start, end + 1);
 	}
 
 	@Override
@@ -163,15 +157,10 @@ public class DigitalAsset implements Asset {
 	public BigDecimal getLowPriceFromIndex(int index) {
 		return priceList.get(index).getLow();
 	}
-
-	@Override
-	public String getDateStringFromIndex(int index) {
-		return DateUtils.dateToSimpleDateFormat(priceList.get(index).getDate());
-	}
 	
 	@Override
 	public Date getDateTimeFromIndex(int index) {
-		String date = getDateStringFromIndex(index);
+		String date = DateUtils.dateToSimpleDateFormat(priceList.get(index).getDate());
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateTime;
 		try {
@@ -224,7 +213,7 @@ public class DigitalAsset implements Asset {
 	}
 	
 	@Override
-	public List<Exit> getOpenList(Speculator speculator) {
+	public List<Exit> getEntryStatusList(Speculator speculator) {
 		List<Entry> entryList = getEntryList(speculator);
 		List<Exit> openList = new ArrayList<>();
 		Exit exit;
@@ -232,29 +221,21 @@ public class DigitalAsset implements Asset {
 			for(int i = e.getEntryIndex(); i < priceList.size();i++){
 				setPriceSubList(i - speculator.getSellSignalDays(), i);
 				exit = new Exit(e, speculator);
-				if(exit.isOpen()){
+				if(exit.isExit() || exit.isOpen()){
 					openList.add(exit);
+					break;
 				}
 			}
-		}
+		}		
 		return openList;
 	}
 	
-	@Override
-	public List<?> getEntriesAndExits(Speculator speculator) {
-		List<Entry> entryList = getEntryList(speculator);
-		List<Exit> exitList = getExitList(speculator);
-		
-		return null;
-	}
-
-	@Override
-	public Date getLatestDate() {
+	private Date getLatestDate() {
 		return priceList.get(priceList.size()-1).getDate();
 	}
 
-	@Override
-	public BigDecimal getLatestPrice() {
+	
+	private BigDecimal getLatestPrice() {
 		return priceList.get(priceList.size()-1).getClose();
 	}
 
