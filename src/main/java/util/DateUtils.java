@@ -21,6 +21,16 @@ public class DateUtils {
 		return localDateToUTCDate(addDay);
 	}
 	
+	public static Date dateOfTodayMinusDays(int num){
+		Date currentDate = getCurrentDateToUTCDateMidnight();
+		Calendar cal = new GregorianCalendar(TimeZone.getDefault());
+		cal.setTime(currentDate);
+		setTimeToMidnight(cal);
+		cal.add(Calendar.DATE, -(num));
+		Date addDay = cal.getTime();
+		return localDateToUTCDate(addDay);
+	}
+	
 	public static Date dateToUTCMidnight(Date date){
 		Calendar cal = new GregorianCalendar(TimeZone.getDefault());
 		cal.setTime(date);
