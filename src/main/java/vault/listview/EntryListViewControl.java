@@ -41,16 +41,6 @@ public class EntryListViewControl extends Pane implements ControlledList {
 	public ListView<Entry> getMainListView(){
 		return entryListView;
 	}
-	
-	@FXML public void keyListener(KeyEvent event){
-		if(event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.SHIFT){
-			if(entryListView.getSelectionModel().getSelectedItem() != null){
-				Entry entry = entryListView.getSelectionModel().getSelectedItem();
-				System.out.println(entry);
-				VaultMainControl.getVaultMainControl().viewOpenForEntry(entry);
-			}
-		}
-	}
 
 	@Override
 	public void clearList() {
@@ -58,20 +48,20 @@ public class EntryListViewControl extends Pane implements ControlledList {
 	}
 
 	@Override
-	public void setCenter() {
-		VaultMainControl.getVaultMainControl().setCenter(this);
-	}
-
-	@Override
 	public void setList(List<?> list) {
 		for(Object o : list){
 			entryObservableList.add((Entry) o);
 		}
+		entryListView.requestFocus();
+		entryListView.getSelectionModel().selectFirst();
 	}
 
 	@Override
-	public void onKeyEnter(KeyEvent e) {
-		// TODO Auto-generated method stub
+	@FXML public void onKeyEnter(KeyEvent event) {
+		if(event.getCode() == KeyCode.SPACE){
+			Entry entry = entryListView.getSelectionModel().getSelectedItem();
+			VaultMainControl.getVaultMainControl().entrySelected(entry);
+		}
 		
 	}
 

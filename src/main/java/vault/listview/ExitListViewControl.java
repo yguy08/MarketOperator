@@ -41,13 +41,6 @@ public class ExitListViewControl extends Pane implements ControlledList {
 	public ListView<Exit> getMainListView(){
 		return exitListView;
 	}
-	
-	@FXML public void keyListener(KeyEvent event){
-		if(event.getCode()==KeyCode.ENTER || event.getCode()==KeyCode.SHIFT){
-			VaultMainControl.getVaultMainControl().returnToEntries();
-			exitObservableList.removeAll(exitObservableList);
-		}
-	}
 
 	@Override
 	public void clearList() {
@@ -55,20 +48,20 @@ public class ExitListViewControl extends Pane implements ControlledList {
 	}
 
 	@Override
-	public void setCenter() {
-		VaultMainControl.getVaultMainControl().setCenter(this);
-	}
-
-	@Override
 	public void setList(List<?> list) {
 		for(Object o : list){
 			exitObservableList.add((Exit) o);
 		}
+		exitListView.requestFocus();
+		exitListView.getSelectionModel().selectFirst();
 	}
 
 	@Override
-	public void onKeyEnter(KeyEvent e) {
-		System.out.println("Exit!");
+	@FXML public void onKeyEnter(KeyEvent event) {
+		if(event.getCode()==KeyCode.SPACE){
+			Exit exit = exitListView.getSelectionModel().getSelectedItem();
+			VaultMainControl.getVaultMainControl().exitSelected(exit);
+		}
 	}
 
 }

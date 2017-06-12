@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import vault.main.VaultMainControl;
@@ -52,22 +53,19 @@ public class MainListViewControl extends Pane implements Initializable, Controll
 	}
 
 	@Override
-	public void setCenter() {
-		
-	}
-
-	@Override
 	public void setList(List<?> list) {
 		for(Object c : list){
 			mainObservableList.add((String) c);
 		}
+		
+		 mainListView.getSelectionModel().selectFirst();
 	}
 
 	@Override
-	public void onKeyEnter(KeyEvent e) {
-		//need to register with list view
-		VaultMainControl.getVaultMainControl().returnToEntries();
-		//clearList();
+	public void onKeyEnter(KeyEvent event) {
+		if(event.getCode() == KeyCode.SPACE){
+			VaultMainControl.getVaultMainControl().showNewEntries();
+		}
 	}
 
 
