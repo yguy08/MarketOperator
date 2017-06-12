@@ -1,6 +1,7 @@
 package exit;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Collections;
 import java.util.Date;
 
@@ -9,7 +10,6 @@ import entry.Entry;
 import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
-import util.StringFormatter;
 
 public class Exit {
 	
@@ -21,9 +21,7 @@ public class Exit {
 	
 	boolean isExit = false;
 	
-	int exitIndex;
-	
-	BigDecimal exitPrice;
+	boolean isOpen = false;
 	
 	int locationIndex;
 	
@@ -32,9 +30,10 @@ public class Exit {
 		this.asset = entry.getAsset();
 		this.speculator = speculator;
 		this.locationIndex = asset.getIndexOfLastRecordInSubList();
+		exitOrOpen();
 	}
 	
-	public boolean isExit(){
+	private boolean exitOrOpen(){
 		if(!(entry.isLongEntry() && speculator.isLongOnly())){
 			return false;
 		}
@@ -48,8 +47,10 @@ public class Exit {
 			boolean isBelowStop 	= currentPrice.compareTo(entry.getStop()) < 0;
 			if(isPriceALow || isBelowStop){
 				isExit = true;
-				exitIndex = locationIndex;
 				return true;
+			}else if(locationIndex == asset.getIndexOfLastRecordInPriceList()){
+				isOpen = true;
+				return false;
 			}else{
 				return false;
 			}
@@ -58,8 +59,10 @@ public class Exit {
 			boolean isAboveStop = currentPrice.compareTo(entry.getStop()) > 0;
 			if(isPriceAHigh || isAboveStop){
 				isExit = true;
-				exitIndex = locationIndex;
 				return true;
+			}else if(locationIndex == asset.getIndexOfLastRecordInPriceList()){
+				isOpen = true;
+				return false;
 			}else{
 				return false;
 			}
@@ -67,16 +70,11 @@ public class Exit {
 	}
 	
 	public boolean isOpen(){
-		if(!(isExit) && locationIndex == asset.getIndexOfLastRecordInPriceList()){
-			exitIndex = locationIndex;
-			return true;
-		}else{
-			return false;
-		}
+		return isOpen;
 	}
-
-	public Date getExitDate() {
-		return entry.getAsset().getDateTimeFromIndex(exitIndex);
+	
+	public boolean isExit(){
+		return isExit;
 	}
 	
 	public Date getDateTime(){
@@ -88,7 +86,7 @@ public class Exit {
 	}
 	
 	public BigDecimal getExitPrice(){
-		return entry.getAsset().getClosePriceFromIndex(exitIndex);
+		return entry.getAsset().getClosePriceFromIndex(locationIndex);
 	}
 	
 	public Entry getEntry(){
@@ -98,20 +96,31 @@ public class Exit {
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append(DateUtils.dateToMMddFormat(getExitDate()));
+		sb.append(DateUtils.dateToMMddFormat(getDateTime()));
 		sb.append(prettyName());
 		sb.append(" @" + PriceData.prettyPrice(getExitPrice()));
 		sb.append(" \u2600" + DateUtils.dateToMMddFormat(entry.getDateTime()));
 		sb.append(" @" + PriceData.prettyPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
+		sb.append(openOrExit() + " ");
 		return  sb.toString();
 	}
 	
 	private String prettyName(){
 		String entryArrow = (entry.isLongEntry()) ? "\u25B2" : "\u25BC";
 		int difEntryPrice = getExitPrice().compareTo(entry.getEntryPrice());
-		boolean isUp = entry.isLongEntry() ? difEntryPrice > 0 : difEntryPrice < 0;
+		boolean isUp = entry.isLongEntry() ? difEntryPrice >= 0 : difEntryPrice <= 0;
 		String resultsArrow = isUp ? "\u25B2" : "\u25BC"; 
 		return " $" + entry.getAsset().getAssetName().replace("/BTC", "") + entryArrow + resultsArrow;
+	}
+	
+	private String openOrExit(){
+		if(isExit()){
+			return " \uD83D\uDC80";
+		}else if(isOpen()){
+			return " \uD83C\uDF20";
+		}else{
+			return " Error";
+		}
 	}
 
 }
