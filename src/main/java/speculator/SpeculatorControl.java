@@ -97,13 +97,13 @@ public class SpeculatorControl extends GridPane implements Initializable, Contro
     			Integer.parseInt(entryTextField.getText().trim()),
     			Integer.parseInt(exitTextField.getText().trim()),
     			longOnlyCheckBox.isSelected());
-    	VaultMainControl.getVaultMainControl().setSpeculator();
     	return speculator;
     }
     
     @FXML
 	public void saveSettings(){
     	setSpeculator();
+    	VaultMainControl.getVaultMainControl().setInitialTableView();
 	}
 
 	public Speculator getSpeculator() {
@@ -125,11 +125,6 @@ public class SpeculatorControl extends GridPane implements Initializable, Contro
 	@Override
 	public void clearList() {
 		setDefaultSettings();
-	}
-
-	@Override
-	public void setCenter() {
-		VaultMainControl.getVaultMainControl().setCenter(this);
 	}
 
 	@Override
