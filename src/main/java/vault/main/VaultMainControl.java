@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import asset.Asset;
 import entry.Entry;
@@ -21,7 +20,7 @@ import javafx.scene.text.Text;
 import market.Market;
 import speculator.Speculator;
 import speculator.SpeculatorControl;
-import util.DateUtils;
+import vault.listview.ControlledList;
 import vault.listview.EntryListViewControl;
 import vault.listview.ExitListViewControl;
 import vault.listview.MainListViewControl;
@@ -76,8 +75,7 @@ public class VaultMainControl extends BorderPane {
 	 * Show assets at or above entry flag, select to view close?
 	 */
 	@FXML public void showNewEntries(){
-		mainListViewControl.clearList();
-		setRandomStatus();
+		clearList();
 		Speculator speculator = speculatorControl.getSpeculator();
 		List<Asset> assetList = market.getAssetList();
 		Task<List<Entry>> task = new Task<List<Entry>>() {
@@ -110,14 +108,7 @@ public class VaultMainControl extends BorderPane {
 				Platform.runLater(new Runnable() {
 		            public void run() {
 		            	setCenter(entryListViewControl);
-			            for(int i = 1; i < entryList.size(); i++){
-			            	//issue with how date is calculated at the end of day (8pm-midnight)		            		
-			            	if(isNewDay(entryList.get(i).getDateTime(), entryList.get(i-1).getDateTime())){
-			            		entryListViewControl.getMainObservableList().add(entryList.get(i));
-			            	}else{
-			            		entryListViewControl.getMainObservableList().add(entryList.get(i));
-			            	}
-			            }
+			            entryListViewControl.setList(entryList);
 		            }
 		        });
 			}
@@ -125,10 +116,8 @@ public class VaultMainControl extends BorderPane {
      }
 	
 	@FXML public void showNewExits(){
-		mainListViewControl.getMainObservableList().removeAll(mainListViewControl.getMainObservableList());
-		setRandomStatus();
+		clearList();
 		Speculator speculator = speculatorControl.getSpeculator();
-		
 		Task<List<Exit>> task = new Task<List<Exit>>() {
 		    @Override protected List<Exit> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
@@ -142,7 +131,7 @@ public class VaultMainControl extends BorderPane {
 				Collections.sort(exitList, new Comparator<Exit>() {
 				    @Override
 					public int compare(Exit exit1, Exit exit2) {
-				        return exit2.getExitDate().compareTo(exit1.getExitDate());
+				        return exit2.getDateTime().compareTo(exit1.getDateTime());
 				    }
 				});
 		        return exitList;
@@ -156,93 +145,29 @@ public class VaultMainControl extends BorderPane {
 				List<Exit> exitList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
-		            	setCenter(mainListViewControl);
-		            	mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(exitList.get(0).getExitDate()));
-			            for(int i = 1; i < exitList.size(); i++){
-			            	if(isNewDay(exitList.get(i).getExitDate(),exitList.get(i-1).getExitDate())){
-			            		mainListViewControl.getMainObservableList().add(DateUtils.dateToMMddFormat(exitList.get(i).getExitDate()));
-			            		mainListViewControl.getMainObservableList().add(exitList.get(i).toString());			            		
-			            	}else{
-			            		mainListViewControl.getMainObservableList().add(exitList.get(i).toString());			            		
-			            	}
-			            }
+		            	setCenter(exitListViewControl);
+		            	exitListViewControl.setList(exitList);
 		            }
 		        });
 			}
 		});	
 	}
 	
-	@FXML public void showOpen(){
-		mainListViewControl.clearList();
-		setRandomStatus();
-		Speculator speculator = speculatorControl.getSpeculator();
-		
-		Task<List<Exit>> task = new Task<List<Exit>>() {
-		    @Override protected List<Exit> call() throws Exception {
-				List<Exit> openList = new ArrayList<>();
-				for(Asset a : market.getAssetList()){
-					for(Exit e : a.getOpenList(speculator)){
-						openList.add(e);
-					}
-				}
-				
-				//sort list
-				Collections.sort(openList, new Comparator<Exit>() {
-				    @Override
-					public int compare(Exit o1, Exit o2) {
-				        return o1.getExitDate().compareTo(o2.getExitDate());
-				    }
-				});
-		        return openList;
-		    }
-		};
-		
-		new Thread(task).start();
-		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
-			@Override
-			public void handle(WorkerStateEvent t){
-				List<Exit> openList = task.getValue();
-				Platform.runLater(new Runnable() {
-		            public void run() {
-		            	mainListViewControl.setCenter();
-		            	mainListViewControl.setList(openList);
-		            }
-		        });
-			}
-		});		
-	}
-	
 	@FXML public void backtest(){
-		mainListViewControl.clearList();
-		setRandomStatus();
-		Speculator speculator = speculatorControl.getSpeculator();
 		
-		for(Asset a : market.getAssetList()){
-			for(Exit e : a.getExitList(speculator)){
-				System.out.println("!" + e.getDateTime() + e.getEntry().getAsset().getAssetName() + " Entry: " + e.getEntryDate());
-			}
-		}
 	}
 	
 	@FXML
 	public void showSettings(){
-		speculatorControl.setCenter();
+		setCenter(speculatorControl);
 		setRandomStatus();
 	}
 	
 	@FXML
 	public void clearList(){
-		entryListViewControl.clearList();
-		mainListViewControl.clearList();
-		exitListViewControl.clearList();
+		((ControlledList) getCenter()).clearList();
 		setRandomStatus();
 		setInitialTableView();
-	}
-	
-	//called from speculator control
-	public void setSpeculator(){
-		setCenter(mainListViewControl);
-		setRandomStatus();
 	}
 	
 	public void setInitialTableView(){
@@ -250,8 +175,10 @@ public class VaultMainControl extends BorderPane {
 		for(Asset asset : market.getAssetList()){
 			assetList.add(asset.toString());
 		}
-		mainListViewControl.setList(assetList);
+		
 		setCenter(mainListViewControl);
+		mainListViewControl.setList(assetList);
+		setRandomStatus();
 	}
 
 	public void setMarket(Market market) {
@@ -266,24 +193,17 @@ public class VaultMainControl extends BorderPane {
 		statusText.setText(StatusEnum.randomStatus());
 	}
 	
-	//presentation helper method..add date to list for new date..
-	private boolean isNewDay(Date currentDate, Date prevDate){
-		boolean isNewDay = currentDate.compareTo(prevDate) < 0 || currentDate.compareTo(prevDate) > 0;
-		return isNewDay;		
+	public void entrySelected(Entry entry){
+		int i = market.getAssetList().indexOf(entry.getAsset());
+		Asset asset = market.getAssetList().get(i);
+		setCenter(exitListViewControl);
+		exitListViewControl.setList(asset.getEntryStatusList(speculatorControl.getSpeculator()));
 	}
 	
-	public void viewOpenForEntry(Entry entry){
-		Asset asset = market.getAssetList().get(market.getAssetList().indexOf(entry.getAsset()));
-		exitListViewControl.setList(asset.getOpenList(speculatorControl.getSpeculator()));
-		exitListViewControl.setCenter();
-		setRandomStatus();
-		System.out.println("Success!");
-	}
-	
-	public void returnToEntries(){
-		entryListViewControl.setCenter();
-		showNewEntries();
-		setRandomStatus();
+	public void exitSelected(Exit exit){
+		setCenter(entryListViewControl);
+		entryListViewControl.getMainListView().requestFocus();
+		exitListViewControl.clearList();
 	}
 
 }
