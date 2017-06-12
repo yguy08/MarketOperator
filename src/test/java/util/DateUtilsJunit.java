@@ -25,7 +25,12 @@ public class DateUtilsJunit {
 		assertEquals(MMddFormatBaseline, dateToMMddFormat);
 	}
 	
-	Date todaysDate = DateUtils.dateToUTCMidnight(new GregorianCalendar().getTime());
+	@Test
+	public void testDateofTodayMinusDays(){
+		Date oldDate = DateUtils.dateOfTodayMinusDays(20);
+		int numDays = DateUtils.getNumDaysFromDateToToday(oldDate);
+		assertEquals(20, numDays);
+	}
 	
 
 }
