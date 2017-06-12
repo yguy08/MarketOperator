@@ -32,7 +32,7 @@ public class VaultMainControl extends BorderPane {
 	
 	private static VaultMainControl vaultMainControl;
 	
-	private MainListViewControl mainListViewControl;
+	@FXML private MainListViewControl mainListViewControl;
 	
 	private EntryListViewControl entryListViewControl;
 	
@@ -66,7 +66,6 @@ public class VaultMainControl extends BorderPane {
         }
 
         vaultMainControl = this;
-		mainListViewControl = new MainListViewControl();
 		entryListViewControl = new EntryListViewControl();
 		exitListViewControl = new ExitListViewControl();
 		speculatorControl = new SpeculatorControl();
@@ -207,10 +206,6 @@ public class VaultMainControl extends BorderPane {
 		            public void run() {
 		            	mainListViewControl.setCenter();
 		            	mainListViewControl.setList(openList);
-		            	//setCenter(mainListViewControl);
-			            //for(int i = 0; i < openList.size(); i++){
-			            	//mainListViewControl.getMainObservableList().add(openList.get(i).toString());
-			            //}
 		            }
 		        });
 			}
@@ -256,7 +251,7 @@ public class VaultMainControl extends BorderPane {
 			assetList.add(asset.toString());
 		}
 		mainListViewControl.setList(assetList);
-		mainListViewControl.setCenter();
+		setCenter(mainListViewControl);
 	}
 
 	public void setMarket(Market market) {

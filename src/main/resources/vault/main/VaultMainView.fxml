@@ -5,11 +5,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import vault.listview.MainListViewControl?>
 
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="BorderPane" prefWidth="570" prefHeight="320">
 <padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
 	
-	<center></center>
+	<center><MainListViewControl fx:id="mainListViewControl"></MainListViewControl></center>
 	
 	<right>
 		<VBox fx:id="buttonBox" spacing="10" >

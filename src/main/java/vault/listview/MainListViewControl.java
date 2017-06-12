@@ -28,7 +28,6 @@ public class MainListViewControl extends Pane implements Initializable, Controll
         
         try {
             fxmlLoader.load();
-            mainListView.setItems(mainObservableList);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -44,7 +43,7 @@ public class MainListViewControl extends Pane implements Initializable, Controll
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+        mainListView.setItems(mainObservableList);
 	}
 
 	@Override
@@ -54,7 +53,7 @@ public class MainListViewControl extends Pane implements Initializable, Controll
 
 	@Override
 	public void setCenter() {
-		VaultMainControl.getVaultMainControl().setCenter(this);
+		
 	}
 
 	@Override
