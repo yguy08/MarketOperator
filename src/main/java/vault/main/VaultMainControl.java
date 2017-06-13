@@ -1,10 +1,13 @@
 package vault.main;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.ResourceBundle;
+
 import asset.Asset;
 import entry.Entry;
 import exit.Exit;
@@ -14,18 +17,18 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import market.Market;
 import speculator.Speculator;
 import speculator.SpeculatorControl;
-import vault.listview.ControlledList;
 import vault.listview.EntryListViewControl;
 import vault.listview.ExitListViewControl;
 import vault.listview.MainListViewControl;
 
-public class VaultMainControl extends BorderPane {
+public class VaultMainControl extends BorderPane implements Initializable {
 	
 	private Market market;
 	
@@ -63,12 +66,6 @@ public class VaultMainControl extends BorderPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-        vaultMainControl = this;
-		entryListViewControl = new EntryListViewControl();
-		exitListViewControl = new ExitListViewControl();
-		speculatorControl = new SpeculatorControl();
-        setRandomStatus();
 	}
 	
 	/*
@@ -107,7 +104,7 @@ public class VaultMainControl extends BorderPane {
 				List<Entry> entryList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
-		            	setCenter(entryListViewControl);
+		            	setCenter(entryListViewControl);		         
 			            entryListViewControl.setList(entryList);
 		            }
 		        });
@@ -154,7 +151,44 @@ public class VaultMainControl extends BorderPane {
 	}
 	
 	@FXML public void backtest(){
+		clearList();
+		Speculator speculator = speculatorControl.getSpeculator();
+
+		//get exit list
+		Task<List<String>> task = new Task<List<String>>() {
+		    @Override protected List<String> call() throws Exception {
+				List<Exit> exitList = new ArrayList<>();
+				for(Asset a : market.getAssetList()){
+					for(Exit e : a.getEntryStatusList(speculator)){
+						exitList.add(e);
+					}
+				}
+				
+				//sort list
+				Collections.sort(exitList, new Comparator<Exit>() {
+				    @Override
+					public int compare(Exit exit1, Exit exit2) {
+				        return exit1.getEntryDate().compareTo(exit2.getEntryDate());
+				    }
+				});
+				
+		       return null;		      
+		    }
+		};
 		
+		new Thread(task).start();
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				//List<String> resultsList = task.getValue();
+				Platform.runLater(new Runnable() {
+		            public void run() {
+		            	//setCenter(mainListViewControl);
+		            	//mainListViewControl.setList(resultsList);
+		            } 
+		        });
+			}
+		});		
 	}
 	
 	@FXML
@@ -165,9 +199,10 @@ public class VaultMainControl extends BorderPane {
 	
 	@FXML
 	public void clearList(){
-		((ControlledList) getCenter()).clearList();
+		entryListViewControl.clearList();
+		exitListViewControl.clearList();
+		mainListViewControl.clearList();
 		setRandomStatus();
-		setInitialTableView();
 	}
 	
 	public void setInitialTableView(){
@@ -175,12 +210,11 @@ public class VaultMainControl extends BorderPane {
 		for(Asset asset : market.getAssetList()){
 			assetList.add(asset.toString());
 		}
-		
 		setCenter(mainListViewControl);
 		mainListViewControl.setList(assetList);
 		setRandomStatus();
 	}
-
+	
 	public void setMarket(Market market) {
 		this.market = market;
 	}
@@ -194,6 +228,7 @@ public class VaultMainControl extends BorderPane {
 	}
 	
 	public void entrySelected(Entry entry){
+		clearList();
 		int i = market.getAssetList().indexOf(entry.getAsset());
 		Asset asset = market.getAssetList().get(i);
 		setCenter(exitListViewControl);
@@ -201,9 +236,18 @@ public class VaultMainControl extends BorderPane {
 	}
 	
 	public void exitSelected(Exit exit){
+		clearList();
 		setCenter(entryListViewControl);
 		showNewEntries();
-		entryListViewControl.getMainListView().requestFocus();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+        vaultMainControl = this;
+		entryListViewControl = new EntryListViewControl();
+		exitListViewControl = new ExitListViewControl();
+		speculatorControl = new SpeculatorControl();
+        setRandomStatus();		
 	}
 
 }
