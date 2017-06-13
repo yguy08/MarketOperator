@@ -9,14 +9,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import vault.main.VaultMainControl;
 
-public class MainListViewControl extends Pane implements Initializable, ControlledList {
+public class MainListViewControl extends Pane implements ControlledList {
 	
 	@FXML private ListView<String> mainListView = new ListView<>();
 	
@@ -43,21 +42,10 @@ public class MainListViewControl extends Pane implements Initializable, Controll
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-        mainListView.setItems(mainObservableList);
-	}
-
-	@Override
-	public void clearList() {
-		mainObservableList.clear();
-	}
-
-	@Override
 	public void setList(List<?> list) {
 		for(Object c : list){
 			mainObservableList.add((String) c);
-		}
-		
+		}		
 		 mainListView.getSelectionModel().selectFirst();
 	}
 
@@ -66,6 +54,16 @@ public class MainListViewControl extends Pane implements Initializable, Controll
 		if(event.getCode() == KeyCode.SPACE){
 			VaultMainControl.getVaultMainControl().showNewEntries();
 		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+        mainListView.setItems(mainObservableList);
+	}
+
+	@Override
+	public void clearList() {
+		mainListView.getItems().clear();		
 	}
 
 

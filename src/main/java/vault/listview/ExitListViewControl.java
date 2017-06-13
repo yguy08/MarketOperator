@@ -1,7 +1,9 @@
 package vault.listview;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import exit.Exit;
 import javafx.collections.FXCollections;
@@ -30,8 +32,6 @@ public class ExitListViewControl extends Pane implements ControlledList {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        
-        exitListView.setItems(exitObservableList);
 	}
 	
 	public ObservableList<Exit> getMainObservableList() {
@@ -41,10 +41,10 @@ public class ExitListViewControl extends Pane implements ControlledList {
 	public ListView<Exit> getMainListView(){
 		return exitListView;
 	}
-
+	
 	@Override
 	public void clearList() {
-		exitObservableList.clear();
+		exitListView.getItems().clear();		
 	}
 
 	@Override
@@ -62,6 +62,11 @@ public class ExitListViewControl extends Pane implements ControlledList {
 			Exit exit = exitListView.getSelectionModel().getSelectedItem();
 			VaultMainControl.getVaultMainControl().exitSelected(exit);
 		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		exitListView.setItems(exitObservableList);		
 	}
 
 }

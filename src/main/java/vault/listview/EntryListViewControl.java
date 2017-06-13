@@ -1,7 +1,9 @@
 package vault.listview;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import entry.Entry;
 import javafx.collections.FXCollections;
@@ -30,9 +32,7 @@ public class EntryListViewControl extends Pane implements ControlledList {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        
-        entryListView.setItems(entryObservableList);
-	}
+     }
 	
 	public ObservableList<Entry> getMainObservableList() {
 		return entryObservableList;
@@ -41,10 +41,10 @@ public class EntryListViewControl extends Pane implements ControlledList {
 	public ListView<Entry> getMainListView(){
 		return entryListView;
 	}
-
+	
 	@Override
 	public void clearList() {
-		entryObservableList.clear();
+		entryListView.getItems().clear();		
 	}
 
 	@Override
@@ -61,8 +61,12 @@ public class EntryListViewControl extends Pane implements ControlledList {
 		if(event.getCode() == KeyCode.SPACE){
 			Entry entry = entryListView.getSelectionModel().getSelectedItem();
 			VaultMainControl.getVaultMainControl().entrySelected(entry);
-		}
-		
+		}		
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		entryListView.setItems(entryObservableList);		
 	}
 
 }
