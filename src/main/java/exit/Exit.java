@@ -32,11 +32,7 @@ public class Exit {
 		exitOrOpen();
 	}
 	
-	private boolean exitOrOpen(){
-		if(!(entry.isLongEntry() && speculator.isLongOnly())){
-			return false;
-		}
-		
+	private boolean exitOrOpen(){		
 		BigDecimal currentPrice = asset.getClosePriceFromIndex(entry.getAsset().getIndexOfLastRecordInSubList());
 		BigDecimal maxPrice = Collections.max(asset.getClosePriceListFromSubList());
 		BigDecimal minPrice = Collections.min(asset.getClosePriceListFromSubList());
