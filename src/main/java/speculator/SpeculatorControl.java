@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -19,7 +18,7 @@ import market.MarketsEnum;
 import vault.listview.ControlledList;
 import vault.main.VaultMainControl;
 
-public class SpeculatorControl extends GridPane implements Initializable, ControlledList {
+public class SpeculatorControl extends GridPane implements ControlledList {
 	
 	@FXML private TextField balanceTextField;
 	
@@ -72,7 +71,6 @@ public class SpeculatorControl extends GridPane implements Initializable, Contro
     
     //set text field text to current settings
     private void setDefaultSettings(){
-    	
     	//create speculator with some default settings
     	speculator = new DigitalSpeculator();
     	
@@ -85,7 +83,6 @@ public class SpeculatorControl extends GridPane implements Initializable, Contro
     	entryTextField.setText(Integer.toString(speculator.getEntrySignalDays()));
     	exitTextField.setText(Integer.toString(speculator.getSellSignalDays()));
     	longOnlyCheckBox.setSelected(speculator.isLongOnly());
-    	
     }
     
     private Speculator setSpeculator(){
@@ -124,12 +121,13 @@ public class SpeculatorControl extends GridPane implements Initializable, Contro
 
 	@Override
 	public void clearList() {
-		setDefaultSettings();
+		//VaultMainControl.getVaultMainControl().setInitialTableView();		
 	}
 
 	@Override
 	public void setList(List<?> list) {
-		//Not implemented
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
