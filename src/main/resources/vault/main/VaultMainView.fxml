@@ -15,7 +15,6 @@
 	<right>
 		<VBox fx:id="buttonBox" spacing="10" >
 				<Button fx:id="newEntriesBtn" text="Entries" prefWidth="100" onAction="#showNewEntries" />
-				<!--  <Button fx:id="showOpenBtn" text="Open" prefWidth="100" onAction="#showOpen" /> -->
 				<Button fx:id="showCloseBtn" text="Exits" prefWidth="100" onAction="#showNewExits" />
 				<Button fx:id="backTest" text="Backtest" prefWidth="100" onAction="#backtest" />
 				<Button fx:id="settings" text="Settings" prefWidth="100" onAction="#showSettings" />

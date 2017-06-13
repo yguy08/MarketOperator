@@ -202,8 +202,8 @@ public class VaultMainControl extends BorderPane {
 	
 	public void exitSelected(Exit exit){
 		setCenter(entryListViewControl);
+		showNewEntries();
 		entryListViewControl.getMainListView().requestFocus();
-		exitListViewControl.clearList();
 	}
 
 }

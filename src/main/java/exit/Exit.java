@@ -1,7 +1,6 @@
 package exit;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Collections;
 import java.util.Date;
 
@@ -115,9 +114,9 @@ public class Exit {
 	
 	private String openOrExit(){
 		if(isExit()){
-			return " \uD83D\uDC80";
+			return " Closed";
 		}else if(isOpen()){
-			return " \uD83C\uDF20";
+			return " Open";
 		}else{
 			return " Error";
 		}
