@@ -201,8 +201,7 @@ public class DigitalAsset implements Asset {
 			for(int i = e.getEntryIndex();i < priceList.size();i++){
 				setPriceSubList(i - speculator.getSellSignalDays(), i);
 				exit = new Exit(e, speculator);
-				int days = DateUtils.getNumDaysFromDateToToday(exit.getDateTime());
-				if(exit.isExit() && days < speculator.getTimeFrameDays()){
+				if(exit.isExit()){
 					exitList.add(exit);
 					System.out.println("Adding exit: " + exit.toString());
 					break;
