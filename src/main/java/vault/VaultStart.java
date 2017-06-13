@@ -71,7 +71,6 @@ public class VaultStart extends Application {
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
                     StateChangeNotification.Type.BEFORE_START));
-                
                 return null;
             }
         };
