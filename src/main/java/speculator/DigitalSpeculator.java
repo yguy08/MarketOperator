@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import entry.Entry;
+import price.Entry;
 
 public class DigitalSpeculator implements Speculator {
 	
@@ -40,6 +40,9 @@ public class DigitalSpeculator implements Speculator {
 	//long only filter
 	private boolean longOnly;
 	
+	//sort entries by volume filter
+	private boolean sortVol;
+	
 	//total return amount because every speculator can calculate end - start balance
 	private BigDecimal totalReturnAmount = new BigDecimal(0.00);
 	
@@ -49,7 +52,8 @@ public class DigitalSpeculator implements Speculator {
 	//entries -> every speculator has entries either taken or not taken
 	private List<Entry> entryList = new ArrayList<>();
 	
-	public DigitalSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays, int entryFlag, int sellFlag, boolean longOnly) {
+	public DigitalSpeculator(int balance, int risk, int maxUnits, int stopLength, int timeFrameDays, int entryFlag, int sellFlag, 
+			boolean longOnly, boolean sortVol) {
 		setAccountBalance(new BigDecimal(balance));
 		setStartAccountBalance(new BigDecimal(balance));
 		setRisk(new BigDecimal(risk));
@@ -59,6 +63,7 @@ public class DigitalSpeculator implements Speculator {
 		setEntrySignalDays(entryFlag);
 		setSellSignalDays(sellFlag);
 		setLongOnly(longOnly);
+		setSortVol(sortVol);
 		
 		//not implemented from settings screen yet
 		setMinVolume(new BigDecimal(0.00));
@@ -74,6 +79,7 @@ public class DigitalSpeculator implements Speculator {
 		setEntrySignalDays(25);
 		setSellSignalDays(10);
 		setLongOnly(true);
+		setSortVol(true);
 		
 		//not implemented from settings screen yet
 		setMinVolume(new BigDecimal(0.00));
@@ -91,8 +97,7 @@ public class DigitalSpeculator implements Speculator {
 	
 	@Override
 	public void setStartAccountBalance(BigDecimal amount) {
-		startAccountBalance = amount;
-		
+		startAccountBalance = amount;		
 	}
 
 	@Override
@@ -173,7 +178,7 @@ public class DigitalSpeculator implements Speculator {
 	@Override
 	public void setTotalReturnPercent(){
 		totalReturnPercent = accountBalance.subtract(startAccountBalance, MathContext.DECIMAL32)
-				.divide(Speculator.DIGITAL_EQUITY, MathContext.DECIMAL32)
+				.divide(startAccountBalance, MathContext.DECIMAL32)
 				.setScale(2, RoundingMode.HALF_DOWN)
 				.multiply(new BigDecimal(100.00), MathContext.DECIMAL32);
 	}
@@ -203,6 +208,14 @@ public class DigitalSpeculator implements Speculator {
 		this.longOnly = longOnly;
 	}
 	
+	public boolean isSortVol() {
+		return sortVol;
+	}
+
+	public void setSortVol(boolean sortVol) {
+		this.sortVol = sortVol;
+	}
+
 	@Override
 	public List<Entry> getEntryList(){
 		return entryList;

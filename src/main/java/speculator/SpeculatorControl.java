@@ -36,6 +36,8 @@ public class SpeculatorControl extends GridPane implements ControlledList {
 	
 	@FXML private CheckBox longOnlyCheckBox;
 	
+	@FXML private CheckBox sortVol;
+	
 	@FXML private ToggleButton bitcoinMarket;
 	
 	@FXML private ToggleButton dollarMarket;
@@ -83,6 +85,7 @@ public class SpeculatorControl extends GridPane implements ControlledList {
     	entryTextField.setText(Integer.toString(speculator.getEntrySignalDays()));
     	exitTextField.setText(Integer.toString(speculator.getSellSignalDays()));
     	longOnlyCheckBox.setSelected(speculator.isLongOnly());
+    	sortVol.setSelected(speculator.isSortVol());
     }
     
     private Speculator setSpeculator(){
@@ -93,7 +96,8 @@ public class SpeculatorControl extends GridPane implements ControlledList {
     			Integer.parseInt(timeFrameDaysTextField.getText().trim()),
     			Integer.parseInt(entryTextField.getText().trim()),
     			Integer.parseInt(exitTextField.getText().trim()),
-    			longOnlyCheckBox.isSelected());
+    			longOnlyCheckBox.isSelected(),
+    			sortVol.isSelected());
     	return speculator;
     }
     
@@ -121,7 +125,7 @@ public class SpeculatorControl extends GridPane implements ControlledList {
 
 	@Override
 	public void clearList() {
-		//VaultMainControl.getVaultMainControl().setInitialTableView();		
+				
 	}
 
 	@Override

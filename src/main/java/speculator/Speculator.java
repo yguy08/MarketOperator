@@ -3,7 +3,7 @@ package speculator;
 import java.math.BigDecimal;
 import java.util.List;
 
-import entry.Entry;
+import price.Entry;
 
 public interface Speculator {
 	
@@ -76,6 +76,10 @@ public interface Speculator {
 	public boolean isLongOnly();
 	
 	public void setLongOnly(boolean isLongOnly);
+	
+	public boolean isSortVol();
+	
+	public void setSortVol(boolean sortVol);
 	
 	public static int getPriceHistoryYears(){
 		return 10;
