@@ -1,14 +1,12 @@
 package price;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import asset.Asset;
 import util.StringFormatter;
 
 public class PriceData {
