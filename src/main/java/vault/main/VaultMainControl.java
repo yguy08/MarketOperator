@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import asset.Asset;
-import entry.Entry;
-import exit.Exit;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -22,8 +20,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import market.Market;
+import price.Entry;
+import price.Exit;
 import speculator.Speculator;
 import speculator.SpeculatorControl;
+import trade.Trade;
+import util.Tuple;
 import vault.listview.EntryListViewControl;
 import vault.listview.ExitListViewControl;
 import vault.listview.MainListViewControl;
@@ -92,6 +94,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				        return o2.getDateTime().compareTo(o1.getDateTime());
 				    }
 				});
+				
 		        return entryList;
 		    }
 		};
@@ -172,7 +175,11 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				    }
 				});
 				
-		       return null;		      
+				Trade t = new Trade(speculator);
+				t.setEntryExitList(exitList);
+				List<String> resultsList = t.runBackTest();
+				
+		       return resultsList;		      
 		    }
 		};
 		
@@ -180,11 +187,11 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
 			@Override
 			public void handle(WorkerStateEvent t){
-				//List<String> resultsList = task.getValue();
+				List<String> resultsList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
-		            	//setCenter(mainListViewControl);
-		            	//mainListViewControl.setList(resultsList);
+		            	setCenter(mainListViewControl);
+		            	mainListViewControl.setList(resultsList);
 		            } 
 		        });
 			}
