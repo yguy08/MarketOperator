@@ -19,9 +19,9 @@ import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
-import entry.Entry;
-import exit.Exit;
 import market.Market;
+import price.Entry;
+import price.Exit;
 import price.PoloniexPriceList;
 import price.PriceData;
 import speculator.Speculator;
@@ -187,7 +187,6 @@ public class DigitalAsset implements Asset {
 			entry = new Entry(this, speculator);
 			if(entry.isEntry()){
 				entryList.add(entry);
-				System.out.println("Adding entry: " + entry.toString());
 			}				
 		}
 		return entryList;
@@ -203,7 +202,6 @@ public class DigitalAsset implements Asset {
 				exit = new Exit(e, speculator);
 				if(exit.isExit()){
 					exitList.add(exit);
-					System.out.println("Adding exit: " + exit.toString());
 					break;
 				}
 			}

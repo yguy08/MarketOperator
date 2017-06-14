@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
-import entry.Entry;
-import exit.Exit;
 import market.Market;
+import price.Entry;
+import price.Exit;
 import speculator.Speculator;
 
 public interface Asset {
