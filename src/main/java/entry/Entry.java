@@ -135,9 +135,9 @@ public class Entry {
 	
 	public void setStop() {
 		if(isLongEntry){
-			stop = getAsset().getClosePriceFromIndex(locationIndex).subtract(Speculator.STOP.multiply(getTrueRange(), MathContext.DECIMAL32));
+			stop = getAsset().getClosePriceFromIndex(locationIndex).subtract(speculator.getStopLength().multiply(getTrueRange(), MathContext.DECIMAL32));
 		}else{
-			stop = getAsset().getClosePriceFromIndex(locationIndex).add(Speculator.STOP.multiply(getTrueRange(), MathContext.DECIMAL32));
+			stop = getAsset().getClosePriceFromIndex(locationIndex).add(speculator.getStopLength().multiply(getTrueRange(), MathContext.DECIMAL32));
 		}
 	}
 	
