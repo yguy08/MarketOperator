@@ -1,23 +1,35 @@
 package market;
 
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
+import vault.VaultStart;
 
 public class MarketFactory {
 	
 	//called when app first loads
-	public static Market createMarket(){
-    	//try internet connection to decide online/offline
-		try {
-            URL myURL = new URL("https://poloniex.com/");
-            URLConnection myURLConnection = myURL.openConnection();
-            myURLConnection.connect();
-            return BitcoinMarket.createOnlineBitcoinMarket();
-        } 
-        catch (IOException e) {
-            return BitcoinMarket.createOfflineBitcoinMarket();
-        }
+	public static Market createMarket(MarketsEnum marketEnum){
+		
+		if(VaultStart.isConnected()){			
+			switch(marketEnum){
+			case BITCOIN:
+				return BitcoinMarket.createOnlineBitcoinMarket();
+			case ETHEREUM:
+				return EthereumMarket.createOnlineEthereumMarket();
+			case DOLLAR:
+				return DollarMarket.createOnlineDollarMarket();
+			default:
+				return BitcoinMarket.createOnlineBitcoinMarket();
+			}			
+		}else{
+			switch(marketEnum){
+			case BITCOIN:
+				return BitcoinMarket.createOfflineBitcoinMarket();
+			case ETHEREUM:
+				return EthereumMarket.createOfflineEthereumMarket();
+			case DOLLAR:
+				return DollarMarket.createOfflineDollarMarket();
+			default:
+				return BitcoinMarket.createOfflineBitcoinMarket();
+			}
+		}
 	}
 	
 	//create market (String marketName)
