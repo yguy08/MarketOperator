@@ -77,7 +77,7 @@ public class DigitalSpeculator implements Speculator {
 		setStopLength(new BigDecimal(2));
 		setTimeFrameDays(25);
 		setEntrySignalDays(25);
-		setSellSignalDays(10);
+		setSellSignalDays(11);
 		setLongOnly(true);
 		setSortVol(true);
 		
