@@ -73,7 +73,7 @@ public class DigitalSpeculator implements Speculator {
 		setAccountBalance(new BigDecimal(4));
 		setStartAccountBalance(new BigDecimal(4));
 		setRisk(new BigDecimal(1));
-		setMaxUnits(5);
+		setMaxUnits(6);
 		setStopLength(new BigDecimal(2));
 		setTimeFrameDays(25);
 		setEntrySignalDays(25);
