@@ -1,5 +1,10 @@
 package vault;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
 import com.sun.javafx.application.LauncherImpl;
 
 import javafx.application.Application;
@@ -25,6 +30,8 @@ public class VaultStart extends Application {
     Market market;
     
     BooleanProperty ready = new SimpleBooleanProperty(false);
+    
+    static boolean isConnected;
     
 	public static void main(String[] args) {
 	    LauncherImpl.launchApplication(VaultStart.class, VaultPreloaderStart.class, args);
@@ -67,6 +74,7 @@ public class VaultStart extends Application {
             @Override
             protected Void call() throws Exception {
                 notifyPreloader(new Preloader.ProgressNotification(.5));
+                testConnection();
             	market = MarketFactory.createMarket(MarketsEnum.BITCOIN);
             	notifyPreloader(new Preloader.ProgressNotification(.9));
             	ready.setValue(Boolean.TRUE);
@@ -78,10 +86,21 @@ public class VaultStart extends Application {
         
         new Thread(task).start();
     }
+    
+    public static void testConnection(){
+    	try {
+    	    URL myURL = new URL("http://poloniex.com/");
+    	    URLConnection myURLConnection = myURL.openConnection();
+    	    myURLConnection.connect();
+    	    isConnected = true;
+    	} 
+    	catch (IOException e) { 
+    	    isConnected = false;
+    	}
+    }
 
 	public static boolean isConnected() {
-		// TODO Auto-generated method stub
-		return false;
+		return isConnected;
 	}
 
 }
