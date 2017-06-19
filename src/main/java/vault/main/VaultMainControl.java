@@ -192,6 +192,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showSettings(){
+		clearList();
 		setCenter(speculatorControl);
 		setRandomStatus();
 	}
