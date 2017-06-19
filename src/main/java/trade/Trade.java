@@ -1,6 +1,5 @@
 package trade;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,21 +7,28 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import price.Entry;
-import price.Exit;
-import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
+import util.StringFormatter;
 import util.Tuple;
 
 public class Trade {
 	
 	Speculator speculator;
 	
-	List<Tuple<List<Entry>, List<Exit>>> entryExit = new ArrayList<>();
+	private List<Tuple<List<Entry>, List<Exit>>> entryExit = new ArrayList<>();
 
-	public Trade(Speculator speculator){
+	public Trade(List<Exit> exitList, Speculator speculator){
 		this.speculator = speculator;
+		setEntryExitList(exitList);
+	}
+	
+	public Trade(Entry entry, Speculator speculator){
+		
+	}
+	
+	public Trade(Exit exit, Speculator speculator){
+		
 	}
 
 	public void setEntryExitList(List<Exit> exitList) {
@@ -36,8 +42,7 @@ public class Trade {
 				Date closeDate = exit.getDateTime();
 				if(closeDate.equals(currentDateOfBacktest)){
 					exits.add(exit);
-				}
-				
+				}				
 				Date entryDate = exit.getEntryDate();
 				if(entryDate.equals(currentDateOfBacktest)){
 					entries.add(exit.getEntry());
@@ -45,6 +50,10 @@ public class Trade {
 			}
 			entryExit.add(new Tuple<List<Entry>, List<Exit>>(entries,exits));
 		}
+	}
+
+	public List<Tuple<List<Entry>, List<Exit>>> getEntryExitList() {
+		return entryExit;
 	}
 	
 	public List<String> runBackTest(){
@@ -56,11 +65,14 @@ public class Trade {
 				if(unitList.contains(exit.getEntry()) && !(exit.isOpen())){
 					unitList.remove(exit.getEntry());
 					speculator.setAccountBalance(exit.calcGainLossAmount());
-					resultsList.add(exit.toString() + " " + speculator.getAccountBalance());
+					resultsList.add(exit.toString() + " ((" + StringFormatter.bigDecimalToShortString(speculator.getAccountBalance()) + "))");
 					System.out.println("New Exit! " + exit.toString());
+				}else if(unitList.contains(exit.getEntry()) && exit.isOpen()){
+					speculator.setAccountBalance(exit.calcGainLossAmount());
+					resultsList.add(exit.toString() + " ((" + StringFormatter.bigDecimalToShortString(speculator.getAccountBalance()) + "))");
+					System.out.println("Still Open! " + exit.toString());
 				}
-			}
-			
+			}			
 			Collections.sort(entryExit.a, new Comparator<Entry>() {
 			    @Override
 				public int compare(Entry o1, Entry o2) {
@@ -70,13 +82,14 @@ public class Trade {
 			
 			//for entry e : entry exit a...
 			for(Entry entry : entryExit.a){
-				if(unitList.size() > speculator.getMaxUnits()){
+				if(unitList.size() >= speculator.getMaxUnits()){
 					break;
 				}else if(speculator.isSortVol()){
 					unitList.add(entry);
 					System.out.println(entry.toString());
 					resultsList.add(entry.toString());
 				}else{
+					//can add ones twice...
 					int r = RANDOM.nextInt(entryExit.a.size());
 					unitList.add(entryExit.a.get(r));
 					System.out.println(entryExit.a.get(r).toString());
@@ -86,10 +99,6 @@ public class Trade {
 		}
 		
 		return resultsList;
-	}
-
-	public List<Tuple<List<Entry>, List<Exit>>> getEntryExit() {
-		return entryExit;
 	}
 	
 }

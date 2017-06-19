@@ -20,12 +20,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import market.Market;
-import price.Entry;
-import price.Exit;
 import speculator.Speculator;
 import speculator.SpeculatorControl;
+import trade.Entry;
+import trade.Exit;
 import trade.Trade;
-import util.Tuple;
 import vault.listview.EntryListViewControl;
 import vault.listview.ExitListViewControl;
 import vault.listview.MainListViewControl;
@@ -82,9 +81,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		    	List<Entry> entryList = new ArrayList<>();
 				for(Asset asset : assetList){
 					List<Entry> assetEntryList = asset.getEntryList(speculator);
-					for(Entry e : assetEntryList){
-						entryList.add(e);
-					}
+					entryList.addAll(assetEntryList);
 				}
 				
 				//sort list
@@ -122,9 +119,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		    @Override protected List<Exit> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
 				for(Asset a : market.getAssetList()){
-					for(Exit e : a.getExitList(speculator)){
-						exitList.add(e);
-					}
+					exitList.addAll(a.getExitList(speculator));
 				}
 				
 				//sort list
@@ -162,9 +157,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		    @Override protected List<String> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
 				for(Asset a : market.getAssetList()){
-					for(Exit e : a.getEntryStatusList(speculator)){
-						exitList.add(e);
-					}
+					exitList.addAll(a.getEntryStatusList(speculator));
 				}
 				
 				//sort list

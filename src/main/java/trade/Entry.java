@@ -1,4 +1,4 @@
-package price;
+package trade;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import asset.Asset;
+import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;

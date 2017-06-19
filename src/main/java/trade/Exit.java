@@ -1,4 +1,4 @@
-package price;
+package trade;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Date;
 
 import asset.Asset;
+import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
 
@@ -96,7 +97,7 @@ public class Exit {
 		sb.append(" \u2600" + DateUtils.dateToMMddFormat(entry.getDateTime()));
 		sb.append(" @" + PriceData.prettyPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
 		sb.append(openOrExit() + " ");
-		sb.append(PriceData.prettyPrice(calcGainLossAmount()));
+		sb.append("(" + PriceData.prettyPrice(calcGainLossAmount()) + ")");
 		return  sb.toString();
 	}
 	
@@ -110,9 +111,9 @@ public class Exit {
 	
 	private String openOrExit(){
 		if(isExit()){
-			return " Closed";
+			return " C";
 		}else if(isOpen()){
-			return " Open";
+			return " O";
 		}else{
 			return " Error";
 		}
