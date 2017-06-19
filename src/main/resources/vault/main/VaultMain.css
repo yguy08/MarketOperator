@@ -7,6 +7,11 @@ root {
 
 }
 
+.list-cell{
+	-fx-font-family: "OpenSansEmoji.ttf";
+	-fx-font-size: 12px;
+}
+
 #statusText{
 	-fx-font-weight: bold;
 }
