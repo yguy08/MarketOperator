@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import market.Market;
 import market.MarketFactory;
+import market.MarketsEnum;
 import vault.main.VaultMainControl;
 
 public class VaultStart extends Application {
@@ -66,7 +67,7 @@ public class VaultStart extends Application {
             @Override
             protected Void call() throws Exception {
                 notifyPreloader(new Preloader.ProgressNotification(.5));
-            	market = MarketFactory.createMarket();
+            	market = MarketFactory.createMarket(MarketsEnum.BITCOIN);
             	notifyPreloader(new Preloader.ProgressNotification(.9));
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
@@ -77,5 +78,10 @@ public class VaultStart extends Application {
         
         new Thread(task).start();
     }
+
+	public static boolean isConnected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

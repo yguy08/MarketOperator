@@ -168,8 +168,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				    }
 				});
 				
-				Trade t = new Trade(speculator);
-				t.setEntryExitList(exitList);
+				Trade t = new Trade(exitList, speculator);
 				List<String> resultsList = t.runBackTest();
 				
 		       return resultsList;		      

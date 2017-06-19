@@ -20,8 +20,8 @@ import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.Market;
-import price.Entry;
-import price.Exit;
+import trade.Entry;
+import trade.Exit;
 import price.PoloniexPriceList;
 import price.PriceData;
 import speculator.Speculator;

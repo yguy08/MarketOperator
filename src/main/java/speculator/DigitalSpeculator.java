@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import price.Entry;
+import trade.Entry;
 
 public class DigitalSpeculator implements Speculator {
 	
