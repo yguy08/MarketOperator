@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class MarketFactoryJunit {
 	
 	static{		
-		VaultStart.isConnected();
+		VaultStart.testConnection();
 	}
 	
 	@Test
