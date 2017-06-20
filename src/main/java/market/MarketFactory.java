@@ -4,12 +4,14 @@ import vault.VaultStart;
 
 public class MarketFactory {
 	
+	private static Market market;
+	
 	//called when app first loads
 	public static Market createMarket(MarketsEnum marketEnum){
-		
 		if(VaultStart.isConnected()){			
 			switch(marketEnum){
 			case BITCOIN:
+				market = BitcoinMarket.createOnlineBitcoinMarket();
 				return BitcoinMarket.createOnlineBitcoinMarket();
 			case ETHEREUM:
 				return EthereumMarket.createOnlineEthereumMarket();
@@ -21,6 +23,7 @@ public class MarketFactory {
 		}else{
 			switch(marketEnum){
 			case BITCOIN:
+				market = BitcoinMarket.createOfflineBitcoinMarket();
 				return BitcoinMarket.createOfflineBitcoinMarket();
 			case ETHEREUM:
 				return EthereumMarket.createOfflineEthereumMarket();
@@ -32,15 +35,11 @@ public class MarketFactory {
 		}
 	}
 	
-	//create market (String marketName)
-	
-	//create online dollar market
-	
-	//create offline dollar market
-	
-	//create online ethereum market
-	
-	//create offline ethereum market	
-	
-	
+	public static Market getMarket(){
+		if(market!=null){
+			return market;
+		}else{
+			return null;
+		}
+	}	
 }
