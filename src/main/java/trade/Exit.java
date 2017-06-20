@@ -43,7 +43,9 @@ public class Exit {
 			if(isPriceALow || isBelowStop){
 				isExit = true;
 				return true;
-			}else if(locationIndex == asset.getIndexOfLastRecordInPriceList()){
+				
+				//bug fix
+			}else if(locationIndex == asset.getIndexOfLastRecordInPriceList() || locationIndex == asset.getIndexOfLastRecordInPriceList() - 1){
 				isOpen = true;
 				return false;
 			}else{

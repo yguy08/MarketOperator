@@ -32,5 +32,10 @@ public class DateUtilsJunit {
 		assertEquals(20, numDays);
 	}
 	
+	@Test
+	public void testAddDays(){
+		
+	}
+	
 
 }
