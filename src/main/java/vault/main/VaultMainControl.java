@@ -215,8 +215,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		setRandomStatus();
 	}
 	
-	public void setMarket(Market market) {
-		this.market = market;
+	public void setMarket() {
+		this.market = MarketFactory.getMarket();
 	}
 	
 	public static VaultMainControl getVaultMainControl(){
