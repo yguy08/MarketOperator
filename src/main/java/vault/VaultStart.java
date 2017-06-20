@@ -26,9 +26,6 @@ import vault.main.VaultMainControl;
 
 public class VaultStart extends Application {
     
-    //load market for faster performance inside
-    Market market;
-    
     BooleanProperty ready = new SimpleBooleanProperty(false);
     
     static boolean isConnected;
@@ -60,7 +57,7 @@ public class VaultStart extends Application {
                             @Override
 							public void run() {
                                 stage.show();
-                                vaultMainControl.setMarket(market);
+                                vaultMainControl.setMarket();
                                 vaultMainControl.setInitialTableView();
                             }
                         });
@@ -75,7 +72,7 @@ public class VaultStart extends Application {
             protected Void call() throws Exception {
                 notifyPreloader(new Preloader.ProgressNotification(.5));
                 testConnection();
-            	market = MarketFactory.createMarket(MarketsEnum.BITCOIN);
+            	MarketFactory.createMarket(MarketsEnum.BITCOIN);
             	notifyPreloader(new Preloader.ProgressNotification(.9));
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
