@@ -25,7 +25,7 @@ public class VaultStartTest extends Application {
         stage.setTitle("Speculation 1000");
         stage.getIcons().add(icon);
         stage.show();
-        customControl.setMarket(market);
+        customControl.setMarket();
         customControl.setInitialTableView();
 	}
 

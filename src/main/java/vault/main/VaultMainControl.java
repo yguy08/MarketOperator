@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import market.Market;
+import market.MarketFactory;
 import speculator.Speculator;
 import speculator.SpeculatorControl;
 import trade.Entry;
