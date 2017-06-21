@@ -21,7 +21,7 @@ public class ExitListViewControl extends Pane implements ControlledList {
 	@FXML private ListView<Exit> exitListView = new ListView<>();
 	
 	private ObservableList<Exit> exitObservableList = FXCollections.observableArrayList();
-
+	
 	public ExitListViewControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ExitListView.fxml"));
         fxmlLoader.setRoot(this);
@@ -58,9 +58,21 @@ public class ExitListViewControl extends Pane implements ControlledList {
 
 	@Override
 	@FXML public void onKeyEnter(KeyEvent event) {
+		boolean anyOpen = false;
+		for(Exit exit : exitListView.getItems()){
+			if(exit.isOpen()){
+				anyOpen = true;
+				break;
+			}
+		}
 		if(event.getCode()==KeyCode.SPACE){
-			Exit exit = exitListView.getSelectionModel().getSelectedItem();
-			VaultMainControl.getVaultMainControl().exitSelected(exit);
+			Exit exit;
+			if(anyOpen){
+				VaultMainControl.getVaultMainControl().openSelected();
+			}else{
+				exit = exitListView.getSelectionModel().getSelectedItem();
+				VaultMainControl.getVaultMainControl().exitSelected(exit);
+			}
 		}
 	}
 

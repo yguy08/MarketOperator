@@ -236,10 +236,15 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		exitListViewControl.setList(asset.getEntryStatusList(speculatorControl.getSpeculator()));
 	}
 	
-	public void exitSelected(Exit exit){
+	public void openSelected(){
 		clearList();
 		setCenter(entryListViewControl);
 		showNewEntries();
+	}
+	
+	public void exitSelected(Exit exit){
+		clearList();
+		entrySelected(exit.getEntry());
 	}
 
 	@Override
