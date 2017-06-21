@@ -19,8 +19,8 @@ public class VaultStartTest extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Market market = MarketFactory.createMarket(MarketsEnum.BITCOIN);
-		VaultMainControl customControl = new VaultMainControl();
+	MarketFactory.createMarket(MarketsEnum.BITCOIN);
+	VaultMainControl customControl = new VaultMainControl();
         stage.setScene(new Scene(customControl));
         stage.setTitle("Speculation 1000");
         stage.getIcons().add(icon);
