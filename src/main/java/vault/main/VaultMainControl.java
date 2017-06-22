@@ -19,7 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import market.Market;
 import market.MarketFactory;
 import speculator.Speculator;
 import speculator.SpeculatorControl;
@@ -31,8 +30,6 @@ import vault.listview.ExitListViewControl;
 import vault.listview.MainListViewControl;
 
 public class VaultMainControl extends BorderPane implements Initializable {
-	
-	private Market market;
 	
 	private static VaultMainControl vaultMainControl;
 	
@@ -76,7 +73,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML public void showNewEntries(){
 		clearList();
 		Speculator speculator = speculatorControl.getSpeculator();
-		List<Asset> assetList = market.getAssetList();
+		List<Asset> assetList = MarketFactory.getMarket().getAssetList();
 		Task<List<Entry>> task = new Task<List<Entry>>() {
 		    @Override protected List<Entry> call() throws Exception {
 		    	List<Entry> entryList = new ArrayList<>();
@@ -91,8 +88,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 					public int compare(Entry o1, Entry o2) {
 				        return o2.getDateTime().compareTo(o1.getDateTime());
 				    }
-				});
-				
+				});				
 		        return entryList;
 		    }
 		};
@@ -119,7 +115,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		Task<List<Exit>> task = new Task<List<Exit>>() {
 		    @Override protected List<Exit> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
-				for(Asset a : market.getAssetList()){
+				for(Asset a : MarketFactory.getMarket().getAssetList()){
 					exitList.addAll(a.getExitList(speculator));
 				}
 				
@@ -157,7 +153,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		Task<List<String>> task = new Task<List<String>>() {
 		    @Override protected List<String> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
-				for(Asset a : market.getAssetList()){
+				for(Asset a : MarketFactory.getMarket().getAssetList()){
 					exitList.addAll(a.getEntryStatusList(speculator));
 				}
 				
@@ -204,20 +200,19 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		exitListViewControl.clearList();
 		mainListViewControl.clearList();
 		setRandomStatus();
+		setInitialTableView();
 	}
 	
 	public void setInitialTableView(){
 		List<String> assetList = new ArrayList<>();
-		for(Asset asset : market.getAssetList()){
+		
+		for(Asset asset : MarketFactory.getMarket().getAssetList()){
 			assetList.add(asset.toString());
 		}
+		
 		setCenter(mainListViewControl);
 		mainListViewControl.setList(assetList);
 		setRandomStatus();
-	}
-	
-	public void setMarket() {
-		this.market = MarketFactory.getMarket();
 	}
 	
 	public static VaultMainControl getVaultMainControl(){
@@ -230,8 +225,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	public void entrySelected(Entry entry){
 		clearList();
-		int i = market.getAssetList().indexOf(entry.getAsset());
-		Asset asset = market.getAssetList().get(i);
+		int i = MarketFactory.getMarket().getAssetList().indexOf(entry.getAsset());
+		Asset asset = MarketFactory.getMarket().getAssetList().get(i);
 		setCenter(exitListViewControl);
 		exitListViewControl.setList(asset.getEntryStatusList(speculatorControl.getSpeculator()));
 	}
