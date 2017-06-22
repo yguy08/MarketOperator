@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import market.Market;
 import market.MarketFactory;
 import market.MarketsEnum;
 import vault.main.VaultMainControl;
@@ -25,7 +24,6 @@ public class VaultStartTest extends Application {
         stage.setTitle("Speculation 1000");
         stage.getIcons().add(icon);
         stage.show();
-        customControl.setMarket();
         customControl.setInitialTableView();
 	}
 
