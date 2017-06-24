@@ -9,9 +9,10 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import market.Market;
 import trade.Entry;
 import trade.Exit;
+import vault.main.Displayable;
 import speculator.Speculator;
 
-public interface Asset {
+public interface Asset extends Displayable {
 
 	void setAssetName(String assetName);
 

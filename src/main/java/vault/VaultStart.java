@@ -39,12 +39,6 @@ public class VaultStart extends Application {
     	//load default market (bitcoin) online or offline
     	loadMarket();
         
-    	VaultMainControl vaultMainControl = new VaultMainControl();
-        
-    	stage.setScene(new Scene(vaultMainControl));
-        stage.setTitle("Speculation 1000");
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png")));
-        
         // After the app is ready, show the stage
         ready.addListener(new ChangeListener<Boolean>(){
             @Override
@@ -55,7 +49,10 @@ public class VaultStart extends Application {
                             @Override
 							public void run() {
                                 stage.show();
-                                vaultMainControl.setInitialTableView();
+                                VaultMainControl vaultMainControl = new VaultMainControl();
+                                stage.setScene(new Scene(vaultMainControl));
+                                stage.setTitle("Speculation 1000");
+                                stage.getIcons().add(new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png")));
                             }
                         });
                     }

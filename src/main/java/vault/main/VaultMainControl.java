@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 
 import asset.Asset;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
@@ -54,6 +56,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML private Text statusText;
 	
 	@FXML private Button backTest;
+	
+	private ObservableList<Displayable> mainObsList = FXCollections.observableArrayList();
     
 	public VaultMainControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VaultMainView.fxml"));
@@ -210,6 +214,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			assetList.add(asset.toString());
 		}
 		
+		mainObsList.addAll(MarketFactory.getMarket().getAssetList());
 		setCenter(mainListViewControl);
 		mainListViewControl.setList(assetList);
 		setRandomStatus();
