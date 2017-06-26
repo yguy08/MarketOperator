@@ -46,7 +46,7 @@ public class Exit implements Displayable {
 				return true;
 				
 				//bug fix
-			}else if(locationIndex == asset.getIndexOfLastRecordInPriceList() || locationIndex == asset.getIndexOfLastRecordInPriceList() - 1){
+			}else if(locationIndex == asset.getIndexOfLastRecordInPriceList()){
 				isOpen = true;
 				return false;
 			}else{
