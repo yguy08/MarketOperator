@@ -32,9 +32,19 @@ public class DateUtilsJunit {
 		assertEquals(20, numDays);
 	}
 	
-	@Test
-	public void testAddDays(){
-		
+		@Test
+	public void testNormalizedDate() throws ParseException{
+		DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+		Date date1 = DateUtils.localDateToUTCDate(format.parse("Mon Feb 15 19:00:00 EST 2016"));
+		Date date2 = DateUtils.localDateToUTCDate(format.parse("Sun Jun 25 20:00:00 EDT 2017"));
+		Date date3 = DateUtils.localDateToUTCDate(format.parse("Wed Feb 08 19:00:00 EST 2017"));
+		Date date4 = DateUtils.localDateToUTCDate(format.parse("Sun Jan 24 19:00:00 EST 2016"));
+		Date date5 = DateUtils.localDateToUTCDate(format.parse("Fri Aug 07 20:00:00 EDT 2015"));
+		assertEquals("02-16", DateUtils.dateToMMddFormat(date1));
+		assertEquals("06-26", DateUtils.dateToMMddFormat(date2));
+		assertEquals("02-09", DateUtils.dateToMMddFormat(date3));
+		assertEquals("01-25", DateUtils.dateToMMddFormat(date4));
+		assertEquals("08-08", DateUtils.dateToMMddFormat(date5));
 	}
 	
 
