@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import market.MarketFactory;
@@ -34,6 +35,8 @@ import vault.listview.MainListViewControl;
 public class VaultMainControl extends BorderPane implements Initializable {
 	
 	private static VaultMainControl vaultMainControl;
+	
+	@FXML private ListView<Displayable> listViewDisplay;
 	
 	@FXML private MainListViewControl mainListViewControl;
 	
@@ -56,7 +59,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML private Text statusText;
 	
 	@FXML private Button backTest;
-	
+		
 	private ObservableList<Displayable> mainObsList = FXCollections.observableArrayList();
     
 	public VaultMainControl() {
@@ -200,23 +203,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void clearList(){
-		entryListViewControl.clearList();
-		exitListViewControl.clearList();
-		mainListViewControl.clearList();
 		setRandomStatus();
 		setInitialTableView();
 	}
 	
 	public void setInitialTableView(){
-		List<String> assetList = new ArrayList<>();
-		
-		for(Asset asset : MarketFactory.getMarket().getAssetList()){
-			assetList.add(asset.toString());
-		}
-		
+		mainObsList.clear();
 		mainObsList.addAll(MarketFactory.getMarket().getAssetList());
-		setCenter(mainListViewControl);
-		mainListViewControl.setList(assetList);
+		listViewDisplay.setItems(mainObsList);
 		setRandomStatus();
 	}
 	
