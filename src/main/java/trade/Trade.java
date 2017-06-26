@@ -21,6 +21,8 @@ public class Trade implements Displayable {
 	
 	Entry entry = null;
 	
+	String balance;
+	
 	private List<Tuple<List<Entry>, List<Exit>>> entryExit = new ArrayList<>();
 
 	public Trade(List<Exit> exitList, Speculator speculator){
@@ -32,10 +34,16 @@ public class Trade implements Displayable {
 		this.entry = entry;
 		this.speculator = speculator;
 	}
-	
+
 	public Trade(Exit exit, Speculator speculator){
 		this.exit = exit;
 		this.speculator = speculator;
+		setBalance();
+	}
+	
+	private void setBalance() {
+		speculator.setAccountBalance(exit.calcGainLossAmount());
+		balance = StringFormatter.bigDecimalToShortString(speculator.getAccountBalance());
 	}
 
 	public void setEntryExitList(List<Exit> exitList) {
@@ -70,12 +78,10 @@ public class Trade implements Displayable {
 		for(Tuple<List<Entry>,List<Exit>> entryExit : entryExit){
 			for(Exit exit : entryExit.b){
 				if(unitList.contains(exit.getEntry()) && !(exit.isOpen())){
-					unitList.remove(exit.getEntry());
-					speculator.setAccountBalance(exit.calcGainLossAmount());					
+					unitList.remove(exit.getEntry());					
 					resultsList.add(new Trade(exit, speculator));
 					System.out.println("New Exit! " + exit.toString());
 				}else if(unitList.contains(exit.getEntry()) && exit.isOpen()){
-					speculator.setAccountBalance(exit.calcGainLossAmount());
 					resultsList.add(new Trade(exit, speculator));
 					System.out.println("Still Open! " + exit.toString());
 				}
@@ -114,9 +120,9 @@ public class Trade implements Displayable {
 			return entry.toString();
 		}else if (exit!=null){
 			if(exit.isExit){
-				return exit.toString() + " ((" + StringFormatter.bigDecimalToShortString(speculator.getAccountBalance()) + "))";
+				return exit.toString() + " ((" + balance + "))";
 			}else if(exit.isOpen){
-				return exit.toString() + " ((" + StringFormatter.bigDecimalToShortString(speculator.getAccountBalance()) + "))"; 
+				return exit.toString() + " ((" + balance + "))"; 
 			}else{
 				return "Error!";
 			}
