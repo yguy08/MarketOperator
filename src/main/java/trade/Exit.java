@@ -9,8 +9,9 @@ import asset.Asset;
 import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
+import vault.main.Displayable;
 
-public class Exit {
+public class Exit implements Displayable {
 	
 	Entry entry;
 	
