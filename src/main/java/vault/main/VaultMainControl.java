@@ -28,21 +28,12 @@ import speculator.SpeculatorControl;
 import trade.Entry;
 import trade.Exit;
 import trade.Trade;
-import vault.listview.EntryListViewControl;
-import vault.listview.ExitListViewControl;
-import vault.listview.MainListViewControl;
 
 public class VaultMainControl extends BorderPane implements Initializable {
 	
 	private static VaultMainControl vaultMainControl;
 	
 	@FXML private ListView<Displayable> listViewDisplay;
-	
-	@FXML private MainListViewControl mainListViewControl;
-	
-	private EntryListViewControl entryListViewControl;
-	
-	private ExitListViewControl exitListViewControl;
 	
 	private SpeculatorControl speculatorControl;
 	
@@ -78,7 +69,6 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	 * Show assets at or above entry flag, select to view close?
 	 */
 	@FXML public void showNewEntries(){
-		clearList();
 		Speculator speculator = speculatorControl.getSpeculator();
 		List<Asset> assetList = MarketFactory.getMarket().getAssetList();
 		Task<List<Entry>> task = new Task<List<Entry>>() {
@@ -105,11 +95,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
 			@Override
 			public void handle(WorkerStateEvent t){
-				List<Entry> entryList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
-		            	setCenter(entryListViewControl);		         
-			            entryListViewControl.setList(entryList);
+		            	mainObsList.setAll(task.getValue());
 		            }
 		        });
 			}
@@ -117,7 +105,6 @@ public class VaultMainControl extends BorderPane implements Initializable {
      }
 	
 	@FXML public void showNewExits(){
-		clearList();
 		Speculator speculator = speculatorControl.getSpeculator();
 		Task<List<Exit>> task = new Task<List<Exit>>() {
 		    @Override protected List<Exit> call() throws Exception {
@@ -141,11 +128,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
 			@Override
 			public void handle(WorkerStateEvent t){
-				List<Exit> exitList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
-		            	setCenter(exitListViewControl);
-		            	exitListViewControl.setList(exitList);
+		            	mainObsList.setAll(task.getValue());
 		            }
 		        });
 			}
@@ -153,15 +138,12 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	@FXML public void backtest(){
-		clearList();
-		Speculator speculator = speculatorControl.getSpeculator();
-
 		//get exit list
-		Task<List<String>> task = new Task<List<String>>() {
-		    @Override protected List<String> call() throws Exception {
+		Task<List<Displayable>> task = new Task<List<Displayable>>() {
+		    @Override protected List<Displayable> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
 				for(Asset a : MarketFactory.getMarket().getAssetList()){
-					exitList.addAll(a.getEntryStatusList(speculator));
+					exitList.addAll(a.getEntryStatusList(speculatorControl.getSpeculator()));
 				}
 				
 				//sort list
@@ -172,8 +154,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				    }
 				});
 				
-				Trade t = new Trade(exitList, speculator);
-				List<String> resultsList = t.runBackTest();
+				Trade t = new Trade(exitList, speculatorControl.getSpeculator());
+				List<Displayable> resultsList = t.runBackTest();
 				
 		       return resultsList;		      
 		    }
@@ -183,11 +165,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
 			@Override
 			public void handle(WorkerStateEvent t){
-				List<String> resultsList = task.getValue();
 				Platform.runLater(new Runnable() {
 		            public void run() {
-		            	setCenter(mainListViewControl);
-		            	mainListViewControl.setList(resultsList);
+		            	mainObsList.setAll(task.getValue());
 		            } 
 		        });
 			}
@@ -196,7 +176,6 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showSettings(){
-		clearList();
 		setCenter(speculatorControl);
 		setRandomStatus();
 	}
@@ -208,9 +187,15 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void setInitialTableView(){
-		mainObsList.clear();
-		mainObsList.addAll(MarketFactory.getMarket().getAssetList());
+		mainObsList.setAll(MarketFactory.getMarket().getAssetList());
 		listViewDisplay.setItems(mainObsList);
+		setRandomStatus();
+	}
+	
+	public void saveSettings(){
+		mainObsList.setAll(MarketFactory.getMarket().getAssetList());
+		listViewDisplay.setItems(mainObsList);
+		setCenter(listViewDisplay);
 		setRandomStatus();
 	}
 	
@@ -223,30 +208,22 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void entrySelected(Entry entry){
-		clearList();
-		int i = MarketFactory.getMarket().getAssetList().indexOf(entry.getAsset());
-		Asset asset = MarketFactory.getMarket().getAssetList().get(i);
-		setCenter(exitListViewControl);
-		exitListViewControl.setList(asset.getEntryStatusList(speculatorControl.getSpeculator()));
+		
 	}
 	
 	public void openSelected(){
-		clearList();
-		setCenter(entryListViewControl);
-		showNewEntries();
+		
 	}
 	
 	public void exitSelected(Exit exit){
-		clearList();
-		entrySelected(exit.getEntry());
+		
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         vaultMainControl = this;
-		entryListViewControl = new EntryListViewControl();
-		exitListViewControl = new ExitListViewControl();
 		speculatorControl = new SpeculatorControl();
+		setInitialTableView();
         setRandomStatus();		
 	}
 
