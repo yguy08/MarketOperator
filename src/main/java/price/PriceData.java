@@ -7,8 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import util.StringFormatter;
-
 public class PriceData {
 	
 	private Date date;
