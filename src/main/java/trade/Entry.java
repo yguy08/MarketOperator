@@ -13,8 +13,9 @@ import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
+import vault.main.Displayable;
 
-public class Entry {
+public class Entry implements Displayable {
 	
 	private Asset asset;
 	

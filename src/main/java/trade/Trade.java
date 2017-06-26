@@ -11,10 +11,17 @@ import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
 import util.Tuple;
+import vault.main.Displayable;
 
-public class Trade {
+public class Trade implements Displayable {
 	
 	Speculator speculator;
+	
+	Exit exit = null;
+	
+	Entry entry = null;
+	
+	String balance;
 	
 	private List<Tuple<List<Entry>, List<Exit>>> entryExit = new ArrayList<>();
 
@@ -24,11 +31,19 @@ public class Trade {
 	}
 	
 	public Trade(Entry entry, Speculator speculator){
-		
+		this.entry = entry;
+		this.speculator = speculator;
+	}
+
+	public Trade(Exit exit, Speculator speculator){
+		this.exit = exit;
+		this.speculator = speculator;
+		setBalance();
 	}
 	
-	public Trade(Exit exit, Speculator speculator){
-		
+	private void setBalance() {
+		speculator.setAccountBalance(exit.calcGainLossAmount());
+		balance = StringFormatter.bigDecimalToShortString(speculator.getAccountBalance());
 	}
 
 	public void setEntryExitList(List<Exit> exitList) {
@@ -56,20 +71,18 @@ public class Trade {
 		return entryExit;
 	}
 	
-	public List<String> runBackTest(){
+	public List<Displayable> runBackTest(){
 		List<Entry> unitList = new ArrayList<>();
-		List<String> resultsList = new ArrayList<>();
+		List<Displayable> resultsList = new ArrayList<>();
 		Random RANDOM = new Random();
 		for(Tuple<List<Entry>,List<Exit>> entryExit : entryExit){
 			for(Exit exit : entryExit.b){
 				if(unitList.contains(exit.getEntry()) && !(exit.isOpen())){
-					unitList.remove(exit.getEntry());
-					speculator.setAccountBalance(exit.calcGainLossAmount());
-					resultsList.add(exit.toString() + " ((" + StringFormatter.bigDecimalToShortString(speculator.getAccountBalance()) + "))");
+					unitList.remove(exit.getEntry());					
+					resultsList.add(new Trade(exit, speculator));
 					System.out.println("New Exit! " + exit.toString());
 				}else if(unitList.contains(exit.getEntry()) && exit.isOpen()){
-					speculator.setAccountBalance(exit.calcGainLossAmount());
-					resultsList.add(exit.toString() + " ((" + StringFormatter.bigDecimalToShortString(speculator.getAccountBalance()) + "))");
+					resultsList.add(new Trade(exit, speculator));
 					System.out.println("Still Open! " + exit.toString());
 				}
 			}			
@@ -87,18 +100,36 @@ public class Trade {
 				}else if(speculator.isSortVol()){
 					unitList.add(entry);
 					System.out.println(entry.toString());
-					resultsList.add(entry.toString());
+					resultsList.add(new Trade(entry, speculator));
 				}else{
 					//can add ones twice...
 					int r = RANDOM.nextInt(entryExit.a.size());
 					unitList.add(entryExit.a.get(r));
 					System.out.println(entryExit.a.get(r).toString());
-					resultsList.add(entryExit.a.get(r).toString());
+					resultsList.add(new Trade(entryExit.a.get(r), speculator));
 				}
 			}
 		}
 		
 		return resultsList;
+	}
+	
+	@Override
+	public String toString(){
+		if(exit == null && entry != null){
+			return entry.toString();
+		}else if (exit!=null){
+			if(exit.isExit){
+				return exit.toString() + " ((" + balance + "))";
+			}else if(exit.isOpen){
+				return exit.toString() + " ((" + balance + "))"; 
+			}else{
+				return "Error!";
+			}
+		}else{
+			return "Error!";
+		}
+		
 	}
 	
 }
