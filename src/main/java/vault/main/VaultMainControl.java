@@ -182,6 +182,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void clearList(){
+		if(getCenter() == speculatorControl){
+			setCenter(listViewDisplay);
+		}
 		setRandomStatus();
 		setInitialTableView();
 	}
