@@ -2,23 +2,21 @@ package speculator;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import market.MarketsEnum;
-import vault.listview.ControlledList;
 import vault.main.VaultMainControl;
 
-public class SpeculatorControl extends GridPane implements ControlledList {
+public class SpeculatorControl extends GridPane implements Initializable {
 	
 	@FXML private TextField balanceTextField;
 	
@@ -104,7 +102,7 @@ public class SpeculatorControl extends GridPane implements ControlledList {
     @FXML
 	public void saveSettings(){
     	setSpeculator();
-    	VaultMainControl.getVaultMainControl().setInitialTableView();
+    	VaultMainControl.getVaultMainControl().saveSettings();
 	}
 
 	public Speculator getSpeculator() {
@@ -121,23 +119,6 @@ public class SpeculatorControl extends GridPane implements ControlledList {
 		}else{
 			marketName = MarketsEnum.DOLLAR.getMarketName();
 		}
-	}
-
-	@Override
-	public void clearList() {
-				
-	}
-
-	@Override
-	public void setList(List<?> list) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onKeyEnter(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
