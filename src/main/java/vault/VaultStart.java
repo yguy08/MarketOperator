@@ -47,12 +47,12 @@ public class VaultStart extends Application {
                     if (Boolean.TRUE.equals(t1)) {
                         Platform.runLater(new Runnable() {
                             @Override
-							public void run() {
-                                stage.show();
+							public void run() {                              
                                 VaultMainControl vaultMainControl = new VaultMainControl();
                                 stage.setScene(new Scene(vaultMainControl));
                                 stage.setTitle("Speculation 1000");
                                 stage.getIcons().add(new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png")));
+				stage.show();				
                             }
                         });
                     }
