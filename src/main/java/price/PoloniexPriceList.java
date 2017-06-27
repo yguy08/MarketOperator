@@ -20,8 +20,8 @@ public class PoloniexPriceList extends PoloniexChartData {
 	public static PoloniexChartData createPoloOfflinePriceList(String[] chartData) throws ParseException{
 		DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
 		PoloniexChartData pl = new PoloniexChartData(format.parse(chartData[0].trim()), new BigDecimal(chartData[1]), new BigDecimal(chartData[2]),
-				new BigDecimal(chartData[3]), new BigDecimal(chartData[4]), new BigDecimal(chartData[5]), new BigDecimal(chartData[6]), 
-				new BigDecimal(chartData[7]));
+				new BigDecimal(chartData[3]), new BigDecimal(chartData[4]), new BigDecimal(chartData[5]), new BigDecimal(0.00), 
+				new BigDecimal(0.00));
 		return pl; 
 	}
 	

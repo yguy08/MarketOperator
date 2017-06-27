@@ -68,21 +68,20 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public void setPriceList() {
-		//consider updating date range to something more configurable
 		long date = new Date().getTime() / 1000;
 		CurrencyPair currencyPair = new CurrencyPair(assetName);
+		PriceData priceData;
 		try {
 			priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - 365 * Speculator.getPriceHistoryYears() * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
-			PoloniexPriceList pl;
-			List<String> plist = new ArrayList<>();
+			List<String> saveToFileList = new ArrayList<>();
 			for(PoloniexChartData p : priceList){
-				pl = new PoloniexPriceList(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume(), p.getQuoteVolume(), p.getWeightedAverage());
-				plist.add(pl.toString());
+				priceData = new PriceData(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume());
+				saveToFileList.add(priceData.toString());
 			}
-			SaveToFile.writeAssetPriceListToFile(this, plist);
+			SaveToFile.writeAssetPriceListToFile(this, saveToFileList);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
