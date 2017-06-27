@@ -7,30 +7,36 @@ public class MarketFactory {
 	private static Market market;
 	
 	//called when app first loads
-	public static Market createMarket(MarketsEnum marketEnum){
+	public static void createMarket(MarketsEnum marketEnum){
 		if(VaultStart.isConnected()){			
 			switch(marketEnum){
 			case BITCOIN:
 				market = BitcoinMarket.createOnlineBitcoinMarket();
-				return BitcoinMarket.createOnlineBitcoinMarket();
+				break;
 			case ETHEREUM:
-				return EthereumMarket.createOnlineEthereumMarket();
+				market = EthereumMarket.createOnlineEthereumMarket();
+				break;
 			case DOLLAR:
-				return DollarMarket.createOnlineDollarMarket();
+				market = DollarMarket.createOnlineDollarMarket();
+				break;
 			default:
-				return BitcoinMarket.createOnlineBitcoinMarket();
+				market = BitcoinMarket.createOnlineBitcoinMarket();
+				break;
 			}			
 		}else{
 			switch(marketEnum){
 			case BITCOIN:
 				market = BitcoinMarket.createOfflineBitcoinMarket();
-				return BitcoinMarket.createOfflineBitcoinMarket();
+				break;
 			case ETHEREUM:
-				return EthereumMarket.createOfflineEthereumMarket();
+				market = EthereumMarket.createOfflineEthereumMarket();
+				break;
 			case DOLLAR:
-				return DollarMarket.createOfflineDollarMarket();
+				market = DollarMarket.createOfflineDollarMarket();
+				break;
 			default:
-				return BitcoinMarket.createOfflineBitcoinMarket();
+				market = BitcoinMarket.createOfflineBitcoinMarket();
+				break;
 			}
 		}
 	}

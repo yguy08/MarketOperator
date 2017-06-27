@@ -100,7 +100,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				Platform.runLater(new Runnable() {
 		            public void run() {
 		            	mainObsList.setAll(task.getValue());
-				listViewDisplay.scrollTo(0);
+		            	listViewDisplay.scrollTo(0);
 		            }
 		        });
 			}
@@ -134,6 +134,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				Platform.runLater(new Runnable() {
 		            public void run() {
 		            	mainObsList.setAll(task.getValue());
+		            	listViewDisplay.scrollTo(0);
 		            }
 		        });
 			}
@@ -196,6 +197,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		mainObsList.setAll(MarketFactory.getMarket().getAssetList());
 		listViewDisplay.setItems(mainObsList);
 		setRandomStatus();
+    	listViewDisplay.scrollTo(0);
 	}
 	
 	public void saveSettings(){

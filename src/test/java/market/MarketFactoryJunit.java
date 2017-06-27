@@ -14,37 +14,37 @@ public class MarketFactoryJunit {
 	
 	@Test
 	public void testCreateBitcoinMarket(){
-		Market bitcoinMarket = MarketFactory.createMarket(MarketsEnum.BITCOIN);
+		MarketFactory.createMarket(MarketsEnum.BITCOIN);
 		if(VaultStart.isConnected()){
 			System.out.println("Creating Online Bitcoin Market");
-			assertEquals(MarketsEnum.BITCOIN.getMarketName(), bitcoinMarket.getMarketName());
+			assertEquals(MarketsEnum.BITCOIN.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}else{
 			System.out.println("Creating Offline Bitcoin Market");
-			assertEquals(MarketsEnum.BITCOIN_OFFLINE.getMarketName(), bitcoinMarket.getMarketName());
+			assertEquals(MarketsEnum.BITCOIN_OFFLINE.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}
 	}
 	
 	@Test
 	public void testCreateEthereumMarket(){
-		Market ethereumMarket = MarketFactory.createMarket(MarketsEnum.ETHEREUM);		
+		MarketFactory.createMarket(MarketsEnum.ETHEREUM);		
 		if(VaultStart.isConnected()){
 			System.out.println("Creating Online Ethereum Market");
-			assertEquals(MarketsEnum.ETHEREUM.getMarketName(), ethereumMarket.getMarketName());
+			assertEquals(MarketsEnum.ETHEREUM.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}else{
 			System.out.println("Creating Offline Ethereum Market");
-			assertEquals(MarketsEnum.ETHEREUM_OFFLINE.getMarketName(), ethereumMarket.getMarketName());
+			assertEquals(MarketsEnum.ETHEREUM_OFFLINE.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}
 	}
 	
 	@Test
 	public void testCreateDollarMarket(){
-		Market dollarMarket = MarketFactory.createMarket(MarketsEnum.DOLLAR);
+		MarketFactory.createMarket(MarketsEnum.DOLLAR);
 		if(VaultStart.isConnected()){
 			System.out.println("Creating Online Dollar Market");
-			assertEquals(MarketsEnum.DOLLAR.getMarketName(), dollarMarket.getMarketName());
+			assertEquals(MarketsEnum.DOLLAR.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}else{
 			System.out.println("Creating Offline Dollar Market");
-			assertEquals(MarketsEnum.DOLLAR_OFFLINE.getMarketName(), dollarMarket.getMarketName());
+			assertEquals(MarketsEnum.DOLLAR_OFFLINE.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}
 	}
 
