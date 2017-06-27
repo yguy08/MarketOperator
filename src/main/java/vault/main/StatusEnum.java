@@ -9,12 +9,14 @@ public enum StatusEnum {
 	
 	UP_ARROW 		("\u25B2 = go long...","\u25B2"),
 	DOWN_ARROW		("\u25BC = go short..."),
-	N 				("N = Average range in price movement in a single day..."),
+	N 				("N = Average range in price movement in a single day...", "N"),
 	STOP            ("\u2702 = 1) Cut your losses 2) Cut your losses 3) Cut your losses..."),
 	TOTAL_COST      ("\u03A3 = Total Cost..."),
 	VOLUME          ("\uD83D\uDD0A = Volume..."),
 	UNITS	        ("\u0023 = Units..."),
-	MUCH_MORE		("Much more to the game of speculation than to play for fluctuations for a few points...");
+	MUCH_MORE		("Much more to the game of speculation than to play for fluctuations for a few points..."),
+	DOUBLE_ARROW	("","\u21F3"),
+	POUND			("", "#");
 	
 	private String statusText;
 	private String unicode;

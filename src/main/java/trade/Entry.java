@@ -14,6 +14,7 @@ import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
 import vault.main.Displayable;
+import vault.main.StatusEnum;
 
 public class Entry implements Displayable {
 	
@@ -182,8 +183,8 @@ public class Entry implements Displayable {
 		sb.append(DateUtils.dateToMMddFormat(getAsset().getDateTimeFromIndex(entryIndex)) + " ");
 		sb.append(prettyName());
 		sb.append(" @" + PriceData.prettyPrice(getAsset().getClosePriceFromIndex(locationIndex)));
-		sb.append(" \uD83C\uDF00" + PriceData.prettyPrice(averageTrueRange));
-		sb.append(" \uD83D\uDCB0" + unitSize);
+		sb.append(" " + StatusEnum.N.getUnicode() + PriceData.prettyPrice(averageTrueRange));
+		sb.append(" " + StatusEnum.POUND.getUnicode() + unitSize);
 		sb.append(" \u03A3" + orderTotal.setScale(2, RoundingMode.HALF_DOWN));
 		sb.append(" \u2702" + PriceData.prettyPrice(stop));
 		sb.append(" \uD83D\uDD0A" + StringFormatter.bigDecimalToShortString(getAsset().getVolumeFromIndex(locationIndex)));		
