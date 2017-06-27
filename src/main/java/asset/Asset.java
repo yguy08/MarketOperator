@@ -62,5 +62,11 @@ public interface Asset extends Displayable {
 	//get list of exits still open 
 	List<Exit> getEntryStatusList(Speculator speculator);
 	
+	//get (x) day high
+	BigDecimal getHighForExitFlag(Speculator speculator);
+	
+	//get (x) day low
+	BigDecimal getLowForExitFlag(Speculator speculator);
+	
 
 }
