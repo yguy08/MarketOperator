@@ -266,7 +266,23 @@ public class DigitalAsset implements Asset {
 		sb.append(DateUtils.dateToMMddFormat(getLatestDate()) + " ");
 		sb.append(" $" + getAssetName());
 		sb.append(" @" + PriceData.prettyPrice(getLatestPrice()));
+		sb.append(" Max: " + PriceData.prettyPrice(getHighForExitFlag(new DigitalSpeculator())));
+		sb.append(" Min: " + PriceData.prettyPrice(getLowForExitFlag(new DigitalSpeculator())));
 		return sb.toString();   
+	}
+
+	@Override
+	public BigDecimal getHighForExitFlag(Speculator speculator) {
+		setPriceSubList(getIndexOfLastRecordInPriceList() - speculator.getSellSignalDays(), getIndexOfLastRecordInPriceList());
+		BigDecimal maxPrice = Collections.max(getClosePriceListFromSubList());
+		return maxPrice;
+	}
+
+	@Override
+	public BigDecimal getLowForExitFlag(Speculator speculator) {
+		setPriceSubList(getIndexOfLastRecordInPriceList() - speculator.getSellSignalDays(), getIndexOfLastRecordInPriceList());
+		BigDecimal minPrice = Collections.min(getClosePriceListFromSubList());
+		return minPrice;
 	}
 
 }
