@@ -7,7 +7,7 @@ import java.util.Random;
 
 public enum StatusEnum {
 	
-	UP_ARROW 		("\u25B2 = go long..."),
+	UP_ARROW 		("\u25B2 = go long...","\u25B2"),
 	DOWN_ARROW		("\u25BC = go short..."),
 	N 				("N = Average range in price movement in a single day..."),
 	STOP            ("\u2702 = 1) Cut your losses 2) Cut your losses 3) Cut your losses..."),
@@ -17,6 +17,7 @@ public enum StatusEnum {
 	MUCH_MORE		("Much more to the game of speculation than to play for fluctuations for a few points...");
 	
 	private String statusText;
+	private String unicode;
 	
 	private static final List<StatusEnum> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
 	private static final int SIZE = VALUES.size();
@@ -26,8 +27,17 @@ public enum StatusEnum {
 		statusText = status;
 	}
 	
+	StatusEnum(String status, String unicode){
+		statusText = status;
+		this.unicode = unicode;
+	}
+	
 	public String getStatus(){
 		return statusText;
+	}
+	
+	public String getUnicode(){
+		return unicode;
 	}
 
 	public static String randomStatus()  {
