@@ -10,10 +10,15 @@ import java.util.Date;
 public class PriceData {
 	
 	private Date date;
+	
 	private BigDecimal high;
+	
 	private BigDecimal low;
+	
 	private BigDecimal open;
+	
 	private BigDecimal close;
+	
 	private BigDecimal volume;
 	
 	public PriceData(Date date, BigDecimal high, BigDecimal low, BigDecimal open, BigDecimal close, BigDecimal volume){
@@ -25,12 +30,21 @@ public class PriceData {
 		this.volume = volume;
 	}
 	
-	//create poloniex chart data from txt file string
-	public static PriceData createOfflinePriceData(String[] chartData) throws ParseException{
-		DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
-		PriceData priceData = new PriceData(format.parse(chartData[0].trim()), new BigDecimal(chartData[1]), new BigDecimal(chartData[2]),
-				new BigDecimal(chartData[3]), new BigDecimal(chartData[4]), new BigDecimal(chartData[5]));
-		return priceData; 
+	public PriceData(String[] dayPriceDataArr) {
+		try{
+			//only need if date is weird in file...
+			DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");			
+			setDate(format.parse(dayPriceDataArr[0].trim()));
+		}catch(ParseException e){
+			System.out.println("Error parsing date in price data array");
+		}
+		
+		high = new BigDecimal(dayPriceDataArr[1]);
+		low = new BigDecimal(dayPriceDataArr[2]);
+		open =	new BigDecimal(dayPriceDataArr[3]);
+		close = new BigDecimal(dayPriceDataArr[4]); 
+		volume = new BigDecimal(dayPriceDataArr[5]);
+		
 	}
 
 	public Date getDate() {
@@ -87,5 +101,11 @@ public class PriceData {
 		DecimalFormat decimalFormat = new DecimalFormat(pattern);
 		String number = decimalFormat.format(price);
 		return number;
+	}
+	
+	@Override
+	public String toString(){
+		return this.getDate() + "," + this.getHigh() + "," + this.getLow() + "," + this.getOpen() + "," + this.getClose() + 
+				"," + this.getVolume();
 	}
 }
