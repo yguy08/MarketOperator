@@ -100,6 +100,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				Platform.runLater(new Runnable() {
 		            public void run() {
 		            	mainObsList.setAll(task.getValue());
+				listViewDisplay.scrollTo(0);
 		            }
 		        });
 			}
@@ -213,7 +214,16 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void entrySelected(Entry entry){
-		
+		int i = MarketFactory.getMarket().getAssetList().indexOf(entry.getAsset());
+		List<Exit> entryStatusList = MarketFactory.getMarket().getAssetList().get(i).getEntryStatusList(speculatorControl.getSpeculator());
+		Exit exitToSelect = entryStatusList.get(0);
+		for(Exit exit : entryStatusList){
+			if(entry.getLocationIndex() == exit.getEntry().getLocationIndex()){
+				exitToSelect = exit;
+			}
+		}
+		mainObsList.setAll(entryStatusList);
+		listViewDisplay.getSelectionModel().select(exitToSelect);
 	}
 	
 	public void openSelected(){
@@ -221,7 +231,39 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void exitSelected(Exit exit){
-		
+		int i = MarketFactory.getMarket().getAssetList().indexOf(exit.getEntry().getAsset());
+		List<Entry> entryList = MarketFactory.getMarket().getAssetList().get(i).getEntryList(speculatorControl.getSpeculator());
+		Entry entryToSelect = entryList.get(0);
+		for(Entry entry : entryList){
+			if(entry.getLocationIndex() == exit.getEntry().getEntryIndex()){
+				entryToSelect = entry;
+			}
+		}
+		mainObsList.setAll(entryList);
+		listViewDisplay.getSelectionModel().select(entryToSelect);
+	}
+	
+		@FXML
+	public void onKeyPressed(KeyEvent event){
+		KeyCode kc = event.getCode();
+		if (kc == KeyCode.SPACE) {
+			Displayable displayable = listViewDisplay.getSelectionModel().getSelectedItem();
+			if(displayable!=null){
+				if(displayable instanceof Asset){
+					showNewEntries();
+				}else if(displayable instanceof Entry){
+					entrySelected((Entry) displayable);
+				}else if(displayable instanceof Exit && ((Exit) displayable).isExit()){
+					exitSelected((Exit) displayable);
+				}else if(displayable instanceof Exit && ((Exit) displayable).isOpen()){
+					exitSelected((Exit) displayable);
+				}else{
+					
+				}
+			}else{
+				//pop up?
+			}
+        }
 	}
 
 	@Override
