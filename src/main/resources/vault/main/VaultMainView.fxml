@@ -9,7 +9,7 @@
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="BorderPane" prefWidth="570" prefHeight="320">
 <padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
 	
-	<center><ListView fx:id="listViewDisplay" maxWidth="450"></ListView></center>
+	<center><ListView fx:id="listViewDisplay" maxWidth="450" onKeyPressed="#onKeyPressed"></ListView></center>
 	
 	<right>
 		<VBox fx:id="buttonBox" spacing="10" >
