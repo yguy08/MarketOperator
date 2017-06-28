@@ -1,9 +1,5 @@
 package vault;
 
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
-
 import com.sun.javafx.application.LauncherImpl;
 
 import javafx.application.Application;
@@ -18,8 +14,6 @@ import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import market.MarketFactory;
-import market.MarketsEnum;
 import vault.main.VaultMainControl;
 
 public class VaultStart extends Application {
@@ -52,7 +46,7 @@ public class VaultStart extends Application {
                                 stage.setScene(new Scene(vaultMainControl));
                                 stage.setTitle("Speculation 1000");
                                 stage.getIcons().add(new Image(getClass().getResourceAsStream("icons/icon-treesun-64x64.png")));
-				stage.show();				
+                                stage.show();				
                             }
                         });
                     }
@@ -65,33 +59,15 @@ public class VaultStart extends Application {
             @Override
             protected Void call() throws Exception {
                 notifyPreloader(new Preloader.ProgressNotification(.5));
-                testConnection();
-            	MarketFactory.createMarket(MarketsEnum.BITCOIN);
+            	Config.ConfigSetUp();
             	notifyPreloader(new Preloader.ProgressNotification(.9));
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
                     StateChangeNotification.Type.BEFORE_START));
                 return null;
             }
-        };
-        
+        };        
         new Thread(task).start();
     }
-    
-    public static void testConnection(){
-    	try {
-    	    URL myURL = new URL("http://poloniex.com/");
-    	    URLConnection myURLConnection = myURL.openConnection();
-    	    myURLConnection.connect();
-    	    isConnected = true;
-    	} 
-    	catch (IOException e) { 
-    	    isConnected = false;
-    	}
-    }
-
-	public static boolean isConnected() {
-		return isConnected;
-	}
 
 }
