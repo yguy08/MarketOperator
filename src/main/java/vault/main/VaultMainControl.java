@@ -30,6 +30,7 @@ import speculator.SpeculatorControl;
 import trade.Entry;
 import trade.Exit;
 import trade.Trade;
+import vault.Config;
 
 public class VaultMainControl extends BorderPane implements Initializable {
 	
@@ -72,7 +73,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	 */
 	@FXML public void showNewEntries(){
 		Speculator speculator = speculatorControl.getSpeculator();
-		List<Asset> assetList = MarketFactory.getMarket().getAssetList();
+		List<Asset> assetList = Config.getMarket().getAssetList();
 		Task<List<Entry>> task = new Task<List<Entry>>() {
 		    @Override protected List<Entry> call() throws Exception {
 		    	List<Entry> entryList = new ArrayList<>();
@@ -90,8 +91,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				});				
 		        return entryList;
 		    }
-		};
-		
+		};		
 		new Thread(task).start();
 		
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
@@ -112,7 +112,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		Task<List<Exit>> task = new Task<List<Exit>>() {
 		    @Override protected List<Exit> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
-				for(Asset a : MarketFactory.getMarket().getAssetList()){
+				for(Asset a : Config.getMarket().getAssetList()){
 					exitList.addAll(a.getExitList(speculator));
 				}
 				
@@ -146,7 +146,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		Task<List<Displayable>> task = new Task<List<Displayable>>() {
 		    @Override protected List<Displayable> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
-				for(Asset a : MarketFactory.getMarket().getAssetList()){
+				for(Asset a : Config.getMarket().getAssetList()){
 					exitList.addAll(a.getEntryStatusList(speculatorControl.getSpeculator()));
 				}
 				
@@ -172,6 +172,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				Platform.runLater(new Runnable() {
 		            public void run() {
 		            	mainObsList.setAll(task.getValue());
+		            	listViewDisplay.scrollTo(0);
 		            } 
 		        });
 			}
@@ -194,14 +195,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void setInitialTableView(){
-		mainObsList.setAll(MarketFactory.getMarket().getAssetList());
+		mainObsList.setAll(Config.getMarket().getAssetList());
 		listViewDisplay.setItems(mainObsList);
 		setRandomStatus();
     	listViewDisplay.scrollTo(0);
 	}
 	
 	public void saveSettings(){
-		mainObsList.setAll(MarketFactory.getMarket().getAssetList());
+		mainObsList.setAll(Config.getMarket().getAssetList());
 		listViewDisplay.setItems(mainObsList);
 		setCenter(listViewDisplay);
 		setRandomStatus();
@@ -216,8 +217,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void entrySelected(Entry entry){
-		int i = MarketFactory.getMarket().getAssetList().indexOf(entry.getAsset());
-		List<Exit> entryStatusList = MarketFactory.getMarket().getAssetList().get(i).getEntryStatusList(speculatorControl.getSpeculator());
+		int i = Config.getMarket().getAssetList().indexOf(entry.getAsset());
+		List<Exit> entryStatusList = Config.getMarket().getAssetList().get(i).getEntryStatusList(speculatorControl.getSpeculator());
 		Exit exitToSelect = entryStatusList.get(0);
 		for(Exit exit : entryStatusList){
 			if(entry.getLocationIndex() == exit.getEntry().getLocationIndex()){
@@ -228,12 +229,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		listViewDisplay.getSelectionModel().select(exitToSelect);
 	}
 	
-	public void openSelected(){
-		
-	}
-	
 	public void exitSelected(Exit exit){
-		int i = MarketFactory.getMarket().getAssetList().indexOf(exit.getEntry().getAsset());
+		int i = Config.getMarket().getAssetList().indexOf(exit.getEntry().getAsset());
 		List<Entry> entryList = MarketFactory.getMarket().getAssetList().get(i).getEntryList(speculatorControl.getSpeculator());
 		Entry entryToSelect = entryList.get(0);
 		for(Entry entry : entryList){
