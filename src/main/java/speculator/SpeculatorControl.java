@@ -4,16 +4,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import market.MarketsEnum;
+import vault.Config;
 import vault.main.VaultMainControl;
 
 public class SpeculatorControl extends GridPane implements Initializable {
@@ -48,8 +52,6 @@ public class SpeculatorControl extends GridPane implements Initializable {
 	
 	private Speculator speculator;
 	
-	private String marketName;
-	
     public SpeculatorControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SpeculatorView.fxml"));
         fxmlLoader.setRoot(this);
@@ -64,30 +66,40 @@ public class SpeculatorControl extends GridPane implements Initializable {
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-		bitcoinMarket.setSelected(true);
-		setMarketName(); 
-		setDefaultSettings();		
+		setDefaultSettings();
+		marketToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+		    public void changed(ObservableValue<? extends Toggle> ov,
+		        Toggle toggle, Toggle new_toggle) {
+		            if (new_toggle == bitcoinMarket){
+		            	System.out.println("bitcoin market");
+		            	Config.setMarket(MarketsEnum.BITCOIN);
+		            }else if(new_toggle == dollarMarket){
+		            	System.out.println("dollar market");
+		            	Config.setMarket(MarketsEnum.DOLLAR);
+		            }else{
+		            	System.out.println("ethereum market");
+		            	Config.setMarket(MarketsEnum.ETHEREUM);
+		            }
+		         }
+		});
 	}
     
     //set text field text to current settings
-    private void setDefaultSettings(){
-    	//create speculator with some default settings
-    	speculator = new DigitalSpeculator();
-    	
-    	//populate text fields with initial speculator settings
-    	balanceTextField.setText(speculator.getAccountBalance().toPlainString());
-    	riskTextField.setText(speculator.getRisk().toPlainString());
-    	maxUnitsTextField.setText(Integer.toString(speculator.getMaxUnits()));
-    	stopLengthTextField.setText(speculator.getStopLength().toPlainString());
-    	timeFrameDaysTextField.setText(Integer.toString(speculator.getTimeFrameDays()));
-    	entryTextField.setText(Integer.toString(speculator.getEntrySignalDays()));
-    	exitTextField.setText(Integer.toString(speculator.getSellSignalDays()));
-    	longOnlyCheckBox.setSelected(speculator.isLongOnly());
-    	sortVol.setSelected(speculator.isSortVol());
+    private void setDefaultSettings(){    	
+    	balanceTextField.setText(Config.getAccountBalance().toPlainString());
+    	riskTextField.setText(Config.getRisk().toPlainString());
+    	maxUnitsTextField.setText(Integer.toString(Config.getMaxUnits()));
+    	stopLengthTextField.setText(Config.getStopLength().toPlainString());
+    	timeFrameDaysTextField.setText(Integer.toString(Config.getTimeFrameDays()));
+    	entryTextField.setText(Integer.toString(Config.getEntrySignalDays()));
+    	exitTextField.setText(Integer.toString(Config.getSellSignalDays()));
+    	longOnlyCheckBox.setSelected(Config.isLongOnly());
+    	sortVol.setSelected(Config.isSortVol());
     }
     
     private Speculator setSpeculator(){
-    	speculator = SpeculatorFactory.createSpeculator(marketName, Integer.parseInt(balanceTextField.getText().trim()),
+    	//set market
+    	speculator = SpeculatorFactory.createSpeculator(Integer.parseInt(balanceTextField.getText().trim()),
     			Integer.parseInt(riskTextField.getText().trim()),
     			Integer.parseInt(maxUnitsTextField.getText().trim()), 
     			Integer.parseInt(stopLengthTextField.getText().trim()), 
@@ -107,18 +119,6 @@ public class SpeculatorControl extends GridPane implements Initializable {
 
 	public Speculator getSpeculator() {
 		return setSpeculator();
-	}
-    
-    public String getMarketName() {
-		return marketName;
-	}
-
-	private void setMarketName() {		
-		if(bitcoinMarket.isSelected()){
-			marketName = MarketsEnum.BITCOIN.getMarketName();
-		}else{
-			marketName = MarketsEnum.DOLLAR.getMarketName();
-		}
 	}
 
 }
