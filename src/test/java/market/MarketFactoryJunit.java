@@ -2,6 +2,7 @@ package market;
 
 import org.junit.Test;
 
+import vault.Config;
 import vault.VaultStart;
 
 import static org.junit.Assert.assertEquals;
@@ -9,13 +10,13 @@ import static org.junit.Assert.assertEquals;
 public class MarketFactoryJunit {
 	
 	static{		
-		VaultStart.testConnection();
+		Config.setConnected();
 	}
 	
 	@Test
 	public void testCreateBitcoinMarket(){
 		MarketFactory.createMarket(MarketsEnum.BITCOIN);
-		if(VaultStart.isConnected()){
+		if(Config.isConnected()){
 			System.out.println("Creating Online Bitcoin Market");
 			assertEquals(MarketsEnum.BITCOIN.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}else{
@@ -27,7 +28,7 @@ public class MarketFactoryJunit {
 	@Test
 	public void testCreateEthereumMarket(){
 		MarketFactory.createMarket(MarketsEnum.ETHEREUM);		
-		if(VaultStart.isConnected()){
+		if(Config.isConnected()){
 			System.out.println("Creating Online Ethereum Market");
 			assertEquals(MarketsEnum.ETHEREUM.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}else{
@@ -39,7 +40,7 @@ public class MarketFactoryJunit {
 	@Test
 	public void testCreateDollarMarket(){
 		MarketFactory.createMarket(MarketsEnum.DOLLAR);
-		if(VaultStart.isConnected()){
+		if(Config.isConnected()){
 			System.out.println("Creating Online Dollar Market");
 			assertEquals(MarketsEnum.DOLLAR.getMarketName(), MarketFactory.getMarket().getMarketName());
 		}else{
