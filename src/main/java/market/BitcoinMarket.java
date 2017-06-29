@@ -64,6 +64,8 @@ public class BitcoinMarket implements Market {
 				assetList.add(asset);
 			}
 		}
+		
+		SaveToFile.writeMarketListToFile((Market)this, assetList);
 	}
 	
 	@Override
