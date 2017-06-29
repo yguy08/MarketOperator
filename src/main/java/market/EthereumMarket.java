@@ -1,14 +1,23 @@
 package market;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.knowm.xchange.Exchange;
+import org.knowm.xchange.currency.CurrencyPair;
 
 import asset.Asset;
+import asset.AssetFactory;
 
 public class EthereumMarket implements Market {
 	
+	//poloniex exchange from xchange library
+	public Exchange exchange;
+	
 	private String marketName;
+	
+	//list of assets
+	private List<Asset> assetList = new ArrayList<>();
 	
 	//static factory method to create online digital market
 	public static EthereumMarket createOnlineEthereumMarket(){
@@ -39,14 +48,19 @@ public class EthereumMarket implements Market {
 
 	@Override
 	public List<Asset> getAssetList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void setAssetList() {
-		// TODO Auto-generated method stub
-		
+		Asset asset;
+		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
+		for(CurrencyPair currencyPair : currencyPairs){
+			if(currencyPair.toString().endsWith("BTC")){
+				asset = AssetFactory.createAsset(this, currencyPair.toString());
+				assetList.add(asset);
+			}
+		}		
 	}
 
 	@Override
