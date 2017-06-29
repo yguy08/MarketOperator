@@ -4,20 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import vault.VaultStart;
-
 public class VaultStartJunit {
 	
 	static{
-		VaultStart.testConnection();
+		Config.setConnected();
 	}
 	
 	@Test
 	public void testTestConnection(){
-		if(VaultStart.isConnected()){
-			assertTrue(VaultStart.isConnected());
+		if(Config.isConnected()){
+			assertTrue(Config.isConnected());
 		}else{
-			assertFalse(VaultStart.isConnected());
+			assertFalse(Config.isConnected());
 		}
 	}
 
