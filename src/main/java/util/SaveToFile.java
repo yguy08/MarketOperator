@@ -29,15 +29,15 @@ public class SaveToFile {
 		}
 	}
 	
-	public static void writeMarketListToFile(Market market, List<String> assetList){
+	public static void writeMarketListToFile(Market market, List<Asset> assetList){
 		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < assetList.size();i++){
-			sb.append(assetList.get(i) + "\n");
+		for(Asset a : assetList){
+			sb.append(a.getAssetName() + "\n");
 		}
 		String content = sb.toString();
 		try {
-			Files.write(Paths.get(market.getMarketName() + "/" + "MarketList" + ".csv"), 
-					content.getBytes(), StandardOpenOption.APPEND);
+			Files.write(Paths.get("src/main/resources/market/" + market.getMarketName() + ".csv"), 
+					content.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
