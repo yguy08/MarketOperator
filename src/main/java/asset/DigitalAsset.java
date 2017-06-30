@@ -20,19 +20,16 @@ import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
-import market.Market;
 import trade.Entry;
 import trade.Exit;
 import price.PoloniexPriceList;
 import price.PriceData;
-import speculator.DigitalSpeculator;
 import speculator.Speculator;
 import util.DateUtils;
 import util.SaveToFile;
+import vault.Config;
 
 public class DigitalAsset implements Asset {
-	
-	private Market market;
 
 	private MarketDataService dataService;
 	
@@ -43,19 +40,17 @@ public class DigitalAsset implements Asset {
 	private List<PoloniexChartData> priceSubList;
 	
 	//static factory method to create online asset
-	public static DigitalAsset createOnlineDigitalAsset(Market market, String assetName){
+	public static DigitalAsset createOnlineDigitalAsset(String assetName){
 		DigitalAsset digitalAsset = new DigitalAsset();
-		digitalAsset.setMarket(market);
 		digitalAsset.setAssetName(assetName);
-		digitalAsset.setMarketDataService(market);
+		digitalAsset.setMarketDataService();
 		digitalAsset.setPriceList();
 		return digitalAsset;
 	}
 	
 	//static factory method to create offline asset
-	public static DigitalAsset createOfflineDigitalAsset(Market market, String assetName){
+	public static DigitalAsset createOfflineDigitalAsset(String assetName){
 		DigitalAsset digitalAsset = new DigitalAsset();
-		digitalAsset.setMarket(market);
 		digitalAsset.setAssetName(assetName);
 		digitalAsset.setOfflinePriceList();
 		return digitalAsset;
@@ -74,7 +69,7 @@ public class DigitalAsset implements Asset {
 		try {
 			priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
-					.getPoloniexChartData(currencyPair, date - 365 * Speculator.getPriceHistoryYears() * 24 * 60 * 60,
+					.getPoloniexChartData(currencyPair, date - 365 * Config.getPriceHistoryYears() * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
 			List<String> saveToFileList = new ArrayList<>();
 			for(PoloniexChartData p : priceList){
@@ -121,8 +116,8 @@ public class DigitalAsset implements Asset {
 	}
 
 	@Override
-	public void setMarketDataService(Market market) {
-		 dataService = market.getExchange().getMarketDataService();
+	public void setMarketDataService() {
+		 dataService = Config.getMarket().getExchange().getMarketDataService();
 	}
 	
 	@Override
@@ -182,9 +177,9 @@ public class DigitalAsset implements Asset {
 	public List<Entry> getEntryList(Speculator speculator) {
 		Entry entry;
 		List<Entry> entryList = new ArrayList<>();
-		int i = getStartIndex(speculator.getEntrySignalDays(), speculator.getTimeFrameDays()); 
+		int i = getStartIndex(Config.getEntrySignalDays(), Config.getTimeFrameDays()); 
 		for(int x = i;x < getPriceList().size();x++){
-			setPriceSubList(x - speculator.getEntrySignalDays(), x);
+			setPriceSubList(x - Config.getEntrySignalDays(), x);
 			entry = new Entry(this, speculator);
 			if(entry.isEntry()){
 				entryList.add(entry);
@@ -199,7 +194,7 @@ public class DigitalAsset implements Asset {
 		List<Exit> exitList = new ArrayList<>();
 		for(Entry e : getEntryList(speculator)){
 			for(int i = e.getEntryIndex();i < priceList.size();i++){
-				setPriceSubList(i - speculator.getSellSignalDays(), i);
+				setPriceSubList(i - Config.getSellSignalDays(), i);
 				exit = new Exit(e, speculator);
 				if(exit.isExit()){
 					exitList.add(exit);
@@ -217,7 +212,7 @@ public class DigitalAsset implements Asset {
 		Exit exit;
 		for(Entry e : entryList){
 			for(int i = e.getEntryIndex(); i < priceList.size();i++){
-				setPriceSubList(i - speculator.getSellSignalDays(), i);
+				setPriceSubList(i - Config.getSellSignalDays(), i);
 				exit = new Exit(e, speculator);
 				if(exit.isExit() || exit.isOpen()){
 					openList.add(exit);
@@ -239,26 +234,17 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public int getStartIndex(int signalDays, int timeFrameDays) {
-		if(getIndexOfLastRecordInPriceList() > signalDays + Speculator.getMovingAvg() + timeFrameDays){
-			return getIndexOfLastRecordInPriceList() - (Speculator.getMovingAvg() +
+		int movingAvg = Config.getMovingAvg();
+		if(getIndexOfLastRecordInPriceList() > signalDays + movingAvg + timeFrameDays){
+			return getIndexOfLastRecordInPriceList() - (movingAvg +
 					timeFrameDays);
 		}
-		boolean isShortHistory = (priceList.size() < signalDays || priceList.size() < Speculator.getMovingAvg());
+		boolean isShortHistory = (priceList.size() < signalDays || priceList.size() < movingAvg);
 		if(isShortHistory){
 			return priceList.size();
 		}else{
 			return 0 + signalDays; 
 		}
-	}
-
-	@Override
-	public void setMarket(Market market) {
-		this.market = market;
-	}
-
-	@Override
-	public Market getMarket() {
-		return market;
 	}
 	
 	@Override
@@ -267,21 +253,21 @@ public class DigitalAsset implements Asset {
 		sb.append(DateUtils.dateToMMddFormat(getLatestDate()) + " ");
 		sb.append(" $" + getAssetName());
 		sb.append(" @" + PriceData.prettyPrice(getLatestPrice()));
-		sb.append(" Max: " + PriceData.prettyPrice(getHighForExitFlag(new DigitalSpeculator())));
-		sb.append(" Min: " + PriceData.prettyPrice(getLowForExitFlag(new DigitalSpeculator())));
+		sb.append(" Max: " + PriceData.prettyPrice(getHighForExitFlag()));
+		sb.append(" Min: " + PriceData.prettyPrice(getLowForExitFlag()));
 		return sb.toString();   
 	}
 
 	@Override
-	public BigDecimal getHighForExitFlag(Speculator speculator) {
-		setPriceSubList(getIndexOfLastRecordInPriceList() - speculator.getSellSignalDays(), getIndexOfLastRecordInPriceList());
+	public BigDecimal getHighForExitFlag() {
+		setPriceSubList(getIndexOfLastRecordInPriceList() - Config.getSellSignalDays(), getIndexOfLastRecordInPriceList());
 		BigDecimal maxPrice = Collections.max(getClosePriceListFromSubList());
 		return maxPrice;
 	}
 
 	@Override
-	public BigDecimal getLowForExitFlag(Speculator speculator) {
-		setPriceSubList(getIndexOfLastRecordInPriceList() - speculator.getSellSignalDays(), getIndexOfLastRecordInPriceList());
+	public BigDecimal getLowForExitFlag() {
+		setPriceSubList(getIndexOfLastRecordInPriceList() - Config.getSellSignalDays(), getIndexOfLastRecordInPriceList());
 		BigDecimal minPrice = Collections.min(getClosePriceListFromSubList());
 		return minPrice;
 	}
