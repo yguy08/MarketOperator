@@ -18,8 +18,13 @@ import speculator.DigitalSpeculator;
 import speculator.Speculator;
 import util.DateUtils;
 import util.Tuple;
+import vault.Config;
 
 public class TradeJunit {
+	
+	static{
+		Config.TestConfig();
+	}
 	
 	Market market = BitcoinMarket.createOfflineBitcoinMarket();
 	
@@ -27,7 +32,7 @@ public class TradeJunit {
 	public void testEntriesHighestVol(){
 		Speculator speculator = new DigitalSpeculator();
 		List<Exit> exitList = new ArrayList<>();
-		for(Asset a : market.getAssetList()){
+		for(Asset a : Config.getMarket().getAssetList()){
 			exitList.addAll(a.getEntryStatusList(speculator));
 		}		
 		//sort list
