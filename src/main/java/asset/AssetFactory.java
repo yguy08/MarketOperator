@@ -1,14 +1,13 @@
 package asset;
 
 import market.*;
+import vault.Config;
 
 public class AssetFactory {
 
 	public static Asset createAsset(Market market, String assetName) {
-		if(market.getMarketName().equals(MarketsEnum.BITCOIN.getMarketName())){
+		if(Config.isConnected()){
 			return DigitalAsset.createOnlineDigitalAsset(market, assetName);
-		}else if(market.getMarketName().endsWith(MarketsEnum.BITCOIN_OFFLINE.getMarketName())){
-			return DigitalAsset.createOfflineDigitalAsset(market, assetName);
 		}else{
 			return null;
 		}

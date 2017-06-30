@@ -99,7 +99,7 @@ public class SpeculatorControl extends GridPane implements Initializable {
     
     private Speculator setSpeculator(){
     	//set market
-    	speculator = SpeculatorFactory.createSpeculator(Integer.parseInt(balanceTextField.getText().trim()),
+    	speculator = new DigitalSpeculator(Integer.parseInt(balanceTextField.getText().trim()),
     			Integer.parseInt(riskTextField.getText().trim()),
     			Integer.parseInt(maxUnitsTextField.getText().trim()), 
     			Integer.parseInt(stopLengthTextField.getText().trim()), 

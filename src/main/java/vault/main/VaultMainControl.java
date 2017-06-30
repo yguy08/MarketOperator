@@ -216,6 +216,10 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		statusText.setText(StatusEnum.randomStatus());
 	}
 	
+	public void setStatus(String txtToDisplay){
+		statusText.setText(txtToDisplay);
+	}
+	
 	public void entrySelected(Entry entry){
 		int i = Config.getMarket().getAssetList().indexOf(entry.getAsset());
 		List<Exit> entryStatusList = Config.getMarket().getAssetList().get(i).getEntryStatusList(speculatorControl.getSpeculator());

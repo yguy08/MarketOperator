@@ -15,6 +15,7 @@ import org.knowm.xchange.poloniex.PoloniexExchange;
 
 import asset.Asset;
 import asset.AssetFactory;
+import util.SaveToFile;
 
 public class BitcoinMarket implements Market {
 	
@@ -64,7 +65,6 @@ public class BitcoinMarket implements Market {
 				assetList.add(asset);
 			}
 		}
-		
 		SaveToFile.writeMarketListToFile((Market)this, assetList);
 	}
 	
@@ -72,14 +72,12 @@ public class BitcoinMarket implements Market {
 	public void setOfflineAssetList(){
 		Asset asset;
 		List<String> currencyPairs;
-		URL resourceUrl = getClass().getResource("MarketList.csv");
+		URL resourceUrl = getClass().getResource(marketName + ".csv");
 		try {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
-				if(currencyPair.endsWith("BTC")){
-					asset = AssetFactory.createAsset(this, currencyPair);
-					assetList.add(asset);
-				}
+				asset = AssetFactory.createAsset(this, currencyPair);
+				assetList.add(asset);
 			}
 		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();

@@ -1,13 +1,21 @@
 package market;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.knowm.xchange.Exchange;
+import org.knowm.xchange.ExchangeFactory;
 import org.knowm.xchange.currency.CurrencyPair;
+import org.knowm.xchange.poloniex.PoloniexExchange;
 
 import asset.Asset;
 import asset.AssetFactory;
+import util.SaveToFile;
 
 public class EthereumMarket implements Market {
 	
@@ -48,7 +56,7 @@ public class EthereumMarket implements Market {
 
 	@Override
 	public List<Asset> getAssetList() {
-		return null;
+		return assetList;
 	}
 
 	@Override
@@ -56,29 +64,38 @@ public class EthereumMarket implements Market {
 		Asset asset;
 		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
 		for(CurrencyPair currencyPair : currencyPairs){
-			if(currencyPair.toString().endsWith("BTC")){
+			if(currencyPair.toString().endsWith("ETH")){
 				asset = AssetFactory.createAsset(this, currencyPair.toString());
 				assetList.add(asset);
 			}
-		}		
+		}
+		SaveToFile.writeMarketListToFile((Market)this, assetList);
 	}
 
 	@Override
 	public void setOfflineAssetList() {
-		// TODO Auto-generated method stub
-		
+		Asset asset;
+		List<String> currencyPairs;
+		URL resourceUrl = getClass().getResource(marketName + ".csv");
+		try {
+			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
+			for(String currencyPair : currencyPairs){
+				asset = AssetFactory.createAsset(this, currencyPair);
+				assetList.add(asset);
+			}
+		} catch (IOException | URISyntaxException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void setExchange() {
-		// TODO Auto-generated method stub
-		
+		exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	}
 
 	@Override
 	public Exchange getExchange() {
-		// TODO Auto-generated method stub
-		return null;
+		return exchange;
 	}
 
 }
