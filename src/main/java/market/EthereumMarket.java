@@ -65,7 +65,7 @@ public class EthereumMarket implements Market {
 		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
 		for(CurrencyPair currencyPair : currencyPairs){
 			if(currencyPair.toString().endsWith("ETH")){
-				asset = AssetFactory.createAsset(this, currencyPair.toString());
+				asset = AssetFactory.createAsset(currencyPair.toString());
 				assetList.add(asset);
 			}
 		}
@@ -80,7 +80,7 @@ public class EthereumMarket implements Market {
 		try {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
-				asset = AssetFactory.createAsset(this, currencyPair);
+				asset = AssetFactory.createAsset(currencyPair);
 				assetList.add(asset);
 			}
 		} catch (IOException | URISyntaxException e) {
