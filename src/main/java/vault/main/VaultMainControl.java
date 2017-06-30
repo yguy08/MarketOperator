@@ -44,15 +44,13 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML private Button showCloseBtn;
 	
-	@FXML private Button showOpenBtn;
-	
 	@FXML private Button settingsBtn;
 	
-	@FXML private Button clearList;
+	@FXML private Button clearListBtn;
+	
+	@FXML private Button backTestBtn;
 	
 	@FXML private Text statusText;
-	
-	@FXML private Button backTest;
 		
 	private ObservableList<Displayable> mainObsList = FXCollections.observableArrayList();
     
@@ -217,6 +215,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void setStatus(String txtToDisplay){
+		setBottom(statusText);
 		statusText.setText(txtToDisplay);
 	}
 	
@@ -275,6 +274,22 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		speculatorControl = new SpeculatorControl();
 		setInitialTableView();
         setRandomStatus();		
+	}
+	
+	public void disableAllBtns(){
+		newEntriesBtn.setDisable(true);		
+		showCloseBtn.setDisable(true);	
+		settingsBtn.setDisable(true);		
+		clearListBtn.setDisable(true);		
+		backTestBtn.setDisable(true);		
+	}
+	
+	public void enableAllBtns(){
+		newEntriesBtn.setDisable(false);		
+		showCloseBtn.setDisable(false);	
+		settingsBtn.setDisable(false);		
+		clearListBtn.setDisable(false);		
+		backTestBtn.setDisable(false);		
 	}
 
 }
