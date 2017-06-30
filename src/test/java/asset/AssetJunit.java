@@ -5,8 +5,7 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import market.BitcoinMarket;
 import market.Market;
-import speculator.DigitalSpeculator;
-import speculator.Speculator;
+import vault.Config;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,12 +23,11 @@ public class AssetJunit {
 	
 	@Test
 	public void testSubListSize(){
-		Speculator speculator = new DigitalSpeculator();
 		int startIndex;
-		if(asset.getIndexOfLastRecordInPriceList() < speculator.getEntrySignalDays()){
+		if(asset.getIndexOfLastRecordInPriceList() < Config.getEntrySignalDays()){
 			startIndex = 0;
 		}else{
-			startIndex = asset.getIndexOfLastRecordInPriceList() - speculator.getEntrySignalDays();
+			startIndex = asset.getIndexOfLastRecordInPriceList() - Config.getEntrySignalDays();
 		}
 		
 		asset.setPriceSubList(startIndex, asset.getIndexOfLastRecordInPriceList());
