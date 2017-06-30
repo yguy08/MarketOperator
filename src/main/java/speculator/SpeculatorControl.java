@@ -4,13 +4,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
@@ -46,7 +51,7 @@ public class SpeculatorControl extends GridPane implements Initializable {
 	
 	@FXML private ToggleButton ethereumMarket;
 	
-	@FXML private Button save;
+	@FXML private Button saveSettings;
 	
 	@FXML private ToggleGroup marketToggleGroup;
 	
@@ -71,14 +76,11 @@ public class SpeculatorControl extends GridPane implements Initializable {
 		    public void changed(ObservableValue<? extends Toggle> ov,
 		        Toggle toggle, Toggle new_toggle) {
 		            if (new_toggle == bitcoinMarket){
-		            	System.out.println("bitcoin market");
-		            	Config.setMarket(MarketsEnum.BITCOIN);
+		            	setNewMarket(MarketsEnum.BITCOIN);
 		            }else if(new_toggle == dollarMarket){
-		            	System.out.println("dollar market");
-		            	Config.setMarket(MarketsEnum.DOLLAR);
+		            	setNewMarket(MarketsEnum.DOLLAR);
 		            }else{
-		            	System.out.println("ethereum market");
-		            	Config.setMarket(MarketsEnum.ETHEREUM);
+		            	setNewMarket(MarketsEnum.ETHEREUM);
 		            }
 		         }
 		});
@@ -119,6 +121,32 @@ public class SpeculatorControl extends GridPane implements Initializable {
 
 	public Speculator getSpeculator() {
 		return setSpeculator();
+	}
+	
+	public void setNewMarket(MarketsEnum marketEnum){
+		VaultMainControl.getVaultMainControl().disableAllBtns();
+		saveSettings.setDisable(true);
+		VaultMainControl.getVaultMainControl().setBottom(new ProgressBar());
+		Task<Void> task = new Task<Void>() {
+    	    @Override public Void call() {
+    	    	System.out.println(marketEnum.getMarketName() + " market");
+    	    	Config.setMarket(marketEnum);
+    	        return null;
+    	    }
+    	};
+    	new Thread(task).start();    	
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				Platform.runLater(new Runnable() {
+		            public void run() {
+		            	VaultMainControl.getVaultMainControl().enableAllBtns();
+		            	saveSettings.setDisable(false);
+		            	VaultMainControl.getVaultMainControl().setStatus("Loaded " + marketEnum.getMarketName() + "!");
+		            }
+		        });
+			}
+		});
 	}
 
 }
