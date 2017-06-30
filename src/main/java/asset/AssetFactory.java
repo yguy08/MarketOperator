@@ -9,7 +9,7 @@ public class AssetFactory {
 		if(Config.isConnected()){
 			return DigitalAsset.createOnlineDigitalAsset(market, assetName);
 		}else{
-			return null;
+			return DigitalAsset.createOfflineDigitalAsset(market, assetName);
 		}
 	}
 	
