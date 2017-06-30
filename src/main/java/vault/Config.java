@@ -29,39 +29,47 @@ public class Config {
 	
 	private static int sellSignalDays;
 
+	private static BigDecimal minVolume;
+
 	private static boolean longOnly;
 	
 	private static boolean sortVol;
 	
+	private static boolean filterAssets;
+	
+	private static String[] assetFilter = {"XMR", "ETH", "DASH", "XRP", "ETC", "DCR","LTC","FCT"};
+	
 	public static void ConfigSetUp(){
 		setConnected();
 		setMarket(MarketsEnum.BITCOIN);
-		setAccountBalance(new BigDecimal(4));
-		setAccountBalance(new BigDecimal(4));
-		setRisk(new BigDecimal(1));
+		setAccountBalance(4);
+		setRisk(1);
 		setMaxUnits(6);
-		setStopLength(new BigDecimal(2));
+		setStopLength(2);
 		setTimeFrameDays(50);
 		setEntrySignalDays(25);
 		setSellSignalDays(11);
 		setLongOnly(true);
 		setSortVol(true);
+		setFilterAssets(false);
+		setMinVolume(0);
 	}
 	
 	//for utility purposes
 	public static void TestConfig(){
 		isConnected = false;
 		setMarket(MarketsEnum.BITCOIN);
-		setAccountBalance(new BigDecimal(4));
-		setAccountBalance(new BigDecimal(4));
-		setRisk(new BigDecimal(1));
+		setAccountBalance((4));
+		setRisk(1);
 		setMaxUnits(6);
-		setStopLength(new BigDecimal(2));
+		setStopLength(2);
 		setTimeFrameDays(50);
 		setEntrySignalDays(25);
 		setSellSignalDays(11);
 		setLongOnly(true);
-		setSortVol(true);		
+		setSortVol(true);
+		setFilterAssets(false);
+		setMinVolume(0);
 	}
 
 	public static Market getMarket() {
@@ -76,8 +84,8 @@ public class Config {
 		return risk;
 	}
 
-	public static void setRisk(BigDecimal risk) {
-		Config.risk = risk;
+	public static void setRisk(double d) {
+		Config.risk = new BigDecimal(d);
 	}
 
 	public static int getMaxUnits() {
@@ -92,8 +100,8 @@ public class Config {
 		return stopLength;
 	}
 
-	public static void setStopLength(BigDecimal stopLength) {
-		Config.stopLength = stopLength;
+	public static void setStopLength(double stopLength) {
+		Config.stopLength = new BigDecimal(stopLength);
 	}
 
 	public static int getTimeFrameDays() {
@@ -140,8 +148,8 @@ public class Config {
 		return accountBalance;
 	}
 
-	public static void setAccountBalance(BigDecimal accountBalance) {
-		Config.accountBalance = accountBalance;
+	public static void setAccountBalance(double balance) {
+		Config.accountBalance = new BigDecimal(balance);
 	}
 
 	public static boolean isConnected() {
@@ -158,6 +166,38 @@ public class Config {
     	catch (IOException e) { 
     	    isConnected = false;
     	}
+	}
+
+	public static boolean isFilterAssets() {
+		return filterAssets;
+	}
+	
+	public static void setFilterAssets(boolean filterAssets){
+		Config.filterAssets = filterAssets;
+	}
+
+	public static String[] getAssetFilter() {
+		return assetFilter;
+	}
+
+	public static void setAssetFilter(String[] assetFilter) {
+		Config.assetFilter = assetFilter;
+	}
+
+	public static int getPriceHistoryYears(){
+		return 10;
+	}
+	
+	public static int getMovingAvg(){
+		return 20;
+	}
+
+	public static BigDecimal getMinVolume() {
+		return minVolume;
+	}
+	
+	public static void setMinVolume(int minVolume) {
+		Config.minVolume = new BigDecimal(minVolume);
 	}
 
 }
