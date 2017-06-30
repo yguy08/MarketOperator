@@ -15,9 +15,9 @@
 		<VBox fx:id="buttonBox" spacing="10" >
 				<Button fx:id="newEntriesBtn" text="Entries" prefWidth="100" onAction="#showNewEntries" />
 				<Button fx:id="showCloseBtn" text="Exits" prefWidth="100" onAction="#showNewExits" />
-				<Button fx:id="backTest" text="Backtest" prefWidth="100" onAction="#backtest" />
-				<Button fx:id="settings" text="Settings" prefWidth="100" onAction="#showSettings" />
-				<Button fx:id="clearList" text="Clear" prefWidth="100" onAction="#clearList" />
+				<Button fx:id="backTestBtn" text="Backtest" prefWidth="100" onAction="#backtest" />
+				<Button fx:id="settingsBtn" text="Settings" prefWidth="100" onAction="#showSettings" />
+				<Button fx:id="clearListBtn" text="Clear" prefWidth="100" onAction="#clearList" />
 		</VBox>
 	</right>
 	
