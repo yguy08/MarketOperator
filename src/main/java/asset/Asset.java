@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
-import market.Market;
 import trade.Entry;
 import trade.Exit;
 import vault.main.Displayable;
@@ -18,17 +17,13 @@ public interface Asset extends Displayable {
 
 	String getAssetName();
 	
-	void setMarket(Market market);
-	
-	Market getMarket();
-	
 	void setPriceList();
 				
 	void setOfflinePriceList();	
 
 	List<PoloniexChartData> getPriceList();
 	
-	void setMarketDataService(Market market);
+	void setMarketDataService();
 
 	void setPriceSubList(int start, int end);
 	
@@ -63,10 +58,10 @@ public interface Asset extends Displayable {
 	List<Exit> getEntryStatusList(Speculator speculator);
 	
 	//get (x) day high
-	BigDecimal getHighForExitFlag(Speculator speculator);
+	BigDecimal getHighForExitFlag();
 	
 	//get (x) day low
-	BigDecimal getLowForExitFlag(Speculator speculator);
+	BigDecimal getLowForExitFlag();
 	
 
 }
