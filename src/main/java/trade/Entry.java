@@ -13,6 +13,7 @@ import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
+import vault.Config;
 import vault.main.Displayable;
 import vault.main.StatusEnum;
 
@@ -57,7 +58,7 @@ public class Entry implements Displayable {
 	//before anything else..check if price makes it an entry or not
 	private boolean isEntryCandidate(){
 		int days = DateUtils.getNumDaysFromDateToToday(getDateTime());
-		if(days > speculator.getTimeFrameDays()){
+		if(days > Config.getTimeFrameDays()){
 			return false;
 		}
 		
@@ -73,11 +74,19 @@ public class Entry implements Displayable {
 		if(isPriceAHigh || isPriceALow){
 			isLongEntry = isPriceAHigh ? true : false;
 			//filters
-			if(speculator.isLongOnly() && !(isLongEntry)){
+			if(Config.isLongOnly() && !(isLongEntry)){
+				return false;
+			}else if(Config.isFilterAssets()){
+				for(String s : Config.getAssetFilter()){
+					if(getAsset().getAssetName().contains(s)){
+						return true;
+					}
+				}
+				
 				return false;
 			}else{
 				boolean isHighEqualToLow = maxPrice.compareTo(minPrice) == 0;
-				boolean isBelowVolumeFilter = getAsset().getVolumeFromIndex(locationIndex).compareTo(speculator.getMinVolume()) < 0;
+				boolean isBelowVolumeFilter = getAsset().getVolumeFromIndex(locationIndex).compareTo(Config.getMinVolume()) < 0;
 				boolean isFilteredIn = !(isHighEqualToLow || isBelowVolumeFilter);
 				return isFilteredIn;
 			}
@@ -98,14 +107,12 @@ public class Entry implements Displayable {
 	//True Range of prices per share, measured in Dollars per Share..if True Range is 1.25 it means max daily variations is $1.25 per share
 	//Move to ASSET??
 	public void setTrueRange() {
-		//consider instance where list is too small...
-		if(asset.getPriceList().size() < Speculator.getMovingAvg()){
-			//skip?
-		}
+		
+		int movingAvg = Config.getMovingAvg();
 		
 		//set first TR for 0 position (H-L)
 		BigDecimal tR = asset.getHighPriceFromIndex(0).subtract(asset.getClosePriceFromIndex(0)).abs();
-		for(int x = 1; x < Speculator.getMovingAvg(); x++){
+		for(int x = 1; x < movingAvg; x++){
 			List<BigDecimal> trList = Arrays.asList(
 					asset.getHighPriceFromIndex(x).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32),
 					asset.getHighPriceFromIndex(x).subtract(asset.getClosePriceFromIndex(x-1).abs(), MathContext.DECIMAL32),
@@ -114,18 +121,18 @@ public class Entry implements Displayable {
 				tR = tR.add(Collections.max(trList));
 		}
 		
-		tR = tR.divide(new BigDecimal(Speculator.getMovingAvg()), MathContext.DECIMAL32);
+		tR = tR.divide(new BigDecimal(movingAvg), MathContext.DECIMAL32);
 		
 		//20 exponential moving average
-		for(int x = Speculator.getMovingAvg(); x < locationIndex;x++){
+		for(int x = movingAvg; x < locationIndex;x++){
 			List<BigDecimal> trList = Arrays.asList(
 					asset.getHighPriceFromIndex(x).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32),
 					asset.getHighPriceFromIndex(x).subtract(asset.getClosePriceFromIndex(x-1).abs(), MathContext.DECIMAL32),
 					asset.getClosePriceFromIndex(x-1).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32));
 					
-					tR = tR.multiply(new BigDecimal(Speculator.getMovingAvg() - 1), MathContext.DECIMAL32)
+					tR = tR.multiply(new BigDecimal(movingAvg - 1), MathContext.DECIMAL32)
 					.add((Collections.max(trList)), MathContext.DECIMAL32).
-					divide(new BigDecimal(Speculator.getMovingAvg()), MathContext.DECIMAL32);
+					divide(new BigDecimal(movingAvg), MathContext.DECIMAL32);
 		}
 		
 		averageTrueRange = tR;
@@ -137,9 +144,9 @@ public class Entry implements Displayable {
 	
 	public void setStop() {
 		if(isLongEntry){
-			stop = getAsset().getClosePriceFromIndex(locationIndex).subtract(speculator.getStopLength().multiply(getTrueRange(), MathContext.DECIMAL32));
+			stop = getAsset().getClosePriceFromIndex(locationIndex).subtract(Config.getStopLength().multiply(getTrueRange(), MathContext.DECIMAL32));
 		}else{
-			stop = getAsset().getClosePriceFromIndex(locationIndex).add(speculator.getStopLength().multiply(getTrueRange(), MathContext.DECIMAL32));
+			stop = getAsset().getClosePriceFromIndex(locationIndex).add(Config.getStopLength().multiply(getTrueRange(), MathContext.DECIMAL32));
 		}
 	}
 	
@@ -149,7 +156,7 @@ public class Entry implements Displayable {
 	
 	public void setUnitSize() {
 		BigDecimal max = speculator.getAccountBalance().divide(getAsset().getClosePriceFromIndex(locationIndex), MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = speculator.getAccountBalance().multiply(speculator.getRisk().divide(new BigDecimal(100), MathContext.DECIMAL32), MathContext.DECIMAL32)
+		BigDecimal size = speculator.getAccountBalance().multiply(Config.getRisk().divide(new BigDecimal(100), MathContext.DECIMAL32), MathContext.DECIMAL32)
 				.divide(averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
 		unitSize = (size.compareTo(max) > 0) ? max : size;
 	}
