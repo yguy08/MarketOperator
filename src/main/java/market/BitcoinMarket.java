@@ -72,7 +72,7 @@ public class BitcoinMarket implements Market {
 	public void setOfflineAssetList(){
 		Asset asset;
 		List<String> currencyPairs;
-		URL resourceUrl = getClass().getResource(marketName + ".csv");
+		URL resourceUrl = getClass().getResource(MarketsEnum.BITCOIN.getMarketName() + ".csv");
 		try {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
