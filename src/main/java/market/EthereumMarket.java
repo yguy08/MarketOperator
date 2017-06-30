@@ -76,7 +76,7 @@ public class EthereumMarket implements Market {
 	public void setOfflineAssetList() {
 		Asset asset;
 		List<String> currencyPairs;
-		URL resourceUrl = getClass().getResource(marketName + ".csv");
+		URL resourceUrl = getClass().getResource(MarketsEnum.ETHEREUM + ".csv");
 		try {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
