@@ -40,31 +40,26 @@ public class DollarMarket implements Market {
 
 	@Override
 	public List<Asset> getAssetList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void setAssetList() {
-		// TODO Auto-generated method stub
+	public void setAssetList() {		
 
 	}
 
 	@Override
-	public void setOfflineAssetList() {
-		// TODO Auto-generated method stub
+	public void setOfflineAssetList() {		
 
 	}
 
 	@Override
-	public void setExchange() {
-		// TODO Auto-generated method stub
+	public void setExchange() {		
 
 	}
 
 	@Override
 	public Exchange getExchange() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
