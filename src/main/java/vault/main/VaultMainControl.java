@@ -24,9 +24,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import market.MarketFactory;
+import speculator.DigitalSpeculator;
 import speculator.Speculator;
-import speculator.SpeculatorControl;
 import trade.Entry;
 import trade.Exit;
 import trade.Trade;
@@ -37,8 +36,6 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	private static VaultMainControl vaultMainControl;
 	
 	@FXML private ListView<Displayable> listViewDisplay;
-	
-	private SpeculatorControl speculatorControl;
 	
 	@FXML private Button newEntriesBtn;
 	
@@ -53,6 +50,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML private Text statusText;
 		
 	private ObservableList<Displayable> mainObsList = FXCollections.observableArrayList();
+
+	private ConfigControl configControl;
     
 	public VaultMainControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VaultMainView.fxml"));
@@ -70,7 +69,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	 * Show assets at or above entry flag, select to view close?
 	 */
 	@FXML public void showNewEntries(){
-		Speculator speculator = speculatorControl.getSpeculator();
+		Speculator speculator = new DigitalSpeculator();
 		List<Asset> assetList = Config.getMarket().getAssetList();
 		Task<List<Entry>> task = new Task<List<Entry>>() {
 		    @Override protected List<Entry> call() throws Exception {
@@ -106,7 +105,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
      }
 	
 	@FXML public void showNewExits(){
-		Speculator speculator = speculatorControl.getSpeculator();
+		Speculator speculator = new DigitalSpeculator();
 		Task<List<Exit>> task = new Task<List<Exit>>() {
 		    @Override protected List<Exit> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
@@ -140,12 +139,12 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	@FXML public void backtest(){
-		//get exit list
+		Speculator speculator = new DigitalSpeculator();
 		Task<List<Displayable>> task = new Task<List<Displayable>>() {
 		    @Override protected List<Displayable> call() throws Exception {
 				List<Exit> exitList = new ArrayList<>();
 				for(Asset a : Config.getMarket().getAssetList()){
-					exitList.addAll(a.getEntryStatusList(speculatorControl.getSpeculator()));
+					exitList.addAll(a.getEntryStatusList(speculator));
 				}
 				
 				//sort list
@@ -156,7 +155,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				    }
 				});
 				
-				Trade t = new Trade(exitList, speculatorControl.getSpeculator());
+				Trade t = new Trade(exitList, speculator);
 				List<Displayable> resultsList = t.runBackTest();
 				
 		       return resultsList;		      
@@ -179,13 +178,13 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showSettings(){
-		setCenter(speculatorControl);
+		setCenter(configControl);
 		setRandomStatus();
 	}
 	
 	@FXML
 	public void clearList(){
-		if(getCenter() == speculatorControl){
+		if(getCenter() == configControl){
 			setCenter(listViewDisplay);
 		}
 		setRandomStatus();
@@ -221,7 +220,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	public void entrySelected(Entry entry){
 		int i = Config.getMarket().getAssetList().indexOf(entry.getAsset());
-		List<Exit> entryStatusList = Config.getMarket().getAssetList().get(i).getEntryStatusList(speculatorControl.getSpeculator());
+		List<Exit> entryStatusList = Config.getMarket().getAssetList().get(i).getEntryStatusList(new DigitalSpeculator());
 		Exit exitToSelect = entryStatusList.get(0);
 		for(Exit exit : entryStatusList){
 			if(entry.getLocationIndex() == exit.getEntry().getLocationIndex()){
@@ -234,7 +233,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	public void exitSelected(Exit exit){
 		int i = Config.getMarket().getAssetList().indexOf(exit.getEntry().getAsset());
-		List<Entry> entryList = MarketFactory.getMarket().getAssetList().get(i).getEntryList(speculatorControl.getSpeculator());
+		List<Entry> entryList = Config.getMarket().getAssetList().get(i).getEntryList(new DigitalSpeculator());
 		Entry entryToSelect = entryList.get(0);
 		for(Entry entry : entryList){
 			if(entry.getLocationIndex() == exit.getEntry().getEntryIndex()){
@@ -271,7 +270,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         vaultMainControl = this;
-		speculatorControl = new SpeculatorControl();
+		configControl = new ConfigControl();
 		setInitialTableView();
         setRandomStatus();		
 	}
