@@ -11,6 +11,7 @@ import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
 import util.Tuple;
+import vault.Config;
 import vault.main.Displayable;
 
 public class Trade implements Displayable {
@@ -95,9 +96,9 @@ public class Trade implements Displayable {
 			
 			//for entry e : entry exit a...
 			for(Entry entry : entryExit.a){
-				if(unitList.size() >= speculator.getMaxUnits()){
+				if(unitList.size() >= Config.getMaxUnits()){
 					break;
-				}else if(speculator.isSortVol()){
+				}else if(Config.isSortVol()){
 					unitList.add(entry);
 					System.out.println(entry.toString());
 					resultsList.add(new Trade(entry, speculator));
