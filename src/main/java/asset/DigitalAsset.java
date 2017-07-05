@@ -14,12 +14,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import org.knowm.xchange.Exchange;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
+import market.Market;
 import trade.Entry;
 import trade.Exit;
 import price.PoloniexPriceList;
@@ -40,10 +43,10 @@ public class DigitalAsset implements Asset {
 	private List<PoloniexChartData> priceSubList;
 	
 	//static factory method to create online asset
-	public static DigitalAsset createOnlineDigitalAsset(String assetName){
+	public static DigitalAsset createOnlineDigitalAsset(Market market, String assetName){
 		DigitalAsset digitalAsset = new DigitalAsset();
 		digitalAsset.setAssetName(assetName);
-		digitalAsset.setMarketDataService();
+		digitalAsset.setMarketDataService(market);
 		digitalAsset.setPriceList();
 		return digitalAsset;
 	}
@@ -116,8 +119,8 @@ public class DigitalAsset implements Asset {
 	}
 
 	@Override
-	public void setMarketDataService() {
-		 dataService = Config.getMarket().getExchange().getMarketDataService();
+	public void setMarketDataService(Market market) {
+		dataService = market.getExchange().getMarketDataService();
 	}
 	
 	@Override

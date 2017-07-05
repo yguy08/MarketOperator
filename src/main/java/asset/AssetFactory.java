@@ -1,12 +1,13 @@
 package asset;
 
+import market.Market;
 import vault.Config;
 
 public class AssetFactory {
 
-	public static Asset createAsset(String assetName) {
+	public static Asset createAsset(Market market, String assetName) {
 		if(Config.isConnected()){
-			return DigitalAsset.createOnlineDigitalAsset(assetName);
+			return DigitalAsset.createOnlineDigitalAsset(market, assetName);
 		}else{
 			return DigitalAsset.createOfflineDigitalAsset(assetName);
 		}

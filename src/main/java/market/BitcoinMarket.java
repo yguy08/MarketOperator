@@ -61,7 +61,7 @@ public class BitcoinMarket implements Market {
 		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
 		for(CurrencyPair currencyPair : currencyPairs){
 			if(currencyPair.toString().endsWith("BTC")){
-				asset = AssetFactory.createAsset(currencyPair.toString());
+				asset = AssetFactory.createAsset(this, currencyPair.toString());
 				assetList.add(asset);
 			}
 		}
@@ -76,7 +76,7 @@ public class BitcoinMarket implements Market {
 		try {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
-				asset = AssetFactory.createAsset(currencyPair);
+				asset = AssetFactory.createAsset(this, currencyPair);
 				assetList.add(asset);
 			}
 		} catch (IOException | URISyntaxException e) {
