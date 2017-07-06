@@ -1,11 +1,18 @@
 package price;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+
+import util.DateUtils;
+import vault.Config;
 
 public class PriceData {
 	
@@ -20,6 +27,8 @@ public class PriceData {
 	private BigDecimal close;
 	
 	private BigDecimal volume;
+	
+	private BigDecimal trueRange;
 	
 	public PriceData(Date date, BigDecimal high, BigDecimal low, BigDecimal open, BigDecimal close, BigDecimal volume){
 		this.date = date;
@@ -94,6 +103,44 @@ public class PriceData {
 	public void setVolume(BigDecimal volume) {
 		this.volume = volume;
 	}
+
+	public BigDecimal getTrueRange() {
+		return trueRange;
+	}
+	
+	public void setTrueRange(BigDecimal trueRange){
+		this.trueRange = trueRange;
+	}
+
+	public static void setTrueRange(List<PriceData> priceDataList) {
+		int movingAvg = Config.getMovingAvg();		
+		//set first TR for 0 position (H-L)
+		BigDecimal tR = priceDataList.get(0).getHigh().subtract(priceDataList.get(0).getClose()).abs();
+		priceDataList.get(0).setTrueRange(tR);		
+		for(int x = 1; x < movingAvg; x++){
+			List<BigDecimal> trList = Arrays.asList(
+					priceDataList.get(x).getHigh().subtract(priceDataList.get(x).getLow().abs(), MathContext.DECIMAL32),
+					priceDataList.get(x).getHigh().subtract(priceDataList.get(x-1).getClose().abs(), MathContext.DECIMAL32),
+					priceDataList.get(x-1).getClose().subtract(priceDataList.get(x).getLow().abs(), MathContext.DECIMAL32));				
+				tR = tR.add(Collections.max(trList));
+		}		
+		tR = tR.divide(new BigDecimal(movingAvg), MathContext.DECIMAL32);		
+		//initial up to MA get the same
+		for(int x=1;x<movingAvg;x++){
+			priceDataList.get(x).setTrueRange(tR);
+		}		
+		//20 exponential moving average
+		for(int x = movingAvg; x < priceDataList.size();x++){
+			List<BigDecimal> trList = Arrays.asList(
+					priceDataList.get(x).getHigh().subtract(priceDataList.get(x).getLow().abs(), MathContext.DECIMAL32),
+					priceDataList.get(x).getHigh().subtract(priceDataList.get(x-1).getClose().abs(), MathContext.DECIMAL32),
+					priceDataList.get(x-1).getClose().subtract(priceDataList.get(x).getLow().abs(), MathContext.DECIMAL32));					
+					tR = tR.multiply(new BigDecimal(movingAvg - 1), MathContext.DECIMAL32)
+					.add((Collections.max(trList)), MathContext.DECIMAL32).
+					divide(new BigDecimal(movingAvg), MathContext.DECIMAL32);					
+					priceDataList.get(x).setTrueRange(tR);
+		}
+	}
 	
 	public static String prettyPrice(BigDecimal price){
 		price = price.movePointRight(8);
@@ -106,6 +153,6 @@ public class PriceData {
 	@Override
 	public String toString(){
 		return this.getDate() + "," + this.getHigh() + "," + this.getLow() + "," + this.getOpen() + "," + this.getClose() + 
-				"," + this.getVolume();
+				"," + this.getVolume() + "," + this.getTrueRange();
 	}
 }
