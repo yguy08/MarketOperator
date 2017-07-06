@@ -11,6 +11,7 @@ import trade.Entry;
 import trade.Exit;
 import vault.Displayable;
 import speculator.Speculator;
+import price.PriceData;
 
 public interface Asset extends Displayable {
 
@@ -41,7 +42,11 @@ public interface Asset extends Displayable {
 	
 	BigDecimal getHighPriceFromIndex(int index);
 	
-	BigDecimal getLowPriceFromIndex(int index);
+	BigDecimal getLowPriceFromIndex(int index);	
+	
+	void setPriceDataList();
+	
+	List<PriceData> getPriceDataList();
 	
 	//get start index
 	int getStartIndex(int signalDays, int timeFrameDays);
