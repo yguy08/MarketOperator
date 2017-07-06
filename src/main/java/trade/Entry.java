@@ -214,5 +214,19 @@ public class Entry implements Displayable {
 	public BigDecimal getEntryPrice(){
 		return getAsset().getClosePriceFromIndex(getEntryIndex());
 	}
+	
+	public static List<Entry> getEntryList(Asset asset, Speculator speculator){
+		Entry entry;
+		List<Entry> entryList = new ArrayList<>();
+		int i = asset.getStartIndex(Config.getEntrySignalDays(), Config.getTimeFrameDays()); 
+		for(int x = i;x < asset.getPriceList().size();x++){
+			asset.setPriceSubList(x - Config.getEntrySignalDays(), x);
+			entry = new Entry(asset, speculator);
+			if(entry.isEntry()){
+				entryList.add(entry);
+			}				
+		}
+		return entryList;
+	}
 
 }
