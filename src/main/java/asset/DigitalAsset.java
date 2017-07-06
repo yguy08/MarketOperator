@@ -41,6 +41,8 @@ public class DigitalAsset implements Asset {
 	
 	private List<PoloniexChartData> priceSubList;
 	
+	private List<PriceData> priceDataList = new ArrayList<>();
+	
 	//static factory method to create online asset
 	public static DigitalAsset createOnlineDigitalAsset(Market market, String assetName){
 		DigitalAsset digitalAsset = new DigitalAsset();
@@ -272,6 +274,22 @@ public class DigitalAsset implements Asset {
 		setPriceSubList(getIndexOfLastRecordInPriceList() - Config.getSellSignalDays(), getIndexOfLastRecordInPriceList());
 		BigDecimal minPrice = Collections.min(getClosePriceListFromSubList());
 		return minPrice;
+	}
+	
+	@Override
+	public void setPriceDataList() {
+		PriceData priceData;
+		for(int i = 0; i < priceList.size();i++){
+			PoloniexChartData rawData = priceList.get(i);
+			priceData = new PriceData(rawData.getDate(), rawData.getHigh(), rawData.getLow(), rawData.getOpen(), rawData.getClose(), rawData.getVolume());
+			priceDataList.add(priceData);
+		}		
+		PriceData.setTrueRange(priceDataList);
+	}
+
+	@Override
+	public List<PriceData> getPriceDataList() {
+		return priceDataList;
 	}
 
 }
