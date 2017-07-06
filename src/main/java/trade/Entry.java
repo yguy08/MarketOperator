@@ -14,8 +14,8 @@ import speculator.Speculator;
 import util.DateUtils;
 import util.StringFormatter;
 import vault.Config;
-import vault.main.Displayable;
-import vault.main.StatusEnum;
+import vault.Displayable;
+import vault.StatusEnum;
 
 public class Entry implements Displayable {
 	

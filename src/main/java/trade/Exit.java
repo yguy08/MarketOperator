@@ -9,7 +9,7 @@ import asset.Asset;
 import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
-import vault.main.Displayable;
+import vault.Displayable;
 
 public class Exit implements Displayable {
 	

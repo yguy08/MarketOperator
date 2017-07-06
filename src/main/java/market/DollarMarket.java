@@ -1,15 +1,31 @@
 package market;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.knowm.xchange.Exchange;
+import org.knowm.xchange.ExchangeFactory;
+import org.knowm.xchange.currency.CurrencyPair;
+import org.knowm.xchange.poloniex.PoloniexExchange;
 
 import asset.Asset;
+import asset.AssetFactory;
+import util.SaveToFile;
 
 public class DollarMarket implements Market {
 	
-	//market name
+	//poloniex exchange from xchange library
+	public Exchange exchange;
+	
 	private String marketName;
+	
+	//list of assets
+	private List<Asset> assetList = new ArrayList<>();
 	
 	//static factory method to create online digital market
 	public static DollarMarket createOnlineDollarMarket(){
@@ -35,32 +51,52 @@ public class DollarMarket implements Market {
 
 	@Override
 	public void setMarketName(String marketName) {
-		this.marketName = marketName;
+		this.marketName = marketName;		
 	}
 
 	@Override
 	public List<Asset> getAssetList() {
-		return null;
+		return assetList;
 	}
 
 	@Override
-	public void setAssetList() {		
-
+	public void setAssetList() {
+		Asset asset;
+		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
+		for(CurrencyPair currencyPair : currencyPairs){
+			if(currencyPair.toString().endsWith("USDT")){
+				asset = AssetFactory.createAsset(this,currencyPair.toString());
+				assetList.add(asset);
+			}
+		}
+		SaveToFile.writeMarketListToFile((Market)this, assetList);
 	}
 
 	@Override
-	public void setOfflineAssetList() {		
-
+	public void setOfflineAssetList() {
+		Asset asset;
+		List<String> currencyPairs;
+		URL resourceUrl = getClass().getResource(MarketsEnum.DOLLAR + ".csv");
+		try {
+			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
+			for(String currencyPair : currencyPairs){
+				asset = AssetFactory.createAsset(this,currencyPair);
+				assetList.add(asset);
+			}
+		} catch (IOException | URISyntaxException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void setExchange() {		
-
+	public void setExchange() {
+		exchange = ExchangeFactory.INSTANCE.createExchange(PoloniexExchange.class.getName());
 	}
 
 	@Override
 	public Exchange getExchange() {
-		return null;
+		return exchange;
 	}
+
 
 }

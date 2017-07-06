@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.knowm.xchange.Exchange;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
@@ -263,7 +262,7 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public BigDecimal getHighForExitFlag() {
-		setPriceSubList(getIndexOfLastRecordInPriceList() - Config.getSellSignalDays(), getIndexOfLastRecordInPriceList());
+		setPriceSubList(getIndexOfLastRecordInPriceList() - Config.getEntrySignalDays(), getIndexOfLastRecordInPriceList());
 		BigDecimal maxPrice = Collections.max(getClosePriceListFromSubList());
 		return maxPrice;
 	}

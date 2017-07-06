@@ -1,4 +1,4 @@
-package vault.main;
+package vault;
 
 public interface Displayable {
 	

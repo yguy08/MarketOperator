@@ -1,4 +1,4 @@
-package vault.main;
+package vault;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,8 +22,6 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import market.MarketsEnum;
-import vault.Config;
-import vault.main.VaultMainControl;
 
 public class ConfigControl extends GridPane implements Initializable {
 	
@@ -98,6 +96,14 @@ public class ConfigControl extends GridPane implements Initializable {
     	longOnlyCheckBox.setSelected(Config.isLongOnly());
     	sortVol.setSelected(Config.isSortVol());
     	filterAssets.setSelected(Config.isFilterAssets());
+    	
+    	if(Config.getStartMarket().equals(MarketsEnum.BITCOIN)){
+    		bitcoinMarket.setSelected(true);
+    	}else if(Config.getStartMarket().equals(MarketsEnum.DOLLAR)){
+    		dollarMarket.setSelected(true);
+    	}else{
+    		ethereumMarket.setSelected(true);
+    	}
     }
     
     private void setConfig(){    	

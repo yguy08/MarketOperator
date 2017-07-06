@@ -55,7 +55,7 @@
 	<fx:define>
 		<ToggleGroup fx:id="marketToggleGroup"/>
 	</fx:define>
-			<ToggleButton selected="true" fx:id="bitcoinMarket" toggleGroup="$marketToggleGroup" />
+			<ToggleButton fx:id="bitcoinMarket" toggleGroup="$marketToggleGroup" />
 			<ToggleButton fx:id="dollarMarket" toggleGroup="$marketToggleGroup" />
 			<ToggleButton fx:id="ethereumMarket" toggleGroup="$marketToggleGroup" />
 	</HBox>

@@ -12,7 +12,7 @@ import util.DateUtils;
 import util.StringFormatter;
 import util.Tuple;
 import vault.Config;
-import vault.main.Displayable;
+import vault.Displayable;
 
 public class Trade implements Displayable {
 	

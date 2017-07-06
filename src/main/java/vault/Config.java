@@ -39,9 +39,11 @@ public class Config {
 	
 	private static String[] assetFilter = {"XMR", "ETH", "DASH", "XRP", "ETC", "DCR","LTC","FCT"};
 	
+	private static MarketsEnum startMarket = MarketsEnum.DOLLAR;
+	
 	public static void ConfigSetUp(){
 		setConnected();
-		setMarket(MarketsEnum.BITCOIN);
+		setMarket(startMarket);
 		setAccountBalance(4);
 		setRisk(1);
 		setMaxUnits(6);
@@ -58,7 +60,7 @@ public class Config {
 	//for utility purposes
 	public static void TestConfig(){
 		isConnected = false;
-		setMarket(MarketsEnum.BITCOIN);
+		setMarket(startMarket);
 		setAccountBalance((4));
 		setRisk(1);
 		setMaxUnits(6);
@@ -198,6 +200,10 @@ public class Config {
 	
 	public static void setMinVolume(int minVolume) {
 		Config.minVolume = new BigDecimal(minVolume);
+	}
+	
+	public static MarketsEnum getStartMarket(){
+		return startMarket;
 	}
 
 }

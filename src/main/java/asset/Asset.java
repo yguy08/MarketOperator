@@ -9,7 +9,7 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import market.Market;
 import trade.Entry;
 import trade.Exit;
-import vault.main.Displayable;
+import vault.Displayable;
 import speculator.Speculator;
 
 public interface Asset extends Displayable {

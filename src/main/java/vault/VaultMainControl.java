@@ -1,4 +1,4 @@
-package vault.main;
+package vault;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +29,6 @@ import speculator.Speculator;
 import trade.Entry;
 import trade.Exit;
 import trade.Trade;
-import vault.Config;
 
 public class VaultMainControl extends BorderPane implements Initializable {
 	
@@ -202,6 +201,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		mainObsList.setAll(Config.getMarket().getAssetList());
 		listViewDisplay.setItems(mainObsList);
 		setCenter(listViewDisplay);
+    	listViewDisplay.scrollTo(0);
 		setRandomStatus();
 	}
 	
