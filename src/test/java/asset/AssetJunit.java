@@ -5,9 +5,11 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import market.BitcoinMarket;
 import market.Market;
+import price.PriceData;
 import vault.Config;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Random;
 
@@ -68,6 +70,15 @@ public class AssetJunit {
 		System.out.println("Comparing: " + fromExpected + " to " + fromActual);
 		
 		assertEquals(fromExpected, fromActual);
+	}
+	
+	@Test
+	public void testSetPriceDataList(){
+		Config.TestConfig();
+		asset.setPriceDataList();
+		for(PriceData priceData : asset.getPriceDataList()){
+			assertNotNull(priceData.getTrueRange());
+		}
 	}
 
 }
