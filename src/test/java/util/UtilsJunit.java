@@ -64,15 +64,15 @@ public class UtilsJunit {
 		String prettyPoint9 = StringFormatter.prettyPointX(new BigDecimal(1.0));
 		String prettyPoint10 = StringFormatter.prettyPointX(new BigDecimal(10.0));
 		String prettyPoint11 = StringFormatter.prettyPointX(new BigDecimal(100.0));
-		assertEquals("10MM", prettyPoint1);
-		assertEquals("1MM", prettyPoint2);
+		assertEquals("10M", prettyPoint1);
+		assertEquals("1M", prettyPoint2);
 		assertEquals("100K", prettyPoint3);
 		assertEquals("10K", prettyPoint4);
 		assertEquals("1K", prettyPoint5);
 		assertEquals("100", prettyPoint6);
 		assertEquals("10", prettyPoint7);
 		assertEquals("1", prettyPoint8);
-		assertEquals("100MM", prettyPoint9);
+		assertEquals("100M", prettyPoint9);
 		assertEquals("1B", prettyPoint10);
 		assertEquals("10B", prettyPoint11);
 		
@@ -80,15 +80,8 @@ public class UtilsJunit {
 		String prettyPoint_2 = StringFormatter.prettyPointX(new BigDecimal(-0.01));
 		String prettyPoint_3 = StringFormatter.prettyPointX(new BigDecimal(-0.009349848));
 		
-		assertEquals("-10MM", prettyPoint_1);
-		assertEquals("-1MM", prettyPoint_2);
+		assertEquals("-10M", prettyPoint_1);
+		assertEquals("-1M", prettyPoint_2);
 		assertEquals("-934K",prettyPoint_3);
 	}
-	
-	@Test
-	public void testPrettyPrice(){
-		
-	}
-	
-
 }
