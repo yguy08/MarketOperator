@@ -63,6 +63,7 @@ public class BitcoinMarket implements Market {
 			if(currencyPair.toString().endsWith("BTC")){
 				asset = AssetFactory.createAsset(this, currencyPair.toString());
 				assetList.add(asset);
+				PreloaderControl.updateStatus("Loading asset: " + asset.getAssetName());
 			}
 		}
 		SaveToFile.writeMarketListToFile((Market)this, assetList);
@@ -78,6 +79,7 @@ public class BitcoinMarket implements Market {
 			for(String currencyPair : currencyPairs){
 				asset = AssetFactory.createAsset(this, currencyPair);
 				assetList.add(asset);
+				PreloaderControl.updateStatus("Loading asset: " + asset.getAssetName());
 			}
 		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
