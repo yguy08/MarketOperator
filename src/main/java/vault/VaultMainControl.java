@@ -210,7 +210,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void setRandomStatus(){
-		statusText.setText(StatusEnum.randomStatus());
+		statusText.setText(SymbolsEnum.randomStatus());
 	}
 	
 	public void setStatus(String txtToDisplay){
