@@ -58,9 +58,7 @@ public class VaultStart extends Application {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                notifyPreloader(new Preloader.ProgressNotification(.5));
             	Config.ConfigSetUp();
-            	notifyPreloader(new Preloader.ProgressNotification(.9));
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
                     StateChangeNotification.Type.BEFORE_START));
