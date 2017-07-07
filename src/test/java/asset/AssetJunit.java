@@ -74,7 +74,6 @@ public class AssetJunit {
 	
 	@Test
 	public void testSetPriceDataList(){
-		Config.TestConfig();
 		asset.setPriceDataList();
 		for(PriceData priceData : asset.getPriceDataList()){
 			assertNotNull(priceData.getTrueRange());
