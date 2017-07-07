@@ -39,7 +39,7 @@ public class Config {
 	
 	private static String[] assetFilter = {"XMR", "ETH", "DASH", "XRP", "ETC", "DCR","LTC","FCT"};
 	
-	private static MarketsEnum startMarket = MarketsEnum.DOLLAR;
+	private static MarketsEnum startMarket = MarketsEnum.BITCOIN;
 	
 	public static void ConfigSetUp(){
 		setConnected();
@@ -80,6 +80,7 @@ public class Config {
 
 	public static void setMarket(MarketsEnum marketsEnum) {
 		Config.market = MarketFactory.createMarket(marketsEnum);
+		
 	}
 
 	public static BigDecimal getRisk() {
