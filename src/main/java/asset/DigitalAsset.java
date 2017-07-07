@@ -75,12 +75,14 @@ public class DigitalAsset implements Asset {
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - 365 * Config.getPriceHistoryYears() * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
-			List<String> saveToFileList = new ArrayList<>();
+			/*added to Config in a task...
+			 * List<String> saveToFileList = new ArrayList<>();
 			for(PoloniexChartData p : priceList){
 				priceData = new PriceData(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume());
 				saveToFileList.add(priceData.toString());
 			}
 			SaveToFile.writeAssetPriceListToFile(this, saveToFileList);
+			*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
