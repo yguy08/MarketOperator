@@ -7,14 +7,12 @@ import javafx.stage.Stage;
 
 public class VaultPreloaderStart extends Preloader {
     
-	Stage stage; 
-    
-    private static PreloaderControl preloaderControl;
+	Stage stage;
  
     @Override
 	public void start(Stage stage) throws Exception {
         this.stage = stage;
-        preloaderControl = new PreloaderControl();
+        PreloaderControl preloaderControl = new PreloaderControl();
         this.stage.setScene(new Scene(preloaderControl));
         this.stage.setTitle("Speculation 1000");
         this.stage.getIcons().add(new Image(getClass().getResourceAsStream("../icons/icon-treesun-64x64.png")));
@@ -37,15 +35,6 @@ public class VaultPreloaderStart extends Preloader {
     @Override
     public void handleStateChangeNotification(StateChangeNotification evt) {
     	System.out.println("Handle State Change " + evt.getType());
-    }
-    
-    public static PreloaderControl getPreloaderControl(){
-    	if(preloaderControl != null){
-    		return preloaderControl;
-    	}else{
-    		return new PreloaderControl();
-    	}
-    	
     }
     
 }
