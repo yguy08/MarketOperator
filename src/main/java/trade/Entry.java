@@ -16,7 +16,7 @@ import util.DateUtils;
 import util.StringFormatter;
 import vault.Config;
 import vault.Displayable;
-import vault.StatusEnum;
+import vault.SymbolsEnum;
 
 public class Entry implements Displayable {
 	
@@ -191,11 +191,11 @@ public class Entry implements Displayable {
 		sb.append(DateUtils.dateToMMddFormat(getAsset().getDateTimeFromIndex(entryIndex)) + " ");
 		sb.append(prettyName());
 		sb.append(" @" + PriceData.prettyPrice(getAsset().getClosePriceFromIndex(locationIndex)));
-		sb.append(" " + StatusEnum.N.getUnicode() + PriceData.prettyPrice(averageTrueRange));
-		sb.append(" " + StatusEnum.POUND.getUnicode() + unitSize);
-		sb.append(" \u03A3" + orderTotal.setScale(2, RoundingMode.HALF_DOWN));
-		sb.append(" \u2702" + PriceData.prettyPrice(stop));
-		sb.append(" \uD83D\uDD0A" + StringFormatter.bigDecimalToShortString(getAsset().getVolumeFromIndex(locationIndex)));		
+		sb.append(" " + SymbolsEnum.N.getSymbol() + PriceData.prettyPrice(averageTrueRange));
+		sb.append(" " + SymbolsEnum.POUND.getSymbol() + unitSize);
+		sb.append(" " + SymbolsEnum.TOTAL_COST.getSymbol() + orderTotal.setScale(2, RoundingMode.HALF_DOWN));
+		sb.append(" " + SymbolsEnum.STOP.getSymbol() + PriceData.prettyPrice(stop));
+		sb.append(" " + SymbolsEnum.VOLUME.getSymbol() + StringFormatter.bigDecimalToShortString(getAsset().getVolumeFromIndex(locationIndex).setScale(0, RoundingMode.HALF_DOWN)));		
 		return sb.toString();
 	}
 	
