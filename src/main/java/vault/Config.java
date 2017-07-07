@@ -18,6 +18,7 @@ import market.MarketFactory;
 import market.MarketsEnum;
 import price.PriceData;
 import util.SaveToFile;
+import vault.preloader.PreloaderControl;
 import vault.preloader.VaultPreloaderStart;
 
 public class Config {
@@ -53,11 +54,11 @@ public class Config {
 	private static MarketsEnum startMarket = MarketsEnum.BITCOIN;
 	
 	public static void ConfigSetUp(){
-		VaultPreloaderStart.getPreloaderControl().setStatus("Checking connection...");
+		PreloaderControl.updateStatus("Checking connection...");
 		setConnected();
-		VaultPreloaderStart.getPreloaderControl().setStatus("Connection: " + isConnected());
+		PreloaderControl.updateStatus("Connection: " + isConnected());
 		setMarket(startMarket);
-		VaultPreloaderStart.getPreloaderControl().setStatus(getMarket().getMarketName() + " loaded!");
+		PreloaderControl.updateStatus(getMarket().getMarketName() + " loaded!");
 		setAccountBalance(4);
 		setRisk(1);
 		setMaxUnits(6);
