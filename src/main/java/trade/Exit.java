@@ -9,7 +9,9 @@ import asset.Asset;
 import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
+import util.StringFormatter;
 import vault.Displayable;
+import vault.SymbolsEnum;
 
 public class Exit implements Displayable {
 	
@@ -97,10 +99,10 @@ public class Exit implements Displayable {
 		sb.append(DateUtils.dateToMMddFormat(getDateTime()));
 		sb.append(prettyName());
 		sb.append(" @" + PriceData.prettyPrice(getExitPrice()));
-		sb.append(" \u2600" + DateUtils.dateToMMddFormat(entry.getDateTime()));
+		sb.append(" " + SymbolsEnum.ENTRY.getSymbol() + DateUtils.dateToMMddFormat(entry.getDateTime()));
 		sb.append(" @" + PriceData.prettyPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
 		sb.append(openOrExit() + " ");
-		sb.append("(" + PriceData.prettyPrice(calcGainLossAmount()) + ")");
+		sb.append("(" + StringFormatter.prettyPointX(calcGainLossAmount()) + ")");
 		return  sb.toString();
 	}
 	
