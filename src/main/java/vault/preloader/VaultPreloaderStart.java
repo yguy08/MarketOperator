@@ -9,7 +9,7 @@ public class VaultPreloaderStart extends Preloader {
     
 	Stage stage; 
     
-    PreloaderControl preloaderControl;
+    private static PreloaderControl preloaderControl;
  
     @Override
 	public void start(Stage stage) throws Exception {
@@ -23,11 +23,8 @@ public class VaultPreloaderStart extends Preloader {
  
     @Override
     public void handleApplicationNotification(PreloaderNotification pn) {
-    	if (pn instanceof ProgressNotification) {
-            System.out.println("Handle ApplicationNotification: Progress =  " + ((ProgressNotification) pn).getProgress());
-            preloaderControl.getProgressBar().setProgress(((ProgressNotification) pn).getProgress());
-         } else if (pn instanceof StateChangeNotification) {
-        	 System.out.println("Handle ApplicationNotification: State Change = " + ((StateChangeNotification) pn).getType());
+    	if (pn instanceof StateChangeNotification) {
+        	 System.out.println("Handle Application Notification: State Change = " + ((StateChangeNotification) pn).getType());
              stage.hide();
          }
     }
@@ -35,12 +32,20 @@ public class VaultPreloaderStart extends Preloader {
 	@Override
     public void handleProgressNotification(ProgressNotification pn) {
         System.out.println("Handle Progress Notification: Progress = " + pn.getProgress());
-        preloaderControl.getProgressBar().setProgress(0.25);
     }
  
     @Override
     public void handleStateChangeNotification(StateChangeNotification evt) {
     	System.out.println("Handle State Change " + evt.getType());
-    }   
+    }
+    
+    public static PreloaderControl getPreloaderControl(){
+    	if(preloaderControl != null){
+    		return preloaderControl;
+    	}else{
+    		return new PreloaderControl();
+    	}
+    	
+    }
     
 }
