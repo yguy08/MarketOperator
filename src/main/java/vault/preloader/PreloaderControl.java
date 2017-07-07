@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 
 public class PreloaderControl extends BorderPane {
 	
-	@FXML private ProgressBar bar;
+	@FXML private Text statusText;
 	
 	public PreloaderControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PreloaderView.fxml"));
@@ -23,8 +23,8 @@ public class PreloaderControl extends BorderPane {
         }
     }
 	
-	public ProgressBar getProgressBar() {
-		return bar;
+	public void setStatus(String text){
+		javafx.application.Platform.runLater( () -> statusText.setText(text) );
 	}
 
 }
