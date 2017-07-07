@@ -30,7 +30,7 @@ public class StringFormatter {
 		if(length > 9){
 			return bigFormat.substring(0, i) + "B";
 		}else if(length > 6){
-			return bigFormat.substring(0, i) + "MM";
+			return bigFormat.substring(0, i) + "M";
 		}else if(length > 3){
 			return bigFormat.substring(0, i) + "K";
 		}else{
