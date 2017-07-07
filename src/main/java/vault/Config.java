@@ -4,10 +4,21 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
+
+import asset.Asset;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import market.Market;
 import market.MarketFactory;
 import market.MarketsEnum;
+import price.PriceData;
+import util.SaveToFile;
+import vault.preloader.VaultPreloaderStart;
 
 public class Config {
 	
@@ -42,8 +53,11 @@ public class Config {
 	private static MarketsEnum startMarket = MarketsEnum.BITCOIN;
 	
 	public static void ConfigSetUp(){
+		VaultPreloaderStart.getPreloaderControl().setStatus("Checking connection...");
 		setConnected();
+		VaultPreloaderStart.getPreloaderControl().setStatus("Connection: " + isConnected());
 		setMarket(startMarket);
+		VaultPreloaderStart.getPreloaderControl().setStatus(getMarket().getMarketName() + " loaded!");
 		setAccountBalance(4);
 		setRisk(1);
 		setMaxUnits(6);
@@ -81,6 +95,28 @@ public class Config {
 	public static void setMarket(MarketsEnum marketsEnum) {
 		Config.market = MarketFactory.createMarket(marketsEnum);
 		
+		//populate new offline txt files
+		if(Config.isConnected()){
+			Task<Void> task = new Task<Void>() {
+	    	    @Override public Void call() {
+	    			for(Asset asset : Config.market.getAssetList()){
+	    				List<String> saveToFileList = new ArrayList<>();
+	    				for(PoloniexChartData p : asset.getPriceList()){
+	    					saveToFileList.add(new PriceData(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume()).toString());
+	    				}
+	    				SaveToFile.writeAssetPriceListToFile(asset, saveToFileList);
+	    			}
+	    	        return null;
+	    	    }
+	    	};
+	    	new Thread(task).start();
+			task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+				@Override
+				public void handle(WorkerStateEvent t){
+					System.out.println("Assets saved to file!");
+				}
+			});
+		}
 	}
 
 	public static BigDecimal getRisk() {
@@ -188,7 +224,7 @@ public class Config {
 	}
 
 	public static int getPriceHistoryYears(){
-		return 10;
+		return 2;
 	}
 	
 	public static int getMovingAvg(){
