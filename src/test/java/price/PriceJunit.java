@@ -4,13 +4,9 @@ import org.junit.Test;
 
 import asset.Asset;
 import asset.DigitalAsset;
-import speculator.DigitalSpeculator;
-import trade.Entry;
 import vault.Config;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.List;
 
 public class PriceJunit {	
 	

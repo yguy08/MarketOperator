@@ -28,7 +28,6 @@ import price.PoloniexPriceList;
 import price.PriceData;
 import speculator.Speculator;
 import util.DateUtils;
-import util.SaveToFile;
 import vault.Config;
 
 public class DigitalAsset implements Asset {
@@ -69,20 +68,11 @@ public class DigitalAsset implements Asset {
 	public void setPriceList() {
 		long date = new Date().getTime() / 1000;
 		CurrencyPair currencyPair = new CurrencyPair(assetName);
-		PriceData priceData;
 		try {
 			priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - 365 * Config.getPriceHistoryYears() * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
-			/*added to Config in a task...
-			 * List<String> saveToFileList = new ArrayList<>();
-			for(PoloniexChartData p : priceList){
-				priceData = new PriceData(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume());
-				saveToFileList.add(priceData.toString());
-			}
-			SaveToFile.writeAssetPriceListToFile(this, saveToFileList);
-			*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

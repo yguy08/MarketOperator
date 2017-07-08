@@ -69,5 +69,4 @@ public interface Asset extends Displayable {
 	//get (x) day low
 	BigDecimal getLowForExitFlag();
 	
-
 }

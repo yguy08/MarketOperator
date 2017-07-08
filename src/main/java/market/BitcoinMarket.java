@@ -16,6 +16,7 @@ import org.knowm.xchange.poloniex.PoloniexExchange;
 import asset.Asset;
 import asset.AssetFactory;
 import util.SaveToFile;
+import vault.preloader.PreloaderControl;
 
 public class BitcoinMarket implements Market {
 	

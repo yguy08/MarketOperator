@@ -11,15 +11,12 @@ import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import asset.Asset;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import market.Market;
 import market.MarketFactory;
 import market.MarketsEnum;
 import price.PriceData;
 import util.SaveToFile;
 import vault.preloader.PreloaderControl;
-import vault.preloader.VaultPreloaderStart;
 
 public class Config {
 	
@@ -97,6 +94,7 @@ public class Config {
 		Config.market = MarketFactory.createMarket(marketsEnum);
 		
 		//populate new offline txt files
+		
 		if(Config.isConnected()){
 			Task<Void> task = new Task<Void>() {
 	    	    @Override public Void call() {
@@ -105,19 +103,14 @@ public class Config {
 	    				for(PoloniexChartData p : asset.getPriceList()){
 	    					saveToFileList.add(new PriceData(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume()).toString());
 	    				}
+    					PreloaderControl.updateStatus("Saving latest " + asset.getAssetName());
 	    				SaveToFile.writeAssetPriceListToFile(asset, saveToFileList);
 	    			}
 	    	        return null;
 	    	    }
 	    	};
 	    	new Thread(task).start();
-			task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
-				@Override
-				public void handle(WorkerStateEvent t){
-					System.out.println("Assets saved to file!");
-				}
-			});
-		}
+	    }
 	}
 
 	public static BigDecimal getRisk() {
