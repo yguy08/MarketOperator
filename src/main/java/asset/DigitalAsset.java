@@ -22,11 +22,11 @@ import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.Market;
-import trade.Entry;
-import trade.Exit;
 import price.PoloniexPriceList;
 import price.PriceData;
 import speculator.Speculator;
+import trade.Entry;
+import trade.Exit;
 import util.DateUtils;
 import vault.Config;
 

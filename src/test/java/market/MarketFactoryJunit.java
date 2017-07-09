@@ -1,9 +1,10 @@
 package market;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import vault.Config;
-import static org.junit.Assert.assertEquals;
 
 public class MarketFactoryJunit {
 	

@@ -6,8 +6,8 @@ import java.util.List;
 
 public class FileParser {
 	
-	public static List<String> readTextFileByLines(String fileName) throws IOException{
-		List<String> lines = Files.readAllLines(Paths.get(fileName));
+	public static List<?> readTextFileByLines(String fileName) throws IOException{
+		List<?> lines = Files.readAllLines(Paths.get(fileName));
 		return lines;
 	}
 	

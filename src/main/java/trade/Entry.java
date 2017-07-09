@@ -186,6 +186,7 @@ public class Entry implements Displayable {
 		return asset;
 	}
 	
+	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append(DateUtils.dateToMMddFormat(getAsset().getDateTimeFromIndex(entryIndex)) + " ");

@@ -1,5 +1,10 @@
 package asset;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.Random;
+
 import org.junit.Test;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
@@ -7,11 +12,6 @@ import market.BitcoinMarket;
 import market.Market;
 import price.PriceData;
 import vault.Config;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.Random;
 
 public class AssetJunit {
 	

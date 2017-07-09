@@ -71,7 +71,8 @@ public class ConfigControl extends GridPane implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		setDefaultSettings();
 		marketToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-		    public void changed(ObservableValue<? extends Toggle> ov,
+		    @Override
+			public void changed(ObservableValue<? extends Toggle> ov,
 		        Toggle toggle, Toggle new_toggle) {
 		            if (new_toggle == bitcoinMarket){
 		            	setNewMarket(MarketsEnum.BITCOIN);
@@ -141,7 +142,8 @@ public class ConfigControl extends GridPane implements Initializable {
 			@Override
 			public void handle(WorkerStateEvent t){
 				Platform.runLater(new Runnable() {
-		            public void run() {
+		            @Override
+					public void run() {
 		            	VaultMainControl.getVaultMainControl().enableAllBtns();
 		            	saveSettings.setDisable(false);
 		            	VaultMainControl.getVaultMainControl().setStatus("Loaded " + marketEnum.getMarketName() + "!");

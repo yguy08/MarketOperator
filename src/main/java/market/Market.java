@@ -1,7 +1,9 @@
 package market;
 
 import java.util.List;
+
 import org.knowm.xchange.Exchange;
+
 import asset.Asset;
 
 public interface Market {

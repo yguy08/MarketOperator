@@ -7,11 +7,11 @@ import java.util.List;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import market.Market;
+import price.PriceData;
+import speculator.Speculator;
 import trade.Entry;
 import trade.Exit;
 import vault.Displayable;
-import speculator.Speculator;
-import price.PriceData;
 
 public interface Asset extends Displayable {
 

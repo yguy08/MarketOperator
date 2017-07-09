@@ -94,7 +94,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			@Override
 			public void handle(WorkerStateEvent t){
 				Platform.runLater(new Runnable() {
-		            public void run() {
+		            @Override
+					public void run() {
 		            	mainObsList.setAll(task.getValue());
 		            	listViewDisplay.scrollTo(0);
 		            }
@@ -128,7 +129,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			@Override
 			public void handle(WorkerStateEvent t){
 				Platform.runLater(new Runnable() {
-		            public void run() {
+		            @Override
+					public void run() {
 		            	mainObsList.setAll(task.getValue());
 		            	listViewDisplay.scrollTo(0);
 		            }
@@ -166,7 +168,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			@Override
 			public void handle(WorkerStateEvent t){
 				Platform.runLater(new Runnable() {
-		            public void run() {
+		            @Override
+					public void run() {
 		            	mainObsList.setAll(task.getValue());
 		            	listViewDisplay.scrollTo(0);
 		            } 

@@ -94,7 +94,6 @@ public class Config {
 		Config.market = MarketFactory.createMarket(marketsEnum);
 		
 		//populate new offline txt files
-		
 		if(Config.isConnected()){
 			Task<Void> task = new Task<Void>() {
 	    	    @Override public Void call() {

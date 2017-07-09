@@ -1,12 +1,12 @@
 package price;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import asset.Asset;
 import asset.DigitalAsset;
 import vault.Config;
-
-import static org.junit.Assert.assertEquals;
 
 public class PriceJunit {	
 	

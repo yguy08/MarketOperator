@@ -67,7 +67,7 @@ public class BitcoinMarket implements Market {
 				PreloaderControl.updateStatus("Loading asset: " + asset.getAssetName());
 			}
 		}
-		SaveToFile.writeMarketListToFile((Market)this, assetList);
+		SaveToFile.writeMarketListToFile(this, assetList);
 	}
 	
 	@Override

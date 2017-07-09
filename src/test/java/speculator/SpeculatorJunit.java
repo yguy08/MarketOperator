@@ -1,12 +1,12 @@
 package speculator;
 
-import org.junit.Test;
-
-import vault.Config;
-
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
+
+import org.junit.Test;
+
+import vault.Config;
 
 public class SpeculatorJunit {	
 	

@@ -69,7 +69,7 @@ public class EthereumMarket implements Market {
 				assetList.add(asset);
 			}
 		}
-		SaveToFile.writeMarketListToFile((Market)this, assetList);
+		SaveToFile.writeMarketListToFile(this, assetList);
 	}
 
 	@Override
