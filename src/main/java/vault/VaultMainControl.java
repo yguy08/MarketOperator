@@ -75,7 +75,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		    	List<Entry> entryList = new ArrayList<>();
 				for(Asset asset : assetList){
 					List<Entry> assetEntryList = asset.getEntryList(speculator);
-					entryList.addAll(assetEntryList);
+					entryList.addAll(assetEntryList);					
 				}
 				
 				//sort list
