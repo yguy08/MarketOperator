@@ -7,12 +7,11 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
-
 import asset.Asset;
 import javafx.concurrent.Task;
+import market.DigitalMarket;
+import market.ExchangesEnum;
 import market.Market;
-import market.MarketFactory;
 import market.MarketsEnum;
 import price.PriceData;
 import util.SaveToFile;
@@ -49,6 +48,8 @@ public class Config {
 	private static String[] assetFilter = {"XMR", "ETH", "DASH", "XRP", "ETC", "DCR","LTC","FCT"};
 	
 	private static MarketsEnum startMarket = MarketsEnum.BITCOIN;
+	
+	private static ExchangesEnum Exchange = ExchangesEnum.POLONIEX;
 	
 	//2 systems, 1 my trend following. another -20% buy...sell half double, the Brian method (rational investor)
 	
@@ -93,7 +94,7 @@ public class Config {
 	}
 
 	public static void setMarket(MarketsEnum marketsEnum) {
-		Config.market = MarketFactory.createMarket(marketsEnum);
+		Config.market = new DigitalMarket(marketsEnum);
 		
 		//populate new offline txt files
 		if(Config.isConnected()){
@@ -101,8 +102,8 @@ public class Config {
 	    	    @Override public Void call() {
 	    			for(Asset asset : Config.market.getAssetList()){
 	    				List<String> saveToFileList = new ArrayList<>();
-	    				for(PoloniexChartData p : asset.getPriceList()){
-	    					saveToFileList.add(new PriceData(p.getDate(), p.getHigh(), p.getLow(), p.getOpen(), p.getClose(), p.getVolume()).toString());
+	    				for(PriceData priceData : asset.getPriceDataList()){
+	    					saveToFileList.add(priceData.toString());
 	    				}
     					PreloaderControl.updateStatus("Saving latest " + asset.getAssetName());
 	    				SaveToFile.writeAssetPriceListToFile(asset, saveToFileList);
@@ -236,6 +237,14 @@ public class Config {
 	
 	public static MarketsEnum getStartMarket(){
 		return startMarket;
+	}
+
+	public static ExchangesEnum getExchange() {
+		return Exchange;
+	}
+
+	public static void setExchange(ExchangesEnum exchangeEnum) {
+		Config.Exchange = exchangeEnum;
 	}
 
 }
