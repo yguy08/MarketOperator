@@ -38,20 +38,20 @@ public class PriceData {
 		this.volume = volume;
 	}
 	
-	public PriceData(String[] dayPriceDataArr) {
+	public PriceData(String[] singleDayPriceDataStrArr) {
 		try{
 			//only need if date is weird in file...
 			DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");			
-			setDate(format.parse(dayPriceDataArr[0].trim()));
+			setDate(format.parse(singleDayPriceDataStrArr[0].trim()));
 		}catch(ParseException e){
 			System.out.println("Error parsing date in price data array");
 		}
 		
-		high = new BigDecimal(dayPriceDataArr[1]);
-		low = new BigDecimal(dayPriceDataArr[2]);
-		open =	new BigDecimal(dayPriceDataArr[3]);
-		close = new BigDecimal(dayPriceDataArr[4]); 
-		volume = new BigDecimal(dayPriceDataArr[5]);
+		high = new BigDecimal(singleDayPriceDataStrArr[1]);
+		low = new BigDecimal(singleDayPriceDataStrArr[2]);
+		open =	new BigDecimal(singleDayPriceDataStrArr[3]);
+		close = new BigDecimal(singleDayPriceDataStrArr[4]); 
+		volume = new BigDecimal(singleDayPriceDataStrArr[5]);
 		
 	}
 
