@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
-
 import market.Market;
 import price.PriceData;
 import speculator.Speculator;
@@ -21,9 +19,7 @@ public interface Asset extends Displayable {
 	
 	void setPriceList();
 				
-	void setOfflinePriceList();	
-
-	List<PoloniexChartData> getPriceList();
+	void setOfflinePriceList();
 	
 	void setMarketDataService(Market market);
 
@@ -42,9 +38,7 @@ public interface Asset extends Displayable {
 	
 	BigDecimal getHighPriceFromIndex(int index);
 	
-	BigDecimal getLowPriceFromIndex(int index);	
-	
-	void setPriceDataList();
+	BigDecimal getLowPriceFromIndex(int index);
 	
 	List<PriceData> getPriceDataList();
 	
