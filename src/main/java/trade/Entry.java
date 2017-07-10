@@ -44,7 +44,7 @@ public class Entry implements Displayable {
 	public Entry(Asset asset, Speculator speculator){
 		this.asset	= asset;
 		this.speculator = speculator;
-		this.locationIndex = getAsset().getIndexOfLastRecordInSubList(); 
+		this.locationIndex = getAsset().getIndexOfLastRecordInSubList();
 		
 		if(isEntryCandidate()){
 			isEntry = true;
@@ -221,7 +221,7 @@ public class Entry implements Displayable {
 		Entry entry;
 		List<Entry> entryList = new ArrayList<>();
 		int i = asset.getStartIndex(Config.getEntrySignalDays(), Config.getTimeFrameDays()); 
-		for(int x = i;x < asset.getPriceList().size();x++){
+		for(int x = i;x < asset.getPriceDataList().size();x++){
 			asset.setPriceSubList(x - Config.getEntrySignalDays(), x);
 			entry = new Entry(asset, speculator);
 			if(entry.isEntry()){
