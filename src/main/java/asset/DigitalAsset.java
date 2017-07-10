@@ -17,14 +17,11 @@ import java.util.List;
 
 import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
-import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.Market;
-import market.MarketsEnum;
-import price.PoloniexPriceList;
 import price.PriceData;
 import speculator.Speculator;
 import trade.Entry;
@@ -38,50 +35,35 @@ public class DigitalAsset implements Asset {
 	
 	private String assetName;
 	
-	private List<PoloniexChartData> priceList = new ArrayList<>();
+	//private List<PoloniexChartData> priceList = new ArrayList<>();
 	
-	private List<PoloniexChartData> priceSubList;
+	private List<PriceData> priceSubList;
 	
 	private List<PriceData> priceDataList = new ArrayList<>();
 	
-	public DigitalAsset(CurrencyPair currencyPair){
+	public DigitalAsset(Market market, CurrencyPair currencyPair){
 		if(currencyPair == null){
 			throw new IllegalArgumentException();
 		}
 		Currency currency = currencyPair.counter;
 		if(currency.equals(Currency.BTC)){
-			assetName = currencyPair.toString();
+			setAssetName(currencyPair.toString());
 			System.out.println("BTC!");
 		}else if(currency.equals(Currency.ETH)){
-			assetName = currencyPair.toString();
+			setAssetName(currencyPair.toString());
 			System.out.println("ETH!");
-		}else if(currency.equals(Currency.USD)){
-			assetName = currencyPair.toString();
+		}else if(currency.equals(Currency.USD) || currency.toString().equalsIgnoreCase("USDT")){
+			setAssetName(currencyPair.toString());
 			System.out.println("USD!");
 		}else{
 			throw new IllegalArgumentException("Unsupported currency...");
 		}
-	}
-	
-	public DigitalAsset(){
-		
-	}
-	
-	//static factory method to create online asset
-	public static DigitalAsset createOnlineDigitalAsset(Market market, String assetName){
-		DigitalAsset digitalAsset = new DigitalAsset();
-		digitalAsset.setAssetName(assetName);
-		digitalAsset.setMarketDataService(market);
-		digitalAsset.setPriceList();
-		return digitalAsset;
-	}
-	
-	//static factory method to create offline asset
-	public static DigitalAsset createOfflineDigitalAsset(String assetName){
-		DigitalAsset digitalAsset = new DigitalAsset();
-		digitalAsset.setAssetName(assetName);
-		digitalAsset.setOfflinePriceList();
-		return digitalAsset;
+		if(Config.isConnected()){
+			setMarketDataService(market);
+			setPriceList();
+		}else{
+			setOfflinePriceList();
+		}
 	}
 
 	@Override
@@ -93,11 +75,21 @@ public class DigitalAsset implements Asset {
 	public void setPriceList() {
 		long date = new Date().getTime() / 1000;
 		CurrencyPair currencyPair = new CurrencyPair(assetName);
+		PriceData priceData;
 		try {
+			/*
 			priceList = Arrays
 					.asList(((PoloniexMarketDataServiceRaw) dataService)
 					.getPoloniexChartData(currencyPair, date - 365 * Config.getPriceHistoryYears() * 24 * 60 * 60,
+					date, PoloniexChartDataPeriodType.PERIOD_86400));*/
+			List<?> priceList = Arrays
+					.asList(((PoloniexMarketDataServiceRaw) dataService)
+					.getPoloniexChartData(currencyPair, date - 365 * Config.getPriceHistoryYears() * 24 * 60 * 60,
 					date, PoloniexChartDataPeriodType.PERIOD_86400));
+			for(Object dayData : priceList){
+				priceData = new PriceData(((String) dayData).split(","));
+				priceDataList.add(priceData);
+			}			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -105,30 +97,23 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public void setOfflinePriceList() {
-		List<String> pcd = new ArrayList<>();
 		String fileName = getAssetName().replace("/", "") + ".txt";
 		URL resourceUrl = getClass().getResource(fileName);
-		PoloniexChartData pl;
+		PriceData priceData;
 		try {
-			pcd = Files.readAllLines(Paths.get(resourceUrl.toURI()));
-			for(String p : pcd){
-				String[] arr = p.split(",");
-				pl = PoloniexPriceList.createPoloOfflinePriceList(arr);
-				priceList.add(pl);
+			List<String> priceDataFromFile = Files.readAllLines(Paths.get(resourceUrl.toURI()));
+			for(String priceDataStr : priceDataFromFile){
+				priceData = new PriceData(priceDataStr.split(","));
+				priceDataList.add(priceData);
 			}
-		} catch (IOException | URISyntaxException | ParseException e) {
+		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public List<PoloniexChartData> getPriceList() {
-		return priceList;
 	}
 	
 	@Override
 	public void setPriceSubList(int start, int end) {
-		priceSubList = priceList.subList(start, end + 1);
+		priceSubList = priceDataList.subList(start, end + 1);
 	}
 
 	@Override
@@ -138,17 +123,17 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public void setMarketDataService(Market market) {
-		dataService = market.getExchange().getMarketDataService();
+		dataService = market.getMarketDataService();
 	}
 	
 	@Override
 	public int getIndexOfLastRecordInSubList() {
-		return priceList.indexOf(priceSubList.get(priceSubList.size()-1));
+		return priceDataList.indexOf(priceSubList.get(priceSubList.size()-1));
 	}
 	
 	@Override
 	public int getIndexOfLastRecordInPriceList() {
-		return priceList.size() - 1;
+		return priceDataList.size() - 1;
 	}
 
 	@Override
@@ -162,22 +147,22 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public BigDecimal getClosePriceFromIndex(int index) {
-		return priceList.get(index).getClose();
+		return priceDataList.get(index).getClose();
 	}
 	
 	@Override
 	public BigDecimal getHighPriceFromIndex(int index) {
-		return priceList.get(index).getHigh();
+		return priceDataList.get(index).getHigh();
 	}
 
 	@Override
 	public BigDecimal getLowPriceFromIndex(int index) {
-		return priceList.get(index).getLow();
+		return priceDataList.get(index).getLow();
 	}
 	
 	@Override
 	public Date getDateTimeFromIndex(int index) {
-		String date = DateUtils.dateToSimpleDateFormat(priceList.get(index).getDate());
+		String date = DateUtils.dateToSimpleDateFormat(priceDataList.get(index).getDate());
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateTime;
 		try {
@@ -191,15 +176,15 @@ public class DigitalAsset implements Asset {
 
 	@Override
 	public BigDecimal getVolumeFromIndex(int index) {
-		return priceList.get(index).getVolume();
+		return priceDataList.get(index).getVolume();
 	}
 
 	@Override
 	public List<Entry> getEntryList(Speculator speculator) {
 		Entry entry;
 		List<Entry> entryList = new ArrayList<>();
-		int i = getStartIndex(Config.getEntrySignalDays(), Config.getTimeFrameDays()); 
-		for(int x = i;x < getPriceList().size();x++){
+		int i = getStartIndex(Config.getEntrySignalDays(), Config.getTimeFrameDays());
+		for(int x = i;x < getPriceDataList().size();x++){
 			setPriceSubList(x - Config.getEntrySignalDays(), x);
 			entry = new Entry(this, speculator);
 			if(entry.isEntry()){
@@ -214,7 +199,7 @@ public class DigitalAsset implements Asset {
 		Exit exit;
 		List<Exit> exitList = new ArrayList<>();
 		for(Entry e : getEntryList(speculator)){
-			for(int i = e.getEntryIndex();i < priceList.size();i++){
+			for(int i = e.getEntryIndex();i < priceDataList.size();i++){
 				setPriceSubList(i - Config.getSellSignalDays(), i);
 				exit = new Exit(e, speculator);
 				if(exit.isExit()){
@@ -232,7 +217,7 @@ public class DigitalAsset implements Asset {
 		List<Exit> openList = new ArrayList<>();
 		Exit exit;
 		for(Entry e : entryList){
-			for(int i = e.getEntryIndex(); i < priceList.size();i++){
+			for(int i = e.getEntryIndex(); i < priceDataList.size();i++){
 				setPriceSubList(i - Config.getSellSignalDays(), i);
 				exit = new Exit(e, speculator);
 				if(exit.isExit() || exit.isOpen()){
@@ -245,12 +230,12 @@ public class DigitalAsset implements Asset {
 	}
 	
 	private Date getLatestDate() {
-		return priceList.get(priceList.size()-1).getDate();
+		return priceDataList.get(priceDataList.size()-1).getDate();
 	}
 
 	
 	private BigDecimal getLatestPrice() {
-		return priceList.get(priceList.size()-1).getClose();
+		return priceDataList.get(priceDataList.size()-1).getClose();
 	}
 
 	@Override
@@ -260,9 +245,9 @@ public class DigitalAsset implements Asset {
 			return getIndexOfLastRecordInPriceList() - (movingAvg +
 					timeFrameDays);
 		}
-		boolean isShortHistory = (priceList.size() < signalDays || priceList.size() < movingAvg);
+		boolean isShortHistory = (priceDataList.size() < signalDays || priceDataList.size() < movingAvg);
 		if(isShortHistory){
-			return priceList.size();
+			return priceDataList.size();
 		}else{
 			return 0 + signalDays; 
 		}
@@ -291,17 +276,6 @@ public class DigitalAsset implements Asset {
 		setPriceSubList(getIndexOfLastRecordInPriceList() - Config.getSellSignalDays(), getIndexOfLastRecordInPriceList());
 		BigDecimal minPrice = Collections.min(getClosePriceListFromSubList());
 		return minPrice;
-	}
-	
-	@Override
-	public void setPriceDataList() {
-		PriceData priceData;
-		for(int i = 0; i < priceList.size();i++){
-			PoloniexChartData rawData = priceList.get(i);
-			priceData = new PriceData(rawData.getDate(), rawData.getHigh(), rawData.getLow(), rawData.getOpen(), rawData.getClose(), rawData.getVolume());
-			priceDataList.add(priceData);
-		}		
-		PriceData.setTrueRange(priceDataList);
 	}
 
 	@Override
