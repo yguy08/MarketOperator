@@ -2,21 +2,41 @@ package market;
 
 public enum MarketsEnum {
 	
-	BITCOIN 			("Bitcoin"),
-	BITCOIN_OFFLINE		("Bitcoin Offline"),
-	DOLLAR 				("Dollar"),
-	DOLLAR_OFFLINE		("Dollar Offline"),
-	ETHEREUM 			("Ethereum"),
-	ETHEREUM_OFFLINE	("Ethereum Offline");	
+	BITCOIN 			("Bitcoin","BTC"),
+	BITCOIN_OFFLINE		("Bitcoin Offline","BTC"),
+	DOLLAR 				("Dollar","USDT"),
+	DOLLAR_OFFLINE		("Dollar Offline","USDT"),
+	ETHEREUM 			("Ethereum","ETH"),
+	ETHEREUM_OFFLINE	("Ethereum Offline","ETH");	
 	
 	private String marketName;
+	private String counter;
 	
-	MarketsEnum(String marketName){
+	MarketsEnum(String marketName, String counter){
 		this.marketName = marketName;
+		this.counter = counter;
 	}
 	
 	public String getMarketName(){
 		return marketName;
+	}
+	
+	public String getCounter(){
+		return counter;
+	}
+	
+	public static MarketsEnum getMarketEnum(Market market){
+		if(market == null){
+			throw new IllegalArgumentException("No market specified");
+		}
+		
+		if(market.getMarketName().equalsIgnoreCase(BITCOIN.getMarketName())){
+			return BITCOIN;
+		}else if(market.getMarketName().equalsIgnoreCase(ETHEREUM.getMarketName())){
+			return ETHEREUM;
+		}else{
+			return DOLLAR;
+		}
 	}
 
 }
