@@ -12,7 +12,6 @@ import java.util.List;
 import org.junit.Test;
 
 import asset.Asset;
-import market.BitcoinMarket;
 import market.Market;
 import speculator.DigitalSpeculator;
 import speculator.Speculator;
@@ -26,7 +25,7 @@ public class TradeJunit {
 		Config.TestConfig();
 	}
 	
-	Market market = BitcoinMarket.createOfflineBitcoinMarket();
+	Market market = Config.getMarket();
 	
 	@Test
 	public void testEntriesHighestVol(){
@@ -44,20 +43,22 @@ public class TradeJunit {
 		});		
 		Trade t = new Trade(exitList, speculator);
 		for(Tuple<List<Entry>,List<Exit>> entryExit : t.getEntryExitList()){
-			Collections.sort(entryExit.a, new Comparator<Entry>() {
-			    @Override
-				public int compare(Entry o1, Entry o2) {
-			        return o2.getVolume().compareTo(o1.getVolume());
-			    }
-			});			
-			List<BigDecimal> volList = new ArrayList<>();
-			for(Entry entry : entryExit.a){
-				volList.add(entry.getVolume());
-			}			
-			BigDecimal max = Collections.max(volList);
-			BigDecimal min = Collections.min(volList);
-			assertEquals(max, entryExit.a.get(0).getVolume());
-			assertEquals(min, entryExit.a.get(entryExit.a.size()-1).getVolume());
+			if(entryExit.a.size()>0){
+				Collections.sort(entryExit.a, new Comparator<Entry>() {
+				    @Override
+					public int compare(Entry o1, Entry o2) {
+				        return o2.getVolume().compareTo(o1.getVolume());
+				    }
+				});			
+				List<BigDecimal> volList = new ArrayList<>();
+				for(Entry entry : entryExit.a){
+					volList.add(entry.getVolume());
+				}			
+				BigDecimal max = Collections.max(volList);
+				BigDecimal min = Collections.min(volList);
+				assertEquals(max, entryExit.a.get(0).getVolume());
+				assertEquals(min, entryExit.a.get(entryExit.a.size()-1).getVolume());
+			}
 		}
 		
 	}
