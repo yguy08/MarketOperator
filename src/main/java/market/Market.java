@@ -3,6 +3,7 @@ package market;
 import java.util.List;
 
 import org.knowm.xchange.Exchange;
+import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import asset.Asset;
 
@@ -18,8 +19,12 @@ public interface Market {
 	
 	public void setOfflineAssetList();
 	
-	void setExchange();
+	void setExchange(ExchangesEnum exchangeEnum);
 	
 	Exchange getExchange();
+	
+	void setMarketDataService(Exchange exchange);
+	
+	MarketDataService getMarketDataService();
 	
 }
