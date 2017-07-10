@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
@@ -22,6 +23,7 @@ import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.Market;
+import market.MarketsEnum;
 import price.PoloniexPriceList;
 import price.PriceData;
 import speculator.Speculator;
@@ -41,6 +43,29 @@ public class DigitalAsset implements Asset {
 	private List<PoloniexChartData> priceSubList;
 	
 	private List<PriceData> priceDataList = new ArrayList<>();
+	
+	public DigitalAsset(CurrencyPair currencyPair){
+		if(currencyPair == null){
+			throw new IllegalArgumentException();
+		}
+		Currency currency = currencyPair.counter;
+		if(currency.equals(Currency.BTC)){
+			assetName = currencyPair.toString();
+			System.out.println("BTC!");
+		}else if(currency.equals(Currency.ETH)){
+			assetName = currencyPair.toString();
+			System.out.println("ETH!");
+		}else if(currency.equals(Currency.USD)){
+			assetName = currencyPair.toString();
+			System.out.println("USD!");
+		}else{
+			throw new IllegalArgumentException("Unsupported currency...");
+		}
+	}
+	
+	public DigitalAsset(){
+		
+	}
 	
 	//static factory method to create online asset
 	public static DigitalAsset createOnlineDigitalAsset(Market market, String assetName){

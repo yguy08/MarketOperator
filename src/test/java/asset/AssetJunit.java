@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Random;
 
 import org.junit.Test;
+import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 
 import market.BitcoinMarket;
@@ -22,6 +23,12 @@ public class AssetJunit {
 	int size = market.getAssetList().size()-1;
 	
 	Asset asset = market.getAssetList().get(RANDOM.nextInt(size));
+	
+	@Test
+	public void testNewAsset(){
+		DigitalAsset digi = new DigitalAsset(new CurrencyPair("ETH/BTC"));
+		assertEquals("ETH/BTC",digi.getAssetName());
+	}
 	
 	@Test
 	public void testSubListSize(){

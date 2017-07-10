@@ -50,6 +50,8 @@ public class Config {
 	
 	private static MarketsEnum startMarket = MarketsEnum.BITCOIN;
 	
+	//2 systems, 1 my trend following. another -20% buy...sell half double, the Brian method (rational investor)
+	
 	public static void ConfigSetUp(){
 		PreloaderControl.updateStatus("Checking connection...");
 		setConnected();
