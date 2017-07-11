@@ -17,10 +17,12 @@ import java.util.List;
 
 import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
+import org.knowm.xchange.poloniex.dto.marketdata.PoloniexChartData;
 import org.knowm.xchange.poloniex.service.PoloniexChartDataPeriodType;
 import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
+import market.ExchangesEnum;
 import market.Market;
 import price.PriceData;
 import speculator.Speculator;
@@ -34,8 +36,6 @@ public class DigitalAsset implements Asset {
 	private MarketDataService dataService;
 	
 	private String assetName;
-	
-	//private List<PoloniexChartData> priceList = new ArrayList<>();
 	
 	private List<PriceData> priceSubList;
 	
@@ -76,22 +76,24 @@ public class DigitalAsset implements Asset {
 		long date = new Date().getTime() / 1000;
 		CurrencyPair currencyPair = new CurrencyPair(assetName);
 		PriceData priceData;
-		try {
-			/*
-			priceList = Arrays
-					.asList(((PoloniexMarketDataServiceRaw) dataService)
-					.getPoloniexChartData(currencyPair, date - 365 * Config.getPriceHistoryYears() * 24 * 60 * 60,
-					date, PoloniexChartDataPeriodType.PERIOD_86400));*/
-			List<?> priceList = Arrays
-					.asList(((PoloniexMarketDataServiceRaw) dataService)
-					.getPoloniexChartData(currencyPair, date - 365 * Config.getPriceHistoryYears() * 24 * 60 * 60,
-					date, PoloniexChartDataPeriodType.PERIOD_86400));
-			for(Object dayData : priceList){
-				priceData = new PriceData(((String) dayData).split(","));
-				priceDataList.add(priceData);
-			}			
-		} catch (IOException e) {
-			e.printStackTrace();
+		//
+		if(Config.getExchange().equals(ExchangesEnum.POLONIEX)){
+			try {
+				//
+				List<PoloniexChartData> priceList = Arrays.asList(((PoloniexMarketDataServiceRaw) dataService)
+						.getPoloniexChartData(currencyPair, date - 365 * Config.getPriceHistoryYears() * 24 * 60 * 60,
+						date, PoloniexChartDataPeriodType.PERIOD_86400));
+				//
+				for(PoloniexChartData dayData : priceList){
+					priceData = new PriceData(dayData.getDate(),dayData.getHigh(),dayData.getLow(),dayData.getOpen(),dayData.getClose(),dayData.getVolume());
+					priceDataList.add(priceData);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		//
+		}else{
+			throw new IllegalArgumentException("Exchange not supported.");
 		}
 	}
 	

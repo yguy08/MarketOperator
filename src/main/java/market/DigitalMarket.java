@@ -68,7 +68,7 @@ public class DigitalMarket implements Market {
 		List<CurrencyPair> currencyPairs = exchange.getExchangeSymbols();
 		//
 		for(CurrencyPair currencyPair : currencyPairs){
-			if(currencyPair.toString().endsWith(MarketsEnum.getMarketEnum(Config.getMarket()).getCounter())){
+			if(currencyPair.toString().endsWith(MarketsEnum.getMarketEnum(this).getCounter())){
 				asset = new DigitalAsset(this, currencyPair);
 				assetList.add(asset);
 				PreloaderControl.updateStatus("Loading asset: " + asset.getAssetName());
