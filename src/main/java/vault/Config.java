@@ -51,6 +51,12 @@ public class Config {
 	
 	private static ExchangesEnum Exchange = ExchangesEnum.POLONIEX;
 	
+	public static final String defaultDollar = "1000";
+	
+	public static final String defaultBTC	= "4";
+	
+	public static final String defaultETH	= "10";
+	
 	//2 systems, 1 my trend following. another -20% buy...sell half double, the Brian method (rational investor)
 	
 	public static void ConfigSetUp(){
