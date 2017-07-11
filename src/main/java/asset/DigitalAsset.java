@@ -25,10 +25,12 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 import market.ExchangesEnum;
 import market.Market;
 import price.PriceData;
+import price.TrueRange;
 import speculator.Speculator;
 import trade.Entry;
 import trade.Exit;
 import util.DateUtils;
+import util.StringFormatter;
 import vault.Config;
 
 public class DigitalAsset implements Asset {
@@ -41,23 +43,17 @@ public class DigitalAsset implements Asset {
 	
 	private List<PriceData> priceDataList = new ArrayList<>();
 	
+	private Currency currency;
+	
 	public DigitalAsset(Market market, CurrencyPair currencyPair){
 		if(currencyPair == null){
 			throw new IllegalArgumentException();
 		}
+		//
 		Currency currency = currencyPair.counter;
-		if(currency.equals(Currency.BTC)){
-			setAssetName(currencyPair.toString());
-			System.out.println("BTC!");
-		}else if(currency.equals(Currency.ETH)){
-			setAssetName(currencyPair.toString());
-			System.out.println("ETH!");
-		}else if(currency.equals(Currency.USD) || currency.toString().equalsIgnoreCase("USDT")){
-			setAssetName(currencyPair.toString());
-			System.out.println("USD!");
-		}else{
-			throw new IllegalArgumentException("Unsupported currency...");
-		}
+		setAssetName(currencyPair.toString());
+		setCurrency(currency);
+		//
 		if(Config.isConnected()){
 			setMarketDataService(market);
 			setPriceList();
@@ -95,6 +91,8 @@ public class DigitalAsset implements Asset {
 		}else{
 			throw new IllegalArgumentException("Exchange not supported.");
 		}
+		
+		TrueRange.setTrueRange(priceDataList);
 	}
 	
 	@Override
@@ -111,6 +109,8 @@ public class DigitalAsset implements Asset {
 		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		}
+		
+		TrueRange.setTrueRange(priceDataList);
 	}
 	
 	@Override
@@ -260,9 +260,16 @@ public class DigitalAsset implements Asset {
 		StringBuilder sb = new StringBuilder();
 		sb.append(DateUtils.dateToMMddFormat(getLatestDate()) + " ");
 		sb.append(" $" + getAssetName());
-		sb.append(" @" + PriceData.prettyPrice(getLatestPrice()));
-		sb.append(" Max: " + PriceData.prettyPrice(getHighForExitFlag()));
-		sb.append(" Min: " + PriceData.prettyPrice(getLowForExitFlag()));
+		boolean isUSD = getCurrency().equals(Currency.USD) || getCurrency().toString().equalsIgnoreCase("USDT");
+		if(!(isUSD)){
+			sb.append(" @" + StringFormatter.prettySatsPrice(getLatestPrice()));
+			sb.append(" Max: " + StringFormatter.prettySatsPrice(getHighForExitFlag()));
+			sb.append(" Min: " + StringFormatter.prettySatsPrice(getLowForExitFlag()));
+		}else{
+			sb.append(" @" + StringFormatter.prettyUSDPrice(getLatestPrice()));
+			sb.append(" Max: " + StringFormatter.prettyUSDPrice(getHighForExitFlag()));
+			sb.append(" Min: " + StringFormatter.prettyUSDPrice(getLowForExitFlag()));
+		}
 		return sb.toString();   
 	}
 
@@ -283,6 +290,14 @@ public class DigitalAsset implements Asset {
 	@Override
 	public List<PriceData> getPriceDataList() {
 		return priceDataList;
+	}
+
+	public Currency getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
 	}
 
 }
