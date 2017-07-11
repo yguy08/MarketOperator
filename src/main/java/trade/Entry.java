@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -82,8 +81,7 @@ public class Entry implements Displayable {
 					if(getAsset().getAssetName().contains(s)){
 						return true;
 					}
-				}
-				
+				}				
 				return false;
 			}else{
 				boolean isHighEqualToLow = maxPrice.compareTo(minPrice) == 0;
@@ -105,38 +103,8 @@ public class Entry implements Displayable {
 		return isEntry;
 	}
 	
-	//True Range of prices per share, measured in Dollars per Share..if True Range is 1.25 it means max daily variations is $1.25 per share
-	//Move to ASSET??
 	public void setTrueRange() {
-		
-		int movingAvg = Config.getMovingAvg();
-		
-		//set first TR for 0 position (H-L)
-		BigDecimal tR = asset.getHighPriceFromIndex(0).subtract(asset.getClosePriceFromIndex(0)).abs();
-		for(int x = 1; x < movingAvg; x++){
-			List<BigDecimal> trList = Arrays.asList(
-					asset.getHighPriceFromIndex(x).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32),
-					asset.getHighPriceFromIndex(x).subtract(asset.getClosePriceFromIndex(x-1).abs(), MathContext.DECIMAL32),
-					asset.getClosePriceFromIndex(x-1).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32));
-				
-				tR = tR.add(Collections.max(trList));
-		}
-		
-		tR = tR.divide(new BigDecimal(movingAvg), MathContext.DECIMAL32);
-		
-		//20 exponential moving average
-		for(int x = movingAvg; x < locationIndex;x++){
-			List<BigDecimal> trList = Arrays.asList(
-					asset.getHighPriceFromIndex(x).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32),
-					asset.getHighPriceFromIndex(x).subtract(asset.getClosePriceFromIndex(x-1).abs(), MathContext.DECIMAL32),
-					asset.getClosePriceFromIndex(x-1).subtract(asset.getLowPriceFromIndex(x).abs(), MathContext.DECIMAL32));
-					
-					tR = tR.multiply(new BigDecimal(movingAvg - 1), MathContext.DECIMAL32)
-					.add((Collections.max(trList)), MathContext.DECIMAL32).
-					divide(new BigDecimal(movingAvg), MathContext.DECIMAL32);
-		}
-		
-		averageTrueRange = tR;
+		averageTrueRange = getAsset().getPriceDataList().get(locationIndex).getTrueRange();
 	}
 	
 	public BigDecimal getTrueRange() {
@@ -191,7 +159,7 @@ public class Entry implements Displayable {
 		StringBuilder sb = new StringBuilder();
 		sb.append(DateUtils.dateToMMddFormat(getAsset().getDateTimeFromIndex(entryIndex)) + " ");
 		sb.append(prettyName());
-		sb.append(" @" + PriceData.prettyPrice(getAsset().getClosePriceFromIndex(locationIndex)));
+		sb.append(" @" + PriceData.prettySatsPrice(getAsset().getClosePriceFromIndex(locationIndex)));
 		sb.append(" " + SymbolsEnum.N.getSymbol() + StringFormatter.prettyPointX(averageTrueRange));
 		sb.append(" " + SymbolsEnum.POUND.getSymbol() + unitSize);
 		sb.append(" " + SymbolsEnum.TOTAL_COST.getSymbol() + orderTotal.setScale(2, RoundingMode.HALF_DOWN));
