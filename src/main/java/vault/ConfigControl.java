@@ -76,10 +76,19 @@ public class ConfigControl extends GridPane implements Initializable {
 		        Toggle toggle, Toggle new_toggle) {
 		            if (new_toggle == bitcoinMarket){
 		            	setNewMarket(MarketsEnum.BITCOIN);
+		            	ethereumMarket.setSelected(false);
+		            	dollarMarket.setSelected(false);
+		            	balanceTextField.setText(Config.defaultBTC);
 		            }else if(new_toggle == dollarMarket){
 		            	setNewMarket(MarketsEnum.DOLLAR);
+		            	ethereumMarket.setSelected(false);
+		            	bitcoinMarket.setSelected(false);
+		            	balanceTextField.setText(Config.defaultDollar);
 		            }else{
 		            	setNewMarket(MarketsEnum.ETHEREUM);
+		            	dollarMarket.setSelected(false);
+		            	bitcoinMarket.setSelected(false);
+		            	balanceTextField.setText(Config.defaultETH);
 		            }
 		         }
 		});
