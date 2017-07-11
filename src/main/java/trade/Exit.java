@@ -98,9 +98,9 @@ public class Exit implements Displayable {
 		StringBuilder sb = new StringBuilder();
 		sb.append(DateUtils.dateToMMddFormat(getDateTime()));
 		sb.append(prettyName());
-		sb.append(" @" + PriceData.prettyPrice(getExitPrice()));
+		sb.append(" @" + PriceData.prettySatsPrice(getExitPrice()));
 		sb.append(" " + SymbolsEnum.ENTRY.getSymbol() + DateUtils.dateToMMddFormat(entry.getDateTime()));
-		sb.append(" @" + PriceData.prettyPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
+		sb.append(" @" + PriceData.prettySatsPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
 		sb.append(openOrExit() + " ");
 		sb.append("(" + StringFormatter.prettyPointX(calcGainLossAmount()) + ")");
 		return  sb.toString();
