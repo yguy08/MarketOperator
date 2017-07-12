@@ -6,6 +6,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import asset.Asset;
 import javafx.concurrent.Task;
@@ -57,8 +63,10 @@ public class Config {
 	
 	public static final String defaultETH	= "10";
 	
-	//2 systems, 1 my trend following. another -20% buy...sell half double, the Brian method (rational investor)
+	public static boolean firstFlag;
 	
+	//2 systems, 1 my trend following. another -20% buy...sell half double, the Brian method (rational investor)
+
 	public static void ConfigSetUp(){
 		PreloaderControl.updateStatus("Checking connection...");
 		setConnected();
@@ -76,6 +84,7 @@ public class Config {
 		setSortVol(true);
 		setFilterAssets(false);
 		setMinVolume(0);
+		setFirstFlag(true);
 	}
 	
 	//for utility purposes
@@ -93,6 +102,7 @@ public class Config {
 		setSortVol(true);
 		setFilterAssets(false);
 		setMinVolume(0);
+		setFirstFlag(true);
 	}
 
 	public static Market getMarket() {
@@ -198,15 +208,43 @@ public class Config {
 	}
 
 	public static void setConnected() {
-		try {
-    	    URL myURL = new URL("http://poloniex.com/");
-    	    URLConnection myURLConnection = myURL.openConnection();
-    	    myURLConnection.connect();
-    	    isConnected = true;
-    	} 
-    	catch (IOException e) { 
-    	    isConnected = false;
-    	}
+		final Runnable stuffToDo = new Thread() {
+			  @Override 
+			  public void run() { 
+			    /* Do stuff here. */
+				try {
+		    	    URL myURL = new URL("http://poloniex.com/");
+		    	    URLConnection myURLConnection = myURL.openConnection();
+		    	    myURLConnection.connect();
+		    	    isConnected = true;
+		    	} 
+		    	catch (IOException e) { 
+		    	    
+		    	}
+			  }
+			};
+
+			final ExecutorService executor = Executors.newSingleThreadExecutor();
+			final Future<?> future = executor.submit(stuffToDo);
+			executor.shutdown(); // This does not cancel the already-scheduled task.
+
+			try { 
+			  future.get(2, TimeUnit.SECONDS); 
+			}
+			catch (InterruptedException ie) { 
+			  /* Handle the interruption. Or ignore it. */
+				isConnected = false;
+			}
+			catch (ExecutionException ee) { 
+			  /* Handle the error. Or ignore it. */
+				isConnected = false;
+			}
+			catch (TimeoutException te) { 
+			  /* Handle the timeout. Or ignore it. */ 
+				isConnected = false;
+			}
+			if (!executor.isTerminated())
+			    executor.shutdownNow(); // If you want to stop the code that hasn't finished.
 	}
 
 	public static boolean isFilterAssets() {
@@ -251,6 +289,14 @@ public class Config {
 
 	public static void setExchange(ExchangesEnum exchangeEnum) {
 		Config.Exchange = exchangeEnum;
+	}
+	
+	public static boolean isFirstFlag() {
+		return firstFlag;
+	}
+
+	public static void setFirstFlag(boolean firstFlag) {
+		Config.firstFlag = firstFlag;
 	}
 
 }
