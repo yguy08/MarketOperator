@@ -24,6 +24,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import price.PriceData;
 import speculator.DigitalSpeculator;
 import speculator.Speculator;
 import trade.Entry;
