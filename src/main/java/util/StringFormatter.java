@@ -25,7 +25,7 @@ public class StringFormatter {
 	}
 	
 	public static String prettyPointX(BigDecimal unformattedBd){
-		String bigFormat = PriceData.prettyPrice(unformattedBd);
+		String bigFormat = PriceData.prettySatsPrice(unformattedBd);
 		int length = (bigFormat.startsWith("-")) ? bigFormat.replace(",", "").length() - 1 : bigFormat.replace(",", "").length();
 		int i = bigFormat.indexOf(",");
 		if(length > 9){

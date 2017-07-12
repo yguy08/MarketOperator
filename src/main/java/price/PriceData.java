@@ -23,6 +23,8 @@ public class PriceData {
 	
 	private BigDecimal trueRange;
 	
+	private boolean isEntry;
+	
 	public PriceData(Date date, BigDecimal high, BigDecimal low, BigDecimal open, BigDecimal close, BigDecimal volume){
 		this.date = date;
 		this.high = high;
@@ -123,5 +125,13 @@ public class PriceData {
 	public String toString(){
 		return this.getDate() + "," + this.getHigh() + "," + this.getLow() + "," + this.getOpen() + "," + this.getClose() + 
 				"," + this.getVolume() + "," + this.getTrueRange();
+	}
+
+	public void setEntry(boolean isEntry) {
+		this.isEntry = isEntry;
+	}
+
+	public boolean isEntry() {
+		return isEntry;
 	}
 }
