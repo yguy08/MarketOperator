@@ -25,7 +25,6 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 import market.ExchangesEnum;
 import market.Market;
 import price.PriceData;
-import price.TrueRange;
 import speculator.Speculator;
 import trade.Entry;
 import trade.Exit;
@@ -91,8 +90,6 @@ public class DigitalAsset implements Asset {
 		}else{
 			throw new IllegalArgumentException("Exchange not supported.");
 		}
-		
-		TrueRange.setTrueRange(priceDataList);
 	}
 	
 	@Override
@@ -110,7 +107,8 @@ public class DigitalAsset implements Asset {
 			e.printStackTrace();
 		}
 		
-		TrueRange.setTrueRange(priceDataList);
+		PriceData.setTrueRangeList(priceDataList);
+		PriceData.setDayHighOrLow(priceDataList);
 	}
 	
 	@Override
