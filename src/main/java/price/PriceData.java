@@ -1,11 +1,17 @@
 package price;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+
+import vault.Config;
 
 public class PriceData {
 	
@@ -22,6 +28,8 @@ public class PriceData {
 	private BigDecimal volume;
 	
 	private BigDecimal trueRange;
+	
+	private int highLow;
 	
 	private boolean isEntry;
 	
@@ -124,7 +132,12 @@ public class PriceData {
 	@Override
 	public String toString(){
 		return this.getDate() + "," + this.getHigh() + "," + this.getLow() + "," + this.getOpen() + "," + this.getClose() + 
-				"," + this.getVolume() + "," + this.getTrueRange();
+				"," + this.getVolume() + "," + this.getTrueRange() + "," + this.getHighLow();
+	}
+	
+	public String toPlainString(){
+		return this.getDate() + "," + this.getHigh() + "," + this.getLow() + "," + this.getOpen() + "," + this.getClose() + 
+				"," + this.getVolume() + "," + this.getTrueRange() + "," + this.getHighLow();
 	}
 
 	public void setEntry(boolean isEntry) {
@@ -133,5 +146,89 @@ public class PriceData {
 
 	public boolean isEntry() {
 		return isEntry;
+	}
+
+	public int getHighLow() {
+		return highLow;
+	}
+
+	public void setHighLow(int highLow) {
+		this.highLow = highLow;
+	}
+	
+	public static void setDayHighOrLow(List<PriceData> priceList){
+		int count;
+		BigDecimal currentPrice;
+		BigDecimal prevPrice;
+		for(int i = 2; i < priceList.size();i++){
+			count = 0;
+			currentPrice = priceList.get(i).getClose();
+			prevPrice 	= priceList.get(i-1).getClose();
+			boolean isHigher = (currentPrice.compareTo(prevPrice) >= 0);
+			
+			if(isHigher){
+				count++;
+				for(int z = i-2; z >= 0;z--){
+					prevPrice 	= priceList.get(z).getClose();
+					isHigher 	= (currentPrice.compareTo(prevPrice) >= 0);
+					if(isHigher){
+						count++;
+						if(count>=55){
+							priceList.get(i).setHighLow(count);
+							break;
+						}
+					}else{
+						priceList.get(i).setHighLow(count);
+						break;
+					}
+				}
+			}else{
+				count++;
+				for(int z = i-2;z > 0;z--){
+					prevPrice 	= priceList.get(z).getClose();
+					isHigher = (currentPrice.compareTo(prevPrice)>=0);
+					if(!(isHigher)){
+						count++;
+						if(count>=55){
+							priceList.get(i).setHighLow(-count);
+							break;
+						}
+					}else{
+						priceList.get(i).setHighLow(-count);
+						break;
+					}
+				}
+			}
+		}		
+	}
+	
+	public static void setTrueRangeList(List<PriceData> priceDataList){
+		int movingAvg = Config.getMovingAvg();		
+		//set first TR for 0 position (H-L)
+		BigDecimal tR = priceDataList.get(0).getHigh().subtract(priceDataList.get(0).getClose()).abs();
+		priceDataList.get(0).setTrueRange(tR);		
+		for(int x = 1; x < movingAvg; x++){
+			List<BigDecimal> trList = Arrays.asList(
+					priceDataList.get(x).getHigh().subtract(priceDataList.get(x).getLow().abs(), MathContext.DECIMAL32),
+					priceDataList.get(x).getHigh().subtract(priceDataList.get(x-1).getClose().abs(), MathContext.DECIMAL32),
+					priceDataList.get(x-1).getClose().subtract(priceDataList.get(x).getLow().abs(), MathContext.DECIMAL32));				
+				tR = tR.add(Collections.max(trList));
+		}		
+		tR = tR.divide(new BigDecimal(movingAvg), MathContext.DECIMAL32);		
+		//initial up to MA get the same
+		for(int x=1;x<movingAvg;x++){
+			priceDataList.get(x).setTrueRange(tR);
+		}		
+		//20 exponential moving average
+		for(int x = movingAvg; x < priceDataList.size();x++){
+			List<BigDecimal> trList = Arrays.asList(
+					priceDataList.get(x).getHigh().subtract(priceDataList.get(x).getLow().abs(), MathContext.DECIMAL32),
+					priceDataList.get(x).getHigh().subtract(priceDataList.get(x-1).getClose().abs(), MathContext.DECIMAL32),
+					priceDataList.get(x-1).getClose().subtract(priceDataList.get(x).getLow().abs(), MathContext.DECIMAL32));					
+					tR = tR.multiply(new BigDecimal(movingAvg - 1), MathContext.DECIMAL32)
+					.add((Collections.max(trList)), MathContext.DECIMAL32).
+					divide(new BigDecimal(movingAvg), MathContext.DECIMAL32);					
+					priceDataList.get(x).setTrueRange(tR);
+		}
 	}
 }
