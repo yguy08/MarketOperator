@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import asset.Asset;
 import price.PriceData;
@@ -19,8 +20,6 @@ public class Exit implements Displayable {
 	
 	Asset asset;
 	
-	Speculator speculator;
-	
 	boolean isExit = false;
 	
 	boolean isOpen = false;
@@ -30,7 +29,6 @@ public class Exit implements Displayable {
 	public Exit(Entry entry, Speculator speculator){
 		this.entry = entry;
 		this.asset = entry.getAsset();
-		this.speculator = speculator;
 		this.locationIndex = asset.getIndexOfLastRecordInSubList();
 		exitOrOpen();
 	}
