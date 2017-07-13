@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.knowm.xchange.currency.Currency;
+
 import asset.Asset;
 import price.PriceData;
 import speculator.Speculator;
@@ -52,7 +54,6 @@ public class Entry implements Displayable {
 			setStop();
 			setUnitSize();
 			setOrderTotal();
-			System.out.println("Found entry" + asset.getAssetName());
 		}
 	}
 	
@@ -160,12 +161,22 @@ public class Entry implements Displayable {
 		StringBuilder sb = new StringBuilder();
 		sb.append(DateUtils.dateToMMddFormat(getAsset().getDateTimeFromIndex(entryIndex)) + " ");
 		sb.append(prettyName());
-		sb.append(" @" + PriceData.prettySatsPrice(getAsset().getClosePriceFromIndex(locationIndex)));
-		sb.append(" " + SymbolsEnum.N.getSymbol() + StringFormatter.prettyPointX(averageTrueRange));
-		sb.append(" " + SymbolsEnum.POUND.getSymbol() + unitSize);
-		sb.append(" " + SymbolsEnum.TOTAL_COST.getSymbol() + orderTotal.setScale(2, RoundingMode.HALF_DOWN));
-		sb.append(" " + SymbolsEnum.STOP.getSymbol() + StringFormatter.prettyPointX(stop));
-		sb.append(" " + SymbolsEnum.VOLUME.getSymbol() + StringFormatter.bigDecimalToShortString(getAsset().getVolumeFromIndex(locationIndex).setScale(0, RoundingMode.HALF_DOWN)));		
+		boolean isUSD = getAsset().getCurrency().equals(Currency.USD) || getAsset().getCurrency().toString().equalsIgnoreCase("USDT");
+		if(!(isUSD)){
+			sb.append(" @" + PriceData.prettySatsPrice(getAsset().getClosePriceFromIndex(locationIndex)));			
+			sb.append(" " + SymbolsEnum.N.getSymbol() + StringFormatter.prettyPointX(averageTrueRange));
+			sb.append(" " + SymbolsEnum.POUND.getSymbol() + unitSize);
+			sb.append(" " + SymbolsEnum.TOTAL_COST.getSymbol() + orderTotal.setScale(2, RoundingMode.HALF_DOWN));
+			sb.append(" " + SymbolsEnum.STOP.getSymbol() + StringFormatter.prettyPointX(stop));
+			sb.append(" " + SymbolsEnum.VOLUME.getSymbol() + StringFormatter.bigDecimalToShortString(getAsset().getVolumeFromIndex(locationIndex).setScale(0, RoundingMode.HALF_DOWN)));		
+		}else{
+			sb.append(" @" + PriceData.prettyUSDPrice(getAsset().getClosePriceFromIndex(locationIndex)));
+			sb.append(" " + SymbolsEnum.N.getSymbol() + PriceData.prettyUSDPrice(averageTrueRange));
+			sb.append(" " + SymbolsEnum.POUND.getSymbol() + unitSize);
+			sb.append(" " + SymbolsEnum.TOTAL_COST.getSymbol() + orderTotal.setScale(2, RoundingMode.HALF_DOWN));
+			sb.append(" " + SymbolsEnum.STOP.getSymbol() + PriceData.prettyUSDPrice(stop));
+			sb.append(" " + SymbolsEnum.VOLUME.getSymbol() + PriceData.prettyUSDPrice(getAsset().getVolumeFromIndex(locationIndex).setScale(0, RoundingMode.HALF_DOWN)));		
+		}		
 		return sb.toString();
 	}
 	
