@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
+
+import org.knowm.xchange.currency.Currency;
 
 import asset.Asset;
 import price.PriceData;
@@ -96,11 +97,20 @@ public class Exit implements Displayable {
 		StringBuilder sb = new StringBuilder();
 		sb.append(DateUtils.dateToMMddFormat(getDateTime()));
 		sb.append(prettyName());
-		sb.append(" @" + PriceData.prettySatsPrice(getExitPrice()));
-		sb.append(" " + SymbolsEnum.ENTRY.getSymbol() + DateUtils.dateToMMddFormat(entry.getDateTime()));
-		sb.append(" @" + PriceData.prettySatsPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
-		sb.append(openOrExit() + " ");
-		sb.append("(" + StringFormatter.prettyPointX(calcGainLossAmount()) + ")");
+		boolean isUSD = asset.getCurrency().equals(Currency.USD) || asset.getCurrency().toString().equalsIgnoreCase("USDT");
+		if(!(isUSD)){
+			sb.append(" @" + PriceData.prettySatsPrice(getExitPrice()));
+			sb.append(" " + SymbolsEnum.ENTRY.getSymbol() + DateUtils.dateToMMddFormat(entry.getDateTime()));
+			sb.append(" @" + PriceData.prettySatsPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
+			sb.append(openOrExit() + " ");
+			sb.append("(" + StringFormatter.prettyPointX(calcGainLossAmount()) + ")");
+		}else{
+			sb.append(" @" + PriceData.prettyUSDPrice(getExitPrice()));
+			sb.append(" " + SymbolsEnum.ENTRY.getSymbol() + DateUtils.dateToMMddFormat(entry.getDateTime()));
+			sb.append(" @" + PriceData.prettyUSDPrice(entry.getAsset().getClosePriceFromIndex(entry.getEntryIndex())));
+			sb.append(openOrExit() + " ");
+			sb.append("(" + StringFormatter.prettyUSDPrice(calcGainLossAmount()) + ")");			
+		}
 		return  sb.toString();
 	}
 	
