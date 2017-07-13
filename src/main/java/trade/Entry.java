@@ -52,6 +52,7 @@ public class Entry implements Displayable {
 			setStop();
 			setUnitSize();
 			setOrderTotal();
+			System.out.println("Found entry" + asset.getAssetName());
 		}
 	}
 	
