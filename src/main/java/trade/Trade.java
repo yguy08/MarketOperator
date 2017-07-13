@@ -1,5 +1,7 @@
 package trade;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,6 +15,7 @@ import util.StringFormatter;
 import util.Tuple;
 import vault.Config;
 import vault.Displayable;
+import vault.VaultMainControl;
 
 public class Trade implements Displayable {
 	
@@ -23,6 +26,10 @@ public class Trade implements Displayable {
 	Entry entry = null;
 	
 	String balance;
+	
+	private static List<Exit> winnersList;
+	
+	private static List<Exit> loserList;
 	
 	private List<Tuple<List<Entry>, List<Exit>>> entryExit = new ArrayList<>();
 
@@ -44,6 +51,13 @@ public class Trade implements Displayable {
 	
 	private void setBalance() {
 		speculator.setAccountBalance(exit.calcGainLossAmount());
+		
+		if(exit.calcGainLossAmount().compareTo(new BigDecimal(0.00)) >= 0){
+			winnersList.add(exit);
+		}else{
+			loserList.add(exit);
+		}
+		
 		balance = StringFormatter.bigDecimalToShortString(speculator.getAccountBalance());
 	}
 
@@ -73,6 +87,8 @@ public class Trade implements Displayable {
 	}
 	
 	public List<Displayable> runBackTest(){
+		winnersList = new ArrayList<>();
+		loserList = new ArrayList<>();
 		List<Entry> unitList = new ArrayList<>();
 		List<Displayable> resultsList = new ArrayList<>();
 		Random RANDOM = new Random();
@@ -111,8 +127,31 @@ public class Trade implements Displayable {
 				}
 			}
 		}
-		
+		calcWinnersAndLosers();
 		return resultsList;
+	}
+	
+	private void calcWinnersAndLosers(){
+		BigDecimal winnerSum = new BigDecimal(0.00);
+		BigDecimal loserSum = new BigDecimal(0.00);
+		//
+		for(Exit exit : winnersList){
+			winnerSum = winnerSum.add(exit.calcGainLossAmount());
+		}
+		//
+		for(Exit exit : loserList){
+			loserSum = loserSum.add(exit.calcGainLossAmount());
+		}
+		//
+		BigDecimal avgWinner = winnerSum.divide(new BigDecimal(winnersList.size()), MathContext.DECIMAL32);
+		BigDecimal avgLoser = loserSum.divide(new BigDecimal(loserList.size()), MathContext.DECIMAL32);
+		Double winPercent = new Double(winnersList.size())/new Double(loserList.size()) * 100;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Wins: " + winnersList.size() + " Avg Win: " + StringFormatter.prettyPointX(avgWinner));
+		sb.append(" Losses: " + loserList.size() + " Avg Loss: " + StringFormatter.prettyPointX(avgLoser));
+		sb.append(" Win %: " + winPercent.intValue() + "%");
+		VaultMainControl.getVaultMainControl().setStatus(sb.toString());
 	}
 	
 	@Override
