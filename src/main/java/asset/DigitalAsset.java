@@ -59,6 +59,9 @@ public class DigitalAsset implements Asset {
 		}else{
 			setOfflinePriceList();
 		}
+		
+		PriceData.setTrueRangeList(priceDataList);
+		PriceData.setDayHighOrLow(priceDataList);
 	}
 
 	@Override
@@ -83,9 +86,6 @@ public class DigitalAsset implements Asset {
 					priceData = new PriceData(dayData.getDate(),dayData.getHigh(),dayData.getLow(),dayData.getOpen(),dayData.getClose(),dayData.getVolume());
 					priceDataList.add(priceData);
 				}
-				
-				PriceData.setTrueRangeList(priceDataList);
-				PriceData.setDayHighOrLow(priceDataList);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -109,9 +109,6 @@ public class DigitalAsset implements Asset {
 		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		}
-		
-		PriceData.setTrueRangeList(priceDataList);
-		PriceData.setDayHighOrLow(priceDataList);
 	}
 	
 	@Override
@@ -189,14 +186,13 @@ public class DigitalAsset implements Asset {
 		int i = getStartIndex(Config.getEntrySignalDays(), Config.getTimeFrameDays());
 		for(int x = i;x < getPriceDataList().size();x++){
 			setPriceSubList(x - Config.getEntrySignalDays(), x);
-			System.out.println("Checking for entry");
 			try{
 				entry = new Entry(this, speculator);
 				if(entry.isEntry()){
 					entryList.add(entry);
 				}
 			}catch(Exception e){
-				System.out.println(this.getAssetName() + " " + entryList.size());
+				
 			}				
 		}
 		return entryList;
@@ -269,12 +265,12 @@ public class DigitalAsset implements Asset {
 		boolean isUSD = getCurrency().equals(Currency.USD) || getCurrency().toString().equalsIgnoreCase("USDT");
 		if(!(isUSD)){
 			sb.append(" @" + StringFormatter.prettySatsPrice(getLatestPrice()));
-			sb.append(" Max: " + StringFormatter.prettySatsPrice(getHighForExitFlag()));
-			sb.append(" Min: " + StringFormatter.prettySatsPrice(getLowForExitFlag()));
+			sb.append(" H: " + StringFormatter.prettySatsPrice(getHighForExitFlag()));
+			sb.append(" L: " + StringFormatter.prettySatsPrice(getLowForExitFlag()));
 		}else{
 			sb.append(" @" + StringFormatter.prettyUSDPrice(getLatestPrice()));
-			sb.append(" Max: " + StringFormatter.prettyUSDPrice(getHighForExitFlag()));
-			sb.append(" Min: " + StringFormatter.prettyUSDPrice(getLowForExitFlag()));
+			sb.append(" H: " + StringFormatter.prettyUSDPrice(getHighForExitFlag()));
+			sb.append(" L: " + StringFormatter.prettyUSDPrice(getLowForExitFlag()));
 		}
 		return sb.toString();   
 	}
