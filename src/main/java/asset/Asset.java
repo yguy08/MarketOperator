@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.knowm.xchange.currency.Currency;
+
 import market.Market;
 import price.PriceData;
 import speculator.Speculator;
