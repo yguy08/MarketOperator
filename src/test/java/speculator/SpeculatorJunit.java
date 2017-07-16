@@ -26,7 +26,7 @@ public class SpeculatorJunit {
 	@Test
 	public void testAccount() throws NotAvailableFromExchangeException, NotYetImplementedForExchangeException, ExchangeException, IOException{
 		ExchangeSpecification exchangeSpecification = new ExchangeSpecification(PoloniexExchange.class.getName());
-		URL resourceUrl = Config.class.getResource("account.csv");
+		URL resourceUrl = Config.class.getResource("accountInfo.csv");
 		List<String> apiStuff = new ArrayList<>();
 		try {
 			apiStuff = Files.readAllLines(Paths.get(resourceUrl.toURI()));
