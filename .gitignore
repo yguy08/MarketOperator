@@ -19,3 +19,4 @@ META-INF/
 
 # externalized configuration file for keys
 exchangeConfiguration.json
+account.csv
