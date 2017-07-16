@@ -75,7 +75,7 @@ public class DigitalAsset implements Asset {
 		CurrencyPair currencyPair = new CurrencyPair(assetName);
 		PriceData priceData;
 		//
-		if(Config.getExchange().equals(ExchangesEnum.POLONIEX)){
+		if(Config.getExchangeEnum().equals(ExchangesEnum.POLONIEX)){
 			try {
 				//
 				List<PoloniexChartData> priceList = Arrays.asList(((PoloniexMarketDataServiceRaw) dataService)

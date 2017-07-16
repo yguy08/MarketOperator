@@ -23,6 +23,9 @@ import price.PriceData;
 import util.SaveToFile;
 import vault.preloader.PreloaderControl;
 
+import org.knowm.xchange.Exchange;
+import org.knowm.xchange.ExchangeSpecification;
+
 public class Config {
 	
 	private static boolean isConnected;
@@ -55,7 +58,7 @@ public class Config {
 	
 	private static MarketsEnum startMarket = MarketsEnum.BITCOIN;
 	
-	private static ExchangesEnum Exchange = ExchangesEnum.POLONIEX;
+	private static ExchangesEnum ExchangeEnum = ExchangesEnum.POLONIEX;
 	
 	public static final String defaultDollar = "1000";
 	
@@ -64,6 +67,10 @@ public class Config {
 	public static final String defaultETH	= "10";
 	
 	public static boolean firstFlag;
+	
+	public static Exchange exchange;
+	
+	public static ExchangeSpecification exchangeSpecification;
 	
 	//2 systems, 1 my trend following. another -20% buy...sell half double, the Brian method (rational investor)
 
@@ -283,12 +290,12 @@ public class Config {
 		return startMarket;
 	}
 
-	public static ExchangesEnum getExchange() {
-		return Exchange;
+	public static ExchangesEnum getExchangeEnum() {
+		return ExchangeEnum;
 	}
 
-	public static void setExchange(ExchangesEnum exchangeEnum) {
-		Config.Exchange = exchangeEnum;
+	public static void setExchangeEnum(ExchangesEnum exchangeEnum) {
+		Config.ExchangeEnum = exchangeEnum;
 	}
 	
 	public static boolean isFirstFlag() {

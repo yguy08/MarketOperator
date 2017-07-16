@@ -39,7 +39,7 @@ public class DigitalMarket implements Market {
 		}
 		setMarketName(marketEnum.getMarketName());
 		if(Config.isConnected()){
-			setExchange(Config.getExchange());
+			setExchange(Config.getExchangeEnum());
 			setMarketDataService(exchange);
 			setAssetList();
 		}else{
