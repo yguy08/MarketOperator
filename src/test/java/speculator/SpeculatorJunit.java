@@ -50,7 +50,6 @@ public class SpeculatorJunit {
 			exchangeSpecification.setSecretKey(secret);
 		}
 		
-		exchangeSpecification.setUserName("jessie.livermore@gmx.com");
 		Exchange exchange = ExchangeFactory.INSTANCE.createExchange(exchangeSpecification);
 		assertEquals(exchangeSpecification.getApiKey(),exchange.getExchangeSpecification().getApiKey());
 	}
