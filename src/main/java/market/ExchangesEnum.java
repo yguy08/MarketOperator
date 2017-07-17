@@ -4,25 +4,22 @@ import org.knowm.xchange.poloniex.PoloniexExchange;
 
 public enum ExchangesEnum {
 	
-	POLONIEX 			("PoloniexExchange");	
+	POLONIEX("Poloniex", PoloniexExchange.class.getName());
 	
 	private String exchangeName;
+	private String className;
 	
-	ExchangesEnum(String exchangeName){
+	ExchangesEnum(String exchangeName, String className){
 		this.exchangeName = exchangeName;
+		this.className = className;
 	}
 	
 	public String getExchangeName(){
 		return exchangeName;
 	}
 	
-	public String getClassName(ExchangesEnum exchangeEnum){
-		switch (exchangeEnum){
-		case POLONIEX:
-			return PoloniexExchange.class.getName();
-		default:
-			return PoloniexExchange.class.getName();
-		}
+	public String getClassName(){
+		return className;
 	}
 
 }
