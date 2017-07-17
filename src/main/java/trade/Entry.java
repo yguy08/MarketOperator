@@ -126,9 +126,12 @@ public class Entry implements Displayable {
 	}
 	
 	public void setUnitSize() {
-		BigDecimal max = speculator.getAccountBalance().divide(getAsset().getClosePriceFromIndex(locationIndex), MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
-		BigDecimal size = speculator.getAccountBalance().multiply(Config.getRisk().divide(new BigDecimal(100), MathContext.DECIMAL32), MathContext.DECIMAL32)
-				.divide(averageTrueRange, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal accountBalance = speculator.getAccountBalance();
+		BigDecimal entryPrice = getAsset().getClosePriceFromIndex(locationIndex);
+		BigDecimal risk = Config.getRisk().divide(new BigDecimal(100));
+		
+		BigDecimal max = accountBalance.divide(entryPrice, MathContext.DECIMAL32).setScale(0, RoundingMode.DOWN);
+		BigDecimal size = accountBalance.multiply(risk, MathContext.DECIMAL32).divide(averageTrueRange, MathContext.DECIMAL32).setScale(2, RoundingMode.UP);
 		unitSize = (size.compareTo(max) > 0) ? max : size;
 	}
 	
