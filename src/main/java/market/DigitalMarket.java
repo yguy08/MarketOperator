@@ -82,7 +82,7 @@ public class DigitalMarket implements Market {
 	public void setOfflineAssetList() {
 		Asset asset;
 		List<String> currencyPairs;
-		URL resourceUrl = getClass().getResource(marketName + ".csv");
+		URL resourceUrl = Market.class.getResource(marketName + ".csv");
 		try {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){
