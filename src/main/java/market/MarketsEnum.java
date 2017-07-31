@@ -25,7 +25,7 @@ public enum MarketsEnum {
 		return counter;
 	}
 	
-	public static MarketsEnum getMarketEnum(Market market){
+	public static MarketsEnum getMarketEnum(MarketInterface market){
 		if(market == null){
 			throw new IllegalArgumentException("No market specified");
 		}

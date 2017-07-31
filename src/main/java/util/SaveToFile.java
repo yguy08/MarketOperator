@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import asset.Asset;
-import market.Market;
+import market.MarketInterface;
 
 public class SaveToFile {
 	
@@ -24,7 +24,7 @@ public class SaveToFile {
 		}
 	}
 	
-	public static void writeMarketListToFile(Market market, List<Asset> assetList){
+	public static void writeMarketListToFile(MarketInterface market, List<Asset> assetList){
 		StringBuilder sb = new StringBuilder();
 		for(Asset a : assetList){
 			sb.append(a.getAssetName() + "\n");

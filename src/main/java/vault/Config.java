@@ -17,7 +17,7 @@ import asset.Asset;
 import javafx.concurrent.Task;
 import market.DigitalMarket;
 import market.ExchangesEnum;
-import market.Market;
+import market.MarketInterface;
 import market.MarketsEnum;
 import price.PriceData;
 import util.SaveToFile;
@@ -30,7 +30,7 @@ public class Config {
 	
 	private static boolean isConnected;
 	
-	private static Market market;
+	private static MarketInterface market;
 	
 	private static BigDecimal accountBalance = new BigDecimal(0.00);
 	
@@ -112,7 +112,7 @@ public class Config {
 		setFirstFlag(true);
 	}
 
-	public static Market getMarket() {
+	public static MarketInterface getMarket() {
 		return market;
 	}
 

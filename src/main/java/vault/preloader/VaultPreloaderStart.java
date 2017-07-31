@@ -15,7 +15,7 @@ public class VaultPreloaderStart extends Preloader {
         PreloaderControl preloaderControl = new PreloaderControl();
         this.stage.setScene(new Scene(preloaderControl));
         this.stage.setTitle("Speculation 1000");
-        this.stage.getIcons().add(new Image(getClass().getResourceAsStream("../icons/icon-treesun-64x64.png")));
+        this.stage.getIcons().add(new Image(getClass().getResourceAsStream("icon-treesun-64x64.png")));
         this.stage.show();
     }
  

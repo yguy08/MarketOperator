@@ -7,7 +7,7 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import asset.Asset;
 
-public interface Market {
+public interface MarketInterface {
 		
 	String getMarketName();
 	

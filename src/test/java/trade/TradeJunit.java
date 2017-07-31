@@ -12,7 +12,7 @@ import java.util.List;
 import org.junit.Test;
 
 import asset.Asset;
-import market.Market;
+import market.MarketInterface;
 import speculator.DigitalSpeculator;
 import speculator.Speculator;
 import util.DateUtils;
@@ -25,7 +25,7 @@ public class TradeJunit {
 		Config.TestConfig();
 	}
 	
-	Market market = Config.getMarket();
+	MarketInterface market = Config.getMarket();
 	
 	@Test
 	public void testEntriesHighestVol(){

@@ -23,7 +23,7 @@ import org.knowm.xchange.poloniex.service.PoloniexMarketDataServiceRaw;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
 import market.ExchangesEnum;
-import market.Market;
+import market.MarketInterface;
 import price.PriceData;
 import speculator.Speculator;
 import trade.Entry;
@@ -44,7 +44,7 @@ public class DigitalAsset implements Asset {
 	
 	private Currency currency;
 	
-	public DigitalAsset(Market market, CurrencyPair currencyPair){
+	public DigitalAsset(MarketInterface market, CurrencyPair currencyPair){
 		if(currencyPair == null){
 			throw new IllegalArgumentException();
 		}
@@ -122,7 +122,7 @@ public class DigitalAsset implements Asset {
 	}
 
 	@Override
-	public void setMarketDataService(Market market) {
+	public void setMarketDataService(MarketInterface market) {
 		dataService = market.getMarketDataService();
 	}
 	

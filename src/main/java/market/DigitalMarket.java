@@ -20,7 +20,7 @@ import util.SaveToFile;
 import vault.Config;
 import vault.preloader.PreloaderControl;
 
-public class DigitalMarket implements Market {
+public class DigitalMarket implements MarketInterface {
 	
 	//poloniex exchange from xchange library
 	public Exchange exchange;
@@ -82,7 +82,7 @@ public class DigitalMarket implements Market {
 	public void setOfflineAssetList() {
 		Asset asset;
 		List<String> currencyPairs;
-		URL resourceUrl = Market.class.getResource(marketName + ".csv");
+		URL resourceUrl = MarketInterface.class.getResource(marketName + ".csv");
 		try {
 			currencyPairs = Files.readAllLines(Paths.get(resourceUrl.toURI()));
 			for(String currencyPair : currencyPairs){

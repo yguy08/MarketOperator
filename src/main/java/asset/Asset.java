@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.knowm.xchange.currency.Currency;
 
-import market.Market;
+import market.MarketInterface;
 import price.PriceData;
 import speculator.Speculator;
 import trade.Entry;
@@ -23,7 +23,7 @@ public interface Asset extends Displayable {
 				
 	void setOfflinePriceList();
 	
-	void setMarketDataService(Market market);
+	void setMarketDataService(MarketInterface market);
 
 	void setPriceSubList(int start, int end);
 	
