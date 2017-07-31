@@ -1,9 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.speculation1000.speculator</groupId>
-  <artifactId>speculator1000</artifactId>
+  	<groupId>com.speculation1000</groupId>
+  	<artifactId>speculation1000</artifactId>
   <version>1.0.0</version>
   
   <properties>
@@ -21,9 +22,9 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/
 	</dependency>
 	
 	<dependency>
-  			<groupId>org.knowm.xchange</groupId>
-  			<artifactId>xchange-poloniex</artifactId>
-  			<version>4.2.0</version>
+  		<groupId>org.knowm.xchange</groupId>
+  		<artifactId>xchange-poloniex</artifactId>
+  		<version>4.2.0</version>
 	</dependency>
 	
 	<dependency>

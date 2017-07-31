@@ -14,7 +14,6 @@ import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import loader.DbLoader;
 import vault.preloader.VaultPreloaderStart;
 
 public class VaultStart extends Application {
