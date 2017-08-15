@@ -160,7 +160,7 @@ public class PriceData {
 		int count;
 		BigDecimal currentPrice;
 		BigDecimal prevPrice;
-		if(priceList.size()>2){
+		if(priceList.size() > 2){
 			for(int i = 2; i < priceList.size();i++){
 				count = 0;
 				currentPrice = priceList.get(i).getClose();
@@ -207,7 +207,7 @@ public class PriceData {
 	
 	public static void setTrueRangeList(List<PriceData> priceDataList){
 		int movingAvg = Config.getMovingAvg();
-		if(priceDataList.size()>1){
+		if(priceDataList.size() > 2){
 			//set first TR for 0 position (H-L)
 			BigDecimal tR = priceDataList.get(0).getHigh().subtract(priceDataList.get(0).getClose()).abs();
 			priceDataList.get(0).setTrueRange(tR);		

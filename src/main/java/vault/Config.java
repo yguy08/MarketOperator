@@ -87,7 +87,7 @@ public class Config {
 		setTimeFrameDays(50);
 		setEntrySignalDays(25);
 		setSellSignalDays(11);
-		setLongOnly(true);
+		setLongOnly(false);
 		setSortVol(true);
 		setFilterAssets(false);
 		setMinVolume(0);
