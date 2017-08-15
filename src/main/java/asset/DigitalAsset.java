@@ -113,7 +113,11 @@ public class DigitalAsset implements Asset {
 	
 	@Override
 	public void setPriceSubList(int start, int end) {
-		priceSubList = priceDataList.subList(start, end + 1);
+	    if(priceDataList.size() > Config.getEntrySignalDays()){
+	        priceSubList = priceDataList.subList(start, end + 1);
+	    }else{
+		priceSubList = priceDataList.subList(0, priceDataList.size());
+	    }
 	}
 
 	@Override
