@@ -2,7 +2,7 @@ package com.speculation1000.specvault.db;
 
 public enum DbConnectionEnum {
 	
-	H2_MAIN("jdbc:h2:","tcp://192.168.1.197:8082/~/SpecDb/db/Speculation1000-H2","org.h2.Driver");		
+	H2_MAIN("jdbc:h2:","tcp://localhost:8082/" + System.getProperty("user.home") + "/SpecDb/db/Speculation1000-H2","org.h2.Driver");		
 	
 	private String driver;
 	private String url;
