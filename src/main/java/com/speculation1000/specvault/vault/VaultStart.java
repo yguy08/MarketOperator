@@ -1,7 +1,5 @@
 package com.speculation1000.specvault.vault;
 
-import com.speculation1000.specvault.db.DbConnection;
-import com.speculation1000.specvault.db.DbConnectionEnum;
 import com.sun.javafx.application.LauncherImpl;
 
 import javafx.application.Application;
@@ -20,6 +18,8 @@ public class VaultStart extends Application {
 	
     BooleanProperty ready = new SimpleBooleanProperty(false);
     
+    protected VaultMainControl vaultMainControl;
+    
 	public static void main(String[] args) {
 	    LauncherImpl.launchApplication(VaultStart.class, VaultPreloaderStart.class, args);
 	}
@@ -35,7 +35,7 @@ public class VaultStart extends Application {
                         Platform.runLater(new Runnable() {
                             @Override
 							public void run() {                              
-                            	stage.setScene(new Scene(new VaultMainControl()));
+                            	stage.setScene(new Scene(vaultMainControl));
                                 stage.setTitle("Speculation 1000");
                                 stage.getIcons().add(new Image(getClass().getResourceAsStream("icon-treesun-64x64.png")));
                                 stage.show();				
@@ -45,19 +45,15 @@ public class VaultStart extends Application {
                 }
         });
         
-        checkDbConnection();
+        loadLatestMarkets();
 	}
 
-    private void checkDbConnection() {
-        Task<Void> task = new Task<Void>() {
+    private void loadLatestMarkets() throws SpecVaultException {
+		Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-            	try{
-            		DbConnection.connect(DbConnectionEnum.H2_MAIN);
-            	}catch(Exception e){
-            		System.out.println("Unable to connect!");
-            	}
-            	
+            	//initialize vault main control
+            	vaultMainControl = new VaultMainControl();
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
                     StateChangeNotification.Type.BEFORE_START));
