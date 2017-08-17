@@ -56,6 +56,22 @@ public class MarketSummaryDAO {
 		return marketList;
 	}
 	
+	public static List<Market> getLongEntries(){
+		String sqlCommand = "SELECT DISTINCT * FROM markets WHERE date > " + ((int) Instant.now().getEpochSecond() - 16 * 60)
+				+ " ORDER BY Volume DESC";
+		Connection conn = DbConnection.connect(DbConnectionEnum.H2_MAIN);
+		List<Market> marketList = QueryTable.genericMarketQuery(conn, sqlCommand);
+		try{
+			conn.close();
+		}catch(SQLException e){
+			while (e != null) {
+            	specLogger.logp(Level.INFO, QueryTable.class.getName(), "getLongEntries", e.getMessage());
+	            e = e.getNextException();
+	        }
+		}
+		return marketList;
+	}
+	
 	public static List<Market> getShortEntries(int entryFlag){
 		long fromDate = SpecVaultDate.getTodayMidnightEpochSeconds(Instant.now()) - 86400 * entryFlag;
 		String sqlCommand = "SELECT m.* FROM markets m INNER JOIN "
@@ -118,6 +134,15 @@ public class MarketSummaryDAO {
         return sb.toString();		
 	}
 	
-	public static void main(String[] args){	}
+	public static void main(String[] args){
+		//THIS!!!
+		Instant now = Instant.now();
+		List<Market> marketList = getLongEntries();
+		Instant end = Instant.now();
+		for(Market market : marketList){
+			System.out.println(market.toString());
+		}
+		System.out.println("total time taken: " + String.valueOf(end.getEpochSecond() - now.getEpochSecond()));
+	}
 
 }
