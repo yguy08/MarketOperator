@@ -8,10 +8,7 @@ import java.util.ResourceBundle;
 import com.speculation1000.specvault.dao.MarketSummaryDAO;
 import com.speculation1000.specvault.db.DbConnectionEnum;
 import com.speculation1000.specvault.listview.Displayable;
-<<<<<<< HEAD
 import com.speculation1000.specvault.listview.DisplayableCellFactory;
-=======
->>>>>>> 88eeb8b488c6e60231c805aed38f939bb4310435
 import com.speculation1000.specvault.market.Market;
 
 import javafx.collections.FXCollections;
@@ -46,10 +43,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         List<Market> marketList = MarketSummaryDAO.getLatestTicker(DbConnectionEnum.H2_MAIN);
-<<<<<<< HEAD
 		listViewDisplay.setCellFactory(new DisplayableCellFactory());
-=======
->>>>>>> 88eeb8b488c6e60231c805aed38f939bb4310435
 		mainObsList.setAll(marketList);
 		listViewDisplay.setItems(mainObsList);
     	listViewDisplay.scrollTo(0);
