@@ -109,6 +109,6 @@ public class Market implements Displayable {
 	
 	@Override
 	public String toString(){
-		return base + counter + ":" + exchange + " " + SpecVaultDate.longToLogStringFormat(date) + " " + "@" + close + "Vol " + volume;
+		return base + counter + ":" + exchange + " " + SpecVaultDate.longToLogStringFormat(date) + " " + "@" + close + " Vol " + volume;
 	}
 }
