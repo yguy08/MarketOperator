@@ -1,5 +1,8 @@
 package com.speculation1000.specvault.listview;
 
+import com.speculation1000.specvault.market.Market;
+import com.speculation1000.specvault.vault.SpecString;
+
 import javafx.scene.control.ListCell;
 
 public class DisplayableCell extends ListCell<Displayable>{
@@ -12,7 +15,17 @@ public class DisplayableCell extends ListCell<Displayable>{
 		if (displayable == null || empty){
 
         }else{
-        	sb.append(displayable.toString());
+        	Market m = (Market) displayable;
+        	sb.append(m.getBase()+m.getCounter()+":"+m.getExchange());
+        	boolean notDigital = m.getCounter().equalsIgnoreCase("BTC") ||
+        			m.getCounter().equalsIgnoreCase("ETH") ||
+        			m.getCounter().equalsIgnoreCase("XMR") ||
+        			m.getCounter().equalsIgnoreCase("BCH");
+        	if(!notDigital){
+        		sb.append("@" + SpecString.prettyUSDPrice(m.getClose()));
+        	}else{
+        		sb.append("@" + SpecString.prettySatsPrice(m.getClose()));
+        	}
         }
         
         this.setText(sb.toString());

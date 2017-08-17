@@ -17,9 +17,9 @@ public class MarketSummaryDAO {
 	
 	private static final SpecDbLogger specLogger = SpecDbLogger.getSpecDbLogger();
 	
-	public static List<Market> getLongEntries(DbConnectionEnum dbce){
-		String sqlCommand = "SELECT DISTINCT * FROM markets WHERE date > " + SpecVaultDate.getTodayMidnightEpochSeconds(Instant.now())
-				+ " AND Exchange = 'POLO' ORDER BY Volume DESC LIMIT 100";
+	public static List<Market> getLatestTicker(DbConnectionEnum dbce){
+		String sqlCommand = "SELECT Base,Counter,Exchange,Close FROM markets WHERE date > " + SpecVaultDate.getTodayMidnightEpochSeconds(Instant.now())
+		+ " ORDER BY Counter,Base ASC";
 		Connection conn = DbConnection.connect(dbce);
 		List<Market> marketList = QueryTable.genericMarketQuery(conn, sqlCommand);
 		try{
@@ -36,7 +36,7 @@ public class MarketSummaryDAO {
 	public static void main(String[] args){
 		//THIS!!!
 		Instant now = Instant.now();
-		List<Market> marketList = getLongEntries(DbConnectionEnum.H2_TEST);
+		List<Market> marketList = getLatestTicker(DbConnectionEnum.H2_MAIN);
 		Instant end = Instant.now();
 		for(Market market : marketList){
 			System.out.println(market.toString());
