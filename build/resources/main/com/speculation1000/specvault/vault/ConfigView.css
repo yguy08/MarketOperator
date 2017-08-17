@@ -1,0 +1,20 @@
+root { 
+    display: block;
+}
+
+.label {
+	-fx-font-weight: bold;
+}
+
+#bitcoinMarket{
+	-fx-graphic: url('img/bitcoin_logo.png');
+}
+
+#dollarMarket{
+	-fx-graphic: url('img/dollar_sign.png');
+}
+
+#ethereumMarket{
+	-fx-graphic: url('img/ethereum_logo.png');
+}
+
