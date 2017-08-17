@@ -2,13 +2,9 @@ package com.speculation1000.specvault.vault;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import com.speculation1000.specvault.dao.MarketSummaryDAO;
 import com.speculation1000.specvault.listview.Displayable;
-import com.speculation1000.specvault.market.Market;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,10 +44,10 @@ public class VaultMainControl extends BorderPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        List<Market> marketList = MarketSummaryDAO.getAllLatest();
-		mainObsList.setAll(marketList);
-		listViewDisplay.setItems(mainObsList);
-    	listViewDisplay.scrollTo(0);        
+        //List<Market> marketList = MarketSummaryDAO.getAllLatest();
+		//mainObsList.setAll(marketList);
+		//listViewDisplay.setItems(mainObsList);
+    	//listViewDisplay.scrollTo(0);        
 	}
 	
 }
