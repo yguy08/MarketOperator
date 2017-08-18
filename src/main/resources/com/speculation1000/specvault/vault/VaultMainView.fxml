@@ -17,8 +17,10 @@
 	</center>
 	
 	<bottom>
-		<Button fx:id="btn1" text="New" onAction="#newEntries"/>
-		<Button fx:id="btn2" text="Refresh" onAction="#refresh"/>
+		<HBox>
+			<Button fx:id="btn1" text="New" onAction="#newEntries"/>
+			<Button fx:id="btn2" text="Refresh" onAction="#refresh"/>
+		</HBox>
 	</bottom>
        
     <stylesheets><URL value="@VaultMain.css"/></stylesheets>

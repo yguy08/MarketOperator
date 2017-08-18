@@ -11,10 +11,12 @@ import com.speculation1000.specvault.listview.Displayable;
 import com.speculation1000.specvault.listview.DisplayableCellFactory;
 import com.speculation1000.specvault.market.Market;
 
-import javafx.application.Preloader.StateChangeNotification;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,17 +61,29 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML
 	public void refresh(){
 		mainObsList.clear();
-		Task<Void> task = new Task<Void>() {
+		Task<List<Market>> task = new Task<List<Market>>() {
             @Override
-            protected Void call() throws Exception {
+            protected List<Market> call() throws Exception {
 	            List<Market> marketList = MarketSummaryDAO.getLatestTicker(DbConnectionEnum.H2_MAIN);
-	    		mainObsList.setAll(marketList);
-	    		listViewDisplay.setItems(mainObsList);
-	        	listViewDisplay.scrollTo(0);
-	            return null;
+	            return marketList;
             }
         };        
         new Thread(task).start();
+        
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				List<Market> marketList = task.getValue();
+				Platform.runLater(new Runnable() {
+		            @Override
+					public void run() {
+		            	mainObsList.setAll(marketList);
+			    		listViewDisplay.setItems(mainObsList);
+			        	listViewDisplay.scrollTo(0);
+		            }
+		        });
+			}
+		});
 	}
 	
 }
