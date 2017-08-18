@@ -11,8 +11,10 @@ import com.speculation1000.specvault.listview.Displayable;
 import com.speculation1000.specvault.listview.DisplayableCellFactory;
 import com.speculation1000.specvault.market.Market;
 
+import javafx.application.Preloader.StateChangeNotification;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,6 +49,27 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		mainObsList.setAll(marketList);
 		listViewDisplay.setItems(mainObsList);
     	listViewDisplay.scrollTo(0);
+	}
+	
+	@FXML
+	public void newEntries(){
+		
+	}
+	
+	@FXML
+	public void refresh(){
+		mainObsList.clear();
+		Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+	            List<Market> marketList = MarketSummaryDAO.getLatestTicker(DbConnectionEnum.H2_MAIN);
+	    		mainObsList.setAll(marketList);
+	    		listViewDisplay.setItems(mainObsList);
+	        	listViewDisplay.scrollTo(0);
+	            return null;
+            }
+        };        
+        new Thread(task).start();
 	}
 	
 }
