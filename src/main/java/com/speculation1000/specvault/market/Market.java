@@ -3,7 +3,6 @@ package com.speculation1000.specvault.market;
 import java.math.BigDecimal;
 
 import com.speculation1000.specvault.listview.Displayable;
-import com.speculation1000.specvault.time.SpecVaultDate;
 
 public class Market implements Displayable {
 		
@@ -109,6 +108,6 @@ public class Market implements Displayable {
 	
 	@Override
 	public String toString(){
-		return base + counter + ":" + exchange + "@" + close;
+		return base + counter + ":" + exchange +" "+ "@" + close;
 	}
 }

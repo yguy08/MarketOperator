@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.speculation1000.specvault.bus.Speculator;
 import com.speculation1000.specvault.dao.MarketSummaryDAO;
 import com.speculation1000.specvault.db.DbConnectionEnum;
 import com.speculation1000.specvault.listview.Displayable;
@@ -55,7 +56,32 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void newEntries(){
-		
+		mainObsList.clear();
+		Task<List<Market>> task = new Task<List<Market>>() {
+            @Override
+            protected List<Market> call() throws Exception {
+	            List<Market> marketList = MarketSummaryDAO.getRecentMarketHistory(DbConnectionEnum.H2_MAIN);
+	            //RETHINK -> List<Market> entryList = Speculator.getLatestEntries(marketList);
+	            return marketList;
+            }
+        };        
+        new Thread(task).start();
+        
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				List<Market> marketList = task.getValue();
+				Platform.runLater(new Runnable() {
+		            @Override
+					public void run() {
+		            	mainObsList.setAll(marketList);
+			    		listViewDisplay.setItems(mainObsList);
+			        	listViewDisplay.scrollTo(0);
+		            }
+		        });
+			}
+		});
+
 	}
 	
 	@FXML

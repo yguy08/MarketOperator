@@ -18,7 +18,7 @@ public class MarketSummaryDAO {
 	private static final SpecDbLogger specLogger = SpecDbLogger.getSpecDbLogger();
 	
 	public static List<Market> getLatestTicker(DbConnectionEnum dbce){
-		String sqlCommand = "SELECT Base,Counter,Exchange,Close FROM markets WHERE date = " + SpecVaultDate.getTodayMidnightEpochSeconds(Instant.now())
+		String sqlCommand = "SELECT * FROM markets WHERE date = " + SpecVaultDate.getTodayMidnightEpochSeconds(Instant.now())
 		+ " ORDER BY Counter,Base ASC";
 		Connection conn = DbConnection.connect(dbce);
 		List<Market> marketList = QueryTable.genericMarketQuery(conn, sqlCommand);
@@ -33,11 +33,22 @@ public class MarketSummaryDAO {
 		return marketList;
 	}
 	
-	public static List<Market> getLongEntries(DbConnectionEnum dbce){
-		//select symbol, max close where date > date order by symbol asc
-		//select symbol,current close where date > date order by symbol asc
-		//for m1, m2 -> if m1 close = m2 close -> add to list
-		return null;
+	//use timeframes
+	public static List<Market> getRecentMarketHistory(DbConnectionEnum dbce){
+		Instant instant = Instant.now().minusSeconds(86400 * 55);
+		String sqlCommand = "SELECT * FROM markets WHERE date >= " + SpecVaultDate.getTodayMidnightEpochSeconds(instant)
+		+ " ORDER BY Counter,Base ASC";
+		Connection conn = DbConnection.connect(dbce);
+		List<Market> marketList = QueryTable.genericMarketQuery(conn, sqlCommand);
+		try{
+			conn.close();
+		}catch(SQLException e){
+			while (e != null) {
+            	specLogger.logp(Level.INFO, QueryTable.class.getName(), "getLongEntries", e.getMessage());
+	            e = e.getNextException();
+	        }
+		}
+		return marketList;
 	}
 	
 	public static void main(String[] args){

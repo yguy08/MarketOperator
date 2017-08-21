@@ -17,6 +17,7 @@ public class DisplayableCell extends ListCell<Displayable>{
         }else{
         	Market m = (Market) displayable;
         	sb.append(m.getBase()+m.getCounter()+":"+m.getExchange());
+        	sb.append(" ");
         	boolean notDigital = m.getCounter().equalsIgnoreCase("BTC") ||
         			m.getCounter().equalsIgnoreCase("ETH") ||
         			m.getCounter().equalsIgnoreCase("XMR") ||
