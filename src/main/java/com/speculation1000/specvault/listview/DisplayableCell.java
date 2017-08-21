@@ -27,8 +27,7 @@ public class DisplayableCell extends ListCell<Displayable>{
         	}else{
         		sb.append("@" + SpecString.prettySatsPrice(m.getClose()));
         	}
+        	this.setText(sb.toString());
         }
-        
-        this.setText(sb.toString());
     }
 }

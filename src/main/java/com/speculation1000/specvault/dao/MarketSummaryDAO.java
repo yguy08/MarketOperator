@@ -37,7 +37,7 @@ public class MarketSummaryDAO {
 	public static List<Market> getRecentMarketHistory(DbConnectionEnum dbce){
 		Instant instant = Instant.now().minusSeconds(86400 * 55);
 		String sqlCommand = "SELECT * FROM markets WHERE date >= " + SpecVaultDate.getTodayMidnightEpochSeconds(instant)
-		+ " ORDER BY Counter,Base ASC";
+		+ " ORDER BY Counter,Base,Exchange ASC";
 		Connection conn = DbConnection.connect(dbce);
 		List<Market> marketList = QueryTable.genericMarketQuery(conn, sqlCommand);
 		try{

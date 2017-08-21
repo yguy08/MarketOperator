@@ -61,8 +61,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
             @Override
             protected List<Market> call() throws Exception {
 	            List<Market> marketList = MarketSummaryDAO.getRecentMarketHistory(DbConnectionEnum.H2_MAIN);
-	            //RETHINK -> List<Market> entryList = Speculator.getLatestEntries(marketList);
-	            return marketList;
+	            List<Market> entryList = Speculator.getLatestEntries(marketList);
+	            return entryList;
             }
         };        
         new Thread(task).start();
