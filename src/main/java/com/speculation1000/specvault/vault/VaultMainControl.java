@@ -30,6 +30,8 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML private ListView<Displayable> listViewDisplay;
 	
 	@FXML private Button btn1;
+	
+	@FXML private Button btn2;
 		
 	private ObservableList<Displayable> mainObsList = FXCollections.observableArrayList();
     
@@ -57,7 +59,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML
 	public void newEntries(){
 		mainObsList.clear();
-		setCenter(new ProgressIndicator());
+		loadAnimationStart();
 		Task<List<Market>> task = new Task<List<Market>>() {
             @Override
             protected List<Market> call() throws Exception {
@@ -75,7 +77,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				Platform.runLater(new Runnable() {
 		            @Override
 					public void run() {
-		            	setCenter(listViewDisplay);
+		            	loadAnimationEnd();
 		            	mainObsList.setAll(marketList);
 			    		listViewDisplay.setItems(mainObsList);
 			        	listViewDisplay.scrollTo(0);
@@ -89,7 +91,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML
 	public void refresh(){
 		mainObsList.clear();
-		setCenter(new ProgressIndicator());
+		loadAnimationStart();
 		Task<List<Market>> task = new Task<List<Market>>() {
             @Override
             protected List<Market> call() throws Exception {
@@ -106,7 +108,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				Platform.runLater(new Runnable() {
 		            @Override
 					public void run() {
-		            	setCenter(listViewDisplay);
+		            	loadAnimationEnd();
 		            	mainObsList.setAll(marketList);
 			    		listViewDisplay.setItems(mainObsList);
 			        	listViewDisplay.scrollTo(0);
@@ -114,6 +116,18 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		        });
 			}
 		});
+	}
+	
+	private void loadAnimationStart(){
+		setCenter(new ProgressIndicator());
+		btn1.setVisible(false);
+		btn2.setVisible(false);
+	}
+	
+	private void loadAnimationEnd(){
+		setCenter(listViewDisplay);
+		btn1.setVisible(true);
+		btn2.setVisible(true);
 	}
 	
 }
