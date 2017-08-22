@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.speculation1000.specvault.bus.Speculator;
 import com.speculation1000.specvault.dao.MarketSummaryDAO;
 import com.speculation1000.specvault.db.DbConnectionEnum;
 import com.speculation1000.specvault.listview.Displayable;
@@ -23,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.BorderPane;
 
 public class VaultMainControl extends BorderPane implements Initializable {
@@ -57,11 +57,12 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML
 	public void newEntries(){
 		mainObsList.clear();
+		setCenter(new ProgressIndicator());
 		Task<List<Market>> task = new Task<List<Market>>() {
             @Override
             protected List<Market> call() throws Exception {
-	            List<Market> marketList = MarketSummaryDAO.getRecentMarketHistory(DbConnectionEnum.H2_MAIN);
-	            //RETHINKList<Market> entryList = Speculator.getLatestEntries(marketList);
+	            List<Market> marketList = MarketSummaryDAO.getMarketsAtXDayHighOrLow(DbConnectionEnum.H2_MAIN,
+	            		25);
 	            return marketList;
             }
         };        
@@ -74,6 +75,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				Platform.runLater(new Runnable() {
 		            @Override
 					public void run() {
+		            	setCenter(listViewDisplay);
 		            	mainObsList.setAll(marketList);
 			    		listViewDisplay.setItems(mainObsList);
 			        	listViewDisplay.scrollTo(0);
@@ -87,6 +89,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML
 	public void refresh(){
 		mainObsList.clear();
+		setCenter(new ProgressIndicator());
 		Task<List<Market>> task = new Task<List<Market>>() {
             @Override
             protected List<Market> call() throws Exception {
@@ -103,6 +106,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 				Platform.runLater(new Runnable() {
 		            @Override
 					public void run() {
+		            	setCenter(listViewDisplay);
 		            	mainObsList.setAll(marketList);
 			    		listViewDisplay.setItems(mainObsList);
 			        	listViewDisplay.scrollTo(0);
