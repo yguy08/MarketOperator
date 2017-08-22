@@ -1,8 +1,10 @@
 package com.speculation1000.specvault.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -51,15 +53,86 @@ public class MarketSummaryDAO {
 		return marketList;
 	}
 	
-	public static void main(String[] args){
-		//THIS!!!
-		Instant now = Instant.now();
-		List<Market> marketList = getLatestTicker(DbConnectionEnum.H2_MAIN);
-		Instant end = Instant.now();
-		for(Market market : marketList){
-			System.out.println(market.toString());
+	public static List<Market> getMaxCloseList(DbConnectionEnum dbce, int days){
+		Instant instant = Instant.now().minusSeconds(86400 * days);
+		String sqlCommand = "SELECT Base,Counter,Exchange,Max(Close) Close" 
+				+ " FROM Markets" 
+				+ " WHERE Date >= " + SpecVaultDate.getTodayMidnightEpochSeconds(instant) 
+				+ " GROUP BY Base,Counter,Exchange" 
+				+ " ORDER BY Counter,Base ASC";
+		Connection conn = DbConnection.connect(dbce);
+		List<Market> marketList = QueryTable.genericMarketQuery(conn, sqlCommand);
+		try{
+			conn.close();
+		}catch(SQLException e){
+			while (e != null) {
+            	specLogger.logp(Level.INFO, QueryTable.class.getName(), "getLongEntries", e.getMessage());
+	            e = e.getNextException();
+	        }
 		}
-		System.out.println("total time taken: " + String.valueOf(end.getEpochSecond() - now.getEpochSecond()));
+		return marketList;
+	}
+	
+	public static List<Market> getMinCloseList(DbConnectionEnum dbce, int days){
+		Instant instant = Instant.now().minusSeconds(86400 * days);
+		String sqlCommand = "SELECT Base,Counter,Exchange,Min(Close) Close" 
+				+ " FROM Markets" 
+				+ " WHERE Date >= " + SpecVaultDate.getTodayMidnightEpochSeconds(instant) 
+				+ " GROUP BY Base,Counter,Exchange" 
+				+ " ORDER BY Counter,Base ASC";
+		Connection conn = DbConnection.connect(dbce);
+		List<Market> marketList = QueryTable.genericMarketQuery(conn, sqlCommand);
+		try{
+			conn.close();
+		}catch(SQLException e){
+			while (e != null) {
+            	specLogger.logp(Level.INFO, QueryTable.class.getName(), "getLongEntries", e.getMessage());
+	            e = e.getNextException();
+	        }
+		}
+		return marketList;
+	}
+	
+	public static List<Market> getCurrentCloseList(DbConnectionEnum dbce){
+		Instant instant = Instant.now();
+		String sqlCommand = "SELECT Base,Counter,Exchange,Max(Close) Close" 
+				+ " FROM Markets" 
+				+ " WHERE Date = " + SpecVaultDate.getTodayMidnightEpochSeconds(instant) 
+				+ " GROUP BY Base,Counter,Exchange" 
+				+ " ORDER BY Counter,Base ASC";
+		Connection conn = DbConnection.connect(dbce);
+		List<Market> marketList = QueryTable.genericMarketQuery(conn, sqlCommand);
+		try{
+			conn.close();
+		}catch(SQLException e){
+			while (e != null) {
+            	specLogger.logp(Level.INFO, QueryTable.class.getName(), "getLongEntries", e.getMessage());
+	            e = e.getNextException();
+	        }
+		}
+		return marketList;
+	}
+	
+	public static List<Market> getMarketsAtXDayHighOrLow(DbConnectionEnum dbce,int days){
+		List<Market> maxCloseList = getMaxCloseList(DbConnectionEnum.H2_MAIN,25);
+		List<Market> minCloseList = getMinCloseList(DbConnectionEnum.H2_MAIN,25);
+		List<Market> currentClose = getCurrentCloseList(DbConnectionEnum.H2_MAIN);
+		List<Market> marketsAtHighOrLowList = new ArrayList<>();
+		for(int i = 0; i < maxCloseList.size();i++){
+			BigDecimal maxClose = maxCloseList.get(i).getClose();
+			BigDecimal minClose = minCloseList.get(i).getClose();
+			BigDecimal current = currentClose.get(i).getClose();
+			if(current.compareTo(maxClose) == 0){
+				marketsAtHighOrLowList.add(currentClose.get(i));
+			}else if(current.compareTo(minClose) == 0){
+				marketsAtHighOrLowList.add(currentClose.get(i));
+			}					
+		}
+		return marketsAtHighOrLowList; 
+	}
+	
+	public static void main(String[] args){
+				
 	}
 
 }
