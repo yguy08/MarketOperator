@@ -29,10 +29,12 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML private ListView<Displayable> listViewDisplay;
 	
-	@FXML private Button btn1;
+	@FXML private Button showAll;
 	
-	@FXML private Button btn2;
-		
+	@FXML private Button showHighs;
+	
+	@FXML private Button showLows;
+				
 	private ObservableList<Displayable> mainObsList = FXCollections.observableArrayList();
     
 	public VaultMainControl() {
@@ -49,6 +51,11 @@ public class VaultMainControl extends BorderPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+        showAll();
+	}
+	
+	@FXML
+	public void showAll(){
         List<Market> marketList = MarketSummaryDAO.getLatestTicker(DbConnectionEnum.H2_MAIN);
 		listViewDisplay.setCellFactory(new DisplayableCellFactory());
 		mainObsList.setAll(marketList);
@@ -57,13 +64,45 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	@FXML
-	public void newEntries(){
+	public void showHighs(){
 		mainObsList.clear();
 		loadAnimationStart();
 		Task<List<Market>> task = new Task<List<Market>>() {
             @Override
             protected List<Market> call() throws Exception {
-	            List<Market> marketList = MarketSummaryDAO.getMarketsAtXDayHighOrLow(DbConnectionEnum.H2_MAIN,
+	            List<Market> marketList = MarketSummaryDAO.getMarketsAtXDayHigh(DbConnectionEnum.H2_MAIN,
+	            		25);
+	            return marketList;
+            }
+        };        
+        new Thread(task).start();
+        
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				List<Market> marketList = task.getValue();
+				Platform.runLater(new Runnable() {
+		            @Override
+					public void run() {
+		            	loadAnimationEnd();
+		            	mainObsList.setAll(marketList);
+			    		listViewDisplay.setItems(mainObsList);
+			        	listViewDisplay.scrollTo(0);
+		            }
+		        });
+			}
+		});
+
+	}
+	
+	@FXML
+	public void showLows(){
+		mainObsList.clear();
+		loadAnimationStart();
+		Task<List<Market>> task = new Task<List<Market>>() {
+            @Override
+            protected List<Market> call() throws Exception {
+	            List<Market> marketList = MarketSummaryDAO.getMarketsAtXDayLow(DbConnectionEnum.H2_MAIN,
 	            		25);
 	            return marketList;
             }
@@ -120,14 +159,16 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	private void loadAnimationStart(){
 		setCenter(new ProgressIndicator());
-		btn1.setVisible(false);
-		btn2.setVisible(false);
+		showAll.setVisible(false);
+		showHighs.setVisible(false);
+		showLows.setVisible(false);
 	}
 	
 	private void loadAnimationEnd(){
 		setCenter(listViewDisplay);
-		btn1.setVisible(true);
-		btn2.setVisible(true);
+		showAll.setVisible(true);
+		showHighs.setVisible(true);
+		showLows.setVisible(true);
 	}
 	
 }
