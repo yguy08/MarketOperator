@@ -34,7 +34,13 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	@FXML private Button showHighs;
 	
 	@FXML private Button showLows;
-				
+	
+	@FXML private Button buy;
+	
+	@FXML private Button sell;
+	
+	@FXML private Button automate;
+
 	private ObservableList<Displayable> mainObsList = FXCollections.observableArrayList();
     
 	public VaultMainControl() {
@@ -162,6 +168,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		showAll.setVisible(false);
 		showHighs.setVisible(false);
 		showLows.setVisible(false);
+		buy.setVisible(false);
+		sell.setVisible(false);
+		automate.setVisible(false);
 	}
 	
 	private void loadAnimationEnd(){
@@ -169,6 +178,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		showAll.setVisible(true);
 		showHighs.setVisible(true);
 		showLows.setVisible(true);
+		buy.setVisible(true);
+		sell.setVisible(true);
+		automate.setVisible(true);
 	}
 	
 }
