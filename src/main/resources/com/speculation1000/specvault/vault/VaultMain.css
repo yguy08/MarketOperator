@@ -1,0 +1,83 @@
+root { 
+    display: block;
+}
+
+.root {
+	-fx-background-image: url("splashScreen-HZ.png");
+
+}
+
+.list-view .scroll-bar:horizontal .increment-arrow,
+.list-view .scroll-bar:horizontal .decrement-arrow,
+.list-view .scroll-bar:horizontal .increment-button,
+.list-view .scroll-bar:horizontal .decrement-button {
+    -fx-padding:0;
+}
+
+.list-view .scroll-bar:vertical .increment-arrow,
+.list-view .scroll-bar:vertical .decrement-arrow,
+.list-view .scroll-bar:vertical .increment-button,
+.list-view .scroll-bar:vertical .decrement-button {
+    -fx-padding:0;
+}
+
+#showAll{
+	-fx-background-image: url("star-icon.png");
+    -fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+	-fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+#showHighs{
+	-fx-background-image: url("fire-icon.png");
+    -fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+	-fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+#showLows{
+	-fx-background-image: url("snow-icon.png");
+    -fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+	-fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;	
+}
+
+#buy {
+	-fx-background-image: url("buy-icon.png");
+    -fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+	-fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+#sell {
+	-fx-background-image: url("sell-icon.png");
+    -fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+	-fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+#automate {
+	-fx-background-image: url("automated-icon.png");
+    -fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+	-fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+

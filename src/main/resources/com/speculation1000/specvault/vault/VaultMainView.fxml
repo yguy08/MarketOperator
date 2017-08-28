@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="BorderPane" prefWidth="320" prefHeight="570">
+	<padding>
+	</padding>
+	
+	<top>
+	<HBox minHeight="45">
+		<Label></Label>
+	</HBox>
+	
+	</top>
+	
+	<center>
+	    <ListView 
+	    fx:id="listViewDisplay">
+	    </ListView>
+	</center>
+	
+	<bottom>
+		<HBox spacing="5">
+			<Button fx:id="showAll" onAction="#showAll" prefWidth="32" prefHeight="32" />
+			<Button fx:id="showHighs" onAction="#showHighs" prefWidth="32" prefHeight="32" />
+			<Button fx:id="showLows" onAction="#showLows" prefWidth="32" prefHeight="32" />			
+			<Button fx:id="showEntries" prefWidth="32" prefHeight="32" />
+			<Button fx:id="showExits" prefWidth="32" prefHeight="32" />
+			<Button fx:id="buy" prefWidth="32" prefHeight="32" />
+			<Button fx:id="sell" prefWidth="32" prefHeight="32" />
+			<Button fx:id="automate" prefWidth="32" prefHeight="32"  />
+		</HBox>
+	</bottom>
+       
+    <stylesheets><URL value="@VaultMain.css"/></stylesheets>
+	
+</fx:root>
+
