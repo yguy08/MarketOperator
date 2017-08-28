@@ -57,16 +57,24 @@ public class VaultMainControl extends BorderPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        showAll();
-	}
-	
-	@FXML
-	public void showAll(){
         List<Market> marketList = MarketSummaryDAO.getLatestTicker(DbConnectionEnum.H2_MAIN);
 		listViewDisplay.setCellFactory(new DisplayableCellFactory());
 		mainObsList.setAll(marketList);
 		listViewDisplay.setItems(mainObsList);
     	listViewDisplay.scrollTo(0);
+    	buy.setDisable(true);
+    	sell.setDisable(true);
+	}
+	
+	@FXML
+	public void showAll(){
+		loadAnimationStart();
+        List<Market> marketList = MarketSummaryDAO.getLatestTicker(DbConnectionEnum.H2_MAIN);
+		listViewDisplay.setCellFactory(new DisplayableCellFactory());
+		mainObsList.setAll(marketList);
+		listViewDisplay.setItems(mainObsList);
+    	listViewDisplay.scrollTo(0);
+    	loadAnimationEnd();
 	}
 	
 	@FXML
