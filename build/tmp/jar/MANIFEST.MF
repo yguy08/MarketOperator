@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.speculation1000.specvault.vault.VaultStart
-
