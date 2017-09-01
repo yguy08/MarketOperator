@@ -1,5 +1,7 @@
 package com.speculation1000.specvault.vault;
 
+import com.speculation1000.specdb.db.DbConnectionEnum;
+import com.speculation1000.specdb.start.MarketStatus;
 import com.sun.javafx.application.LauncherImpl;
 
 import javafx.application.Application;
@@ -52,6 +54,7 @@ public class VaultStart extends Application {
 		Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+            	MarketStatus.updateMarketStatusList(DbConnectionEnum.H2_CONNECT);
             	//initialize vault main control
             	vaultMainControl = new VaultMainControl();
             	ready.setValue(Boolean.TRUE);
