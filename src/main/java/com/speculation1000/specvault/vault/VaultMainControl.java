@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 
 import com.speculation1000.specdb.market.MarketStatusContent;
 import com.speculation1000.specdb.start.MarketStatus;
+import com.speculation1000.specvault.listview.MarketStatusContentCellFactory;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,7 +60,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	    for(MarketStatusContent msc : marketList){
 	    	msc.setToStr(msc.getSymbol() + " @" + msc.getCurrentPrice());
 	    }
-		//listViewDisplay.setCellFactory(new DisplayableCellFactory());
+		listViewDisplay.setCellFactory(new MarketStatusContentCellFactory());
 		mainObsList.setAll(marketList);
 		listViewDisplay.setItems(mainObsList);
     	listViewDisplay.scrollTo(0);
@@ -68,16 +70,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showAll(){
-		loadAnimationStart();
-	    List<MarketStatusContent> marketList = MarketStatus.getMarketStatusList();
-	    for(MarketStatusContent msc : marketList){
-	    	msc.setToStr(msc.getSymbol() + " @" + msc.getCurrentPrice());
-	    }
-		//listViewDisplay.setCellFactory(new DisplayableCellFactory());
-		mainObsList.setAll(marketList);
-		listViewDisplay.setItems(mainObsList);
-    	listViewDisplay.scrollTo(0);
-    	loadAnimationEnd();
+		mainObsList.clear();
 	}
 	
 	@FXML
@@ -97,17 +90,17 @@ public class VaultMainControl extends BorderPane implements Initializable {
 			@Override
 			public void handle(WorkerStateEvent t){
 				List<MarketStatusContent> marketList = task.getValue();
+            	List<MarketStatusContent> highList = new ArrayList<>();
+        	    for(MarketStatusContent m : marketList){
+        	    	if(m.getDayHighLowMap().firstEntry().getValue() >= 25){
+        	    		m.setToStr((m.getSymbol() + " @" + m.getCurrentPrice()));
+        	    		highList.add(m);
+        	    	}
+        	    }
 				Platform.runLater(new Runnable() {
 		            @Override
 					public void run() {
 		            	loadAnimationEnd();
-		            	List<MarketStatusContent> highList = new ArrayList<>();
-		        	    for(MarketStatusContent m : marketList){
-		        	    	if(m.getDayHighLowMap().firstEntry().getValue() >= 25){
-		        	    		m.setToStr((m.getSymbol() + " @" + m.getCurrentPrice()));
-		        	    		highList.add(m);
-		        	    	}
-		        	    }
 		            	mainObsList.setAll(highList);
 			    		listViewDisplay.setItems(mainObsList);
 			        	listViewDisplay.scrollTo(0);
