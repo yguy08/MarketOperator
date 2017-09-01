@@ -1,0 +1,10 @@
+ <?import com.speculation1000.specvault.market.MarketData?>
+ <?import javafx.scene.layout.HBox?>
+ <?import javafx.scene.text.Text?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:id="hBox" prefHeight="50" stylesheets="@MarketStatusContentCell.css">
+<children>
+    <Text fx:id="symbolTxt" text="" />
+    <Text fx:id="priceTxt" text="" />
+</children>
+</HBox>
