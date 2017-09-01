@@ -22,6 +22,8 @@ public class VaultStart extends Application {
     
     protected VaultMainControl vaultMainControl;
     
+    protected DbConnectionEnum dbce = null;
+    
 	public static void main(String[] args) {
 	    LauncherImpl.launchApplication(VaultStart.class, VaultPreloaderStart.class, args);
 	}
@@ -47,14 +49,18 @@ public class VaultStart extends Application {
                 }
         });
         
-        loadLatestMarkets();
+        loadConfig();
+        if(dbce!=null){
+        	loadLatestMarkets();
+        }
+        
 	}
 
     private void loadLatestMarkets() throws SpecVaultException {
 		Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-            	MarketStatus.updateMarketStatusList(DbConnectionEnum.H2_CONNECT);
+            	MarketStatus.updateMarketStatusList(dbce);
             	//initialize vault main control
             	vaultMainControl = new VaultMainControl();
             	ready.setValue(Boolean.TRUE);
@@ -64,6 +70,22 @@ public class VaultStart extends Application {
             }
         };        
         new Thread(task).start();
+    }
+    
+    private void loadConfig(){
+    	Config config = new Config();
+    	String db = config.getDatabase();
+		switch(db){
+		case "localhost":
+			dbce = DbConnectionEnum.H2_MAIN;
+			break;
+		case "pi":
+			dbce = DbConnectionEnum.H2_CONNECT;
+			break;
+		default:
+			dbce = null;
+			break;
+		}
     }
 
 }
