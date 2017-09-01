@@ -22,62 +22,56 @@ root {
 }
 
 #showAll{
-	-fx-background-image: url("star-icon.png");
-    -fx-background-repeat: no-repeat;
-	-fx-background-position: center;
-	-fx-border-color: transparent;
-    -fx-border-width: 0;
+	-fx-border-color: black;
+    -fx-border-width: 1;
     -fx-background-radius: 0;
     -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 10;
 }
 
 #showHighs{
-	-fx-background-image: url("fire-icon.png");
-    -fx-background-repeat: no-repeat;
-	-fx-background-position: center;
-	-fx-border-color: transparent;
-    -fx-border-width: 0;
+	-fx-border-color: black;
+    -fx-border-width: 1;
     -fx-background-radius: 0;
-    -fx-background-color: transparent;
+    -fx-background-color:  transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 10;
 }
 
 #showLows{
-	-fx-background-image: url("snow-icon.png");
-    -fx-background-repeat: no-repeat;
-	-fx-background-position: center;
-	-fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;	
-}
-
-#buy {
-	-fx-background-image: url("buy-icon.png");
-    -fx-background-repeat: no-repeat;
-	-fx-background-position: center;
-	-fx-border-color: transparent;
-    -fx-border-width: 0;
+	-fx-border-color: black;
+    -fx-border-width: 1;
     -fx-background-radius: 0;
     -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 10;
 }
 
-#sell {
-	-fx-background-image: url("sell-icon.png");
-    -fx-background-repeat: no-repeat;
-	-fx-background-position: center;
-	-fx-border-color: transparent;
-    -fx-border-width: 0;
+#buy{
+	-fx-border-color: black;
+    -fx-border-width: 1;
     -fx-background-radius: 0;
-    -fx-background-color: transparent;
+    -fx-background-color:  transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 10;
 }
 
-#automate {
-	-fx-background-image: url("automated-icon.png");
-    -fx-background-repeat: no-repeat;
-	-fx-background-position: center;
-	-fx-border-color: transparent;
-    -fx-border-width: 0;
+#sell{
+	-fx-border-color: black;
+    -fx-border-width: 1;
     -fx-background-radius: 0;
     -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 10;
+}
+
+#auto{
+	-fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 10;    
 }
 

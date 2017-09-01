@@ -34,11 +34,9 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML private Button showLows;
 	
-	@FXML private Button buy;
+	@FXML private Button autoBuy;
 	
-	@FXML private Button sell;
-	
-	@FXML private Button automate;
+	@FXML private Button autoTrade;
 
 	private ObservableList<MarketStatusContent> mainObsList = FXCollections.observableArrayList();
     
@@ -64,13 +62,11 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		mainObsList.setAll(marketList);
 		listViewDisplay.setItems(mainObsList);
     	listViewDisplay.scrollTo(0);
-    	buy.setDisable(true);
-    	sell.setDisable(true);
 	}
 	
 	@FXML
 	public void showAll(){
-		mainObsList.clear();
+		
 	}
 	
 	@FXML
@@ -113,65 +109,32 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	
 	@FXML
 	public void showLows(){
-		mainObsList.clear();
-		loadAnimationStart();
-		Task<List<MarketStatusContent>> task = new Task<List<MarketStatusContent>>() {
-            @Override
-            protected List<MarketStatusContent> call() throws Exception {
-        	    List<MarketStatusContent> marketList = MarketStatus.getMarketStatusList();
-	            return marketList;
-            }
-        };        
-        new Thread(task).start();
-        
-		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
-			@Override
-			public void handle(WorkerStateEvent t){
-				List<MarketStatusContent> marketList = task.getValue();
-				Platform.runLater(new Runnable() {
-		            @Override
-					public void run() {
-		            	loadAnimationEnd();
-		            	List<MarketStatusContent> lowList = new ArrayList<>();
-		        	    for(MarketStatusContent m : marketList){
-		        	    	if(m.getDayHighLowMap().firstEntry().getValue() <= -25){
-		        	    		m.setToStr((m.getSymbol() + " @" + m.getCurrentPrice()));
-		        	    		lowList.add(m);
-		        	    	}
-		        	    }
-		            	mainObsList.setAll(lowList);
-			    		listViewDisplay.setItems(mainObsList);
-			        	listViewDisplay.scrollTo(0);
-		            }
-		        });
-			}
-		});
 
 	}
 	
 	@FXML
-	public void refresh(){
+	public void buy(){
+
+	}
+	
+	@FXML
+	public void sell(){
+
+	}
+	
+	@FXML
+	public void auto(){
 
 	}
 	
 	private void loadAnimationStart(){
 		setCenter(new ProgressIndicator());
 		showAll.setVisible(false);
-		showHighs.setVisible(false);
-		showLows.setVisible(false);
-		buy.setVisible(false);
-		sell.setVisible(false);
-		automate.setVisible(false);
 	}
 	
 	private void loadAnimationEnd(){
 		setCenter(listViewDisplay);
 		showAll.setVisible(true);
-		showHighs.setVisible(true);
-		showLows.setVisible(true);
-		buy.setVisible(true);
-		sell.setVisible(true);
-		automate.setVisible(true);
 	}
 	
 }

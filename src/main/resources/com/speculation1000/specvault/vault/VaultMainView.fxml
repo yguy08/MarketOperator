@@ -11,7 +11,7 @@
 	</padding>
 	
 	<top>
-	<HBox minHeight="45">
+	<HBox prefHeight="25">
 		<Label></Label>
 	</HBox>
 	
@@ -24,15 +24,13 @@
 	</center>
 	
 	<bottom>
-		<HBox spacing="5">
-			<Button fx:id="showAll" onAction="#showAll" prefWidth="32" prefHeight="32" />
-			<Button fx:id="showHighs" onAction="#showHighs" prefWidth="32" prefHeight="32" />
-			<Button fx:id="showLows" onAction="#showLows" prefWidth="32" prefHeight="32" />			
-			<Button fx:id="showEntries" prefWidth="32" prefHeight="32" />
-			<Button fx:id="showExits" prefWidth="32" prefHeight="32" />
-			<Button fx:id="buy" prefWidth="32" prefHeight="32" />
-			<Button fx:id="sell" prefWidth="32" prefHeight="32" />
-			<Button fx:id="automate" prefWidth="32" prefHeight="32"  />
+		<HBox prefHeight="50" spacing="5">
+			<Button fx:id="showAll" onAction="#showAll" prefHeight="50" prefWidth="50" text="All" />
+			<Button fx:id="showHighs" onAction="#showHighs" prefHeight="50" prefWidth="50" text="H" />
+			<Button fx:id="showLows" onAction="#showLows" prefHeight="50" prefWidth="50" text="L" />
+			<Button fx:id="buy" onAction="#buy" prefHeight="50" prefWidth="50" text="Buy" />
+			<Button fx:id="sell" onAction="#sell" prefHeight="50" prefWidth="50" text="Sell" />
+			<Button fx:id="auto" onAction="#auto" prefHeight="50" prefWidth="50" text="Auto" />
 		</HBox>
 	</bottom>
        
