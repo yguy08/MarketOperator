@@ -6,5 +6,6 @@
 <children>
     <Text fx:id="symbolTxt" text="" />
     <Text fx:id="priceTxt" text="" />
+    <Text fx:id="miscText" text="" />
 </children>
 </HBox>

@@ -42,7 +42,8 @@ public class VaultStart extends Application {
                             	stage.setScene(new Scene(vaultMainControl));
                                 stage.setTitle("Speculation 1000");
                                 stage.getIcons().add(new Image(getClass().getResourceAsStream("icon-treesun-64x64.png")));
-                                stage.show();				
+                                stage.show();
+                                vaultMainControl.showAll();
                             }
                         });
                     }

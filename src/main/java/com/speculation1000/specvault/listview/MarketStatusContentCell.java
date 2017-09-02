@@ -19,6 +19,7 @@ public class MarketStatusContentCell extends ListCell<MarketStatusContent> {
             MarketData marketData = new MarketData();
             marketData.setSymbolText(msc.getSymbol());
             marketData.setPriceText(" @" + msc.getCurrentPrice());
+            marketData.setMiscText(" " + msc.getDayHighLowMap().firstEntry().getValue());
             setGraphic(marketData.getBox());
         }
     }

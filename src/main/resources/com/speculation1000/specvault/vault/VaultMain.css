@@ -27,7 +27,6 @@ root {
     -fx-background-radius: 0;
     -fx-background-color: transparent;
     -fx-font-weight: bold;
-    -fx-font-size: 10;
 }
 
 #showHighs{
@@ -36,7 +35,6 @@ root {
     -fx-background-radius: 0;
     -fx-background-color:  transparent;
     -fx-font-weight: bold;
-    -fx-font-size: 10;
 }
 
 #showLows{
@@ -45,7 +43,6 @@ root {
     -fx-background-radius: 0;
     -fx-background-color: transparent;
     -fx-font-weight: bold;
-    -fx-font-size: 10;
 }
 
 #buy{
@@ -54,7 +51,6 @@ root {
     -fx-background-radius: 0;
     -fx-background-color:  transparent;
     -fx-font-weight: bold;
-    -fx-font-size: 10;
 }
 
 #sell{
@@ -63,15 +59,13 @@ root {
     -fx-background-radius: 0;
     -fx-background-color: transparent;
     -fx-font-weight: bold;
-    -fx-font-size: 10;
 }
 
-#auto{
+#menu{
 	-fx-border-color: black;
     -fx-border-width: 1;
     -fx-background-radius: 0;
     -fx-background-color: transparent;
-    -fx-font-weight: bold;
-    -fx-font-size: 10;    
+    -fx-font-weight: bold;    
 }
 
