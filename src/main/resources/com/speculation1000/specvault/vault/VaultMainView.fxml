@@ -6,33 +6,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml/1" type="BorderPane" prefWidth="320" prefHeight="570">
-	<padding>
-	</padding>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="GridPane" hgap="10" vgap="5" prefWidth="320" prefHeight="570">
+<padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
+
+	<TextFlow GridPane.rowIndex="0" GridPane.columnIndex="0">
+	    <children>
+      	    <Text fx:id="accountBalTitleTxt" styleClass="balance" text="Balance:&#10;"></Text>
+      	    <Text fx:id="accountBalTxt" styleClass="balance" text=""></Text>
+   	    </children>
+	</TextFlow>
 	
-	<top>
-	<HBox prefHeight="25">
-		<Label></Label>
-	</HBox>
 	
-	</top>
-	
-	<center>
-	    <ListView 
-	    fx:id="listViewDisplay">
-	    </ListView>
-	</center>
-	
-	<bottom>
-		<HBox prefHeight="50" spacing="5">
-			<Button fx:id="showAll" onAction="#showAll" prefHeight="50" prefWidth="50" text="All" />
-			<Button fx:id="showHighs" onAction="#showHighs" prefHeight="50" prefWidth="50" text="H" />
-			<Button fx:id="showLows" onAction="#showLows" prefHeight="50" prefWidth="50" text="L" />
-			<Button fx:id="buy" onAction="#buy" prefHeight="50" prefWidth="50" text="Buy" />
-			<Button fx:id="sell" onAction="#sell" prefHeight="50" prefWidth="50" text="Sell" />
-			<Button fx:id="menu" onAction="#menu" prefHeight="50" prefWidth="50" text="Menu" />
-		</HBox>
-	</bottom>
+	<Text fx:id="openPositionsTxt" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="position" text="Open Positions: "></Text>
+    <ListView fx:id="openPositionsListView" GridPane.rowIndex="4" GridPane.columnIndex="0"></ListView>
+    <Text fx:id="newEntriesTxt" styleClass="position" text="New Entries: " GridPane.rowIndex="5" GridPane.columnIndex="0"></Text>
+   	<ListView fx:id="newEntriesListView" GridPane.rowIndex="6" GridPane.columnIndex="0"></ListView>
        
     <stylesheets><URL value="@VaultMain.css"/></stylesheets>
 	

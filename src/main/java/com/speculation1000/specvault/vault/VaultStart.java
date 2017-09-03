@@ -43,16 +43,19 @@ public class VaultStart extends Application {
                                 stage.setTitle("Speculation 1000");
                                 stage.getIcons().add(new Image(getClass().getResourceAsStream("icon-treesun-64x64.png")));
                                 stage.show();
-                                vaultMainControl.showAll();
                             }
                         });
                     }
                 }
         });
         
-        loadConfig();
-        if(dbce!=null){
-        	loadLatestMarkets();
+        try {
+            loadConfig();
+            if(dbce!=null){
+            	loadLatestMarkets();
+            }
+        }catch(Exception e) {
+        	System.out.println(e.getMessage());
         }
         
 	}
@@ -61,8 +64,6 @@ public class VaultStart extends Application {
 		Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-            	MarketStatus.updateMarketStatusList(dbce);
-            	//initialize vault main control
             	vaultMainControl = new VaultMainControl();
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(

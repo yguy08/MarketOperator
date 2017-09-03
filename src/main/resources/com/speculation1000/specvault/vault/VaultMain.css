@@ -3,7 +3,7 @@ root {
 }
 
 .root {
-	-fx-background-image: url("splashScreen-HZ.png");
+	-fx-background-image: url("blank-background.png");
 
 }
 
@@ -21,51 +21,18 @@ root {
     -fx-padding:0;
 }
 
-#showAll{
-	-fx-border-color: black;
-    -fx-border-width: 1;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;
-    -fx-font-weight: bold;
+TextFlow {
+    -fx-background-color: black;
 }
 
-#showHighs{
-	-fx-border-color: black;
-    -fx-border-width: 1;
-    -fx-background-radius: 0;
-    -fx-background-color:  transparent;
-    -fx-font-weight: bold;
+.balance{
+	-fx-font-weight: bold;
+	-fx-fill:white;
+	-fx-font-size: 12;
 }
 
-#showLows{
-	-fx-border-color: black;
-    -fx-border-width: 1;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;
-    -fx-font-weight: bold;
-}
-
-#buy{
-	-fx-border-color: black;
-    -fx-border-width: 1;
-    -fx-background-radius: 0;
-    -fx-background-color:  transparent;
-    -fx-font-weight: bold;
-}
-
-#sell{
-	-fx-border-color: black;
-    -fx-border-width: 1;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;
-    -fx-font-weight: bold;
-}
-
-#menu{
-	-fx-border-color: black;
-    -fx-border-width: 1;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;
-    -fx-font-weight: bold;    
+.position{
+	-fx-font-weight: bold;
+	-fx-font-size: 16;
 }
 

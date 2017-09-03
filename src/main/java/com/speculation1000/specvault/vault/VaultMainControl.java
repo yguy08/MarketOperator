@@ -2,44 +2,31 @@ package com.speculation1000.specvault.vault;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 
+import com.speculation1000.specdb.dao.AccountDAO;
 import com.speculation1000.specdb.market.MarketStatusContent;
-import com.speculation1000.specdb.start.MarketStatus;
-import com.speculation1000.specvault.listview.MarketStatusContentCellFactory;
+import com.speculation1000.specdb.start.SpecDbException;
+import com.speculation1000.specdb.start.StatusString;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
-public class VaultMainControl extends BorderPane implements Initializable {
+public class VaultMainControl extends GridPane implements Initializable {
 	
-	@FXML private ListView<MarketStatusContent> listViewDisplay;
+	@FXML private Text accountBalTitleTxt;
 	
-	@FXML private Button showAll;
+	@FXML private Text accountBalTxt;
 	
-	@FXML private Button showHighs;
+	@FXML private ListView<MarketStatusContent> openPositionsListView;
 	
-	@FXML private Button showLows;
-	
-	@FXML private Button buy;
-	
-	@FXML private Button sell;
-	
-	@FXML private Button menu;
+	@FXML private ListView<MarketStatusContent> newEntriesListView;
 
 	private ObservableList<MarketStatusContent> mainObsList = FXCollections.observableArrayList();
     
@@ -57,9 +44,16 @@ public class VaultMainControl extends BorderPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        listViewDisplay.setCellFactory(new MarketStatusContentCellFactory());
+		String balance = null;
+		try {
+			balance = StatusString.getBalanceStr();
+		} catch (SpecDbException e) {
+			e.printStackTrace();
+		}
+		accountBalTitleTxt.setText(balance);
 	}
 	
+	/*
 	@FXML
 	public void showAll(){
 		mainObsList.clear();
@@ -92,107 +86,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		        });
 			}
 		});
-	}
-	
-	@FXML
-	public void showHighs(){
-		mainObsList.clear();
-		loadAnimationStart();
-		Task<List<MarketStatusContent>> task = new Task<List<MarketStatusContent>>() {
-            @Override
-            protected List<MarketStatusContent> call() throws Exception {
-        	    List<MarketStatusContent> marketList = MarketStatus.getMarketStatusList();
-        	    Collections.sort(marketList);
-	            return marketList;
-            }
-        };        
-        new Thread(task).start();
-        
-		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
-			@Override
-			public void handle(WorkerStateEvent t){
-				List<MarketStatusContent> marketList = task.getValue();
-            	List<MarketStatusContent> highList = new ArrayList<>();
-        	    for(MarketStatusContent m : marketList){
-        	    	if(m.getDayHighLowMap().firstEntry().getValue() >= 25 || m.getDayHighLowMap().firstEntry().getValue() == 11){
-        	    		m.setToStr((m.getSymbol() + " @" + m.getCurrentPrice()) + " " +m.getDayHighLowMap().firstEntry().getValue());
-        	    		highList.add(m);
-        	    	}
-        	    }
-				Platform.runLater(new Runnable() {
-		            @Override
-					public void run() {
-		            	loadAnimationEnd();
-		            	mainObsList.setAll(highList);
-			    		listViewDisplay.setItems(mainObsList);
-			        	listViewDisplay.scrollTo(0);
-		            }
-		        });
-			}
-		});
-	}
-	
-	@FXML
-	public void showLows(){
-		mainObsList.clear();
-		loadAnimationStart();
-		Task<List<MarketStatusContent>> task = new Task<List<MarketStatusContent>>() {
-            @Override
-            protected List<MarketStatusContent> call() throws Exception {
-        	    List<MarketStatusContent> marketList = MarketStatus.getMarketStatusList();
-        	    Collections.sort(marketList);
-	            return marketList;
-            }
-        };        
-        new Thread(task).start();
-        
-		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
-			@Override
-			public void handle(WorkerStateEvent t){
-				List<MarketStatusContent> marketList = task.getValue();
-            	List<MarketStatusContent> highList = new ArrayList<>();
-        	    for(MarketStatusContent m : marketList){
-        	    	if(m.getDayHighLowMap().firstEntry().getValue() <= -25 || m.getDayHighLowMap().firstEntry().getValue() == -11){
-        	    		m.setToStr((m.getSymbol() + " @" + m.getCurrentPrice()));
-        	    		highList.add(m);
-        	    	}
-        	    }
-				Platform.runLater(new Runnable() {
-		            @Override
-					public void run() {
-		            	loadAnimationEnd();
-		            	mainObsList.setAll(highList);
-			    		listViewDisplay.setItems(mainObsList);
-			        	listViewDisplay.scrollTo(0);
-		            }
-		        });
-			}
-		});
-	}
-	
-	@FXML
-	public void buy(){
-
-	}
-	
-	@FXML
-	public void sell(){
-
-	}
-	
-	@FXML
-	public void menu(){
-
-	}
+	}*/
 	
 	private void loadAnimationStart(){
-		setCenter(new ProgressIndicator());
-		showAll.setVisible(false);
+		//setCenter(new ProgressIndicator());
 	}
 	
 	private void loadAnimationEnd(){
-		setCenter(listViewDisplay);
-		showAll.setVisible(true);
+		
 	}
 	
 }
