@@ -22,11 +22,9 @@ public class VaultMainControl extends GridPane implements Initializable {
 	
 	@FXML private Text accountBalTitleTxt;
 	
-	@FXML private Text accountBalTxt;
+	@FXML private Text openPositionsTxt;
 	
-	@FXML private ListView<MarketStatusContent> openPositionsListView;
-	
-	@FXML private ListView<MarketStatusContent> newEntriesListView;
+	@FXML private Text newEntriesTxt;
 
 	private ObservableList<MarketStatusContent> mainObsList = FXCollections.observableArrayList();
     
@@ -51,6 +49,27 @@ public class VaultMainControl extends GridPane implements Initializable {
 			e.printStackTrace();
 		}
 		accountBalTitleTxt.setText(balance);
+		
+		String openTrades = null;
+		
+		try {
+			openTrades = StatusString.getOpenTradesStr();
+		}catch(SpecDbException e) {
+			e.printStackTrace();
+		}
+		
+		openPositionsTxt.setText(openTrades);
+		
+		String newEntries = null;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(StatusString.getLongEntriesString());
+		sb.append(StatusString.getShortEntriesString());
+		
+		newEntries = sb.toString();
+		
+		newEntriesTxt.setText(newEntries);
+		
 	}
 	
 	/*

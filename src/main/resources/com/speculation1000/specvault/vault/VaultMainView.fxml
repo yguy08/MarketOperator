@@ -13,15 +13,20 @@
 	<TextFlow GridPane.rowIndex="0" GridPane.columnIndex="0">
 	    <children>
       	    <Text fx:id="accountBalTitleTxt" styleClass="balance" text="Balance:&#10;"></Text>
-      	    <Text fx:id="accountBalTxt" styleClass="balance" text=""></Text>
    	    </children>
 	</TextFlow>
 	
+	<TextFlow GridPane.rowIndex="1" GridPane.columnIndex="0">
+	    <children>
+      	    <Text fx:id="openPositionsTxt" styleClass="position" text="Balance:&#10;"></Text>
+   	    </children>
+	</TextFlow>
 	
-	<Text fx:id="openPositionsTxt" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="position" text="Open Positions: "></Text>
-    <ListView fx:id="openPositionsListView" GridPane.rowIndex="4" GridPane.columnIndex="0"></ListView>
-    <Text fx:id="newEntriesTxt" styleClass="position" text="New Entries: " GridPane.rowIndex="5" GridPane.columnIndex="0"></Text>
-   	<ListView fx:id="newEntriesListView" GridPane.rowIndex="6" GridPane.columnIndex="0"></ListView>
+	<TextFlow GridPane.rowIndex="2" GridPane.columnIndex="0">
+	    <children>
+      	    <Text fx:id="newEntriesTxt" styleClass="position" text="Balance:&#10;"></Text>
+   	    </children>
+	</TextFlow>
        
     <stylesheets><URL value="@VaultMain.css"/></stylesheets>
 	
