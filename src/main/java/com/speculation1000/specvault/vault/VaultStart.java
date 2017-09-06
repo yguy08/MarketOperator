@@ -65,6 +65,11 @@ public class VaultStart extends Application {
             @Override
             protected Void call() throws Exception {
             	MarketStatus.updateMarketStatusList(DbConnectionEnum.H2_CONNECT);
+            	try {
+                	MarketStatus.updateBalance(DbConnectionEnum.H2_CONNECT);
+            	}catch(Exception e) {
+            	
+            	}
             	vaultMainControl = new VaultMainControl();
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(

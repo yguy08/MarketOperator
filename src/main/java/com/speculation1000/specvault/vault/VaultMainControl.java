@@ -50,13 +50,7 @@ public class VaultMainControl extends GridPane implements Initializable {
 		}
 		accountBalTitleTxt.setText(balance);
 		
-		String openTrades = null;
-		
-		try {
-			openTrades = StatusString.getOpenTradesStr();
-		}catch(SpecDbException e) {
-			e.printStackTrace();
-		}
+		String openTrades = "";
 		
 		openPositionsTxt.setText(openTrades);
 		
