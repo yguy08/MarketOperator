@@ -7,19 +7,3 @@ root {
 
 }
 
-TextFlow {
-    -fx-background-color: black;
-}
-
-.balance{
-	-fx-font-weight: bold;
-	-fx-fill:white;
-	-fx-font-size: 12;
-}
-
-.position{
-	-fx-font-weight: bold;
-	-fx-fill:white;
-	-fx-font-size: 12;
-}
-

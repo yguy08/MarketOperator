@@ -2,31 +2,35 @@ package com.speculation1000.specvault.vault;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-
-import com.speculation1000.specdb.dao.AccountDAO;
-import com.speculation1000.specdb.market.MarketStatusContent;
-import com.speculation1000.specdb.start.SpecDbException;
-import com.speculation1000.specdb.start.StatusString;
-
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.BorderPane;
 
-public class VaultMainControl extends GridPane implements Initializable {
-	
-	@FXML private Text accountBalTitleTxt;
-	
-	@FXML private Text openPositionsTxt;
-	
-	@FXML private Text newEntriesTxt;
+import com.speculation1000.specdb.dao.EntryDAO;
+import com.speculation1000.specdb.dao.MarketDAO;
+import com.speculation1000.specdb.db.DbConnectionEnum;
+import com.speculation1000.specdb.db.DbUtils;
+import com.speculation1000.specdb.market.AccountBalance;
+import com.speculation1000.specdb.market.Entry;
+import com.speculation1000.specdb.market.Market;
 
-	private ObservableList<MarketStatusContent> mainObsList = FXCollections.observableArrayList();
+
+public class VaultMainControl extends BorderPane implements Initializable {
+	
+	@FXML private ListView<String> listView;
+	
+	private ObservableList<String> mainObsList = FXCollections.observableArrayList();
     
 	public VaultMainControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VaultMainView.fxml"));
@@ -39,44 +43,17 @@ public class VaultMainControl extends GridPane implements Initializable {
             throw new RuntimeException(exception);
         }
 	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		String balance = null;
-		try {
-			balance = StatusString.getBalanceStr();
-		} catch (SpecDbException e) {
-			e.printStackTrace();
-		}
-		accountBalTitleTxt.setText(balance);
-		
-		String openTrades = "";
-		
-		openPositionsTxt.setText(openTrades);
-		
-		String newEntries = null;
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append(StatusString.getLongEntriesString());
-		sb.append(StatusString.getShortEntriesString());
-		
-		newEntries = sb.toString();
-		
-		newEntriesTxt.setText(newEntries);
-		
-	}
 	
-	/*
-	@FXML
-	public void showAll(){
-		mainObsList.clear();
-		loadAnimationStart();
-		Task<List<MarketStatusContent>> task = new Task<List<MarketStatusContent>>() {
+	public void showTicker(){
+        Task<List<String>> task = new Task<List<String>>() {
             @Override
-            protected List<MarketStatusContent> call() throws Exception {
-        	    List<MarketStatusContent> marketList = MarketStatus.getMarketStatusList();
-        	    Collections.sort(marketList);
-	            return marketList;
+            protected List<String> call() throws Exception {
+            	List<String> lst = new ArrayList<>();
+            	List<Market> marketList = MarketDAO.getMarketList(DbConnectionEnum.H2_MAIN, 0);
+            	for(Market m : marketList){
+            		lst.add(m.toString());
+        		}
+                return lst;
             }
         };        
         new Thread(task).start();
@@ -84,29 +61,171 @@ public class VaultMainControl extends GridPane implements Initializable {
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
 			@Override
 			public void handle(WorkerStateEvent t){
-				List<MarketStatusContent> marketList = task.getValue();
-        	    for(MarketStatusContent msc : marketList){
-        	    	msc.setToStr(msc.getSymbol() + " @" + msc.getCurrentPrice());
-        	    }
 				Platform.runLater(new Runnable() {
 		            @Override
 					public void run() {
-		            	loadAnimationEnd();
-		            	mainObsList.setAll(marketList);
-			    		listViewDisplay.setItems(mainObsList);
-			        	listViewDisplay.scrollTo(0);
+		        		mainObsList.setAll(task.getValue());
+		        		listView.scrollTo(0);
 		            }
 		        });
 			}
 		});
-	}*/
-	
-	private void loadAnimationStart(){
-		//setCenter(new ProgressIndicator());
 	}
 	
-	private void loadAnimationEnd(){
+	public void showBalance(){
+        Task<List<String>> task = new Task<List<String>>() {
+            @Override
+            protected List<String> call() throws Exception {
+            	List<String> lst = new ArrayList<>();
+            	List<AccountBalance> accountBalList = DbUtils.getLatestAccountBalances(DbConnectionEnum.H2_MAIN);
+            	for(AccountBalance ab : accountBalList){
+            		lst.add(ab.toString());
+        		}
+                return lst;
+            }
+        };        
+        new Thread(task).start();
+        
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				Platform.runLater(new Runnable() {
+		            @Override
+					public void run() {
+		        		mainObsList.setAll(task.getValue());
+		        		listView.scrollTo(0);
+		            }
+		        });
+			}
+		});
+	}
+	
+	public void showMarketHighs(){
+        Task<List<String>> task = new Task<List<String>>() {
+            @Override
+            protected List<String> call() throws Exception {
+            	List<String> lst = new ArrayList<>();
+            	List<Entry> entryList = EntryDAO.getMarketEntryList(DbConnectionEnum.H2_MAIN,25);
+            	for(Entry e : entryList){
+            		if(e.getDirection().equalsIgnoreCase("LONG")) {
+                		lst.add(e.toString());
+            		}
+        		}
+                return lst;
+            }
+        };        
+        new Thread(task).start();
+        
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				Platform.runLater(new Runnable() {
+		            @Override
+					public void run() {
+		        		mainObsList.setAll(task.getValue());
+		        		listView.scrollTo(0);
+		            }
+		        });
+			}
+		});
+	}
+	
+	public void showMarketLows(){
+        Task<List<String>> task = new Task<List<String>>() {
+            @Override
+            protected List<String> call() throws Exception {
+            	List<String> lst = new ArrayList<>();
+            	List<Entry> entryList = EntryDAO.getMarketEntryList(DbConnectionEnum.H2_MAIN,25);
+            	for(Entry e : entryList){
+            		if(e.getDirection().equalsIgnoreCase("SHORT")) {
+                		lst.add(e.toString());
+            		}
+        		}
+                return lst;
+            }
+        };        
+        new Thread(task).start();
+        
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				Platform.runLater(new Runnable() {
+		            @Override
+					public void run() {
+		        		mainObsList.setAll(task.getValue());
+		        		listView.scrollTo(0);
+		            }
+		        });
+			}
+		});
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		//config set up
+		Config.configSetUp();
 		
+        // populate main menu
+		mainSetUp();
+	}
+	
+	@FXML 
+	public void navUp(){
+		int i = listView.getSelectionModel().getSelectedIndex();
+		if(i>0) {
+			listView.getSelectionModel().selectPrevious();
+			listView.scrollTo(listView.getSelectionModel().getSelectedIndex());
+		}
+	}
+	
+	@FXML 
+	public void navDown(){
+		int i = listView.getSelectionModel().getSelectedIndex();
+		if(i<listView.getItems().size()-1) {
+			listView.getSelectionModel().selectNext();
+			listView.scrollTo(listView.getSelectionModel().getSelectedIndex());
+		}
+	}
+	
+	@FXML 
+	public void navA(){
+		String s = listView.getSelectionModel().getSelectedItem();
+		switch(s) {
+		case "Ticker":
+			showTicker();
+			break;
+		case "Account":
+			showBalance();
+			break;
+		case "Market Highs":
+			showMarketHighs();
+			break;
+		case "Market Lows":
+			showMarketLows();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	@FXML 
+	public void navB(){
+		mainSetUp();
+	}
+	
+	private void mainSetUp() {
+		mainObsList.clear();
+		
+        // populate main menu
+		mainObsList.add("Ticker");
+        mainObsList.add("Account");
+        mainObsList.add("Market Highs");
+        mainObsList.add("Market Lows");
+        mainObsList.add("Trades");
+        mainObsList.add("Settings");
+
+        listView.setItems(mainObsList);
+        listView.getSelectionModel().select(0);
 	}
 	
 }

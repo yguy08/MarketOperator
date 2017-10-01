@@ -1,7 +1,6 @@
 package com.speculation1000.specvault.vault;
 
 import com.speculation1000.specdb.db.DbConnectionEnum;
-import com.speculation1000.specdb.start.MarketStatus;
 import com.sun.javafx.application.LauncherImpl;
 
 import javafx.application.Application;
@@ -30,7 +29,7 @@ public class VaultStart extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {        
-        // After the app is ready, show the stage
+		// After the app is ready, show the stage
         ready.addListener(new ChangeListener<Boolean>(){
             @Override
 			public void changed(
@@ -49,27 +48,13 @@ public class VaultStart extends Application {
                 }
         });
         
-        try {
-            loadConfig();
-            if(dbce!=null){
-            	loadLatestMarkets();
-            }
-        }catch(Exception e) {
-        	System.out.println(e.getMessage());
-        }
-        
+        loadLatestMarkets();
 	}
-
+	
     private void loadLatestMarkets() throws SpecVaultException {
 		Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-            	MarketStatus.updateMarketStatusList(DbConnectionEnum.H2_CONNECT);
-            	try {
-                	MarketStatus.updateBalance(DbConnectionEnum.H2_CONNECT);
-            	}catch(Exception e) {
-            	
-            	}
             	vaultMainControl = new VaultMainControl();
             	ready.setValue(Boolean.TRUE);
                 notifyPreloader(new StateChangeNotification(
@@ -78,22 +63,6 @@ public class VaultStart extends Application {
             }
         };        
         new Thread(task).start();
-    }
-    
-    private void loadConfig(){
-    	Config config = new Config();
-    	String db = config.getDatabase();
-		switch(db){
-		case "localhost":
-			dbce = DbConnectionEnum.H2_MAIN;
-			break;
-		case "pi":
-			dbce = DbConnectionEnum.H2_CONNECT;
-			break;
-		default:
-			dbce = null;
-			break;
-		}
     }
 
 }
