@@ -5,6 +5,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import org.knowm.xchange.currency.Currency;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +27,7 @@ import com.speculation1000.specdb.db.DbUtils;
 import com.speculation1000.specdb.market.AccountBalance;
 import com.speculation1000.specdb.market.Entry;
 import com.speculation1000.specdb.market.Market;
+import com.speculation1000.specdb.market.Symbol;
 
 
 public class VaultMainControl extends BorderPane implements Initializable {
@@ -79,7 +83,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
             	List<String> lst = new ArrayList<>();
             	List<AccountBalance> accountBalList = DbUtils.getLatestAccountBalances(DbConnectionEnum.H2_MAIN);
             	for(AccountBalance ab : accountBalList){
-            		lst.add(ab.toString());
+            		Symbol sb;
+            		if(!ab.getCounter().equalsIgnoreCase("BTC")){
+            			sb = new Symbol(ab.getCounter(),Currency.BTC.toString(),ab.getExchange());
+            			lst.add(ab.toString()+"@"+MarketDAO.getCurrentPrice(sb).toPlainString());
+            		}else{
+            			sb = new Symbol(Currency.BTC.toString(),Currency.USDT.toString(),ab.getExchange());
+            			lst.add(ab.toString()+"@"+MarketDAO.getCurrentPrice(sb).toPlainString());
+            		}
         		}
                 return lst;
             }
