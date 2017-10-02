@@ -32,9 +32,9 @@ import com.speculation1000.specdb.market.Symbol;
 
 public class VaultMainControl extends BorderPane implements Initializable {
 	
-	@FXML private ListView<String> listView;
+	@FXML private ListView<Market> listView;
 	
-	private ObservableList<String> mainObsList = FXCollections.observableArrayList();
+	private ObservableList<Market> mainObsList = FXCollections.observableArrayList();
     
 	public VaultMainControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VaultMainView.fxml"));
@@ -49,13 +49,13 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void showTicker(){
-        Task<List<String>> task = new Task<List<String>>() {
+        Task<List<Market>> task = new Task<List<Market>>() {
             @Override
-            protected List<String> call() throws Exception {
-            	List<String> lst = new ArrayList<>();
+            protected List<Market> call() throws Exception {
+            	List<Market> lst = new ArrayList<>();
             	List<Market> marketList = MarketDAO.getMarketList(DbConnectionEnum.H2_MAIN, 0);
             	for(Market m : marketList){
-            		lst.add(m.toString());
+            		lst.add(m);
         		}
                 return lst;
             }
@@ -77,19 +77,19 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void showBalance(){
-        Task<List<String>> task = new Task<List<String>>() {
+        Task<List<AccountBalance>> task = new Task<List<AccountBalance>>() {
             @Override
-            protected List<String> call() throws Exception {
-            	List<String> lst = new ArrayList<>();
+            protected List<AccountBalance> call() throws Exception {
+            	List<AccountBalance> lst = new ArrayList<>();
             	List<AccountBalance> accountBalList = DbUtils.getLatestAccountBalances(DbConnectionEnum.H2_MAIN);
             	for(AccountBalance ab : accountBalList){
             		Symbol sb;
             		if(!ab.getCounter().equalsIgnoreCase("BTC")){
             			sb = new Symbol(ab.getCounter(),Currency.BTC.toString(),ab.getExchange());
-            			lst.add(ab.toString()+"@"+MarketDAO.getCurrentPrice(sb).toPlainString());
+            			lst.add(ab);
             		}else{
             			sb = new Symbol(Currency.BTC.toString(),Currency.USDT.toString(),ab.getExchange());
-            			lst.add(ab.toString()+"@"+MarketDAO.getCurrentPrice(sb).toPlainString());
+            			lst.add(ab);
             		}
         		}
                 return lst;
@@ -112,14 +112,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void showMarketHighs(){
-        Task<List<String>> task = new Task<List<String>>() {
+        Task<List<Entry>> task = new Task<List<Entry>>() {
             @Override
-            protected List<String> call() throws Exception {
-            	List<String> lst = new ArrayList<>();
+            protected List<Entry> call() throws Exception {
+            	List<Entry> lst = new ArrayList<>();
             	List<Entry> entryList = EntryDAO.getMarketEntryList(DbConnectionEnum.H2_MAIN,25);
             	for(Entry e : entryList){
             		if(e.getDirection().equalsIgnoreCase("LONG")) {
-                		lst.add(e.toString());
+                		lst.add(e);
             		}
         		}
                 return lst;
@@ -142,14 +142,14 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	public void showMarketLows(){
-        Task<List<String>> task = new Task<List<String>>() {
+        Task<List<Entry>> task = new Task<List<Entry>>() {
             @Override
-            protected List<String> call() throws Exception {
-            	List<String> lst = new ArrayList<>();
+            protected List<Entry> call() throws Exception {
+            	List<Entry> lst = new ArrayList<>();
             	List<Entry> entryList = EntryDAO.getMarketEntryList(DbConnectionEnum.H2_MAIN,25);
             	for(Entry e : entryList){
             		if(e.getDirection().equalsIgnoreCase("SHORT")) {
-                		lst.add(e.toString());
+                		lst.add(e);
             		}
         		}
                 return lst;
@@ -198,9 +198,7 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		}
 	}
 	
-	@FXML 
-	public void navA(){
-		String s = listView.getSelectionModel().getSelectedItem();
+	private void menuNav(String s) {
 		switch(s) {
 		case "Ticker":
 			showTicker();
@@ -220,6 +218,47 @@ public class VaultMainControl extends BorderPane implements Initializable {
 	}
 	
 	@FXML 
+	public void navA(){
+		Market m = listView.getSelectionModel().getSelectedItem();
+		if(m instanceof MenuItem) {
+			menuNav(m.toString());
+		}else if(m instanceof Market) {
+			if(m instanceof AccountBalance) {
+				Symbol s = new Symbol(m.getCounter(),Currency.BTC.toString(),"TREX");
+				dump(s);
+			}
+		}else {
+			
+		}
+
+	}
+	
+	public void dump(Symbol s) {
+        Task<List<Entry>> task = new Task<List<Entry>>() {
+            @Override
+            protected List<Entry> call() throws Exception {
+            	List<Entry> entryList = EntryDAO.getMarketEntryList(DbConnectionEnum.H2_MAIN, s);
+                return entryList;
+            }
+        };        
+        new Thread(task).start();
+        
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+			@Override
+			public void handle(WorkerStateEvent t){
+				Platform.runLater(new Runnable() {
+		            @Override
+					public void run() {
+		        		mainObsList.setAll(task.getValue());
+		        		listView.scrollTo(0);
+		        		listView.getSelectionModel().select(0);
+		            }
+		        });
+			}
+		});
+	}
+	
+	@FXML 
 	public void navB(){
 		mainSetUp();
 	}
@@ -228,12 +267,12 @@ public class VaultMainControl extends BorderPane implements Initializable {
 		mainObsList.clear();
 		
         // populate main menu
-		mainObsList.add("Ticker");
-        mainObsList.add("Account");
-        mainObsList.add("Market Highs");
-        mainObsList.add("Market Lows");
-        mainObsList.add("Trades");
-        mainObsList.add("Settings");
+		mainObsList.add(new MenuItem("Ticker"));
+        mainObsList.add(new MenuItem("Account"));
+        mainObsList.add(new MenuItem("Market Highs"));
+        mainObsList.add(new MenuItem("Market Lows"));
+        mainObsList.add(new MenuItem("Trades"));
+        mainObsList.add(new MenuItem("Settings"));
 
         listView.setItems(mainObsList);
         listView.getSelectionModel().select(0);
