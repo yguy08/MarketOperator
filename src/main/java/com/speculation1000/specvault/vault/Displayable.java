@@ -1,6 +1,9 @@
 package com.speculation1000.specvault.vault;
 
-public interface Displayable {
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+
+public interface Displayable extends Initializable {
 
 	public void navUp();
 	 
@@ -9,5 +12,11 @@ public interface Displayable {
 	void navA();
 	
 	void navB();
+
+	void navLeft();
+
+	void navRight();
+
+	Parent getContent();
 	
 }

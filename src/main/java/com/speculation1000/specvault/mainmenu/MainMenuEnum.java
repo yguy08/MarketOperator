@@ -2,7 +2,8 @@ package com.speculation1000.specvault.mainmenu;
 
 public enum MainMenuEnum {
 	
-	ACCOUNT ("Account");
+	ACCOUNT ("Account"),
+	TICKER("Ticker");
 	
 	private String displayName;
 	

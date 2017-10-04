@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.speculation1000.specvault.account.AccountSummaryCtrl;
+import com.speculation1000.specvault.ticker.TickerCtrl;
 import com.speculation1000.specvault.vault.Displayable;
 
 import javafx.collections.FXCollections;
@@ -75,6 +76,8 @@ public class MainMenuCtrl extends BorderPane implements Displayable {
 				AccountSummaryCtrl accCtrl = new AccountSummaryCtrl();
 				navA.getScene().setRoot(accCtrl.getContent());
 				break;
+			case TICKER:
+				TickerCtrl tckCtrl = new TickerCtrl();
 			default:
 				navA.getScene().setRoot(this);
 				break;

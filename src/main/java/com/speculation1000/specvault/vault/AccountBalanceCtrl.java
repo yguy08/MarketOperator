@@ -28,6 +28,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 
@@ -143,6 +144,24 @@ public class AccountBalanceCtrl extends BorderPane implements Initializable, Dis
 		        });
 			}
 		});
+	}
+
+	@Override
+	public void navLeft() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void navRight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Parent getContent() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
