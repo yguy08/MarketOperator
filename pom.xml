@@ -4,7 +4,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   
   <modelVersion>4.0.0</modelVersion>
   	<groupId>com.speculation1000</groupId>
-  	<artifactId>specvault</artifactId>
+  	<artifactId>speculation1000</artifactId>
   <version>1.0.0</version>
   
   <properties>
@@ -14,6 +14,24 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   </properties>
   
   <dependencies>
+	
+	<dependency>
+  		<groupId>org.knowm.xchange</groupId>
+  		<artifactId>xchange-core</artifactId>
+  		<version>4.2.0</version>
+	</dependency>
+	
+	<dependency>
+  		<groupId>org.knowm.xchange</groupId>
+  		<artifactId>xchange-poloniex</artifactId>
+  		<version>4.2.0</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>com.yahoofinance-api</groupId>
+    	<artifactId>YahooFinanceAPI</artifactId>
+    	<version>3.6.1</version>
+	</dependency>
     
     <dependency>
       <groupId>junit</groupId>
@@ -27,13 +45,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	    <groupId>org.slf4j</groupId>
 	    <artifactId>slf4j-simple</artifactId>
 	    <version>1.7.25</version>
-	</dependency>
-	
-		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-	<dependency>
-	    <groupId>com.h2database</groupId>
-	    <artifactId>h2</artifactId>
-	    <version>1.4.196</version>
 	</dependency>
   
   </dependencies>

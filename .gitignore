@@ -12,15 +12,11 @@ log/
 classes/
 META-INF/
 
-#Gradle
-.gradle
-/build/
-
 # Misc.
 .DS_Store
 *.swp
 *.swo
 
 # externalized configuration file for keys
-config.properties
-
+exchangeConfiguration.json
+accountInfo.csv
