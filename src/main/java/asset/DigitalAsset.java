@@ -89,7 +89,6 @@ public class DigitalAsset implements Asset {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		//
 		}else{
 			throw new IllegalArgumentException("Exchange not supported.");
 		}

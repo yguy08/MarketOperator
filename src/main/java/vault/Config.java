@@ -90,7 +90,7 @@ public class Config {
 		setLongOnly(false);
 		setSortVol(true);
 		setFilterAssets(false);
-		setMinVolume(1000);
+		setMinVolume(0);
 	}
 	
 	//for utility purposes
